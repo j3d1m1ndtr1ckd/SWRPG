@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[api.controller=function() {  /* widget controller */  var c = this;};]]></client_script>
+        <controller_as>c</controller_as>
+        <css>.create-characters-button{
+	background:url("sw_create_character.jpg");
+  background-position: center !important; /* Center the image */
+  background-repeat:no-repeat;
+  background-size:cover !important;
+  padding:10px;
+}
+
+.my-characters-button{
+	background:url("my_characters_bg.png");
+  background-position: center !important; /* Center the image */
+  background-repeat:no-repeat;
+  background-size:cover !important;
+  padding:10px;
+}
+
+.my-campaigns-button{
+	background:url("my_campaigns_bg.png");
+  background-position: center top !important;
+  background-repeat:no-repeat;
+  background-size:cover !important;
+  padding:10px;
+}
+
+.holocron-button{
+	background:url("holocron_bg.png");
+  background-position:center !important;
+  background-repeat:no-repeat;
+  background-size:cover !important;
+  padding:10px;
+}
+
+.core-rulebook-button{
+	background:url("jedi_texts.jpg");
+  background-position:center !important;
+  background-repeat:no-repeat;
+  background-size:cover !important;
+  padding:10px;
+}
+
+.gm-button{
+	background:url("sw_gm_home.png");
+  background-position:center !important;
+  background-repeat:no-repeat;
+  background-size:cover !important;
+  padding:10px;
+}
+
+.core-rulebook-container{
+	margin-top:20px;
+}
+	
+.home-buttons-container{
+	margin-top:40px;
+}
+
+.home-header{
+	text-align:center;
+  padding:10px;
+}
+
+.link-label,.sw-link-label{
+	color:white;
+}
+
+.holocron-image{
+	position:absolute;
+ 	top:15px;
+ 	left:10%;
+  z-index:-1;
+}
+
+.homepage-button{
+	text-align:center;
+  margin-bottom:20px;
+}
+
+.hp-internal-button{
+	border:1px groove lightgray;
+  border-radius:15px;
+  min-height:200px !important;
+  z-index:1;
+}
+
+.hp-internal-button:hover{
+	box-shadow:0px 0px 6px 6px silver;
+  z-index:100000000;
+}
+
+.link-label{
+  font-size:30px;
+  font-weight:bold;
+  text-shadow:0px 0px 6px black;
+	padding-top:10%;
+}
+
+.homepage-button:hover{
+	transform:scale(1.05);
+}
+
+@media only screen and (max-width:762px){
+  .home-container, .home-buttons-container{
+  	padding:0;
+  }
+  
+  .homepage-button{
+  	margin-bottom:20px;
+  }
+}</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>false</has_preview>
+        <id>star_wars_home</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
+        <name>Star Wars Home</name>
+        <option_schema>[{"name":"header_text","section":"other","default_value":"Welcome to a Galaxy Far, Far Away","label":"Header Text","type":"string"}]</option_schema>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {
+  /* populate the 'data' object */
+  /* e.g., data.table = $sp.getValue('table'); */
+	data.userID = gs.getUserID();
+	var myChars = new GlideRecord('x_176383_star_wars_character');
+	myChars.addQuery('player', data.userID).addCondition('campaign', '!=', '');
+	myChars.query();
+	var myCampaigns = [];
+	while(myChars.next()){
+		myCampaigns.push(myChars.campaign + '');
+	}
+	
+	var sessions = new GlideRecord('x_176383_star_wars_game_session');
+	//sessions.addQuery('campaign', 'IN', myCampaigns.join(',')).addCondition('active', true).addOrCondition('campaign.game_master', data.userID);
+	sessions.addQuery('campaign.game_master', data.userID).addOrCondition('campaign', 'IN', myCampaigns.join(','));
+	sessions.addActiveQuery();
+	sessions.query();
+	if(sessions.next()){
+		data.sessionLink = '?id=star_wars_game_session&table=x_176383_star_wars_game_session&sys_id=' + sessions.sys_id + '&campaign=' + sessions.campaign.sys_id;
+	}
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-10-28 03:14:07</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>9ec41e322f88ac10e0f497eef699b6fb</sys_id>
+        <sys_mod_count>86</sys_mod_count>
+        <sys_name>Star Wars Home</sys_name>
+        <sys_package display_value="Star Wars RPG" source="x_176383_star_wars">64b3517bdb5a08542901de90cf961993</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Star Wars RPG">64b3517bdb5a08542901de90cf961993</sys_scope>
+        <sys_update_name>sp_widget_9ec41e322f88ac10e0f497eef699b6fb</sys_update_name>
+        <sys_updated_by>ben.fisher</sys_updated_by>
+        <sys_updated_on>2023-02-27 16:48:26</sys_updated_on>
+        <template><![CDATA[<div class="col-xs-12 home-container">
+	<div class="col-xs-12 home-header">
+    <h1 id="sw_home_header">{{options.header_text}}</h1>
+    <h4 class="star-wars-text">{{options.header_text}}</h4>
+  </div>
+  <div class="col-xs-12 home-buttons-container">
+    <span class="col-xs-12 col-md-4 homepage-button">
+      <a href="?id=star_wars_character_creation">
+      	<span class="col-xs-12 hp-internal-button create-characters-button">
+          <span class="col-xs-12 link-label">Create a Character</span>
+          <span class="col-xs-12 sw-link-label star-wars-text">Create a Character</span>
+      	</span>
+      </a>
+    </span>
+    <span class="col-xs-12 col-md-4 homepage-button">
+      <a href="?id=star_wars_my_characters">
+      	<span class="col-xs-12 hp-internal-button my-characters-button">
+          <span class="col-xs-12 link-label">My Characters</span>
+          <span class="col-xs-12 sw-link-label star-wars-text">My Characters</span>
+      	</span>
+      </a>
+    </span>
+    <span class="col-xs-12 col-md-4 homepage-button">
+      <a href="?id=star_wars_campaigns">
+      	<span class="col-xs-12 hp-internal-button my-campaigns-button">
+          <span class="col-xs-12 link-label">My Campaigns</span>
+          <span class="col-xs-12 sw-link-label star-wars-text">My Campaigns</span>
+      	</span>
+      </a>
+    </span>
+    <span class="col-xs-12 col-md-4 homepage-button">
+      <a href="?id=holocron">
+      	<span class="col-xs-12 hp-internal-button holocron-button">
+          <!--img class="holocron-image" src="holocron.png" height="80px" width="80px"/-->
+          <span class="col-xs-12 link-label">Holocron</span>
+          <span class="col-xs-12 sw-link-label star-wars-text">Holocron</span>
+      	</span>
+      </a>
+    </span>
+    <span class="col-xs-12 col-md-4 homepage-button">
+      <a href="?id=star_wars_knowledge">
+        <span class="col-xs-12 hp-internal-button core-rulebook-button">
+          <span class="col-xs-12 link-label">Core Rulebook</span>
+          <span class="col-xs-12 sw-link-label star-wars-text">Core Rulebook</span>
+        </span>
+      </a>
+    </span>
+    <span class="col-xs-12 col-md-4 homepage-button">
+      <a href="?id=star_wars_gm_home">
+        <span class="col-xs-12 hp-internal-button gm-button">
+          <span class="col-xs-12 link-label">GM Home</span>
+          <span class="col-xs-12 sw-link-label star-wars-text">GM Home</span>
+        </span>
+      </a>
+    </span>
+  </div>
+</div>]]></template>
+    </sp_widget>
+</record_update>

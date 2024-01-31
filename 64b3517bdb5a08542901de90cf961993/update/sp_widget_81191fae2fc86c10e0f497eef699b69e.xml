@@ -1,0 +1,4111 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[api.controller=function($scope, $rootScope, spUtil, $location) {
+	/* widget controller */
+	var c = this;
+
+	//build roll visual
+	function buildDiceRolls(){
+		for(var i = 0; i < $scope.data.skills.length; i++){
+			var parentElement = document.getElementById($scope.data.skills[i].sysID);
+
+			if($scope.data.skills[i].rankInt != $scope.data.skills[i].characteristic){
+				for(var j = 0; j < $scope.data.skills[i].abilityDice; j++){
+					var icon = document.createElement("i");
+					icon.classList.add('fas', 'fa-dice-d8', 'ability-dice', 'dice');
+					parentElement.appendChild(icon);
+				}
+			}
+
+			for(var j = 0; j < $scope.data.skills[i].upgrades; j++){
+				var icon = document.createElement("i");
+				icon.classList.add('fas', 'fa-dice-d12', 'proficiency-dice', 'dice');
+				parentElement.appendChild(icon);
+			}
+		}
+	}
+
+	function clearDiceRolls(){
+		var dice1 = document.querySelectorAll('.dice');
+		for(var i = 0; i < dice1.length; i++){
+			dice1[i].remove();
+		}
+		setTimeout(buildDiceRolls, 200);
+	}
+
+	var img = document.createElement('img');
+	img.src = $scope.data.character.portrait;
+	img.id = 'characterPortrait';
+	document.getElementById('portraitContainer').appendChild(img);
+
+	$rootScope.$on('sp.form.submitted', function(){
+		if(!$scope.data.editingPortrait){
+			$location.search('id', 'star_wars_character_sheet');
+			$location.search('character_id', $scope.data.characterID);
+			$location.search('query', null);
+			$location.search('spa', null);
+			$scope.closeEditContainer('gearQuality');
+			$scope.saveEdits('gearEdits');
+		} else{
+			$scope.closeEditContainer('portrait');		
+			c.server.get({action: 'updatePortrait'}).then(function(response){
+				$scope.data.character.portrait = response.data.character.portrait;
+				document.getElementById('characterPortrait').src = $scope.data.character.portrait;
+			});
+		}
+	});
+
+	$scope.showStatusEffectDetail = function(effect){
+		$scope.data.currentEffect = effect;
+		document.getElementById('statusEffectInfoBox').style.display = 'inline';
+	}
+
+	$scope.hideStatusEffectDetail = function(){
+		$scope.data.currentEffect = '';
+		document.getElementById('statusEffectInfoBox').style.display = 'none';
+	}
+
+	$scope.showCritDetail = function(){
+		document.getElementById('critInjuryDescriptionInfoBox').style.display = 'inline';
+	}
+
+	$scope.hideCritInjuryDescriptionInfoBox = function(){
+		document.getElementById('critInjuryDescriptionInfoBox').style.display = 'none';
+	}
+
+	$scope.showSection = function(section, header){
+		//set sections display based on function parameter
+		var containers = document.getElementsByClassName('character-details-container');
+		for(var j = 0; j < containers.length; j++){
+			containers[j].style.display = 'none';
+		}
+		document.getElementById(section).style.display = 'inline';
+		//set active header based on function parameter
+		var sections = document.getElementsByClassName('section');
+		for(var i = 0; i < sections.length; i++){
+			sections[i].style.border = 'none';
+		}
+		document.getElementById(header).style.borderBottom = '3px groove white';
+	}
+
+	$scope.showSkillInfo = function(skill){
+		$scope.data.currentSkill = skill;
+		document.getElementById('skillInfoContainer').style.display = 'inline';
+	}
+
+	$scope.closeSkillInfo = function(){
+		document.getElementById('skillInfoContainer').style.display = 'none';
+	}
+
+	$scope.toggleForce = function(){
+		var filter = document.getElementById('forcePowerFilterSelect').value;
+		if(filter == 'powers'){
+			document.getElementById('forceEnhancementShop').style.display = 'none';
+			document.getElementById('forcePowerShop').style.display = 'inline';
+		} else{
+			document.getElementById('forceEnhancementShop').style.display = 'inline';
+			document.getElementById('forcePowerShop').style.display = 'none';
+		}
+	}
+
+	$scope.purchaseNewSpec = function(newSpec){
+		c.isSubmitting = true;
+		c.server.get({action: 'buyNewSpec', spec: newSpec}).then(function(response){
+			$scope.data.character = response.data.character;
+			$scope.data.specializationInfo = response.data.specializationInfo;
+			$scope.data.availableSpecs = response.data.availableSpecs;
+			$scope.data.talens = response.data.talents;
+			$scope.data.availableTalents = response.data.availableTalents;
+			$scope.data.skills = response.data.skills;
+			c.isSubmitting = false;
+			setTimeout(clearDiceRolls, 100);
+		});
+	}
+
+	$scope.purchaseSignatureAbility = function(ability, talentTree){
+		if(!confirm('A talent tree may only be used to unlock one signature ability.  Are you sure you want to assign this talent tree to ' + ability.name + '?')){
+			return false;
+		} else{
+			c.isSubmitting = true;
+			c.server.get({action: 'buySignatureAbility', ability: ability, talentTree: talentTree}).then(function(response){
+				$scope.data.characterSignatureAbilities = response.data.characterSignatureAbilities;
+				$scope.data.availableSignatureAbilities = response.data.availableSignatureAbilities;
+				$scope.data.availableSignatureAbilityUpgrades = response.data.availableSignatureAbilityUpgrades;
+				$scope.data.character = response.data.character;
+				c.isSubmitting = false;
+			});
+		}
+	}
+
+	$scope.purchaseSignatureAbilityUpgrade = function(upgrade){
+		c.isSubmitting = true;
+		c.server.get({action: 'buySignatureAbilityUpgrade', upgrade: upgrade}).then(function(response){
+			$scope.data.characterSignatureAbilities = response.data.characterSignatureAbilities;
+			$scope.data.availableSignatureAbilityUpgrades = response.data.availableSignatureAbilityUpgrades;
+			$scope.data.character = response.data.character;
+			c.isSubmitting = false;
+		});
+	}
+
+	$scope.purchaseForcePower = function(power){
+		c.isSubmitting = true;
+		c.server.get({action: 'buyForcePower', power: power}).then(function(response){
+			$scope.data.characterPowers = response.data.characterPowers;
+			$scope.data.forcePowers = response.data.forcePowers;
+			$scope.data.forceEnhancements = response.data.forceEnhancements;
+			$scope.data.character = response.data.character;
+		});
+		c.isSubmitting = false;
+	}
+
+	$scope.purchaseForceEnhancement = function(enhancement){
+		c.isSubmitting = true;
+		c.server.get({action: 'buyForceEnhancement', enh: enhancement}).then(function(response){
+			$scope.data.cForceEnhancements = response.data.cForceEnhancements;
+			$scope.data.ownedEnhancements = response.data.ownedEnhancements;
+			$scope.data.forceEnhancements = response.data.forceEnhancements;
+			$scope.data.character = response.data.character;
+		});
+		c.isSubmitting = false;
+	}
+
+	$scope.showForceInfo = function(power){
+		try{
+			$scope.data.currentForcePower = power;
+			document.getElementById('forcePowerInfoContainer').style.display = 'inline';
+		} catch(e){
+			alert(e.message);
+		}
+	}
+
+	$scope.closeForceInfo = function(){
+		document.getElementById('forcePowerInfoContainer').style.display = 'none';
+	}
+
+	$scope.toggleMobileNavMenu = function(){
+		var navMenu = document.getElementById('mobileNavMenu');
+		var navButtons = document.getElementsByClassName('nav-button');
+		if(navMenu.style.height == ''){
+			navMenu.style.background = 'black';
+			navMenu.style.border = '1px groove #e21414';
+			navMenu.style.width = '80%';
+			navMenu.style.height = '60%';
+
+			for(var i = 0; i < navButtons.length; i++){
+				navButtons[i].style.display = 'inline';
+			}
+		} else{
+			navMenu.style.background = 'transparent';
+			navMenu.style.border = 'none';
+			navMenu.style.width = null;
+			navMenu.style.height = null;
+
+			for(var i = 0; i < navButtons.length; i++){
+				navButtons[i].style.display = 'none';
+			}
+		}		
+	}
+
+	$scope.showMobileSection = function(section){
+		//set all sections to display none then set selected section to display inline.
+		var sections = document.getElementsByClassName('mobile-nav-container');
+		for(var i = 0; i < sections.length; i++){
+			sections[i].style.display = 'none';
+		}
+
+		if(section == 'characteristicContainer'){
+			document.getElementById('xpInfo').style.display = 'inline';
+			document.getElementById('derivedValuesContainer').style.display = 'inline';
+		}
+		document.getElementById(section).style.display = 'inline';
+		$scope.toggleMobileNavMenu();
+	}
+
+	$scope.editCharacter = function(section, item, secondaryItem){
+		if($scope.data.canEdit || section == 'career' || section == 'specializations' || section == 'species'){
+			switch(section){
+				case 'addXP':
+					var container = document.getElementById('editCharacterXP');
+					container.style.display = 'inline';
+					if(parseInt(screen.width) < 762){
+						container.style.width = '95%';
+					} else{
+						container.style.width = '40%';
+					}
+					break;
+					
+				case 'description':
+					document.getElementById('notableFeatures').innerHTML = $scope.data.character.notableFeatures;
+					document.getElementById('background').innerHTML = $scope.data.character.background;
+					document.getElementById('notes').value = $scope.data.character.notes;
+					var container = document.getElementById('editCharacterDescription');
+					container.style.display = 'inline';
+					if(parseInt(screen.width) < 762){
+						container.style.width = '95%';
+					} else{
+						container.style.width = '40%';
+					}
+					break;
+
+				case 'portrait':
+					$scope.data.editingPortrait = true;
+					var container = document.getElementById('editPortrait');
+					container.style.display = 'inline';
+					if(parseInt(screen.width) < 762){
+						container.style.width = '95%';
+					} else{
+						container.style.width = '40%';
+					}
+					break;
+
+				case 'gearQuality':
+					try{
+						$scope.data.currentGear = item;
+						var widgetParams = {
+							table: 'x_176383_star_wars_character_gear_special',
+							query: 'character_gear=' + item.sysID,
+							isPopup: true
+						};
+						if(secondaryItem){
+							widgetParams.sys_id = secondaryItem.sys_id;
+						} else{
+							widgetParams.sys_id = -1;
+						}
+						$location.search('spa', 1);
+						$location.search('query', widgetParams.query);
+						spUtil.get('widget-form', widgetParams).then(function(response){
+							$scope.data.gearQualityWidget = response;	
+						});
+						var container = document.getElementById('editGearQuality');
+						container.style.display = 'inline';
+						if(parseInt(screen.width) < 762){
+							container.style.width = '95%';
+						} else{
+							container.style.width = '40%';
+						}
+					} catch(e){
+						alert(e.message);
+					}
+					break;
+
+				case 'soak':
+					var container = document.getElementById('editSoakContainer');
+					container.style.display = 'inline';
+					if(parseInt(screen.width) < 762){
+						container.style.width = '95%';
+					} else{
+						container.style.width = '40%';
+					}
+					break;
+
+				case 'wounds':
+					var container = document.getElementById('editWoundsContainer');
+					container.style.display = 'inline';
+					if(parseInt(screen.width) < 762){
+						container.style.width = '95%';
+					} else{
+						container.style.width = '40%';
+					}
+					break;
+
+				case 'strain':
+					var container = document.getElementById('editStrainContainer');
+					container.style.display = 'inline';
+					if(parseInt(screen.width) < 762){
+						container.style.width = '95%';
+					} else{
+						container.style.width = '40%';
+					}
+					break;
+
+				case 'defense':
+					var container = document.getElementById('editDefenseContainer');
+					container.style.display = 'inline';
+					if(parseInt(screen.width) < 762){
+						container.style.width = '95%';
+					} else{
+						container.style.width = '40%';
+					}
+					break;
+
+				case 'characteristics':
+					var container = document.getElementById('editCharacteristicsContainer');
+					container.style.display = 'inline';
+					if(parseInt(screen.width) < 762){
+						container.style.width = '95%';
+					} else{
+						container.style.width = '40%';
+					}
+					break;
+
+				case 'name':
+					var container = document.getElementById('editNameContainer');
+					container.style.display = 'inline';
+					if(parseInt(screen.width) < 762){
+						container.style.width = '95%';
+					} else{
+						container.style.width = '40%';
+					}
+					break;
+
+				case 'gear':
+					var container = document.getElementById('marketplaceContainer');
+					container.style.display = 'inline';
+					if(parseInt(screen.width) < 762){
+						container.style.width = '95%';
+					} else{
+						container.style.width = '40%';
+					}
+					break;
+
+				case 'credits':
+					var container = document.getElementById('editCreditsContainer');
+					container.style.display = 'inline';
+					if(parseInt(screen.width) < 762){
+						container.style.width = '95%';
+					} else{
+						container.style.width = '40%';
+					}
+					break;
+
+				case 'talents':
+					var container = document.getElementById('editTalentsContainer');
+					container.style.display = 'inline';
+					if(parseInt(screen.width) < 762){
+						container.style.width = '95%';
+					} else{
+						container.style.width = '40%';
+					}
+					break;
+
+				case 'signatureAbilities':
+					var container = document.getElementById('editSignatureAbilitiesContainer');
+					container.style.display = 'inline';
+					if(parseInt(screen.width) < 762){
+						container.style.width = '95%';
+					} else{
+						container.style.width = '40%';
+					}
+					break;
+
+				case 'skills':
+					var container = document.getElementById('editSkillsContainer');
+					container.style.display = 'inline';
+					if(parseInt(screen.width) < 762){
+						container.style.width = '95%';
+					} else{
+						container.style.width = '40%';
+					}
+					break;
+
+				case 'gearQuantity':
+					var container = document.getElementById('editGearQuantityContainer');
+					container.style.display = 'inline';
+					if(parseInt(screen.width) < 762){
+						container.style.width = '95%';
+					} else{
+						container.style.width = '40%';
+					}
+					$scope.data.currentGear = item;
+					document.getElementById('gearQuantityInput').value = $scope.data.currentGear.quantity;
+					break;
+
+				case 'gearEdit':
+					var container = document.getElementById('editGearDetailsContainer');
+					container.style.display = 'inline';
+					if(parseInt(screen.width) < 762){
+						container.style.width = '95%';
+					} else{
+						container.style.width = '40%';
+					}
+					$scope.data.currentGear = item;
+					document.getElementById('gearRange').value = item.rangeID;
+					document.getElementById('gearSoak').value = item.soak;
+					document.getElementById('gearLocation').value = item.locValue;
+					break;
+
+				case 'vehicles':
+					var container = document.getElementById('editVehiclesContainer');
+					container.style.display = 'inline';
+					if(parseInt(screen.width) < 762){
+						container.style.width = '95%';
+					} else{
+						container.style.width = '40%';
+					}
+					break;
+
+				case 'career':
+					var container = document.getElementById('showCareerInfo');
+					container.style.display = 'inline';
+					if(parseInt(screen.width) < 762){
+						container.style.width = '95%';
+					} else{
+						container.style.width = '40%';
+					}
+					break;
+
+				case 'specializations':
+					var container = document.getElementById('showSpecializationsInfo');
+					container.style.display = 'inline';
+					if(parseInt(screen.width) < 762){
+						container.style.width = '95%';
+					} else{
+						container.style.width = '40%';
+					}
+					break;
+
+				case 'forceRating':
+					var container = document.getElementById('editForceRatingContainer');
+					container.style.display = 'inline';
+					if(parseInt(screen.width) < 762){
+						container.style.width = '95%';
+					} else{
+						container.style.width = '40%';
+					}
+					break;
+
+				case 'forcePowers':
+					var container = document.getElementById('editForcePowersContainer');
+					container.style.display = 'inline';
+					if(parseInt(screen.width) < 762){
+						container.style.width = '95%';
+					} else{
+						container.style.width = '40%';
+					}
+					break;
+
+				case 'newSpecs':
+					var container = document.getElementById('addNewSpecializationsContainer');
+					container.style.display = 'inline';
+					if(parseInt(screen.width) < 762){
+						container.style.width = '95%';
+					} else{
+						container.style.width = '40%';
+					}
+					break;
+
+				case 'species':
+					var container = document.getElementById('showSpeciesInfo');
+					container.style.display = 'inline';
+					if(parseInt(screen.width) < 762){
+						container.style.width = '95%';
+					} else{
+						container.style.width = '40%';
+					}
+					break;
+
+				case 'otherGear':
+					var container = document.getElementById('editOtherGearDetailsContainer');
+					document.getElementById('otherGearInput').value = $scope.data.character.otherGear;
+					container.style.display = 'inline';
+					if(parseInt(screen.width) < 762){
+						container.style.width = '95%';
+					} else{
+						container.style.width = '40%';
+					}
+					break;
+
+				case 'crit':
+					var container = document.getElementById('editCritContainer');
+					document.getElementById('critDescription').innerHTML = $scope.data.character.criticalInjuriesDescription;
+					container.style.display = 'inline';
+					if(parseInt(screen.width) < 762){
+						container.style.width = '95%';
+					} else{
+						container.style.width = '40%';
+					}
+					break;
+
+				default:
+					break;
+			}
+		}
+	}
+
+	$scope.saveEdits = function(section){
+		switch(section){
+			case 'addXP':
+				var xpToAdd = parseInt(document.getElementById('addXP').value);
+				c.server.get({action: 'addXP', xpToAdd: xpToAdd}).then(function(response){
+					$scope.data = response.data;
+					$scope.closeEditContainer('addXP');
+					c.isSubmitting = false;
+					c.server.refresh().then(function(){
+						clearDiceRolls();
+					});
+				});
+				break;
+				
+			case 'description':
+				var gender = document.getElementById('gender').value;
+				var age = parseInt(document.getElementById('age').value);
+				var eyes = document.getElementById('eyes').value;
+				var height = document.getElementById('height').value;
+				var weight = document.getElementById('weight').value;
+				var hair = document.getElementById('hair').value;
+				var notableFeatures = document.getElementById('notableFeatures').value;
+				var background = document.getElementById('background').value;
+				var notes = document.getElementById('notes').value;
+				c.server.get({action: 'saveCharacterDescription', gender: gender, age: age, eyes: eyes, height: height, weight: weight, hair: hair, notableFeatures: notableFeatures, background: background, notes: notes}).then(function(response){
+					$scope.data.character = response.data.character;
+					$scope.closeEditContainer('description');
+					c.isSubmitting = false;
+				});
+				break;
+
+			case 'soak':
+				var soak = parseInt(document.getElementById('soakInput').value);
+				c.server.get({action: 'saveSoak', soak: soak}).then(function(response){
+					$scope.data.character = response.data.character;
+					$scope.closeEditContainer('soak');
+					c.isSubmitting = false;
+				});
+				break;
+
+			case 'wounds':
+				var woundsThreshold = parseInt(document.getElementById('woundThresholdInput').value);
+				var woundsCurrent = parseInt(document.getElementById('woundCurrentInput').value);
+				c.server.get({action: 'saveWounds', threshold: woundsThreshold, current: woundsCurrent}).then(function(response){
+					$scope.data.character = response.data.character;
+					$scope.closeEditContainer('wounds');
+					c.isSubmitting = false;
+				});
+				break;
+
+			case 'strain':
+				var strainThreshold = parseInt(document.getElementById('strainThresholdInput').value);
+				var strainCurrent = parseInt(document.getElementById('strainCurrentInput').value);
+				c.server.get({action: 'saveStrain', threshold: strainThreshold, current: strainCurrent}).then(function(response){
+					$scope.data.character = response.data.character;
+					$scope.closeEditContainer('strain');
+					c.isSubmitting = false;
+				});
+				break;
+
+			case 'defense':
+				var ranged = parseInt(document.getElementById('rangedDefenseInput').value);
+				var melee = parseInt(document.getElementById('meleeDefenseInput').value);
+				c.server.get({action: 'saveDefense', ranged: ranged, melee: melee}).then(function(response){
+					$scope.data.character = response.data.character;
+					$scope.closeEditContainer('defense');
+					c.isSubmitting = false;
+				});
+				break;
+
+			case 'characteristics':
+				var brawn = parseInt(document.getElementById('brawn').value);
+				var agility = parseInt(document.getElementById('agility').value);
+				var intellect = parseInt(document.getElementById('intellect').value);
+				var cunning = parseInt(document.getElementById('cunning').value);
+				var willpower = parseInt(document.getElementById('willpower').value);
+				var presence = parseInt(document.getElementById('presence').value);
+				if(brawn <= 6 && agility <= 6 && intellect <= 6 && cunning <= 6 && willpower <= 6 && presence <= 6){
+					c.server.get({action: 'saveCharacteristics', brawn: brawn, agility: agility, intellect: intellect, cunning: cunning, willpower: willpower, presence: presence, skills: $scope.data.skills}).then(function(response){
+						$scope.data.character = response.data.character;
+						$scope.data.skills = response.data.skills;
+						$scope.closeEditContainer('characteristics');
+						c.isSubmitting = false;
+						setTimeout(clearDiceRolls, 100);
+					});
+				} else{
+					alert('Characteristics cannot be raised above 6.');
+				}
+				break;
+
+			case 'name':
+				var name = document.getElementById('nameInput').value;
+				c.server.get({action: 'saveName', name: name}).then(function(response){
+					$scope.data.character = response.data.character;
+					$scope.closeEditContainer('name');
+					c.isSubmitting = false;
+				});
+				break;
+
+			case 'credits':
+				var creds = parseInt(document.getElementById('creditsInput').value);
+				c.server.get({action: 'saveCredits', credits: creds}).then(function(response){
+					$scope.data.character = response.data.character;
+					$scope.closeEditContainer('credits');
+					c.isSubmitting = false;
+				});
+				break;
+
+			case 'gearQuantity':
+				var quantity = parseInt(document.getElementById('gearQuantityInput').value);
+				c.server.get({action: 'saveGearQuantity', gearID: $scope.data.currentGear.sysID, quantity: quantity}).then(function(response){
+					document.getElementById('gearQuantityInput').value = null;
+					$scope.data.characterGear = response.data.characterGear;	
+					$scope.closeEditContainer('gearQuantity');
+					c.isSubmitting = false;
+				});
+				break;
+
+			case 'forceRating':
+				var forceRating = parseInt(document.getElementById('forceRatingInput').value);
+				var committed = parseInt(document.getElementById('forceCommittedInput').value);
+				c.server.get({action: 'saveForceRating', forceRating: forceRating, forceCommitted: committed}).then(function(response){
+					$scope.data.character = response.data.character;
+					$scope.closeEditContainer('forceRating');
+					c.isSubmitting = false;
+				});
+				break;
+
+			case 'gearEdits':
+				var name = document.getElementById('gearName').value;
+				var crit = document.getElementById('gearCritRating').value;
+				var defense = document.getElementById('gearDefense').value;
+				var damage = document.getElementById('gearDamage').value;
+				var range = document.getElementById('gearRange').value;
+				var soak = document.getElementById('gearSoak').value;
+				var hardPoints = document.getElementById('gearHardPoints').value;
+				var location = document.getElementById('gearLocation').value;
+				var description = document.getElementById('gearDescription').value;
+				c.server.get({action: 'saveGearEdit', gearID: $scope.data.currentGear.sysID, crit: crit, defense: defense, damage: damage, range: range, soak: soak, hp: hardPoints, location: location, name: name, description: description}).then(function(response){
+					$scope.data.characterGear = response.data.characterGear;
+					c.isSubmitting = false;
+					$scope.closeEditContainer('gearEdit');
+				});
+				break;
+
+			case 'otherGear':
+				var og = document.getElementById('otherGearInput').value;
+				c.server.get({action: 'saveOtherGear', gear: og}).then(function(response){
+					$scope.data.character = response.data.character;	
+					$scope.closeEditContainer('otherGear');
+					c.isSubmitting = false;
+				});
+				break;
+
+			case 'crit':
+				var crits = document.getElementById('crits').value;
+				var notes = document.getElementById('critDescription').value;
+				c.server.get({action: 'saveCrit', crits: crits, notes: notes}).then(function(response){
+					$scope.data.character = response.data.character;
+					c.isSubmitting = false;
+					$scope.closeEditContainer('crit');
+				});
+				break;
+
+			default:
+				c.isSubmitting = false;
+				break;
+		}
+	}
+
+	$scope.toggleGearInfo = function(item){
+		if(item == 'all'){
+			var allChev = document.getElementById('allChevron');
+			var icons = document.getElementsByClassName('gear-info-icon');
+			var infoSections = document.getElementsByClassName('full-gear-detail');
+			if(allChev.style.transform == 'rotate(-90deg)'){
+				for(var i = 0; i < icons.length; i++){
+					icons[i].style.transform = 'rotate(0deg)';
+					infoSections[i].style.display = 'none';
+					infoSections[i].style.maxHeight = null;
+				}
+			} else{
+				for(var i = 0; i < icons.length; i++){
+					icons[i].style.transform = 'rotate(-90deg)';
+					infoSections[i].style.display = 'inline';
+					infoSections[i].style.maxHeight = infoSections[i].scrollHeight + 'px';
+				}
+			}
+		} else{
+			var element = document.getElementById(item);
+			var parentID = 'parent' + item;
+			var parent = document.getElementById(parentID);
+			var iconString = item + 'Chevron';
+			var icon = document.getElementById(iconString);
+			if(element.style.maxHeight == 0 || element.style.maxHeight == null){
+				element.style.display = 'inline';
+				element.style.maxHeight = element.scrollHeight + 'px';
+				icon.style.transform = 'rotate(-90deg)';
+			} else{
+				element.style.maxHeight = null;
+				element.style.display = 'none';
+				icon.style.transform = 'rotate(0deg)';
+			}
+		}
+	}
+
+	$scope.removeItem = function(itemID){
+		c.server.get({action: 'deleteGear', sysID: itemID}).then(function(response){
+			$scope.data.characterGear = response.data.characterGear;
+		});
+	}
+
+	$scope.filterGear = function(){
+		var type = document.getElementById('gearFilterSelect').value;
+		if(type == 'all'){
+			$scope.data.availableGear = $scope.data.availableGearAll;
+		} else{
+			var tempArray = [];
+			for(var i = 0; i < $scope.data.availableGearAll.length; i++){
+				if($scope.data.availableGearAll[i].typeID == type){
+					tempArray.push($scope.data.availableGearAll[i]);
+				}
+			}
+			$scope.data.availableGear = tempArray;
+		}
+	}
+
+	$scope.filterVehicle = function(){
+		var type = document.getElementById('vehicleFilterSelect').value;
+		if(type == 'all'){
+			$scope.data.vehicles = $scope.data.vehiclesAll;
+		} else{
+			var tempArray = [];
+			for(var i = 0; i < $scope.data.vehiclesAll.length; i++){
+				if(type == $scope.data.vehiclesAll[i].typeID){
+					tempArray.push($scope.data.vehiclesAll[i]);
+				}
+			}
+			$scope.data.vehicles = tempArray;
+		}
+	}
+
+	$scope.purhcaseItem = function(item){
+		var qID = item.name + 'QuantityInput';
+		var quantity = document.getElementById(qID).value;
+		var tempPrice = parseInt(quantity) * parseInt(item.price);
+		if(tempPrice <= $scope.data.character.creditsInt){
+			c.isSubmitting = true;
+			c.server.get({action: 'purchaseItem', item: item, quantity: quantity, price: tempPrice}).then(function(response){
+				$scope.data.characterGear = response.data.characterGear;
+				$scope.data.character = response.data.character;
+				c.isSubmitting = false;
+			});
+		} else{
+			alert('You lack the necessary funds to purchase that item or quantity');
+		}
+	}
+
+	$scope.showGearInfo = function(item){
+		$scope.data.currentGearItem = item;
+		document.getElementById('gearInfoContainer').style.display = 'inline';
+	}
+
+	$scope.closeEditContainer = function(section){
+		var container = '';
+
+		switch(section){
+			case 'addXP':
+				container = document.getElementById('editCharacterXP');
+				break;
+			
+			case 'description':
+				container = document.getElementById('editCharacterDescription');	
+				break;
+
+			case 'portrait':
+				$scope.data.editingPortrait = false;
+				container = document.getElementById('editPortrait');
+				break;
+
+			case 'gearQuality':
+				container = document.getElementById('editGearQuality');
+				break;
+
+			case 'soak':
+				container = document.getElementById('editSoakContainer');	
+				break;
+
+			case 'wounds':
+				container = document.getElementById('editWoundsContainer');
+				break;
+
+			case 'strain':
+				container = document.getElementById('editStrainContainer');		
+				break;
+
+			case 'defense':
+				container = document.getElementById('editDefenseContainer');
+				break;
+
+			case 'characteristics':
+				container = document.getElementById('editCharacteristicsContainer');	
+				break;
+
+			case 'name':
+				container = document.getElementById('editNameContainer');	
+				break;
+
+			case 'credits':
+				container = document.getElementById('editCreditsContainer');
+				break;
+
+			case 'gear':
+				container = document.getElementById('marketplaceContainer');
+				break;
+
+			case 'talents':
+				container = document.getElementById('editTalentsContainer');
+				break;
+
+			case 'signatureAbilities':
+				container = document.getElementById('editSignatureAbilitiesContainer');
+				break
+
+			case 'talentInfoBox':
+				container = document.getElementById('talentInfoBox');		
+				break;
+
+			case 'skills':
+				container = document.getElementById('editSkillsContainer');		
+				break;
+
+			case 'gearQuantity':
+				container = document.getElementById('editGearQuantityContainer');	
+				break;
+
+			case 'vehicles':
+				container = document.getElementById('editVehiclesContainer');	
+				break;
+
+			case 'vehicleInfoBox':
+				container = document.getElementById('vehicleInfoBox');		
+				break;
+
+			case 'career':
+				container = document.getElementById('showCareerInfo');		
+				break;
+
+			case 'specializations':
+				container = document.getElementById('showSpecializationsInfo');		
+				break;
+
+			case 'forceRating':
+				container = document.getElementById('editForceRatingContainer');		
+				break;
+
+			case 'forcePowers':
+				container = document.getElementById('editForcePowersContainer');
+				break;
+
+			case 'newSpecs':
+				container = document.getElementById('addNewSpecializationsContainer');	
+				break;
+
+			case 'gearInfo':
+				container = document.getElementById('gearInfoContainer');
+				break;
+
+			case 'species':
+				container = document.getElementById('showSpeciesInfo');
+				break;
+
+			case 'gearEdit':
+				container = document.getElementById('editGearDetailsContainer');	
+				break;
+
+			case 'otherGear':
+				container = document.getElementById('editOtherGearDetailsContainer');
+				break;
+
+			case 'crit':
+				container = document.getElementById('editCritContainer');
+				break;
+
+			default:
+				break;
+		}				
+
+		container.style.width = null;
+		container.style.display = 'none';
+	}
+
+	$scope.toggleTalentInfo = function(item){
+		$scope.data.currentTalentInfo = item;
+		document.getElementById('talentInfoBox').style.display = 'inline';
+	}
+
+	$scope.toggleVehicleInfo = function(vehicle){
+		$scope.data.currentVehicleInfo = vehicle;
+		document.getElementById('vehicleInfoBox').style.display = 'inline';
+	}
+
+	$scope.purchaseTalent = function(item){
+		c.isSubmitting = true;
+		c.server.get({action: 'purchaseTalent', talent: item, talentID: item.sysID}).then(function(response){
+			$scope.data = response.data;
+			c.isSubmitting = false;
+			setTimeout(clearDiceRolls, 100);
+		});
+	}
+
+	$scope.purchaseVehicle = function(vehicle){
+		c.isSubmitting = true;
+		c.server.get({action: 'purchaseVehicle', vehicle: vehicle, vehicleID: vehicle.sysID}).then(function(response){
+			$scope.data.characterVehicles = response.data.characterVehicles;
+			c.isSubmitting = false;
+		});
+	}
+
+	$scope.increaseSkill = function(skill){
+		c.isSubmitting = true;
+		c.server.get({action: 'saveSkill', skill: skill}).then(function(response){
+			$scope.data = response.data;
+			c.isSubmitting = false;
+			setTimeout(clearDiceRolls, 100);
+		});
+	}
+
+	$scope.removeVehicle = function(vehicle){
+		if(confirm('Are you sure you want to remove this ship?')){
+			c.server.get({action: 'removeVehicle', vehicle: vehicle}).then(function(response){
+				$scope.data.vehicles = response.data.vehicles;
+				$scope.data.vehiclesAll = response.data.vehiclesAll;
+				$scope.data.characterVehicles = response.data.characterVehicles;
+			});
+		}
+	}
+
+	$scope.updateStatus = function(effect){
+		c.server.get({action: 'updateStatusEffects', effect: effect}).then(function(response){
+			$scope.data.character = response.data.character;
+			$scope.data.statusEffects = response.data.statusEffects;
+		});
+	}
+
+	$scope.flipTalentUsed = function(talent){
+		if(talent.used == 'false'){
+			talent.used = 'true';
+		} else{
+			talent.used = 'false';
+		}
+		c.server.get({action: 'updateLimitedUseTalent', talent: talent});
+	}
+	
+	setTimeout(clearDiceRolls, 10);
+};]]></client_script>
+        <controller_as>c</controller_as>
+        <css>.image-background{
+  position:fixed;
+  top:65px;
+  left:0;
+  height: 1000px; /* You must set a specified height */
+  background-position: center !important; /* Center the image */
+  background-attachment: fixed;
+  background-repeat:no-repeat;
+  background-size:cover !important;
+  opacity:.7;
+  z-index:-5;
+}
+
+.panel-heading, .panel-footer{
+  background-color: black;
+  color:white;
+}
+
+#characterPortrait{
+  height: 150px;
+}
+
+.slideout-close-icon{
+  background-color:black;
+  position:fixed;
+  top:2%;
+  right:40px;
+  z-index:10000;
+}
+
+.remove-vehicle-mobile{
+  margin-top:30px;
+  text-align:center;
+}
+
+.mobile-remove-vehicle-button{
+  background-color:transparent;
+  border:1px groove #e21414;
+  border-radius:20px;
+}
+
+.name{
+  font-size:28px;
+  font-weight:bold;
+}
+
+.id-info{
+  font-size:18px;
+  margin-bottom:30px;
+}
+
+.total-xp,.available-xp{
+  background-color:white;
+  border-radius: 45px 45px 45px 45px;
+  border:2px groove black;
+}
+
+.xp-label{
+  background-color:#2f3860;
+  padding:3px 12px 3px 12px;
+  text-align:center;
+  border-radius:20px;
+}
+
+.xp-value{
+  font-size:18px;
+  text-align:center;
+  color:black;
+  padding-top:10px;
+  padding-bottom:10px;
+}
+
+.derived-values{
+  text-align:center;
+}
+
+.dv-header{
+  background-color:#2f3860;
+  padding: 4px 15px 4px 15px;
+  border-radius:20px;
+  text-align:center;
+  color:white;
+}
+
+.dv-container{
+  background-color:white;
+  min-height:70px;
+  text-align:center;
+  color:black;
+  border-radius:20px;
+  border:1px groove black;
+}
+
+.threshold-container{
+  border-right:1px groove black;
+  padding:0;
+}
+
+.current-container{
+  padding:0;
+}
+
+.threshold-value-header{
+  color:white;
+}
+
+.threshold-header-container{
+  background-color: #e21414;
+}
+
+.current-header-container{
+  color:white;
+  background-color:#1933f4;
+}
+
+.threshold-value, .current-value, #soakValue{
+  font-size:22px;
+  font-weight:bold;
+}
+
+#soak{
+  padding-bottom:20px;
+}
+
+#soakValue{
+  margin-top:5px;
+}
+
+.characteristics-container{
+  text-align:center;
+  margin-top:40px;
+}
+
+.characteristics-header{
+  margin-bottom:20px;
+  font-size:22px;
+}
+
+.characteristic{
+  background-color:black;
+}
+
+.c-value{
+  border-radius:5px 5px 0px 0px;
+  padding-top:8px;
+  padding-bottom:8px;
+  background:white;
+  color:black;
+  font-size:22px;
+  font-weight:bold;
+}
+
+.c-value-number{
+  border:2px groove black;
+  border-radius:40px;
+  padding:0px 8px 0px 8px;
+}
+
+.c-label{
+  background-color: #e21414;
+  border-radius:0px 0px 5px 5px;
+}
+
+.fa-medal{
+  color: #54f403;
+}
+
+.skill-container{
+  margin-top:40px;
+  margin-bottom:40px;
+}
+
+.skills-container-header{
+  font-size: 22px;
+  text-align:center;
+}
+
+.skills-body{
+  border:1px groove white;
+  background-color:black;
+}
+
+.skill-name-header,.skill-roll-header{
+  text-align:left;
+  font-size:18px;
+}
+
+.skill-info-name,.skill-info-rank{
+  font-size:18px;
+  font-weight:bold;
+  text-align:center;
+}
+
+.skill-info-description{
+  margin-top:20px;
+  padding-bottom:40px;
+}
+
+.skill-rank-header{
+  text-align:center;
+  font-size:18px;
+}
+
+.skill-column-headers{
+  border-bottom:1px groove white;
+}
+
+.skill{
+  border-bottom:1px dotted white;
+  padding:5px 0px 5px 0px;
+}
+
+.skill-name{
+  text-align:left;
+  font-size:16px;
+}
+
+.skill-rank{
+  text-align:center;
+  font-size:16px;
+}
+
+.ability-dice{
+  color:green;
+}
+
+.proficiency-dice{
+  color:yellow;
+}
+
+.section-header-container{
+  margin-top:40px;
+}
+
+.section-label{
+  order:0;
+  font-size:18px;
+  padding:0;
+}
+
+.sw-section-label{
+  order:1;
+  padding:0;
+}
+
+.sections{
+  display:flex;
+  flex-flow:row nowrap;
+  justify-content:center;
+  align-items:stretch;
+}
+
+.section{
+  display:flex;
+  flex-flow:column nowrap;
+  flex:1 1 auto;
+  margin-right:5px;
+  background-color:black;
+}
+
+.sections,.section{
+  padding:0;
+}
+
+#talentsContainer{
+  display:inline;
+}
+
+#purchaseTalentsButtonContainer, #purchaseSignatureAbilitiesContainer{
+  margin-top:20px;
+}
+
+#talentsSelector{
+  border-bottom:3px groove white;
+}
+
+.character-details-container{
+  display:none;
+  background-color:black;
+}
+
+.no-talents{
+  padding-top:40px;
+}
+
+#showSignatureAbilityLink:hover{
+  cursor:pointer;
+}
+
+#noTalentsContainer, #noGearContainer, #noSignatureAbilitiesContainer{
+  font-size:18px;
+  text-align:center;
+}
+
+.sa-talent-tree-selector-container{
+  display:flex;
+  flex-flow:row nowrap;
+  justify-content:space-between;
+
+  .signature-ability-talent-tree-container{
+    flex:1 1 auto;
+    padding:1rem;
+
+    .signature-ability-talent-tree{
+      order:0;
+      flex: 1 1 auto;
+      display:flex;
+      flex-flow:column nowrap;
+      justify-content:center;
+      border-radius: 5px;
+      border: 1px groove #1933f4;
+      box-shadow: 0px 0px 6px 3px #1933f4;
+      padding:1rem;
+
+      .signature-ability-tt-name{
+        order:0;
+        align-self:center;
+        font-size:1.6rem;
+        padding:1rem;
+      }
+
+      .purchase-signature-ability-button{
+        order:1;
+      }
+    }
+  }
+}
+
+#manageGearButton, #editOtherGearButton{
+  background:transparent;
+  border:none;
+}
+
+#editOtherGearButtonContainer{
+  margin-top:20px;
+}
+
+.gear-type-text{
+  font-size:18px;
+  color:#e21414;
+}
+
+.talents-headers{
+  border-bottom:2px groove white;
+  margin-top:20px;
+}
+
+.talents-body{
+  margin-top:15px;
+  text-align:left;
+  padding-bottom:20px;
+}
+
+.talent-name-header, .talent-description-header{
+  font-size:18px;
+}
+
+.talent-name, .talent-description{
+  padding:0;
+}
+
+.talent{
+  border-bottom:1px dotted white;
+  padding-top:10px;
+  padding-bottom:10px;
+  font-size:16px;
+}
+
+#characterDescriptionContainer{
+  padding-top:20px;
+}
+
+.description-field{
+  margin-bottom:15px;
+}
+
+.desc-label{
+  font-weight:bold;
+  font-size:20px;
+}
+
+.skill-rank{
+  font-size:20px;
+}
+
+.desc-value{
+  font-size:16px;
+}
+
+.edit-container{
+  font-size:16px;
+  text-align:right;
+  color:#e21414;
+  margin-bottom:20px;
+}
+
+.sw-input{
+  border:1px groove #e21414;
+  background-color:black;
+  border-radius:20px;
+  margin-bottom:10px;
+}
+
+.full-width-input{
+  width:100%;
+}
+
+.edit-character{
+  display:none;
+  width:0;
+  position:fixed;
+  top:0;
+  right:0;
+  height:98%;
+  overflow-y:scroll;
+  background-color:black;
+  border:1px groove #e21414;
+  transition:all 1s ease-in-out;
+}
+
+.close-button{
+  color:#e21414;
+  margin-top:20px;
+  text-align:right;
+  font-size:24px;
+}
+
+#notableFeatures, #background, #notes, #otherGearInput, #critDescription{
+  width:100%;
+  height:100px;
+}
+
+#saveEditsButton{
+  background:transparent;
+  box-shadow: 0px 0px 4px 2px #1933f4;
+  border: 1px groove #1933f4;
+  border-radius:20px;
+  padding:3px 25px 3px 25px;
+  text-align:center;
+  font-size:18px;
+  margin-top:20px;
+}
+
+#addGearSpecialsButton{
+  background:transparent;
+  box-shadow: 0px 0px 4px 2px #d306d3;
+  border: 1px groove #d306d3;
+  border-radius:20px;
+  padding:3px 25px 3px 25px;
+  text-align:center;
+  font-size:18px;
+  margin-top:20px;
+  margin-right:2rem;
+}
+
+#swSaveButton{
+  font-size:14px;
+}
+
+.save-button-container{
+  text-align:center;
+  margin-bottom:20px;
+}
+
+#brawn,#agility,#intellect,#cunning,#willpower,#presence,#soakInput,#woundThresholdInput,#woundCurrentInput,#strainThresholdInput,#strainCurrentInput,#rangedDefenseInput,#meleeDefenseInput{
+  text-align:center;
+}
+
+#marketplaceContainer{
+  padding-bottom:50px;
+
+  .filter-buttons{
+    display: flex;
+    flex-flow: row wrap;
+    column-gap: 2rem;
+  }
+
+  .current-credits-container{
+    text-align: right;
+    
+    .credits-wrapper{
+    	background-color: #000;
+      font-size: 1.6rem;
+    }
+  }
+}
+
+.credits-container{
+  text-align:right;
+  margin-top:20px;
+  margin-bottom:20px;
+}
+
+.credits{
+  font-size:18px;
+  font-weight:bold;
+}
+
+.gear-headers{
+  font-size:18px;
+  font-weight:bold;
+  border-bottom:2px groove white;
+  margin-bottom: 10px;
+}
+
+.gear-item-container{
+  padding:0;
+}
+
+.gear-detail{
+  margin-bottom:10px;
+}
+
+.cg-item{
+  font-size:16px;
+  padding:10px 0px 10px 0px;
+  border-bottom:1px dotted white;
+}
+
+.full-gear-detail{
+  display:none;
+  max-height:0;
+  transition:all .5s ease-in-out;
+}
+
+.fa-chevron-left{
+  transition:transform .5s ease-in-out;
+  position:absolute;
+  right:10px;
+}
+
+#gearNameContainer{
+  font-size:18px;
+  font-weight:bold;
+}
+
+.gear-item-details{
+  font-size:16px;
+}
+
+#gearDescription{
+  width:100%;
+}
+
+.cg-name{
+  font-size:24px;
+  font-weight:bold;
+}
+
+#removeItemButtonContainer{
+  margin-top:20px;
+  text-align:center;
+}
+
+#editItemButton{
+  border:1px groove #54f403;
+  border-radius:20px;
+  box-shadow: 0px 0px 6px 2px #54f403;
+  background:transparent;
+  padding: 5px 15px 5px 15px;
+  margin-bottom:20px;
+  margin-right:20px;
+}
+
+#removeItemButton{
+  color:white;
+  border:1px groove #e21414;
+  border-radius:20px;
+  box-shadow:0px 0px 6px 2px #e21414;
+  background:transparent;
+  padding:5px 15px 5px 15px;
+  margin-bottom:20px;
+}
+
+.filter-button{
+  background:transparent;
+  border:1px groove #1933f4;
+  border-radius:20px;
+  box-shadow: 0px 0px 6px 2px #1933f4;
+  padding:5px 15px 5px 15px;
+  margin-top:30px;
+  min-width:90px;
+}
+
+.badge{
+  background-color:#2b2a2a;
+}
+
+.marketplace-headers,.talents-headers{
+  font-size:18px;
+  font-weight:bold;
+  border-bottom:2px groove white;
+}
+
+.marketplace-items-container{
+  margin-top: 50px;
+  margin-bottom:30px;
+}
+
+.purchase-gear-button{
+  background:transparent;
+  border:1px groove #54f403;
+  border-radius:20px;
+  box-shadow:0px 0px 6px 2px #54f403;
+}
+
+.item-quality:hover{
+  text-decoration:underline;
+}
+
+.marketplace-item{
+  margin-top:10px;
+  border-bottom:1px dotted white;
+}
+
+.sw-filter{
+  font-size:11px !important;
+}
+
+.talent-item{
+  display: flex;
+  column-gap: 1rem;
+  padding:10px 2px 10px 2px;
+  border-bottom:1px dotted white;
+}
+
+#purchaseTalentsContainer{
+  padding-bottom:20px;
+}
+
+#statusEffectInfoBox, #critInjuryDescriptionInfoBox{
+  display:none;
+  position:fixed;
+  top:40%;
+  left:20%;
+  width:60%;
+  max-height:600px;
+  overflow-y:scroll;
+  background-color:black;
+  border:2px groove #1933f4;
+  box-shadow:0px 0px 8px 3px #1933f4;
+  padding-bottom:20px;
+}
+
+#talentInfoBox{
+  display:none;
+  position:fixed;
+  top:40px;
+  left:0;
+  width:98%;
+  max-height:600px;
+  overflow-y:scroll;
+  background-color:black;
+  border:2px groove #1933f4;
+  box-shadow:0px 0px 8px 3px #1933f4;
+}
+
+#talentInfoPrereqs{
+  padding:1rem;
+  text-align:center;
+}
+
+.talent-info{
+  font-size:18px;
+}
+
+#talentInfoName,#talentInfoActive{
+  margin-bottom:20px;
+  text-align:center;
+}
+
+#talentInfoPurchaseContainer, #vehicleInfoPurchaseContainer{
+  text-align:center;
+  margin-top:20px;
+  margin-bottom:20px;
+}
+
+.lightsabers-plus-minus{
+  transform: rotate(45deg);
+  color:lightgray;
+}
+
+.skill-detail{
+  font-size:18px;
+}
+
+.edit-skills-list{
+  margin-bottom:40px;
+}
+
+#increaseSkillButton{
+  background:transparent;
+  border:1px groove #1933f4;
+  border-radius:20px;
+  box-shadow:0px 0px 6px 2px #1933f4;
+}
+
+.skill-increase-button{
+  text-align:right;
+}
+
+.edit-skills{
+  padding:10px 0px 10px 0px;
+  border-bottom:1px dotted white;
+}
+
+#vehiclesContainer{
+  margin-top:20px;
+}
+
+#noVehiclesContainer{
+  text-align:center;
+  font-size:18px;
+}
+
+.vehicle-list{
+  font-size:16px;
+  padding:10px 0px 10px 0px;
+  border-bottom:1px dotted white;
+}
+
+.vehicle-link{
+  color:white;
+}
+
+.vehicle-headers{
+  border-bottom:2px groove white;
+  font-size:18px;
+  font-weight:bold;
+}
+
+.vehicle-filter{
+  margin-bottom:20px;
+  display: flex;
+  flex-flow: row wrap;
+  column-gap: 2rem;
+}
+
+#vehicleInfoBox{
+  display:none;
+  position:fixed;
+  top:40px;
+  left:0;
+  width:98%;
+  max-height:500px;
+  overflow-y:scroll;
+  background-color:black;
+  border:2px groove #1933f4;
+  box-shadow:0px 0px 8px 3px #1933f4;
+}
+
+.vehicle-detail-body{
+  text-align:center;
+}
+
+.edit-vehicles-body{
+  margin-bottom:40px;
+}
+
+#careerName, .specialization-name, #speciesName{
+  font-size:24px;
+  margin-bottom:20px;
+  text-align:center;
+  font-weight:bold;
+}
+
+.specialization-description, #careerDescription{
+  margin-bottom:40px;
+}
+
+.no-message-or-powers{
+  margin-top:20px;
+  font-size:18px;
+}
+
+.force-rating-numbers{
+  display:flex;
+  flex-flow:row wrap;
+  justify-content:flex-start;
+  align-items:center;
+  column-gap:3rem;
+  row-gap:3rem;
+
+  .force-rating-value{
+    background-color:white;
+    border-radius:20px;
+    box-shadow:0px 0px 12px 6px #1933f4;
+  }
+
+  .force-rating-int{
+    color:black;
+  }
+}
+
+#purchaseForcePowersButtonContainer{
+  margin-top:20px;
+}
+
+.force-powers-container{
+  margin-top:40px;
+  margin-bottom:40px;
+}
+
+.force-headers{
+  font-size:18px;
+  font-weight:bold;
+  border-bottom:2px groove white;
+}
+
+.force-power{
+  font-size:16px;
+  margin-top:10px;
+  margin-bottom:10px;
+  border-bottom:1px dotted white;
+}
+
+#forcePowerInfoName{
+  font-size:22px;
+  margin-bottom:20px;
+}
+
+.enhancements-container{
+  margin-top:20px;
+}
+
+.e-header{
+  font-size:18px;
+}
+
+.enhancements-headers{
+  font-size:16px;
+  border-bottom:2px groove white;
+}
+
+.enhancement{
+  margin-top:10px;
+  margin-bottom:10px;
+  border-bottom:1px dotted white;
+}
+
+#signatureAbilityInfoContainer{
+  position:fixed;
+  top:6rem;
+  left:15px;
+  width:95%;
+  max-height:600px;
+  overflow-y:scroll;
+  border-radius:5px;
+  border:1px groove #1933f4;
+  box-shadow:0px 0px 6px 3px #1933f4;
+  background-color:black;
+  z-index:5;
+
+  #signatureAbilityName{
+    font-size:2.2rem;
+    margin-bottom:2rem;
+  }
+}
+
+#forcePowerInfoContainer,#gearInfoContainer,.info-container{
+  display:none;
+  position:fixed;
+  top:40px;
+  left:15px;
+  width:95%;
+  max-height:600px;
+  overflow-y:scroll;
+  border-radius:5px;
+  border:1px groove #1933f4;
+  box-shadow:0px 0px 6px 3px #1933f4;
+  background-color:black;
+  z-index:5;
+}
+
+.gear-quality-info-container{
+  position:fixed;
+  top:20%;
+  left:10%;
+  width:80%;
+  display:flex;
+  flex-flow:column nowrap;
+  justify-content:center;
+  align-items:center;
+  row-gap:1.5rem;
+  max-height:600px;
+  overflow-y:scroll;
+  border-radius:5px;
+  border:1px groove #1933f4;
+  box-shadow:0px 0px 6px 3px #1933f4;
+  background-color:black;
+  padding:2rem;
+  z-index:5;
+
+  .close-button{
+    order: 0;
+    width:100%;
+    display:flex;
+    justify-content:flex-end;
+  }
+
+  .gear-quality-info-header{
+    order:1;
+    width:100%;
+    text-align:center;
+  }
+
+  .gear-quality-description{
+    order:2;
+    font-size:1.6rem;
+  }
+}
+
+#forceEnhancementShop{
+  display:none;
+}
+
+.fe-name{
+  padding:0;
+}
+
+#buyNewSpecializations{
+  color:#e21414;
+  font-size:16px;
+  background-color:black;
+  margin-left:20px;
+}
+
+#purchaseSpecButton{
+  margin-bottom:20px;
+}
+
+.fa-circle{
+  color:#e21414;
+}
+
+.delete-vehicle{
+  transform:rotate(45deg);
+}
+
+.status-effects-container{
+  margin-top:15px;
+  margin-bottom:15px;
+}
+
+.status-effect-label{
+  font-size:16px;
+
+  &amp;:hover{
+    cursor: pointer;
+  }
+}
+
+//W3 schools slider css
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 47px;
+  height: 24px;
+}
+
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 1px;
+  bottom: 2px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #1933f4;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #1933f4;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+//end W3 css
+
+@media only screen and (min-width:762px){
+  .lg-hidden{
+    display:none;
+  }
+}
+
+@media only screen and (min-width:762px) and (max-width:1400px){
+  #characterPortrait{
+    height:100px;
+  }
+
+  #forcePowerInfoContainer{
+    max-height:450px; 
+  }
+}
+
+@media only screen and (max-width:762px){
+  #characterPortrait{
+    height:120px;
+  }
+
+  .force-powers-container,.force-headers,.force-power,.force-detail,.force-container{
+    padding:0;
+  }
+
+  #statusEffectInfoBox{
+    top:15%;
+    width:80%;
+    left:10%;
+  }
+
+  .force-detail{
+    font-size:14px;
+  }
+
+  .vehicle-info{
+    min-height:120px;
+  }
+
+  .vehicle-headers,.vehicle-header,.vehicle-detail,.vehicles-container{
+    padding:0;
+  }
+
+  .first-filter{
+    margin-right:0;
+  }
+
+  .purchase-gear-button{
+    font-size:11px;
+  }
+
+  #marketplaceContainer{
+    padding-bottom:50px;
+
+    .filter-buttons{
+      display: flex;
+      flex-flow: row wrap;
+      column-gap: 2rem;
+    }
+
+    .current-credits-container{
+      text-align: right;
+    }
+  }
+
+  .talent-header,.talents-headers,#purchaseTalentsContainer,.talent-detail,.marketplace-body,#marketplaceContainer,.marketplace-items-container,.marketplace-item,#characterGearList,.full-gear-detail,.gear-item-container,.cg-item,.character-gear-container,.gear-headers,.gear-header,.gear-detail-label,.gear-detail-value{
+    padding-left:0;
+    padding-right:0;
+  }
+
+  .talents-headers{
+    display: flex;
+    column-gap: 2rem;
+    align-items: center;
+  }
+
+  #gearContainer{
+    margin-bottom:100px;
+  }
+
+  .save-button-container{
+    margin-bottom:30px;
+  }
+
+  .skill-rank{
+    font-size:18px;
+  }
+
+  #soak,#wounds{
+    margin-bottom:8px;
+  }
+
+  .open-menu-container{
+    z-index:5;
+  }
+
+  .has-talents,.talents-headers,.talents-body,.talent,.talents-container,.character-sheet-container,.main-character-info{
+    padding:0;
+  }
+
+  .talents-container{
+    z-index:0;
+  }
+
+  .talents-body{
+    margin-bottom:80px;
+
+    .talent{
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: space-between;
+      column-gap: 2rem;
+    }
+  }
+
+  #mobileNavMenu{
+    position:fixed;
+    bottom:50px;
+    right:40px;
+    height:0;
+    width:0;
+    border-radius:5px;
+    transition:all .5s ease-in-out;
+    background-color:transparent;
+    padding-top:20px;
+    z-index:5;
+  }
+
+  .nav-button{
+    display:none;
+    border:1px groove #e21414;
+    border-radius:5px;
+    font-size:16px;
+    text-align:center;
+    padding:0;
+    margin-bottom:10px;
+    margin-bottom:10px;
+  }
+
+  #characteristicContainer{
+    margin-bottom:50px;
+  }
+
+  .skill-container{
+    padding:0;
+  }
+
+  .open-menu-container{
+    position:fixed;
+    bottom:20px;
+    right:15px;
+    border:2px groove #fb4b30;
+    border-radius:50px;
+    background-color:black;
+    padding:8px;
+  }
+
+  .fa-journal-whills{
+    color:#ff9600;
+    font-size:32px;
+  }
+
+  .xs-hidden{
+    display:none;
+  }
+
+  #talentsContainer,#skillsContainer{
+    display:none;
+  }
+
+  .c-label{
+    font-size: 11px;
+    padding:0;
+  }
+
+  .xp-info{
+    padding:0;
+    margin-bottom:40px;
+  }
+
+  .current-header-container, .threshold-header-container{
+    padding:0;
+    font-size:10px;
+  }
+
+  .dv-container{
+    min-height:80px;
+  }
+}</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description>Character Detail tracking for SWRPG</description>
+        <docs/>
+        <field_list/>
+        <has_preview>false</has_preview>
+        <id>star_wars_character_sheet</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
+        <name>Star Wars Character Sheet</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {
+	/* populate the 'data' object */
+	/* e.g., data.table = $sp.getValue('table'); */
+	//retrieve caharacter details and pass to data object.
+	try{
+		var util = new x_176383_star_wars.starWarsUtil();
+		var user = gs.getUser();
+		data.showRankOneBadge = user.getPreference('show_rank_one_talent_badge');
+		var characterID = $sp.getParameter('character_id');
+		data.characterID = characterID;
+		data.playerID = gs.getUserID();
+		var charGR = new GlideRecord('x_176383_star_wars_character');
+		charGR.get(characterID);
+		data.isGM = checkGM(charGR.campaign);
+		if(data.playerID == charGR.player.sys_id || gs.hasRole('admin') || data.isGM){
+			data.canEdit = true;
+		} else{
+			data.canEdit = false;
+		}
+		data.character = {
+			name: charGR.name + '' || 'Name your character',
+			species: charGR.species.getDisplayValue(),
+			speciesDescription: charGR.species.description + '',
+			career: charGR.career.getDisplayValue(),
+			careerID: charGR.career.sys_id + '',
+			specializationIDs: charGR.career_specializations.toString(),
+			specializationNames: '',
+			brawn: charGR.brawn + '',
+			agility: charGR.agility + '',
+			intellect: charGR.intellect + '',
+			cunning: charGR.cunning + '',
+			willpower: charGR.willpower + '',
+			presence: charGR.presence + '',
+			availableXPInt: parseInt(charGR.available_xp),
+			availableXPString: charGR.available_xp + '',
+			totalXPInt: parseInt(charGR.total_xp),
+			totalXPString: charGR.total_xp + '',
+			strainCurrentInt: parseInt(charGR.strain_current),
+			strainCurrentString: charGR.strain_current + '',
+			strainThresholdInt: parseInt(charGR.strain_threshold),
+			strainThresholdString: charGR.strain_threshold + '',
+			woundCurrentInt: parseInt(charGR.wounds_current),
+			woundCurrentString: charGR.wounds_current + '',
+			woundThresholdInt: parseInt(charGR.wounds_threshold),
+			woundThresholdString: charGR.wounds_threshold + '',
+			soakInt: parseInt(charGR.soak_value),
+			soakString: charGR.soak_value + '',
+			rangedDefenseInt: parseInt(charGR.defense_ranged),
+			rangedDefenseString: charGR.defense_ranged + '',
+			meleeDefenseInt: parseInt(charGR.defense_melee),
+			meleeDefenseString: charGR.defense_melee + '',
+			creditsInt: parseInt(charGR.credits),
+			creditsString: charGR.credits.getDisplayValue(),
+			age: charGR.age + '',
+			eyes: charGR.eyes + '',
+			hair: charGR.hair + '',
+			gender: charGR.gender + '',
+			height: charGR.height + '',
+			weight: charGR.weight + '',
+			criticalInjuriesInt: parseInt(charGR.critical_injuries),
+			criticalInjuriesString: charGR.critical_injuries + '',
+			criticalInjuriesDescription: charGR.critical_injury_description + '',
+			forceRatingInt: parseInt(charGR.force_rating),
+			forceRatingString: charGR.force_rating + '',
+			forceCommittedInt: parseInt(charGR.force_committed),
+			forceCommittedString: charGR.force_committed + '',
+			background: charGR.description_html + '',
+			notableFeatures: charGR.notable_features + '',
+			notes: charGR.notes + '',
+			otherGear: charGR.other_gear + '',
+			statusEffects: charGR.status_effects.toString().split(','),
+			portrait: charGR.portrait + '.iix',
+			signatureAbilitiesUnlocked: parseInt(charGR.signature_abilities_unlocked)
+		};
+
+		if(data.character.portrait == '.iix'){
+			data.character.portrait = data.character.species.toLowerCase() + '.png';
+		}
+		//retrieve the form widget and pass current character as parameter
+		var widgetParams = {
+			table: 'x_176383_star_wars_character',
+			sys_id: characterID,
+			isPopup: true,
+			hideRelatedLists: true,
+			view: 'portrait'
+		};
+		data.editingPortrait = false;
+		data.updatePortraitWidget = $sp.getWidget('widget-form', widgetParams);
+
+		//retrieve status effect details and set checked if character has any
+		data.statusEffects = util.buildStatusEffectObjArray(data.character.statusEffects);
+
+		//retrieve career info to display when info button clicked.
+		data.careerInfo = {
+			name:charGR.career.getDisplayValue(),
+			description:charGR.career.description + ''
+		};
+		//data.careers = util.getCareers();
+
+		//retrieve career specialization display values
+		var specializationShit = util.buildCareerSpecializationDetails(data.character.specializationIDs, data.character.specializationNames, data.character.careerID, data.character.availableXPInt);
+		data.specializationInfo = specializationShit.currentSpecInfo;
+		data.availableSpecs = specializationShit.specsToPurchase;
+		data.character.specializationNames = specializationShit.specNames;
+
+		//set background image
+		//remove the db_image check once all images are loaded
+		var imgCheck = data.character.career.toLowerCase() + '.png';
+		var img = new GlideRecord('db_image');
+		img.addQuery('name', imgCheck);
+		img.query();
+		if(img.next()){
+			data.backgroundURL = '/' + img.name;
+		} else{
+			data.backgroundURL = '/sw_space.jpg';
+		}
+
+		//retrieve talents
+		var talentShit = util.buildTalents(data.characterID, data.character);
+		data.talents = talentShit.talents;
+		var signatureAbilityTalentArray = talentShit.signatureAbilityTalentArray;
+		data.availableTalents = talentShit.availableTalents;
+
+		//retrieve character skills and values
+		data.skills = util.buildSkills(data.characterID, data.character, data.talents);
+
+		//retrieve inventory list
+		data.availableGear = [];
+		var gear = new GlideRecord('x_176383_star_wars_gear');
+		gear.addQuery('type', '!=', 'vehicle_weapon').addCondition('type', '!=', 'vehicle_mod');
+		gear.orderBy('type');
+		gear.orderBy('name');
+		gear.query();
+		while(gear.next()){
+			var g = {
+				name: gear.name + '',
+				encumbrance: gear.encumbrance + '',
+				rarity: gear.rarity + '',
+				type: gear.type.getDisplayValue(),
+				typeID: gear.type + '',
+				skillUsed: gear.skill_used.getDisplayValue(),
+				price: gear.price + '',
+				defense: gear.defense + '',
+				soak: gear.soak + '',
+				damage: gear.base_damage + '',
+				range: gear.range.getDisplayValue(),
+				hardPoints: gear.hard_points + '',
+				description: gear.description_html + '',
+				crit: gear.critical_rating + '',
+				hpRequired: gear.hp_required + '',
+				sysID: gear.sys_id + '',
+				gearQualityArray: []
+			};
+
+			var gearSpecial = new GlideRecord('x_176383_star_wars_gear_special');
+			gearSpecial.addQuery('item', g.sysID);
+			gearSpecial.query();
+			while(gearSpecial.next()){
+				gsObj = {
+					name: gearSpecial.weapon_quality.getDisplayValue(),
+					rank: gearSpecial.rank + '',
+					sys_id: gearSpecial.sys_id + ''
+				};
+				g.gearQualityArray.push(gsObj);
+			}
+			data.availableGear.push(g);
+		}
+		data.availableGearAll = data.availableGear;
+
+		//retrieve current character gear
+		data.characterGear = util.buildCharacterGear(data.characterID);
+		//gear types
+		data.gearTypes = [];
+		var choiceGR = new GlideRecord('sys_choice');
+		choiceGR.addQuery('name', 'x_176383_star_wars_gear').addCondition('element', 'type').addCondition('value', 'DOES NOT CONTAIN', 'vehicle');
+		choiceGR.orderBy('label');
+		choiceGR.query();
+		while(choiceGR.next()){
+			var choiceObj = {
+				name: choiceGR.label + '',
+				value: choiceGR.value + ''
+			};
+			data.gearTypes.push(choiceObj);
+		}
+
+		//retrieve list of vehicles
+		var vehicleShit = util.buildVehicles(data.characterID);
+		data.vehicles = vehicleShit.vehicles;
+		data.vehiclesAll = data.vehicles;
+		data.characterVehicles = vehicleShit.characterVehicles;
+
+		//retrieve force powers and enhancements
+		data.characterPowers = util.getCharacterForcePowers(data.characterID);
+		var forceEnhancementShit = util.getCharacterForceEnhancements(data.characterID);
+		data.cForceEnhancements = forceEnhancementShit.cForceEnhancements;
+		data.ownedEnhancements = forceEnhancementShit.ownedEnhancements;
+		data.forcePowers = util.buildForcePowers(data.character, data.characterPowers);
+		data.forceEnhancements = util.buildForcePowerEnhancements(data.character, data.ownedEnhancements, data.characterPowers);
+
+		//character signature abilities
+		//get unlocked signature abilities first
+		var sigAbilityShit = util.getCharacterSignatureAbilities(data.characterID);
+		data.characterSignatureAbilities = sigAbilityShit.characterSignatureAbilities;
+		if(data.characterSignatureAbilities.length > 0){
+			data.showSignatureAbilities = true;
+		}
+		var purchasedAbilities = sigAbilityShit.purchasedAbilities;
+		var purchasedUpgrades = sigAbilityShit.purchasedUpgrades;
+		var specsUsed = sigAbilityShit.specsUsed;
+
+		//available signature abilities
+		data.availableSignatureAbilities = util.buildAvailableSignatureAbilities(data.character, signatureAbilityTalentArray, data.characterSignatureAbilities, specsUsed);
+		if(data.availableSignatureAbilities.length > 0){
+			data.showSignatureAbilities = true;
+		}
+
+		//available signature ability upgrades
+		data.availableSignatureAbilityUpgrades = util.buildAvailableSignatureAbilityUpgrades(purchasedUpgrades, purchasedAbilities, data.character);
+
+		//process character updates
+		if(input){
+			switch(input.action){
+				case 'addXP':
+					charGR.available_xp += input.xpToAdd;
+					charGR.update();
+					data.character.availableXPInt = parseInt(charGR.available_xp);
+					data.character.availableXPString = data.character.availableXPInt + '';
+					data.character.totalXPInt = parseInt(charGR.total_xp);
+					data.character.totalXPString = data.character.totalXPInt + '';
+					break;
+
+				case 'saveCharacterDescription':
+					charGR.gender = input.gender;
+					charGR.age = input.age;
+					charGR.eyes = input.eyes;
+					charGR.height = input.height;
+					charGR.weight = input.weight;
+					charGR.hair = input.hair;
+					charGR.notable_features = input.notableFeatures;
+					charGR.description_html = input.background;
+					charGR.notes = input.notes;
+					charGR.update();
+					data.character.gender = charGR.gender + '';
+					data.character.age = charGR.age + '';
+					data.character.eyes = charGR.eyes + '';
+					data.character.height = charGR.height + '';
+					data.character.weight = charGR.weight + '';
+					data.character.hair = charGR.hair + '';
+					data.character.notableFeatures = charGR.notable_features + '';
+					data.character.background = charGR.description_html + '';
+					data.character.notes = charGR.notes + '';
+					break;
+
+				case 'updatePortrait':
+					charGR.get(characterID);
+					data.character.portrait = charGR.portrait + '.iix';
+					break;
+
+				case 'saveSoak':
+					charGR.soak_value = input.soak;
+					charGR.update();
+					data.character.soakInt = parseInt(charGR.soak_value);
+					data.character.soakString = charGR.soak_value + '';
+					break;
+
+				case 'saveWounds':
+					charGR.wounds_threshold = input.threshold;
+					charGR.wounds_current = input.current;
+					charGR.update();
+					data.character.woundThresholdInt = parseInt(charGR.wounds_threshold);
+					data.character.woundThresholdString = charGR.wounds_threshold + '';
+					data.character.woundCurrentInt = parseInt(charGR.wounds_current);
+					data.character.woundCurrentString = charGR.wounds_current + '';
+					break;
+
+				case 'saveStrain':
+					charGR.strain_threshold = input.threshold;
+					charGR.strain_current = input.current;
+					charGR.update();
+					data.character.strainThresholdInt = parseInt(charGR.strain_threshold);
+					data.character.strainThresholdString = charGR.strain_threshold + '';
+					data.character.strainCurrentInt = parseInt(charGR.strain_current);
+					data.character.strainCurrentString = charGR.strain_current + '';
+					break;
+
+				case 'saveDefense':
+					charGR.defense_ranged = input.ranged;
+					charGR.defense_melee = input.melee;
+					charGR.update();
+					data.character.rangedDefenseInt = parseInt(charGR.defense_ranged);
+					data.character.rangedDefenseString = charGR.defense_ranged + '';
+					data.character.meleeDefenseInt = parseInt(charGR.defense_melee);
+					data.character.meleeDefenseString = charGR.defense_melee + '';	
+					break;
+
+				case 'saveCharacteristics':
+					charGR.brawn = input.brawn;
+					charGR.agility = input.agility;
+					charGR.intellect = input.intellect;
+					charGR.cunning = input.cunning;
+					charGR.willpower = input.willpower;
+					charGR.presence = input.presence;
+					charGR.update();
+					data.character.brawn = charGR.brawn + '';
+					data.character.agility = charGR.agility + '';
+					data.character.intellect = charGR.intellect + '';
+					data.character.cunning = charGR.cunning + '';
+					data.character.willpower = charGR.willpower + '';
+					data.character.presence = charGR.presence + '';
+
+					//rebuild dice rolls
+					for(var s = 0; s < input.skills.length; s++){
+						input.skills[s].characteristic = input[data.skills[s].characteristicString];
+						if(input.skills[s].characteristic > input.skills[s].rankInt){
+							input.skills[s].upgrades = input.skills[s].rankInt;
+							input.skills[s].abilityDice = input.skills[s].characteristic - input.skills[s].upgrades;
+						} else if(input.skills[s].rankInt > input.skills[s].characteristic){
+							input.skills[s].upgrades = input.skills[s].characteristic;
+							input.skills[s].abilityDice = input.skills[s].rankInt - input.skills[s].upgrades;
+						} else{
+							input.skills[s].upgrades = input.skills[s].abilityDice = input.skills[s].rankInt;
+						}
+					}
+					data.skills = input.skills;
+					break;
+
+				case 'saveName':
+					charGR.name = input.name;
+					charGR.update();
+					data.character.name = charGR.name + '';
+					break;
+
+				case 'saveCredits':
+					charGR.credits = input.credits;
+					charGR.update();
+					data.character.creditsInt = parseInt(charGR.credits);
+					data.character.creditsString = data.character.creditsInt + '';
+					break;
+
+				case 'deleteGear':
+					var cg = new GlideRecord('x_176383_star_wars_character_gear_m2m');
+					cg.get(input.sysID);
+					cg.deleteRecord();
+					for(var i = 0; i < data.characterGear.length; i++){
+						if(data.characterGear[i].sysID == input.sysID){
+							data.characterGear.splice(i, 1);
+						}
+					}
+					break;
+
+				case 'purchaseItem':
+					charGR.get(characterID);
+					charGR.credits = data.character.creditsInt - parseInt(input.price);
+					charGR.update();
+					data.character.creditsInt = parseInt(charGR.credits);
+					data.character.creditsString = data.character.creditsInt + '';
+					cg = new GlideRecord('x_176383_star_wars_character_gear_m2m');
+					cg.addQuery('item.name', input.item.name).addCondition('character', characterID).addCondition('item.type', 'gear');
+					cg.query();
+					if(cg.next()){
+						cg.quantity = (parseInt(cg.quantity) + parseInt(input.quantity));
+						cg.update();
+						for(var i = 0; i < data.characterGear.length; i++){
+							if(data.characterGear[i].sysID == cg.sys_id + ''){
+								data.characterGear[i].quantity = cg.quantity + '';
+							}
+						}
+					} else{
+						cg.initialize();
+						cg.item = input.item.sysID;
+						cg.character = characterID;
+						cg.quantity = parseInt(input.quantity);
+						cg.insert();
+						var cgObj = {
+							name: cg.item.getDisplayValue(),
+							quantity: cg.quantity + '',
+							damage: cg.item.base_damage + '',
+							crit: cg.item.critical_rating + '',
+							defense: cg.item.defense + '',
+							soak: cg.item.soak + '',
+							encumbrance: cg.item.encumbrance + '',
+							type: cg.item.type.getDisplayValue(),
+							typeID: cg.item.type + '',
+							skillUsed: cg.item.skill_used.getDisplayValue(),
+							range: cg.item.range.getDisplayValue(),
+							hardPoints: cg.item.hard_points + '',
+							description: cg.item.description + '',
+							sysID: cg.sys_id + '',
+							iconID: cg.sys_id + 'Chevron'
+						};
+						data.characterGear.push(cgObj);
+					}
+					gs.addInfoMessage(input.item.name + ' purchased');
+					break;
+
+				case 'purchaseTalent':
+					var talent = new GlideRecord('x_176383_star_wars_character_talents_m2m');
+					talent.initialize();
+					talent.talent = input.talentID;
+					talent.character = characterID;
+					talent.insert();
+					charGR.get(characterID);
+					charGR.available_xp = data.character.availableXPInt - parseInt(input.talent.costToPurchase);
+					charGR.update();
+					data.character.availableXPInt = parseInt(charGR.available_xp);
+					data.character.availableXPString = data.character.availableXPInt + '';
+					var talentShit = util.buildTalents(data.characterID, data.character);
+					data.talents = talentShit.talents;
+					data.availableTalents = talentShit.availableTalents;
+					signatureAbilityTalentArray = talentShit.signatureAbilityTalentArray;
+					data.availableSignatureAbilities = util.buildAvailableSignatureAbilities(data.character, signatureAbilityTalentArray, data.characterSignatureAbilities, specsUsed);
+					if(data.availableSignatureAbilities.length > 0){
+						data.showSignatureAbilities = true;
+					}
+					data.forcePowers = util.buildForcePowers(data.character, data.characterPowers);
+					data.forceEnhancements = util.buildForcePowerEnhancements(data.character, data.ownedEnhancements, data.characterPowers);
+					break;
+
+				case 'buySignatureAbility':
+					var charSa = new GlideRecord('x_176383_star_wars_character_signature_ability');
+					charSa.initialize();
+					charSa.character = data.characterID;
+					charSa.signature_ability = input.ability.sys_id;
+					charSa.career_specialization = input.talentTree.specializationID;
+					charSa.insert();
+					data.character.availableXPInt -= parseInt(input.ability.costToPurchase);
+					data.character.availableXPString = data.character.availableXPInt + '';
+					charGR.get(characterID);
+					charGR.available_xp = data.character.availableXPInt;
+					charGR.update();
+					var sigAbilityShit = util.getCharacterSignatureAbilities(data.characterID);
+					data.characterSignatureAbilities = sigAbilityShit.characterSignatureAbilities;
+					if(data.characterSignatureAbilities.length > 0){
+						data.showSignatureAbilities = true;
+					}
+					var purchasedAbilities = sigAbilityShit.purchasedAbilities;
+					var purchasedUpgrades = sigAbilityShit.purchasedUpgrades;
+					var specsUsed = sigAbilityShit.specsUsed;
+					data.availableSignatureAbilities = util.buildAvailableSignatureAbilities(data.character, signatureAbilityTalentArray, data.characterSignatureAbilities, specsUsed);
+					if(data.availableSignatureAbilities.length > 0){
+						data.showSignatureAbilities = true;
+					}
+					data.availableSignatureAbilityUpgrades = util.buildAvailableSignatureAbilityUpgrades(purchasedUpgrades, purchasedAbilities, data.character);
+					break;
+
+				case 'buySignatureAbilityUpgrade':
+					var charUpgrade = new GlideRecord('x_176383_star_wars_character_signature_ability_upgrade');
+					charUpgrade.initialize();
+					charUpgrade.character = data.characterID;
+					charUpgrade.signature_ability_upgrade = input.upgrade.sys_id;
+					charUpgrade.insert();
+					data.character.availableXPInt -= parseInt(input.upgrade.costToPurchase);
+					data.character.availableXPString = data.character.availableXPInt + '';
+					charGR.get(characterID);
+					charGR.available_xp = data.character.availableXPInt;
+					charGR.update();
+					var sigAbilityShit = util.getCharacterSignatureAbilities(data.characterID);
+					data.characterSignatureAbilities = sigAbilityShit.characterSignatureAbilities;
+					if(data.characterSignatureAbilities.length > 0){
+						data.showSignatureAbilities = true;
+					}
+					var purchasedAbilities = sigAbilityShit.purchasedAbilities;
+					var purchasedUpgrades = sigAbilityShit.purchasedUpgrades;
+					var specsUsed = sigAbilityShit.specsUsed;
+					data.availableSignatureAbilityUpgrades = util.buildAvailableSignatureAbilityUpgrades(purchasedUpgrades, purchasedAbilities, data.character);
+					break;
+
+				case 'saveSkill':
+					var skill = new GlideRecord('x_176383_star_wars_m2m_character_skills');
+					skill.get(input.skill.sysID + '');
+					skill.rank = parseInt(input.skill.rankInt) + 1;
+					var newCost = 0;
+					if(input.skill.isCareer == 'true'){
+						newCost = (parseInt(skill.rank) + 1) * 5;
+					} else{
+						newCost = ((parseInt(skill.rank) + 1) * 5) + 5;
+					}
+					skill.cost_to_next_rank = newCost;
+					skill.update();
+					data.character.availableXPInt -= parseInt(input.skill.costToNextRank);
+					data.character.availableXPString = data.character.availableXPInt + '';
+					charGR.get(characterID);
+					charGR.available_xp = data.character.availableXPInt;
+					charGR.update();
+					for(var s = 0; s < data.skills.length; s++){
+						if(data.skills[s].sysID == input.skill.sysID){
+							data.skills[s].rankInt++;
+							data.skills[s].rankString = data.skills[s].rankInt + '';
+							data.skills[s].costToNextRank = newCost;
+
+							if(data.skills[s].characteristic > data.skills[s].rankInt){
+								data.skills[s].upgrades = data.skills[s].rankInt;
+								data.skills[s].abilityDice = data.skills[s].characteristic - data.skills[s].upgrades;
+							} else if(data.skills[s].rankInt > data.skills[s].characteristic){
+								data.skills[s].upgrades = data.skills[s].characteristic;
+								data.skills[s].abilityDice = data.skills[s].rankInt - data.skills[s].upgrades;
+							} else{
+								data.skills[s].upgrades = data.skills[s].abilityDice = data.skills[s].rankInt;
+							}
+						}
+					}
+					var talentShit = util.buildTalents(data.characterID, data.character);
+					data.talents = talentShit.talents;
+					data.availableTalents = talentShit.availableTalents;
+					break;
+
+				case 'saveGearQuantity':
+					var myGear = new GlideRecord('x_176383_star_wars_character_gear_m2m');
+					myGear.get(input.gearID);
+					myGear.quantity = input.quantity;
+					myGear.update();
+					data.currentGear = null;
+					data.characterGear = util.buildCharacterGear(data.characterID);
+					break;
+
+				case 'saveGearEdit':
+					var gedit = new GlideRecord('x_176383_star_wars_character_gear_m2m');
+					gedit.get(input.gearID);
+					gedit.name = input.name;
+					gedit.critical_rating = input.crit;
+					gedit.defense = input.defense;
+					gedit.damage = input.damage;
+					gedit.soak = input.soak;
+					gedit.range = input.range;
+					gedit.hard_points = input.hp;
+					gedit.location = input.location;
+					gedit.description = input.description;
+					gedit.update();
+					data.currentGear = null;
+					data.characterGear = util.buildCharacterGear(data.characterID);
+					break;
+
+				case 'purchaseVehicle':
+					var myShip = new GlideRecord('x_176383_star_wars_character_vehicle');
+					myShip.initialize();
+					myShip.character = characterID;
+					myShip.vehicle = input.vehicleID;
+					myShip.insert();
+					var charVeh = {
+						name: myShip.name + '',
+						vehicleName: myShip.vehicle.ship_name + '',
+						makeModel: myShip.vehicle.make_model + '',
+						sysID: myShip.sys_id + ''
+					};
+					data.characterVehicles.push(charVeh);
+					break;
+
+				case 'saveForceRating':
+					charGR.force_rating = input.forceRating;
+					charGR.force_committed = input.forceCommitted;
+					charGR.update();
+					data.character.forceRatingInt = parseInt(charGR.force_rating);
+					data.character.forceRatingString = data.character.forceRatingInt + '';
+					data.character.forceCommittedInt = parseInt(charGR.force_committed);
+					data.character.forceCommittedString = data.character.forceCommittedInt + '';
+					break;
+
+				case 'buyForcePower':
+					var cForce = new GlideRecord('x_176383_star_wars_character_force_power');
+					cForce.initialize();
+					cForce.character = data.characterID;
+					cForce.force_power = input.power.sysID;
+					cForce.insert();
+					charGR.available_xp -= parseInt(input.power.costToPurchase);
+					charGR.update();
+					data.character.availableXPInt = parseInt(charGR.available_xp);
+					data.character.availableXPString = data.character.availableXPInt + '';
+					data.characterPowers = util.getCharacterForcePowers(data.characterID);
+					data.forcePowers = util.buildForcePowers(data.character, data.characterPowers);
+					data.forceEnhancements = util.buildForcePowerEnhancements(data.character, data.ownedEnhancements, data.characterPowers);
+					break;
+
+				case 'buyForceEnhancement':
+					var characterPower = new GlideRecord('x_176383_star_wars_character_force_power');
+					characterPower.addQuery('character', data.characterID);
+					characterPower.addQuery('force_power', input.enh.forcePowerID);
+					characterPower.query();
+					if(characterPower.next()){
+						var cfe = new GlideRecord('x_176383_star_wars_character_force_enhancements');
+						cfe.initialize();
+						cfe.character = data.characterID;
+						cfe.character_force_power = characterPower.sys_id + '';
+						cfe.character_force_enhcancement = input.enh.sysID;
+						cfe.insert();
+						charGR.available_xp -= parseInt(input.enh.costToPurchase);
+						charGR.update();
+					}
+					data.character.availableXPInt = parseInt(charGR.available_xp);
+					data.character.availableXPString = data.character.availableXPInt + '';
+					var forceEnhancementShit = util.getCharacterForceEnhancements(data.characterID);
+					data.cForceEnhancements = forceEnhancementShit.cForceEnhancements;
+					data.ownedEnhancements = forceEnhancementShit.ownedEnhancements;
+					data.forceEnhancements = util.buildForcePowerEnhancements(data.character, data.ownedEnhancements, data.characterPowers);
+					break;
+
+				case 'buyNewSpec':
+					var specArray = data.character.specializationIDs.split(',');
+					specArray.push(input.spec.sysID);
+					if(input.spec.careerSkills == '' && data.character.forceRatingInt == 0){
+						charGR.force_rating = 1;
+					}
+					charGR.career_specializations = specArray.join();
+					charGR.available_xp -= input.spec.costToPurchase;
+					charGR.update();
+					var skillGR = new GlideRecord('x_176383_star_wars_m2m_character_skills');
+					skillGR.addQuery('character', data.characterID).addCondition('skill', 'IN', input.spec.careerSkills);
+					skillGR.query();
+					while(skillGR.next()){
+						skillGR.career = true;
+						skillGR.cost_to_next_rank = (skillGR.rank + 1) * 5;
+						skillGR.update();
+					}
+					data.character.specializationIDs = charGR.career_specializations.toString();
+					data.character.forceRatingInt = parseInt(charGR.force_rating);
+					data.character.forceRatingString = data.character.forceRatingInt + '';
+					data.character.availableXPInt = parseInt(charGR.available_xp);
+					data.character.availableXPString = data.character.availableXPInt + '';
+					var specShit = util.buildCareerSpecializationDetails(specArray.join(), '', data.character.careerID, data.character.availableXPInt);
+					data.character.specializationNames = specShit.specNames;
+					data.specializationInfo = specShit.currentSpecInfo;
+					data.availableSpecs = specShit.specsToPurchase;
+					var talentShit = util.buildTalents(data.characterID, data.character);
+					data.talents = talentShit.talents;
+					data.availableTalents = talentShit.availableTalents;
+					data.skills = util.buildSkills(data.characterID, data.character, data.talents);
+					break;
+
+				case 'saveOtherGear':
+					charGR.other_gear = input.gear;
+					charGR.update();
+					data.character.otherGear = charGR.other_gear + '';
+					break;
+
+				case 'removeVehicle':
+					var characterVehicle = new GlideRecord('x_176383_star_wars_character_vehicle');
+					characterVehicle.get(input.vehicle.sysID);
+					characterVehicle.deleteRecord();
+					var vehicleShit = util.buildVehicles(data.characterID);
+					data.vehicles = vehicleShit.vehicles;
+					data.vehiclesAll = data.vehicles;
+					data.characterVehicles = vehicleShit.characterVehicles;
+					break;
+
+				case 'saveCrit':
+					charGR.critical_injuries = parseInt(input.crits);
+					charGR.critical_injury_description = input.notes;
+					charGR.update();
+					data.character.criticalInjuriesInt = charGR.critical_injuries;
+					data.character.criticalInjuriesString = data.character.criticalInjuriesInt + '';
+					data.character.criticalInjuriesDescription = charGR.critical_injury_description + '';
+					break;
+
+				case 'updateStatusEffects':
+					var statusEffectsString = '';
+					if(input.effect.checked){
+						for(var i = 0; i < data.character.statusEffects.length; i++){
+							if(input.effect.sys_id == data.character.statusEffects[i]){
+								data.character.statusEffects.splice(i, 1);
+								break;
+							}
+						}
+						statusEffectsString = data.character.statusEffects.join();
+						for(i = 0; i < data.statusEffects.length; i++){
+							if(data.statusEffects[i].sys_id == input.effect.sys_id){
+								data.statusEffects[i].checked = false;
+								break;
+							}
+						}
+					} else{
+						statusEffectsString = data.character.statusEffects.join() + ',' + input.effect.sys_id;
+						for(i = 0; i < data.statusEffects.length; i++){
+							if(data.statusEffects[i].sys_id == input.effect.sys_id){
+								data.statusEffects[i].checked = true;
+								break;
+							}
+						}
+					}
+					charGR.status_effects = statusEffectsString;
+					charGR.update();
+					break;
+
+				case "updateLimitedUseTalent":
+					var characterTalent = new GlideRecord('x_176383_star_wars_character_talents_m2m');
+					characterTalent.get(input.talent.sysID);
+					if(input.talent.used == 'true'){
+						characterTalent.used = true;
+					} else{
+						characterTalent.used = false;
+					}
+					characterTalent.update();
+					break;
+
+				default:
+					break;
+			}
+		}
+	} catch(e){
+		gs.addErrorMessage(e.message);
+	}
+
+	function checkGM(campaign){
+		if(campaign != ''){
+			var campaignGR = new GlideRecord('x_176383_star_wars_campaign');
+			campaignGR.get(campaign);
+			if(campaignGR.game_master == gs.getUserID()){
+				return true;
+			} else{
+				return false;
+			}
+		}
+	}
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-10-27 13:34:00</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>81191fae2fc86c10e0f497eef699b69e</sys_id>
+        <sys_mod_count>1517</sys_mod_count>
+        <sys_name>Star Wars Character Sheet</sys_name>
+        <sys_package display_value="Star Wars RPG" source="x_176383_star_wars">64b3517bdb5a08542901de90cf961993</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Star Wars RPG">64b3517bdb5a08542901de90cf961993</sys_scope>
+        <sys_update_name>sp_widget_81191fae2fc86c10e0f497eef699b69e</sys_update_name>
+        <sys_updated_by>ben.fisher</sys_updated_by>
+        <sys_updated_on>2024-01-07 18:32:59</sys_updated_on>
+        <template><![CDATA[<head>
+  <script src="https://kit.fontawesome.com/035f51c999.js"></script>
+</head>
+
+<div class="col-xs-12 image-background" style="background: url({{data.backgroundURL}})"></div>
+
+<div class="col-xs-12 character-sheet-container" ng-init="c.isSubmitting = false">
+  <div class="col-xs-12 main-character-info">
+    <!-- name, species, career, XP -->
+    <span class="col-xs-4 col-md-1 portrait" id="portraitContainer" ng-click="editCharacter('portrait')"></span>
+    <span class="col-xs-8 col-md-7 name" ng-click="editCharacter('name')">{{data.character.name}}</span>
+    <span class="col-xs-8 col-md-7 sw-name star-wars-text" ng-click="editCharacter('name')">{{data.character.name}}</span>
+    <span class="col-xs-8 col-md-7 id-info"><text id="species">Species: {{data.character.species}}</text> <i class="far fa-info-circle" ng-click="editCharacter('species')"></i><br> Career:<text id="career">{{data.character.career}}</text> <i class="far fa-info-circle" ng-click="editCharacter('career')"></i><br> Specializations:<text id="specializations">{{data.character.specializationNames}}</text> <i class="far fa-info-circle" ng-click="editCharacter('specializations')"></i><br><text id="buyNewSpecializations" ng-click="editCharacter('newSpecs')"><i class="fab fa-old-republic"></i> Buy New Specializations</text></span>
+    <span class="col-xs-12 col-md-4 xp-info-container">
+      <span class="col-xs-12 mobile-nav-container xp-info text-center" id="xpInfo">
+        <span class="col-xs-6 col-md-4 total-xp">
+          <span class="col-xs-12 xp-value">{{data.character.totalXPString}}</span>
+          <span class="col-xs-12 xp-label">TOTAL XP</span>
+        </span>
+        <span class="col-xs-6 col-md-4 available-xp" ng-click="editCharacter('addXP')">
+          <span class="col-xs-12 xp-value">{{data.character.availableXPString}}</span>
+          <span class="col-xs-12 xp-label">AVAILABLE XP</span>
+        </span>
+        <span class="col-xs-12 col-md-4 available-xp critical-injuries" ng-click="editCharacter('crit')">
+          <span class="col-xs-12 xp-value">{{data.character.criticalInjuriesString}}</span>
+          <span class="col-xs-12 xp-label">Critical Injuries</span>
+        </span>
+        <!-- status effects -->
+        <span class="col-xs-12 status-effects-container">
+          <span class="col-xs-4 status-effect-switch" ng-repeat="effect in data.statusEffects">
+            <span ng-click="showStatusEffectDetail(effect)"><label class="status-effect-label" for="effect.name">{{effect.name}} <i class="far fa-info-circle"></i></label></span><br/>
+            <label id="effect.name" class="switch">
+              <input type="checkbox" ng-checked="{{effect.checked}}" ng-click="updateStatus(effect)">
+              <span class="slider round"></span>
+            </label>
+          </span>
+        </span>
+      </span>
+    </span>
+    <!-- derived values container -->
+    <span class="col-xs-12 derived-values mobile-nav-container" id="derivedValuesContainer">
+      <span class="col-xs-6 col-md-3 dv-container" id="soak" ng-click="editCharacter('soak')">
+        <span class="col-xs-12"><text class="dv-header" id="soakHeader">SOAK</text></span>
+        <span class="col-xs-12"><text id="soakValue">{{data.character.soakString}}</text></span>
+      </span>
+      <span class="col-xs-6 col-md-3 dv-container" id="wounds" ng-click="editCharacter('wounds')">
+        <span class="col-xs-12"><text class="dv-header" id="woundHeader">WOUNDS</text></span>
+        <span class="col-xs-6 threshold-container">
+          <span class="col-xs-12"><text class="threshold-value" id="woundThreshold">{{data.character.woundThresholdString}}</text></span>
+          <span class="col-xs-12 threshold-header-container"><text class="threshold-value-header" id="woundThresholdHeader">THRESHOLD</text></span>
+        </span>
+        <span class="col-xs-6 current-container">
+          <span class="col-xs-12"><text class="current-value" id="woundCurrent">{{data.character.woundCurrentString}}</text></span>
+          <span class="col-xs-12 current-header-container"><text class="current-value-header" id="woundCurrentHeader">CURRENT</text></span>
+        </span>
+      </span>
+      <span class="col-xs-6 col-md-3 dv-container" id="strain" ng-click="editCharacter('strain')">
+        <span class="col-xs-12"><text class="dv-header" id="strainHeader">STRAIN</text></span>
+        <span class="col-xs-6 threshold-container">
+          <span class="col-xs-12"><text class="threshold-value" id="strainThreshold">{{data.character.strainThresholdString}}</text></span>
+          <span class="col-xs-12 threshold-header-container"><text class="threshold-value-header" id="strainThresholdHeader">THRESHOLD</text></span>
+        </span>
+        <span class="col-xs-6 current-container">
+          <span class="col-xs-12"><text class="current-value" id="strainCurrent">{{data.character.strainCurrentString}}</text></span>
+          <span class="col-xs-12 current-header-container"><text class="current-value-header" id="strainCurrentHeader">CURRENT</text></span>
+        </span>
+      </span>
+      <span class="col-xs-6 col-md-3 dv-container" id="defense" ng-click="editCharacter('defense')">
+        <span class="col-xs-12"><text class="dv-header" id="defenseHeader">DEFENSE</text></span>
+        <span class="col-xs-6 threshold-container">
+          <span class="col-xs-12"><text class="threshold-value" id="rangedDefense">{{data.character.rangedDefenseString}}</text></span>
+          <span class="col-xs-12 threshold-header-container"><text class="threshold-value-header" id="rangedDefenseHeader">RANGED</text></span>
+        </span>
+        <span class="col-xs-6 current-container">
+          <span class="col-xs-12"><text class="current-value" id="meleeDefense">{{data.character.meleeDefenseString}}</text></span>
+          <span class="col-xs-12 current-header-container"><text class="current-value-header" id="meleeDefenseHeader">MELEE</text></span>
+        </span>
+      </span>
+    </span>
+    <!-- characteristics container -->
+    <span class="col-xs-12 characteristics-container mobile-nav-container" id="characteristicContainer" ng-click="editCharacter('characteristics')">
+      <span class="col-xs-12 characteristics-header">CHARACTERISTICS</span>
+      <span class="col-xs-4 col-md-2 characteristic">
+        <span class="col-xs-12 c-value"><text class="c-value-number">{{data.character.brawn}}</text></span>
+        <span class="col-xs-12 c-label">BRAWN</span>
+      </span>
+      <span class="col-xs-4 col-md-2 characteristic">
+        <span class="col-xs-12 c-value"><text class="c-value-number">{{data.character.agility}}</text></span>
+        <span class="col-xs-12 c-label">AGILITY</span>
+      </span>
+      <span class="col-xs-4 col-md-2 characteristic">
+        <span class="col-xs-12 c-value"><text class="c-value-number">{{data.character.intellect}}</text></span>
+        <span class="col-xs-12 c-label">INTELLECT</span>
+      </span>
+      <span class="col-xs-4 col-md-2 characteristic">
+        <span class="col-xs-12 c-value"><text class="c-value-number">{{data.character.cunning}}</text></span>
+        <span class="col-xs-12 c-label">CUNNING</span>
+      </span>
+      <span class="col-xs-4 col-md-2 characteristic">
+        <span class="col-xs-12 c-value"><text class="c-value-number">{{data.character.willpower}}</text></span>
+        <span class="col-xs-12 c-label">WILLPOWER</span>
+      </span>
+      <span class="col-xs-4 col-md-2 characteristic">
+        <span class="col-xs-12 c-value"><text class="c-value-number">{{data.character.presence}}</text></span>
+        <span class="col-xs-12 c-label">PRESENCE</span>
+      </span>
+    </span>
+    <!-- skills container -->
+    <span class="col-xs-12 col-md-3 skill-container mobile-nav-container" id="skillsContainer">
+      <span class="col-xs-12 skills-container-header">SKILLS</span>
+      <span class="col-xs-12 skills-body">
+        <span class="col-xs-12 skill-column-headers">
+          <span class="col-xs-6 skill-name-header">SKILL</span>
+          <span class="col-xs-4 skill-roll-header">ROLL</span>
+          <span class="col-xs-2 skill-rank-header">RANK</span>
+        </span>
+        <span class="col-xs-12 skill" ng-repeat="skill in data.skills">
+          <span class="col-xs-6 skill-name">{{skill.name}} <i ng-if="skill.isCareer == 'true'" class="far fa-medal"></i> <span ng-click="showSkillInfo(skill)"><i class="far fa-info-circle"></i></span></span>
+          <span class="col-xs-4 skill-roll" id="{{skill.sysID}}"></span>
+          <span class="col-xs-2 skill-rank"  ng-click="editCharacter('skills')">{{skill.rankString}}</span>
+        </span>
+      </span>
+    </span>
+
+    <div class="info-container col-xs-12" id="skillInfoContainer">
+      <span class="col-xs-12 close-button" ng-click="closeSkillInfo()"><i class="fas fa-swords-laser"></i></span>
+      <span class="col-xs-12 skill-info-body">
+        <span class="col-xs-12 skill-info-name text-center">{{data.currentSkill.name}} <i ng-if="data.currentSkill.isCareer == 'true'" class="far fa-medal"></i><br><text class="star-wars-text">{{data.currentSkill.name}}</text></span>
+        <span class="col-xs-12 skill-info-rank text-center">Current Rank: {{data.currentSkill.rankString}}</span>
+        <span class="col-xs-12 skill-info-description" ng-bind-html="data.currentSkill.description"></span>
+      </span>
+    </div>
+    <!-- laptop/desktop section selection header -->
+    <span class="xs-hidden col-md-9 section-header-container">
+      <span class="col-md-12 sections">
+        <!--span class="col-md-2 section" id="talentsSelector" ng-click="showSection('talentsContainer', 'talentsSelector')"-->
+        <span class="section" id="talentsSelector" ng-click="showSection('talentsContainer', 'talentsSelector')">
+          <span class="col-md-12 section-label">TALENTS</span>
+          <span class="col-md-12 sw-section-label star-wars-text">TALENTS</span>
+        </span>
+        <span ng-if="data.showSignatureAbilities" class="section" id="signatureAbilitiesSelector" ng-click="showSection('signatureAbilitiesContainer', 'signatureAbilitiesSelector')">
+          <span class="col-md-12 section-label">SIGNATURE ABILITIES</span>
+          <span class="col-md-12 sw-section-label star-wars-text">SIGNATURE ABILITIES</span>
+        </span>
+        <!--span class="col-md-2 section" id="forceSelector" ng-click="showSection('forceContainer', 'forceSelector')"-->
+        <span ng-if="data.character.forceRatingInt > 0" class="section" id="forceSelector" ng-click="showSection('forceContainer', 'forceSelector')">
+          <span class="col-md-12 section-label">FORCE POWERS</span>
+          <span class="col-md-12 sw-section-label star-wars-text">FORCE POWERS</span>
+        </span>
+        <!--span class="col-md-2 section" id="gearSelector" ng-click="showSection('gearContainer', 'gearSelector')"-->
+        <span class="section" id="gearSelector" ng-click="showSection('gearContainer', 'gearSelector')">
+          <span class="col-md-12 section-label">GEAR</span>
+          <span class="col-md-12 sw-section-label star-wars-text">GEAR</span>
+        </span>
+        <!--span class="col-md-2 section" id="vehiclesSelector" ng-click="showSection('vehiclesContainer', 'vehiclesSelector')"-->
+        <span class="section" id="vehiclesSelector" ng-click="showSection('vehiclesContainer', 'vehiclesSelector')">
+          <span class="col-md-12 section-label">VEHICLES</span>
+          <span class="col-md-12 sw-section-label star-wars-text">VEHICLES</span>
+        </span>
+        <!--span class="col-md-2 section" id="descriptionSelector" ng-click="showSection('characterDescriptionContainer', 'descriptionSelector')"-->
+        <span class="section" id="descriptionSelector" ng-click="showSection('characterDescriptionContainer', 'descriptionSelector')">
+          <span class="col-md-12 section-label">DESCRIPTION</span>
+          <span class="col-md-12 sw-section-label star-wars-text">DESCRIPTION</span>
+        </span>
+      </span>
+    </span>
+    <!-- mobile section selection -->
+    <span class="lg-hidden open-menu-container" ng-click="toggleMobileNavMenu()">
+      <!--i class="fab fa-phoenix-squadron"></i-->
+      <i class="fas fa-journal-whills"></i>
+    </span>
+    <span class="col-xs-12 lg-hidden mobile-nav-menu" id="mobileNavMenu">
+      <span class="col-xs-12 nav-button-container">
+        <span class="col-xs-12 nav-button" ng-click="showMobileSection('characteristicContainer')">
+          <i class="fab fa-phoenix-squadron"></i> Characteristics<br><text class="star-wars-text">Characteristics</text>
+        </span>
+        <span class="col-xs-6 nav-button" ng-click="showMobileSection('skillsContainer')">
+          <i class="fas fa-stars"></i> Skills<br><text class="star-wars-text">Skills</text>
+        </span>
+        <span class="col-xs-6 nav-button" ng-click="showMobileSection('talentsContainer')">
+          <i class="fab fa-galactic-senate"></i> Talents<br><text class="star-wars-text">Talents</text>
+        </span>
+        <span class="col-xs-6 nav-button" ng-click="showMobileSection('gearContainer')">
+          <i class="fas fa-helmet-battle"></i> Gear<br><text class="star-wars-text">Gear</text>
+        </span>
+        <span class="col-xs-6 nav-button" ng-click="showMobileSection('vehiclesContainer')">
+          <i class="fas fa-starship-freighter"></i> Vehicles<br><text class="star-wars-text">Vehicles</text>
+        </span>
+        <span class="col-xs-12 nav-button" ng-click="showMobileSection('characterDescriptionContainer')">
+          <i class="fas fa-alien"></i> Description<br><text class="star-wars-text">Description</text>
+        </span>
+        <span ng-if="data.showSignatureAbilities" class="col-xs-12 nav-button" ng-click="showMobileSection('signatureAbilitiesContainer')">
+          <i class="fas fa-sword-laser-alt"></i> Signature Abilities<br><text class="star-wars-text">Signature Abilities</text>
+        </span>
+        <span ng-if="data.character.forceRatingInt > 0" class="col-xs-12 nav-button" ng-click="showMobileSection('forceContainer')">
+          <i class="fab fa-jedi-order"></i> Force Powers<br><text class="star-wars-text">Force Powers</text>
+        </span>
+      </span>
+    </span>
+    <!-- talents container -->
+    <span class="col-xs-12 col-md-9 character-details-container mobile-nav-container talents-container" id="talentsContainer">
+      <span class="col-xs-12 edit-container" id="purchaseTalentsButtonContainer" ng-click="editCharacter('talents')"><i class="fab fa-galactic-senate"></i> Purchase Talents</span>
+      <span ng-if="data.talents.length == 0" id="noTalentsContainer">
+        <span class="col-xs-12 no-talents">You currently have 0 Talents</span>
+        <span class="col-xs-12 star-wars-text">You currently have 0 Talents</span>
+      </span>
+      <span ng-if="data.talents.length > 0" class="col-xs-12 has-talents">
+        <span class="col-xs-12 talents-headers">
+          <span class="col-xs-3 talent-name-header">Name</span>
+          <span class="col-xs-9 talent-description-header">Description</span>
+        </span>
+        <span class="col-xs-12 talents-body">
+          <span class="col-xs-12 talent" ng-repeat="t in data.talents">
+            <span class="col-xs-3 talent-name">{{t.name}} <i ng-if="t.forceTalent == 'true'" class="fab fa-jedi-order"></i> <span ng-if="data.showRankOneBadge == 'true'" class="badge">{{t.ranks}}</span><span ng-if="data.showRankOneBadge == 'false' && t.ranks > 1" class="badge">{{t.ranks}}</span><br/>
+              <span class="limited_use_container" ng-if="t.limitedUse == 'true'">Used: <input type="checkbox" ng-checked="t.used == 'true'" ng-click="flipTalentUsed(t)"/></span>
+            </span>
+            <span class="col-xs-9 talent-description">{{t.description}}</span>
+          </span>
+        </span>
+      </span>
+    </span>
+    <!-- signature abilities container -->
+    <span class="col-xs-12 col-md-9 character-details-container mobile-nav-container signature-abilities-container" id="signatureAbilitiesContainer" ng-init="c.showSignatureAbilityInfo = false; c.currentSignatureAbility = ''">
+      <span class="col-xs-12 edit-container" id="purchaseSignatureAbilitiesContainer" ng-click="editCharacter('signatureAbilities')"><i class="fas fa-sword-laser-alt"></i> Purchase Signature Abilities</span>
+      <span ng-if="data.characterSignatureAbilities.length == 0" id="noSignatureAbilitiesContainer">
+        <span class="col-xs-12 no-talents">You currently have 0 Signature Abilities</span>
+        <span class="col-xs-12 star-wars-text">You currently have 0 Signature Abilities</span>
+      </span>
+      <span ng-if="data.characterSignatureAbilities.length > 0" class="col-xs-12 has-talents">
+        <span class="col-xs-12 talents-headers">
+          <span class="col-xs-3 talent-name-header">Name</span>
+          <span class="col-xs-9 talent-description-header">Description</span>
+        </span>
+        <span class="col-xs-12 talents-body">
+          <span class="col-xs-12 talent" ng-repeat="sa in data.characterSignatureAbilities">
+            <span class="col-xs-3 talent-name">
+              <span class="col-xs-12 talent-name">{{sa.name}}</span>
+              <span ng-if="sa.upgrades.objArray.length > 0" class="col-xs-12">
+                <a id="showSignatureAbilityLink" ng-click="c.showSignatureAbilityInfo = true; c.currentSignatureAbility = sa">View Upgrades</a>
+              </span>
+            </span>
+            <span class="col-xs-9 talent-description" ng-bind-html="sa.description"></span>
+          </span>
+        </span>
+      </span>
+    </span>
+
+    <span ng-if="c.showSignatureAbilityInfo" class="signature-ability-info-container" id="signatureAbilityInfoContainer">
+      <span class="col-xs-12 close-button" ng-click="c.showSignatureAbilityInfo = false; c.currentSignatureAbility = ''"><i class="fas fa-swords-laser"></i></span>
+      <span class="col-xs-12 force-power-body">
+        <span class="col-xs-12 text-center" id="signatureAbilityName">{{c.currentSignatureAbility.name}}<br><text class="star-wars-text">{{c.currentSignatureAbility.name}}</text></span>
+        <span class="col-xs-12" id="signatureAbilityDescription" ng-bind-html="c.currentSignatureAbility.description"></span>
+        <span class="col-xs-12 enhancements-container">
+          <span class="col-xs-12 e-header text-center">Upgrades</span>
+          <span class="col-xs-12 enhancements-headers">
+            <span class="col-xs-4 enhancement-header">Name:</span>
+            <span class="col-xs-8 enhancement-header">Description:</span>
+          </span>
+          <span class="col-xs-12 enhancement" ng-repeat="u in c.currentSignatureAbility.upgrades.objArray">
+            <span class="col-xs-4 etype">{{u.name}} <span ng-if="data.showRankOneBadge == 'true'" class="badge">{{u.ranks}}</span><span ng-if="data.showRankOneBadge == 'false' && u.ranks > 1" class="badge">{{u.ranks}}</span></span>
+            <span class="col-xs-8 edescription" ng-bind-html="u.description"></span>
+          </span>
+        </span>
+      </span>
+    </span>
+    <!-- Force Powers Container -->
+    <span class="col-xs-12 col-md-9 character-details-container mobile-nav-container force-container" id="forceContainer">
+      <span class="col-xs-12 edit-container" id="purchaseForcePowersButtonContainer" ng-click="editCharacter('forcePowers')"><i class="fab fa-jedi-order"></i> Meditate</span>
+      <span class="col-xs-12" id="forceRating">
+        <span class="force-rating-numbers">
+          <span class="col-xs-12 col-md-3 center-text force-rating-value" id="forceRatingValue" ng-click="editCharacter('forceRating')">
+            <span class="col-xs-12 dv-header">Force Rating</span>
+            <span class="col-xs-12 threshold-value text-center force-rating-int" id="forceRatingInt">{{data.character.forceRatingString}}</span>
+          </span>
+          <span class="col-xs-12 col-md-3 center-text force-rating-value" ng-click="editCharacter('forceRating')">
+            <span class="col-xs-12 dv-header">Force Dice Committed</span>
+            <span class="col-xs-12 threshold-value text-center force-rating-int">{{data.character.forceCommittedString}}</span>
+          </span>
+        </span>
+        <span ng-if="data.character.forceRatingInt == 0" class="col-xs-12 no-message-or-powers" id="noForceMessageContainer">
+          <span class="col-xs-12 text-center">You are not force sensitive.  Purchase a talent or specialization that grants force rating to become force sensitive.</span>
+          <span class="col-xs-12 text-center star-wars-text">You are not force sensitive.  Purchase a talent or specialization that grants force rating to become force sensitive.</span>
+        </span>
+        <span ng-if="data.characterPowers.length == 0 && data.character.forceRatingInt > 0" class="col-xs-12 no-message-or-powers">
+          <span class="col-xs-12 text-center">You currently have 0 force powers.  Meditate to strengthen your connection to the force.</span>
+          <span class="col-xs-12 text-center star-wars-text">You currently have 0 force powers.  Meditate to strengthen your connection to the force.</span>
+        </span>
+        <span ng-if="data.characterPowers.length > 0" class="col-xs-12 force-powers-container">
+          <span class="col-xs-12 force-headers">
+            <span class="col-xs-3 force-header">Name</span>
+            <span class="col-xs-9 force-header">Description</span>
+          </span>
+          <span class="col-xs-12 force-power" ng-repeat="power in data.characterPowers">
+            <span class="col-xs-3 force-detail">{{power.name}} <span ng-click="showForceInfo(power)"><i class="far fa-info-circle"></i></span></span>
+            <span class="col-xs-9 force-detail" ng-bind-html="power.description"></span>
+          </span>
+        </span>
+      </span>
+    </span>
+
+    <div class="col-xs-12 force-power-info-container" id="forcePowerInfoContainer">
+      <span class="col-xs-12 close-button" ng-click="closeForceInfo()"><i class="fas fa-swords-laser"></i></span>
+      <span class="col-xs-12 force-power-body">
+        <span class="col-xs-12 text-center" id="forcePowerInfoName">{{data.currentForcePower.name}}<br><text class="text-center star-wars-text">{{data.currentForcePower.name}}</text></span>
+        <span class="col-xs-12" id="currentForceDescription" ng-bind-html="data.currentForcePower.description"></span>
+        <span class="col-xs-12 enhancements-container">
+          <span class="col-xs-12 e-header text-center">Enhancements</span>
+          <span class="col-xs-12 enhancements-headers">
+            <span class="col-xs-4 enhancement-header">Type:</span>
+            <span class="col-xs-8 enhancement-header">Description:</span>
+          </span>
+          <span class="col-xs-12 enhancement" ng-if="e.forceID == data.currentForcePower.sysID" ng-repeat="e in data.cForceEnhancements">
+            <span class="col-xs-4 etype">{{e.type}} <span ng-if="e.ranks > 1" class="badge">{{e.ranks}}</span></span>
+            <span class="col-xs-8 edescription" ng-bind-html="e.description"></span>
+          </span>
+        </span>
+      </span>
+    </div>
+    <!-- gear, credits container -->
+    <span class="col-xs-12 col-md-9 character-details-container mobile-nav-container gear-container" id="gearContainer">
+      <span class="col-xs-12 credits-container" ng-click="editCharacter('credits')">
+        <span class="pull-right credits"><img src="credits.png" height="25px" width="25px"/> {{data.character.creditsString}}</span>
+      </span>
+      <span class="col-xs-12 align-right edit-container" id="manageGearButtonContainer">
+        <button id="manageGearButton" ng-click="editCharacter('gear')"><i class="fal fa-raygun"></i> Go Shopping</button>
+      </span>
+      <span ng-if="data.characterGear.length == 0" id="noGearContainer">
+        <span class="col-xs-12 no-talents">You currently have no gear</span>
+        <span class="col-xs-12 star-wars-text">You currently have no gear</span>
+        <span class="col-xs-12 other-gear-container">
+          <span class="col-xs-12 align-right edit-container" id="editOtherGearButtonContainer">
+            <button id="editOtherGearButton" ng-click="editCharacter('otherGear')"><i class="fas fa-cogs"></i> Edit Other Gear</button>
+          </span>
+          <span class="col-xs-12 description-field">
+            <span class="col-xs-12 desc-label">Other Gear:</span>
+            <span class="col-xs-12 desc-value" ng-bind-html="data.character.otherGear"></span>
+          </span>
+        </span>
+      </span>
+      <span ng-if="data.characterGear.length > 0" id="characterGearList">
+        <span class="col-xs-12 character-gear-container">
+          <span class="col-xs-12 gear-headers">
+            <span class="col-xs-8 gear-header">Name:</span>
+            <span class="col-xs-2 gear-header">Quantity:</span>
+            <span class="col-xs-2 gear-header" ng-click="toggleGearInfo('all')"><i class="fal fa-chevron-left gear-info-icon" id="allChevron"></i></span>
+          </span>
+          <span class="col-xs-12 gear-item-container" ng-init="c.showGearQualityInfo = false; c.gearQuality = ''">
+            <div class="col-xs-12 cg-types" ng-repeat="gearType in data.gearTypes"><text class="gear-type-text">{{gearType.name}}</text>
+              <div class="col-xs-12 cg-item" ng-if="item.typeID == gearType.value" ng-repeat="item in data.characterGear" id="parent{{item.sysID}}">
+                <span class="col-xs-8 gear-detail item-name">{{item.name}}</span>
+                <span class="col-xs-2 gear-detail item-quantity" ng-click="editCharacter('gearQuantity', item)">{{item.quantity}}</span>
+                <span class="col-xs-2 gear-detail expand-icon" ng-click="toggleGearInfo(item.sysID)"><i class="fal fa-chevron-left gear-info-icon" id="{{item.iconID}}"></i></span>
+                <span class="col-xs-12 full-gear-detail" id="{{item.sysID}}">
+                  <span class="col-xs-4 gear-detail">
+                    <span class="col-xs-12 gear-detail-label">Encumbrance:</span>
+                    <span class="col-xs-12 gear-detail-value">{{item.encumbrance}}</span>
+                  </span>
+                  <span ng-if="item.typeID != 'mod'" class="col-xs-4 gear-detail">
+                    <span class="col-xs-12 gear-detail-label">HP:</span>
+                    <span class="col-xs-12 gear-detail-value">{{item.hardPoints}}</span>
+                  </span>
+                  <span ng-if="item.typeID == 'mod'" class="col-xs-4 gear-detail">
+                    <span class="col-xs-12 gear-detail-label">HP Required:</span>
+                    <span class="col-xs-12 gear-detail-value">{{item.hpRequired}}</span>
+                  </span>
+                  <span class="col-xs-4 gear-detail">
+                    <span class="col-xs-12 gear-detail-label">Type:</span>
+                    <span class="col-xs-12 gear-detail-value">{{item.type}}</span>
+                  </span>
+                  <span ng-if="item.typeID == 'weapon'" class="col-xs-4 gear-detail">
+                    <span class="col-xs-12 gear-detail-label">Damage:</span>
+                    <span class="col-xs-12 gear-detail-value">{{item.damage}}</span>
+                  </span>
+                  <span ng-if="item.typeID == 'weapon'" class="col-xs-4 gear-detail">
+                    <span class="col-xs-12 gear-detail-label">Crit:</span>
+                    <span class="col-xs-12 gear-detail-value">{{item.crit}}</span>
+                  </span>
+                  <span ng-if="item.typeID == 'weapon'" class="col-xs-4 gear-detail">
+                    <span class="col-xs-12 gear-detail-label">Skill Used:</span>
+                    <span class="col-xs-12 gear-detail-value">{{item.skillUsed}}</span>
+                  </span>
+                  <span ng-if="item.typeID == 'weapon'" class="col-xs-4 gear-detail">
+                    <span class="col-xs-12 gear-detail-label">Range:</span>
+                    <span class="col-xs-12 gear-detail-value">{{item.range}}</span>
+                  </span>
+                  <span ng-if="item.typeID == 'weapon' || item.typeID == 'mod' || item.typeID == 'armor'" class="col-xs-4 gear-detail">
+                    <span class="col-xs-12 gear-detail-label">Special:</span>
+                    <span class="col-xs-12 gear-detail-value"><span class="item-quality" ng-repeat="wq in item.gearQualityArray"><span ng-click="editCharacter('gearQuality', item, wq)">{{wq.name}}:</span> {{wq.rank}} <i class="far fa-info-circle" ng-click="c.showGearQualityInfo = true; c.gearQuality = wq"></i>, </span></span>
+                  </span>
+                  <span ng-if="item.typeID == 'armor'" class="col-xs-4 gear-detail">
+                    <span class="col-xs-12 gear-detail-label">Defense:</span>
+                    <span class="col-xs-12 gear-detail-value">{{item.defense}}</span>
+                  </span>
+                  <span ng-if="item.typeID == 'armor'" class="col-xs-4 gear-detail">
+                    <span class="col-xs-12 gear-detail-label">Soak:</span>
+                    <span class="col-xs-12 gear-detail-value">{{item.soak}}</span>
+                  </span>
+                  <span class="col-xs-4 gear-detail">
+                    <span class="col-xs-12 gear-detail-label">Location:</span>
+                    <span class="col-xs-12 gear-detail-value">{{item.location}}</span>
+                  </span>
+                  <span class="col-xs-12 gear-detail">
+                    <span class="col-xs-12 gear-detail-label">Description:</span>
+                    <span class="col-xs-12 gear-detail-value" ng-bind-html="item.description"></span>
+                  </span>
+                  <span class="col-xs-12" id="removeItemButtonContainer">
+                    <button ng-if="data.canEdit" id="editItemButton" ng-click="editCharacter('gearEdit', item)">Edit<br><text class="star-wars-text">Edit</text></button>
+                    <button ng-if="data.canEdit" id="removeItemButton" ng-click="removeItem(item.sysID)">Remove<br><text class="star-wars-text">Remove</text></button>
+                  </span>
+                </span>
+              </div>
+            </div>
+            <span class="col-xs-12 other-gear-container">
+              <span class="col-xs-12 align-right edit-container" id="editOtherGearButtonContainer">
+                <button id="editOtherGearButton" ng-click="editCharacter('otherGear')"><i class="fas fa-cogs"></i> Edit Other Gear</button>
+              </span>
+              <span class="col-xs-12 description-field">
+                <span class="col-xs-12 desc-label">Other Gear:</span>
+                <span class="col-xs-12 desc-value" ng-bind-html="data.character.otherGear"></span>
+              </span>
+            </span>
+          </span>
+        </span>
+      </span>
+    </span>
+
+    <!-- gear info -->
+    <span class="col-xs-12" id="gearInfoContainer">
+      <span class="col-xs-12 close-button" ng-click="closeEditContainer('gearInfo')"><i class="fas fa-swords-laser"></i></span>
+      <span class="col-xs-12 text-center" id="gearNameContainer">{{data.currentGearItem.name}}<br><text class="star-wars-text text-center">{{data.currentGearItem.name}}</text></span>
+      <span class="col-xs-12 gear-item-details">
+        <span class="col-xs-4 gear-detail">
+          <span class="col-xs-12 gear-detail-label">Encumbrance:</span>
+          <span class="col-xs-12 gear-detail-value">{{data.currentGearItem.encumbrance}}</span>
+        </span>
+        <span ng-if="data.currentGearItem.typeID != 'mod'" class="col-xs-4 gear-detail">
+          <span class="col-xs-12 gear-detail-label">HP:</span>
+          <span class="col-xs-12 gear-detail-value">{{data.currentGearItem.hardPoints}}</span>
+        </span>
+        <span ng-if="data.currentGearItem.typeID == 'mod'" class="col-xs-4 gear-detail">
+          <span class="col-xs-12 gear-detail-label">HP Required:</span>
+          <span class="col-xs-12 gear-detail-value">{{data.currentGearItem.hpRequired}}</span>
+        </span>
+        <span class="col-xs-4 gear-detail">
+          <span class="col-xs-12 gear-detail-label">Type:</span>
+          <span class="col-xs-12 gear-detail-value">{{data.currentGearItem.type}}</span>
+        </span>
+        <span ng-if="data.currentGearItem.typeID == 'weapon'" class="col-xs-4 gear-detail">
+          <span class="col-xs-12 gear-detail-label">Damage:</span>
+          <span class="col-xs-12 gear-detail-value">{{data.currentGearItem.damage}}</span>
+        </span>
+        <span ng-if="data.currentGearItem.typeID == 'weapon'" class="col-xs-4 gear-detail">
+          <span class="col-xs-12 gear-detail-label">Crit:</span>
+          <span class="col-xs-12 gear-detail-value">{{data.currentGearItem.crit}}</span>
+        </span>
+        <span ng-if="data.currentGearItem.typeID == 'weapon'" class="col-xs-4 gear-detail">
+          <span class="col-xs-12 gear-detail-label">Skill Used:</span>
+          <span class="col-xs-12 gear-detail-value">{{data.currentGearItem.skillUsed}}</span>
+        </span>
+        <span ng-if="data.currentGearItem.typeID == 'weapon'" class="col-xs-4 gear-detail">
+          <span class="col-xs-12 gear-detail-label">Range:</span>
+          <span class="col-xs-12 gear-detail-value">{{data.currentGearItem.range}}</span>
+        </span>
+        <span ng-if="data.currentGearItem.typeID == 'weapon' || data.currentGearItem.typeID == 'mod' || data.currentGearItem.typeID == 'armor'" class="col-xs-4 gear-detail">
+          <span class="col-xs-12 gear-detail-label">Special:</span>
+          <span class="col-xs-12 gear-detail-value"><span ng-repeat="wq in data.currentGearItem.gearQualityArray">{{wq.name}}: {{wq.rank}}, </span></span>
+        </span>
+        <span ng-if="data.currentGearItem.typeID == 'armor'" class="col-xs-4 gear-detail">
+          <span class="col-xs-12 gear-detail-label">Defense:</span>
+          <span class="col-xs-12 gear-detail-value">{{data.currentGearItem.defense}}</span>
+        </span>
+        <span ng-if="data.currentGearItem.typeID == 'armor'" class="col-xs-4 gear-detail">
+          <span class="col-xs-12 gear-detail-label">Soak:</span>
+          <span class="col-xs-12 gear-detail-value">{{data.currentGearItem.soak}}</span>
+        </span>
+        <span class="col-xs-12 gear-detail">
+          <span class="col-xs-12 gear-detail-label">Description:</span>
+          <span class="col-xs-12 gear-detail-value" ng-bind-html="data.currentGearItem.description"></span>
+        </span>
+      </span>
+    </span>
+    
+    <!-- gear quality info container -->
+    <span ng-if="c.showGearQualityInfo" class="gear-quality-info-container">
+      <span class="col-xs-12 close-button" ng-click="c.showGearQualityInfo = false"><i class="fas fa-swords-laser"></i></span>
+      <span class="gear-quality-info-header">
+        <h3>{{c.gearQuality.name}}<br><text class="star-wars-text">{{c.gearQuality.name}}</text></h3>
+      </span>
+      <span class="gear-quality-description" ng-bind-html="c.gearQuality.description"></span>
+    </span>
+    <!-- vehicles container -->
+    <span class="col-xs-12 col-md-9 character-details-container mobile-nav-container vehicles-container" id="vehiclesContainer">
+      <span class="col-xs-12 edit-container" ng-click="editCharacter('vehicles')">
+        <i class="fas fa-starship-freighter"></i> Shop Vehicles
+      </span>
+      <span ng-if="data.characterVehicles.length == 0" id="noVehiclesContainer">
+        <span class="col-xs-12 no-talents">You currently have no vehicles</span>
+        <span class="col-xs-12 star-wars-text">You currently have no vehicles</span>
+      </span>
+      <span ng-if="data.characterVehicles.length > 0" id="characterVehicleList">
+        <span class="col-xs-12 vehicle-headers">
+          <span class="col-xs-6 col-md-4 vehicle-header">Name:</span>
+          <span class="col-xs-6 col-md-4 vehicle-header">Type:</span>
+          <span class="xs-hidden col-md-4 vehicle-header">Make/Model</span>
+        </span>
+        <span class="col-xs-12 vehicle-list" ng-repeat="v in data.characterVehicles">
+          <a class="vehicle-link" href="?id=star_wars_vehicle_sheet&vehicleID={{v.sysID}}" target="_blank">
+            <span class="col-xs-6 col-md-4 vehicle-detail">{{v.name}}</span>
+            <span class="col-xs-6 col-md-4 vehicle-detail">{{v.vehicleName}}</span>
+            <span class="xs-hidden col-md-3 vehicle-detail">{{v.makeModel}}</span>
+          </a>
+          <span ng-if="data.canEdit" class="xs-hidden col-md-1 vehicle-detail">
+            <span ng-click="removeVehicle(v)" class="fa-stack">
+              <i class="fas fa-circle fa-stack-2x"></i>
+              <i class="fas fa-sword-laser-alt fa-stack-1x delete-vehicle"></i>
+            </span>
+          </span>
+          <span ng-if="data.canEdit" class="lg-hidden col-xs-12 vehicle-detail remove-vehicle-mobile">
+            <button class="mobile-remove-vehicle-button" ng-click="removeVehicle(v)">Remove Vehicle</button>
+          </span>
+        </span>
+      </span>
+    </span>
+    <!-- character description -->
+    <span class="col-xs-12 col-md-9 character-details-container mobile-nav-container character-description-container" id="characterDescriptionContainer">
+      <span class="col-xs-12 edit-container" ng-click="editCharacter('description')">
+        <i class="fab fa-sith"></i> Edit Details
+      </span>
+      <span class="col-xs-4 description-field">
+        <span class="col-xs-12 desc-label">Gender:</span>
+        <span class="col-xs-12 desc-value">{{data.character.gender}}</span>
+      </span>
+      <span class="col-xs-4 description-field">
+        <span class="col-xs-12 desc-label">Age:</span>
+        <span class="col-xs-12 desc-value">{{data.character.age}}</span>
+      </span>
+      <span class="col-xs-4 description-field">
+        <span class="col-xs-12 desc-label">Eyes:</span>
+        <span class="col-xs-12 desc-value">{{data.character.eyes}}</span>
+      </span>
+      <span class="col-xs-4 description-field">
+        <span class="col-xs-12 desc-label">Hair:</span>
+        <span class="col-xs-12 desc-value">{{data.character.hair}}</span>
+      </span>
+      <span class="col-xs-4 description-field">
+        <span class="col-xs-12 desc-label">Height:</span>
+        <span class="col-xs-12 desc-value">{{data.character.height}}</span>
+      </span>
+      <span class="col-xs-4 description-field">
+        <span class="col-xs-12 desc-label">Weight:</span>
+        <span class="col-xs-12 desc-value">{{data.character.weight}}</span>
+      </span>
+      <span class="col-xs-12 description-field">
+        <span class="col-xs-12 desc-label">Notable Features:</span>
+        <span class="col-xs-12 desc-value" ng-bind-html="data.character.notableFeatures"></span>
+      </span>
+      <span class="col-xs-12 description-field">
+        <span class="col-xs-12 desc-label">Background:</span>
+        <span class="col-xs-12 desc-value" ng-bind-html="data.character.background"></span>
+      </span>
+      <span class="col-xs-12 description-field">
+        <span class="col-xs-12 desc-label">Notes:</span>
+        <span class="col-xs-12 desc-value" ng-bind-html="data.character.notes"></span>
+      </span>
+    </span>
+
+    <!-- edit character containers -->
+    <span class="edit-character" id="editCharacterDescription">
+      <!-- edit description -->
+      <span class="col-xs-12 close-button" ng-click="closeEditContainer('description')"><i class="fas fa-swords-laser"></i></span>
+      <span class="col-xs-12 edit-description-body"  ng-blur="closeEditContainer('description')">
+        <span class="col-xs-12 col-md-4 description-field">
+          <label for="gender">Gender:</label><br>
+          <input class="sw-input" type="text" id="gender" name="gender" value="{{data.character.gender}}"/>
+        </span>
+        <span class="col-xs-12 col-md-4 description-field">
+          <label for="age">Age:</label><br>
+          <input class="sw-input" type="text" inputmode="numeric" pattern="[0-9]*" id="age" name="age" value="{{data.character.age}}"/>
+        </span>
+        <span class="col-xs-12 col-md-4 description-field">
+          <label for="eyes">Eyes:</label><br>
+          <input class="sw-input" type="text" id="eyes" name="eyes" value="{{data.character.eyes}}"/>
+        </span>
+        <span class="col-xs-12 col-md-4 description-field">
+          <label for="height">Height:</label><br>
+          <input class="sw-input" type="text" id="height" name="height" value="{{data.character.height}}"/>
+        </span>
+        <span class="col-xs-12 col-md-4 description-field">
+          <label for="weight">Weight:</label><br>
+          <input class="sw-input" type="text" inputmode="numeric" pattern="[0-9]*" id="weight" name="weight" value="{{data.character.weight}}"/>
+        </span>
+        <span class="col-xs-12 col-md-4 description-field">
+          <label for="hair">Hair:</label><br>
+          <input class="sw-input" type="text" id="hair" name="hair" value="{{data.character.hair}}"/>
+        </span>
+        <span class="col-xs-12 description-field">
+          <label for="notableFeatures">Notable Features:</label><br>
+          <textarea class="sw-input" type="text" id="notableFeatures" name="notableFeatures" value="{{data.character.notableFeatures}}"></textarea>
+        </span>
+        <span class="col-xs-12 description-field">
+          <label for="background">Background:</label><br>
+          <textarea class="sw-input" type="text" id="background" name="background" value="{{data.character.background}}"></textarea>
+        </span>
+        <span class="col-xs-12 description-field">
+          <label for="notes">Notes:</label><br>
+          <textarea class="sw-input" type="text" id="notes" name="notes" value="{{data.character.notes}}"></textarea>
+        </span>
+        <span class="col-xs-12 save-edits">
+          <span class="col-xs-12 save-button-container">
+            <button id="saveEditsButton" ng-click="saveEdits('description'); c.isSubmitting = true" ng-disabled="c.isSubmitting">Save<br><text class="star-wars-text" id="swSaveButton">Save</text></button>
+          </span>
+        </span>
+      </span>
+    </span>
+    <!-- show species info -->
+    <span class="edit-character" id="showSpeciesInfo">
+      <span class="col-xs-12 close-button" ng-click="closeEditContainer('species')"><i class="fas fa-swords-laser slideout-close-icon"></i></span>
+      <span class="col-xs-12">
+        <span class="col-xs-12" id="speciesName">{{data.character.species}}<br><text class="star-wars-text">{{data.character.species}}</text></span>
+        <span class="col-xs-12" id="speciesDescription" ng-bind-html="data.character.speciesDescription"></span>
+      </span>
+    </span>
+    <!-- edit portrait -->
+    <span class="edit-character" id="editPortrait">
+      <span class="col-xs-12 close-button" ng-click="closeEditContainer('portrait')"><i class="fas fa-swords-laser slideout-close-icon"></i></span>
+      <span ng-if="data.editingPortrait" class="col-xs-12">
+        <sp-widget widget="data.updatePortraitWidget"/>
+      </span>
+    </span>
+    <!-- show career info -->
+    <span class="edit-character" id="showCareerInfo">
+      <span class="col-xs-12 close-button" ng-click="closeEditContainer('career')"><i class="fas fa-swords-laser slideout-close-icon"></i></span>
+      <span class="col-xs-12">
+        <span class="col-xs-12" id="careerName">{{data.careerInfo.name}}<br><text class="star-wars-text">{{data.careerInfo.name}}</text></span>
+        <span class="col-xs-12" id="careerDescription" ng-bind-html="data.careerInfo.description"></span>
+      </span>
+    </span>
+    <!-- show specialization Info -->
+    <span class="edit-character" id="showSpecializationsInfo">
+      <span class="col-xs-12 close-button" ng-click="closeEditContainer('specializations')"><i class="fas fa-swords-laser slideout-close-icon"></i></span>
+      <span class="col-xs-12" ng-repeat="spec in data.specializationInfo">
+        <span class="col-xs-12 specialization-name">{{spec.name}}<br><text class="star-wars-text">{{spec.name}}</text></span>
+        <span class="col-xs-12 specialization-description" ng-bind-html="spec.description"></span>
+      </span>
+    </span>
+    <!-- add new specializations -->
+    <span class="edit-character" id="addNewSpecializationsContainer">
+      <span class="col-xs-12 close-button" ng-click="closeEditContainer('newSpecs')"><i class="fas fa-swords-laser slideout-close-icon"></i></span>
+      <span class="col-xs-12 career-choice-container" ng-init="c.careerChoice = ''">
+        <input type="text" class="sw-input" name="specializationSearch" id="specializationSearch" ng-model="specializationSearch" placeholder="search...">
+      </span>
+      <span class="col-xs-12" ng-repeat="sp in data.availableSpecs | filter: specializationSearch">
+        <span class="col-xs-12 specialization-name">{{sp.name}} <i ng-if="data.character.careerID == sp.careerID" class="far fa-medal"></i><br><text class="star-wars-text">{{sp.name}}</text></span>
+        <span class="col-xs-12 specialization-name">Career: {{sp.careerName}}</span>
+        <span class="col-xs-12 specialization-name">XP Cost: {{sp.costToPurchase}}</span>
+        <span ng-if="sp.canPurchase" class="col-xs-12 text-center vehicle-detail talent-detail force-power-detail" id="purchaseSpecButton"><button class="purchase-gear-button" ng-click="purchaseNewSpec(sp)" ng-disabled="c.isSubmitting">Purchase</button></span>
+        <span class="col-xs-12 specialization-description" ng-bind-html="sp.description"></span>
+      </span>
+    </span>
+    <!-- add XP -->
+    <span class="edit-character" id="editCharacterXP">
+    	<span class="col-xs-12 close-button" ng-click="closeEditContainer('addXP')"><i class="fas fa-swords-laser slideout-close-icon"></i></span>
+      <span class="col-xs-12">
+        <label for="addXP">Add XP:</label><br/>
+        <input class="sw-input" type="text" id="addXP" name="addXP" inputmode="numeric" pattern="[0-9]"/>
+      </span>
+      <span class="col-xs-12 save-edits">
+        <span class="col-xs-12 save-button-container">
+          <button id="saveEditsButton" ng-click="saveEdits('addXP'); c.isSubmitting = true" ng-disabled="c.isSubmitting">Save<br><text class="star-wars-text" id="swSaveButton">Save</text></button>
+        </span>
+      </span>
+    </span>  
+    <!-- edit critical injuries -->
+    <span class="edit-character" id="editCritContainer">
+      <span class="col-xs-12 close-button" ng-click="closeEditContainer('crit')"><i class="fas fa-swords-laser slideout-close-icon"></i></span>
+      <span class="col-xs-12">
+        <label for="crits">Critical Injuries:</label><br/>
+        <input class="sw-input" type="text" id="crits" name="crits" inputmode="numeric" pattern="[0-9]*" value="{{data.character.criticalInjuriesString}}"/><br/>
+        <label for="critDescription">Critical Injury Notes:</label><br/>
+        <textarea class="sw-input" type="text" id="critDescription" name="critDescription" ng-bind-html="data.character.criticalInjuriesDescription"></textarea>
+      </span>
+      <span class="col-xs-12 save-edits">
+        <span class="col-xs-12 save-button-container">
+          <button id="saveEditsButton" ng-click="saveEdits('crit'); c.isSubmitting = true" ng-disabled="c.isSubmitting">Save<br><text class="star-wars-text" id="swSaveButton">Save</text></button>
+        </span>
+      </span>
+    </span>
+    <!-- edit skills -->
+    <span class="edit-character" id="editSkillsContainer">
+      <span class="col-xs-12 close-button" ng-click="closeEditContainer('skills')"><i class="fas fa-swords-laser slideout-close-icon"></i></span>
+      <span class="col-xs-12 edit-skills-body">
+        <span class="col-xs-12 skills-header">
+          <span class="col-xs-5 skill-header">Name:</span>
+          <span class="col-xs-2 skill-header">Rank:</span>
+          <span class="col-xs-2 skill-header">XP Cost:</span>
+          <span class="col-xs-3 skill-header"></span>
+        </span>
+        <span class="col-xs-12 edit-skills-list">
+          <span class="col-xs-12 edit-skills" ng-repeat="skill in data.skills">
+            <span class="col-xs-5 skill-detail">{{skill.name}} <i ng-if="skill.isCareer == 'true'" class="far fa-medal"></i></span>
+            <span class="col-xs-2 skill-detail">{{skill.rankString}}</span>
+            <span class="col-xs-2 skill-detail">{{skill.costToNextRank}} XP</span>
+            <span class="col-xs-3 skill-detail skill-increase-button" ng-if="skill.costToNextRank <= data.character.availableXPInt && skill.rankInt < 5"><button id="increaseSkillButton" ng-click="increaseSkill(skill)" ng-disabled="c.isSubmitting"><i class="fad fa-swords-laser lightsabers-plus-minus"></i></button></span>
+          </span>
+        </span>
+      </span>
+    </span>
+    <!-- edit name -->
+    <span class="edit-character" id="editNameContainer">
+      <span class="col-xs-12 close-button" ng-click="closeEditContainer('name')"><i class="fas fa-swords-laser slideout-close-icon"></i></span>
+      <span class="col-xs-12 edit-name-body">
+        <label for="nameInput">Name:</label><br>
+        <input class="sw-input" type="text" id="nameInput" name="nameInput" value="{{data.character.name}}"/>
+      </span>
+      <span class="col-xs-12 save-edits">
+        <span class="col-xs-12 save-button-container">
+          <button id="saveEditsButton" ng-click="saveEdits('name'); c.isSubmitting = true" ng-disabled="c.isSubmitting">Save<br><text class="star-wars-text" id="swSaveButton">Save</text></button>
+        </span>
+      </span>
+    </span>
+    <!-- edit force rating -->
+    <span class="edit-character" id="editForceRatingContainer">
+      <span class="col-xs-12 close-button" ng-click="closeEditContainer('forceRating')"><i class="fas fa-swords-laser slideout-close-icon"></i></span>
+      <span class="col-xs-12 edit-force-rating-body">
+        <label for="forceRatingInput">Force Rating:</label><br>
+        <input class="sw-input" type="text" id="forceRatingInput" name="forceRatingInput" value="{{data.character.forceRatingString}}" inputmode="numeric" pattern="[0-9]*"><br/>
+        <label for="forceCommittedInput">Force Dice Committed:</label><br>
+        <input class="sw-input" type="text" id="forceCommittedInput" name="forceCommittedInput" value="{{data.character.forceCommittedString}}" inputmode="numeric" pattern="[0-9]">
+      </span>
+      <span class="col-xs-12 save-edits">
+        <span class="col-xs-12 save-button-container">
+          <button id="saveEditsButton" ng-click="saveEdits('forceRating'); c.isSubmitting = true" ng-disabled="c.isSubmitting">Save<br><text class="star-wars-text" id="swSaveButton">Save</text></button>
+        </span>
+      </span>
+    </span>
+    <!-- meditate/buy force powers and enhancements-->
+    <span class="edit-character" id="editForcePowersContainer">
+      <span class="col-xs-12 close-button" ng-click="closeEditContainer('forcePowers')"><i class="fas fa-swords-laser slideout-close-icon"></i></span>
+      <span class="col-xs-12 force-powers-body">
+        <label for="forcePowerFilterSelect">Power or Enhancement:</label>
+        <select class="sw-input" name="forcePowerFilterSelect" id="forcePowerFilterSelect" ng-change="toggleForce()" ng-model="Powers">
+          <option value="powers" ng-selected="true">Powers</option>
+          <option value="enhancements">Enhancements</option>
+        </select>
+        <!-- force powers -->
+        <span class="col-xs-12 force-power-shop" id="forcePowerShop">
+          <span class="col-xs-12 force-power-headers">
+            <span class="col-xs-6 force-power-header">Name</span>
+            <span class="col-xs-2 force-power-header">XP Cost</span>
+            <span class="col-xs-4 force-power-header"></span>
+          </span>
+          <span class="col-xs-12 force-power" ng-if="!p.isPurchased && p.canPurchase" ng-repeat="p in data.forcePowers">
+            <span class="col-xs-6 force-power-detail">{{p.name}} <span ng-click="showForceInfo(p)"><i class="far fa-info-circle"></i></span></span>
+            <span class="col-xs-2 force-power-detail">{{p.costToPurchase}}</span>
+            <span class="col-xs-2 vehicle-detail talent-detail force-power-detail"><button class="purchase-gear-button" ng-click="purchaseForcePower(p)" ng-disabled="c.isSubmitting">Purchase</button></span>
+          </span>
+        </span>
+        <!-- enhancements -->
+        <span class="col-xs-12 force-power-shop" id="forceEnhancementShop">
+          <span class="col-xs-12 force-power-headers">
+            <span class="col-xs-2 force-power-header">Type</span>
+            <span class="col-xs-6 force-power-header">Description</span>
+            <span class="col-xs-2 force-power-header">XP Cost</span>
+            <span class="col-xs-2 force-power-header"></span>
+          </span>
+          <span class="col-xs-12 force-power" ng-if="enh.canPurchase && !enh.isPurchased" ng-repeat="enh in data.forceEnhancements">
+            <span class="col-xs-2 fe-name force-power-detail">{{enh.forcePower}} - {{enh.type}}</span>
+            <span class="col-xs-6 force-power-detail" ng-bind-html="enh.description"></span>
+            <span class="col-xs-2 force-power-detail">{{enh.costToPurchase}}</span>
+            <span class="col-xs-2 vehicle-detail talent-detail force-power-detail"><button class="purchase-gear-button" ng-click="purchaseForceEnhancement(enh)" ng-disabled="c.isSubmitting">Purchase</button></span>
+          </span>
+        </span>
+      </span>
+    </span>
+    <!-- signature abilities -->
+    <span class="edit-character" id="editSignatureAbilitiesContainer">
+      <span class="col-xs-12 close-button" ng-click="closeEditContainer('signatureAbilities')"><i class="fas fa-swords-laser slideout-close-icon"></i></span>
+      <span class="col-xs-12 signatureAbilityFilterSelect" ng-init="c.sigToShow = 'abilities'">
+        <label for="sigToShowSelect">Ability or Upgrades:</label>
+        <select class="sw-input" name="sigToShowSelect" id="sigToShowSelect" ng-model="c.sigToShow">
+          <option value="abilities" ng-selected="true">Abilities</option>
+          <option value="upgrades">Upgrades</option>
+        </select>
+        <!-- signature abilities -->
+        <span class="col-xs-12 force-power-shop" ng-if="c.sigToShow == 'abilities'">
+          <span class="col-xs-12 force-power-headers">
+            <span class="col-xs-3 force-power-header">Name</span>
+            <span class="col-xs-7 force-power-header">Description</span>
+            <span class="col-xs-2 force-power-header">XP Cost</span>
+          </span>
+          <span class="col-xs-12 force-power" ng-repeat="ability in data.availableSignatureAbilities">
+            <span class="col-xs-3 force-power-detail fe-name">{{ability.name}}</span>
+            <span class="col-xs-7 force-power-detail" ng-bind-html="ability.description"></span>
+            <span class="col-xs-2 force-power-detail">{{ability.costToPurchase}}</span>
+            <span class="col-xs-12 force-power-detail sa-talent-tree-selector-container" ng-init="c.talentTreeSelected = false">
+              <span class="signature-ability-talent-tree-container" ng-repeat="tt in ability.unlockedBy">
+                <span class="signature-ability-talent-tree">
+                  <span class="signature-ability-tt-name">{{tt.specializationDisplay}}</span>
+                  <button ng-if="ability.canPurchase" class="purchase-gear-button purchase-signature-ability-button" ng-click="purchaseSignatureAbility(ability, tt)" ng-disabled="c.isSubmitting">Purchase</button>
+                </span>
+              </span>
+            </span>
+          </span>
+        </span>
+        <!-- signature ability upgrades -->
+        <span class="col-xs-12 force-power-shop" ng-if="c.sigToShow == 'upgrades'">
+          <span class="col-xs-12 force-power-headers">
+            <span class="col-xs-2 force-power-header">Name</span>
+            <span class="col-xs-6 force-power-header">Description</span>
+            <span class="col-xs-2 force-power-header">XP Cost</span>
+            <span class="col-xs-2 force-power-header"></span>
+          </span>
+          <span class="col-xs-12 force-power" ng-repeat="upgrade in data.availableSignatureAbilityUpgrades">
+            <span class="col-xs-2 force-power-detail fe-name">{{upgrade.name}} -<br>{{upgrade.ability}}</span>
+            <span class="col-xs-6 force-power-detail" ng-bind-html="upgrade.description"></span>
+            <span class="col-xs-2 force-power-detail">{{upgrade.costToPurchase}}</span>
+            <span class="col-xs-2 force-power-detail"><button ng-if="upgrade.canPurchase" class="purchase-gear-button" ng-click="purchaseSignatureAbilityUpgrade(upgrade)" ng-disabled="c.isSubmitting">Purchase</button></span>
+          </span>
+        </span>
+      </span>
+    </span>
+    <!-- shop vehicles -->
+    <span class="edit-character" id="editVehiclesContainer" ng-init="c.vehicleSearchInput = ''">
+      <span class="col-xs-12 close-button" ng-click="closeEditContainer('vehicles')"><i class="fas fa-swords-laser slideout-close-icon"></i></span>
+      <span class="col-xs-12 vehicle-filter">
+        <span class="vehicle-type-select-container">
+        <label for="vehicleFilterSelect">Type: </label>
+        <select class="sw-input" name="vehicleFilterSelect" id="vehicleFilterSelect" ng-change="filterVehicle()" ng-model="All">
+          <option value="all" ng-selected="true" selected>All</option>
+          <option value="airspeeder">Airspeeder</option>
+          <option value="landspeeder">Landspeeder</option>
+          <option value="water_vehicle">Water Vehicle</option>
+          <option value="wheeled_tracked">Wheeled or Tracked</option>
+          <option value="walker">Walker</option>
+          <option value="starfighter_patrol_boat">Starfighter or Patrol Boat</option>
+          <option value="freighter_transport">Freighter or Transport</option>
+          <option value="capital_ship">Capital Ship</option>
+        </select>
+        </span>
+        <span class="vehicle-search-container">
+          <input class="sw-input" type="text" ng-model="c.vehicleSearchInput" placeholder="Search..."/>
+        </span>
+      </span>
+      <span class="col-xs-12 edit-vehicles-body">
+        <span class="col-xs-12 vehicle-headers">
+          <span class="col-xs-4 vehicle-header">Name:</span>
+          <span class="col-xs-3 vehicle-header">Type:</span>
+          <span class="col-xs-3 vehicle-header">Price:</span>
+          <span class="col-xs-2 vehicle-header"></span>
+        </span>
+        <span class="col-xs-12 vehicles-list talent-item" ng-repeat="v in data.vehicles | filter: c.vehicleSearchInput">
+          <span class="col-xs-4 vehicle-detail talent-detail">{{v.shipName}} <span ng-click="toggleVehicleInfo(v)"><i class="far fa-info-circle"></i></span></span>
+          <span class="col-xs-3 vehicle-detail talent-detail">{{v.type}}</span>
+          <span class="col-xs-3 vehicle-detail talent-detail">{{v.price}}</span>
+          <span class="col-xs-2 vehicle-detail talent-detail"><button class="purchase-gear-button" ng-click="purchaseVehicle(v)" ng-disabled="c.isSubmitting">Purchase</button></span>
+        </span>
+      </span>
+    </span>
+    <!-- detailed vehicle info -->
+    <span class="talent-info-box" id="vehicleInfoBox">
+      <span class="col-xs-12 close-button" ng-click="closeEditContainer('vehicleInfoBox')"><i class="fas fa-swords-laser"></i></span>
+      <span class="col-xs-12 vehicle-detail-body">
+        <span class="col-xs-12 talent-info">{{data.currentVehicleInfo.shipName}}<br><text class="star-wars-text">{{data.currentVehicleInfo.shipName}}</text></span>
+        <span class="col-xs-12 talent-info" style="margin-bottom:20px;">{{data.currentVehicleInfo.makeModel}}</span>
+        <span class="col-xs-4 col-md-3 vehicle-info talent-info">Hard Points:<br>{{data.currentVehicleInfo.hp}}</span>
+        <span class="col-xs-4 col-md-3 vehicle-info talent-info">Silhouette:<br>{{data.currentVehicleInfo.silhouette}}</span>
+        <span class="col-xs-4 col-md-3 vehicle-info talent-info">Speed:<br>{{data.currentVehicleInfo.speed}}</span>
+        <span class="col-xs-4 col-md-3 vehicle-info talent-info">Handling:<br>{{data.currentVehicleInfo.handling}}</span>
+        <span class="col-xs-4 col-md-3 vehicle-info talent-info">Armor:<br>{{data.currentVehicleInfo.armor}}</span>
+        <span class="col-xs-4 col-md-3 vehicle-info talent-info">Hull Trauma Threshold:<br>{{data.currentVehicleInfo.hullThreshold}}</span>
+        <span class="col-xs-4 col-md-3 vehicle-info talent-info">System Strain Threshold:<br>{{data.currentVehicleInfo.ssThreshold}}</span>
+        <span class="col-xs-4 col-md-3 vehicle-info talent-info">Maximum Altitude:<br>{{data.currentVehicleInfo.maximumAltitude}}</span>
+        <span class="col-xs-4 col-md-3 vehicle-info talent-info">Sensor Range:<br>{{data.currentVehicleInfo.sensorRange}}</span>
+        <span class="col-xs-4 col-md-3 vehicle-info talent-info">Defense Fore:<br>{{data.currentVehicleInfo.defenseFore}}</span>
+        <span class="col-xs-4 col-md-3 vehicle-info talent-info">Defense Aft:<br>{{data.currentVehicleInfo.defenseAft}}</span>
+        <span class="col-xs-4 col-md-3 vehicle-info talent-info">Defense Port:<br>{{data.currentVehicleInfo.defensePort}}</span>
+        <span class="col-xs-4 col-md-3 vehicle-info talent-info">Defense Starboard:<br>{{data.currentVehicleInfo.defenseStarboard}}</span>
+        <span class="col-xs-4 col-md-3 vehicle-info talent-info">Navicomputer:<br>{{data.currentVehicleInfo.navicomputer}}</span>
+        <span class="col-xs-4 col-md-3 vehicle-info talent-info">Hyperdrive:<br>{{data.currentVehicleInfo.hyperdrive}}</span>
+        <span class="col-xs-12 talent-info" ng-bind-html="data.currentVehicleInfo.description" style="margin-top:20px;"></span>
+        <span class="col-xs-12 vehicle-detail talent-detail" id="vehicleInfoPurchaseContainer"><button class="purchase-gear-button" ng-click="purchaseVehicle(data.currentVehicleInfo)" ng-disabled="c.isSubmitting">Purchase</button></span>
+      </span>
+    </span>
+    <!-- edit talents -->
+    <span class="edit-character" id="editTalentsContainer">
+      <span class="col-xs-12 close-button" ng-click="closeEditContainer('talents')"><i class="fas fa-swords-laser slideout-close-icon"></i></span>
+      <span class="col-xs-12 purchase-talents-body">
+        <span class="col-xs-12 talents-headers">
+          <span class="col-xs-6 talent-header">Name:</span>
+          <span class="col-xs-2 talent-header">Tier:</span>
+          <span class="col-xs-2 talent-header">XP Cost:</span>
+          <span class="col-xs-2 talent-header"></span>
+        </span>
+        <span class="col-xs-12" id="purchaseTalentsContainer">
+          <!--span class="col-xs-12 talent-item" ng-if="item.canPurchase && !item.isPurchased" ng-repeat="item in data.availableTalents"-->
+          <span class="col-xs-12 talent-item" ng-if="!item.isPurchased" ng-repeat="item in data.availableTalents">
+            <span class="col-xs-6 talent-detail">{{item.name}} <i ng-if="item.forceTalent == 'true'" class="fab fa-jedi-order"></i> <span ng-click="toggleTalentInfo(item)"><i class="far fa-info-circle"></i></span><br/>{{item.specName}}</span>
+            <span class="col-xs-2 talent-detail">{{item.tierString}}</span>
+            <span class="col-xs-2 talent-detail">{{item.costToPurchase}}</span>
+            <span ng-if="item.canPurchase" class="col-xs-2 talent-detail"><button class="purchase-gear-button" ng-click="purchaseTalent(item)" ng-disabled="c.isSubmitting">Purchase</button></span>
+          </span>
+        </span>
+      </span>
+    </span>
+    <!-- talent info -->
+    <span class="talent-info-box" id="talentInfoBox">
+      <span class="col-xs-12 close-button" ng-click="closeEditContainer('talentInfoBox')"><i class="fas fa-swords-laser"></i></span>
+      <span class="col-xs-12 talent-detail-body">
+        <span class="col-xs-12 talent-info" id="talentInfoName">{{data.currentTalentInfo.name}} <i ng-if="data.currentTalentInfo.forceTalent == 'true'" class="fab fa-jedi-order"></i><br><text class="star-wars-text">{{data.currentTalentInfo.name}}</text></span>
+        <span class="col-xs-12 talent-info" id="talentInfoActive">{{data.currentTalentInfo.activeOrPassive}}</span>
+        <span class="col-xs-12 talent-info" id="talentInfoDescription">{{data.currentTalentInfo.description}}</span>
+        <span class="col-xs-12 talent-info" id="talentInfoPrereqs">
+          <span class="col-xs-12">Must purchase one of the following talents first:</span>
+          <span class="col-xs-12 col-sm-6 col-md-4 col-lg-3 pre-req" ng-repeat="pr in data.currentTalentInfo.preReqDisplay">
+            <span class="col-xs-12 talent-info">{{pr.name}}<br/>Tier: {{pr.tier}}</span>
+          </span>
+        </span>
+      </span>
+      <span class="col-xs-12 talent-detail" id="talentInfoPurchaseContainer"><button ng-if="data.currentTalentInfo.canPurchase" class="purchase-gear-button" ng-click="purchaseTalent(data.currentTalentInfo)" ng-disabled="c.isSubmitting">Purchase</button></span>
+    </span>
+    <!-- status effect info -->
+    <span class="status-effect-info-box" id="statusEffectInfoBox">
+      <span class="col-xs-12 close-button" ng-click="hideStatusEffectDetail()"><i class="fas fa-swords-laser"></i></span>
+      <span class="col-xs-12 talent-detail-body">
+        <span class="col-xs-12 talent-info">{{data.currentEffect.description}}</span>
+      </span>
+    </span>
+    <!-- edit credits -->
+    <span class="edit-character" id="editCreditsContainer">
+      <span class="col-xs-12 close-button" ng-click="closeEditContainer('credits')"><i class="fas fa-swords-laser slideout-close-icon"></i></span>
+      <span class="col-xs-12 edit-name-body">
+        <label for="creditsInput">Credits:</label><br>
+        <input class="sw-input" type="text" id="creditsInput" name="creditsInput" inputmode="numeric" pattern="[0-9]*" value="{{data.character.creditsString}}"/>
+      </span>
+      <span class="col-xs-12 save-edits">
+        <span class="col-xs-12 save-button-container">
+          <button id="saveEditsButton" ng-click="saveEdits('credits'); c.isSubmitting = true" ng-disabled="c.isSubmitting">Save<br><text class="star-wars-text" id="swSaveButton">Save</text></button>
+        </span>
+      </span>
+    </span>
+    <!-- edit gear quantity -->
+    <span class="edit-character" id="editGearQuantityContainer">
+      <span class="col-xs-12 close-button" ng-click="closeEditContainer('gearQuantity')"><i class="fas fa-swords-laser slideout-close-icon"></i></span>
+      <span class="col-xs-12 edit-gear-quantity-body">
+        <span class="col-xs-12 marketplace-headers">
+          <span class="col-xs-8 marketplace-header">Item:</span>
+          <span class="col-xs-4 marketplace-header">Quantity:</span>
+        </span>
+        <span class="col-xs-12 details">
+          <span class="col-xs-8 item-detail">{{data.currentGear.name}}</span>
+          <input class="col-xs-4 item-detail sw-input" type="text" id="gearQuantityInput" name="gearQuantityInput" inputmode="numeric" pattern="[0-9]*" value="{{data.currentGear.quantity}}"/>
+        </span>
+        <span class="col-xs-12 save-edits">
+          <span class="col-xs-12 save-button-container">
+            <button id="saveEditsButton" ng-click="saveEdits('gearQuantity'); c.isSubmitting = true" ng-disabled="c.isSubmitting">Save<br><text class="star-wars-text" id="swSaveButton">Save</text></button>
+          </span>
+        </span>
+      </span>
+    </span>
+    <!-- edit gear/marketplace -->
+    <span class="edit-character" id="marketplaceContainer" ng-init="c.gearSearchInput = ''">
+      <span class="col-xs-12 close-button" ng-click="closeEditContainer('gear')"><i class="fas fa-swords-laser slideout-close-icon"></i></span>
+      <span class="col-xs-12 marketplace-body">
+        <span class="col-xs-12 filter-buttons">
+          <span class="gear-filter-select-container">
+          <label for="gearFilterSelect">Type: </label>
+          <select class="sw-input" name="gearFilterSelect" id="gearFilterSelect" ng-change="filterGear()" ng-model="All">
+            <option value="all">All</option>
+            <option value="weapon">Weapon</option>
+            <option value="armor">Armor</option>
+            <option value="gear">Gear</option>
+            <option value="black_market_items">Black Market Items</option>
+            <option value="mod">Mod</option>
+            <option value="lightsaber_attachment">Lightsaber Attachment</option>
+          </select>
+          </span>
+          <span class="gear-search-container">
+            <input class="sw-input" type="text" ng-model="c.gearSearchInput" placeholder="Search...">
+          </span>
+        </span>
+        <span class="col-xs-12 current-credits-container">
+          <span class="credits-wrapper"><img src="credits.png" height="20" width="20"/> {{data.character.creditsString}}</span>
+        </span>
+        <span class="col-xs-12 marketplace-items-container">
+          <span class="col-xs-12 marketplace-headers">
+            <span class="col-xs-6 marketplace-header">Name:</span>
+            <span class="col-xs-2 marketplace-header">Price:</span>
+            <span class="col-xs-2 marketplace-header">Quantity:</span>
+            <span class="col-xs-2 marketplace-header"></span>
+          </span>
+          <span class="col-xs-12 marketplace-item" ng-repeat="item in data.availableGear | filter: c.gearSearchInput">
+            <span class="col-xs-6 item-detail">{{item.name}} <span ng-click="showGearInfo(item)"><i class="far fa-info-circle"></i></span></span>
+            <span class="col-xs-2 item-detail">{{item.price}}</span>
+            <input class="col-xs-2 sw-input" type="text" id="{{item.name}}QuantityInput" name="{{item.name}}QuantityInput" inputmode="numeric" pattern="[0-9]*" value="1"/>
+            <span class="col-xs-2 item-detail"><button class="purchase-gear-button" ng-click="purhcaseItem(item)" ng-disabled="c.isSubmitting">Purchase</button></span>
+          </span>
+        </span>
+      </span>
+    </span>
+    <!-- edit character gear -->
+    <span class="edit-character" id="editGearDetailsContainer">
+      <span class="col-xs-12 close-button" ng-click="closeEditContainer('gearEdit')"><i class="fas fa-swords-laser slideout-close-icon"></i></span>
+      <span class="col-xs-12 cg-name text-center">{{data.currentGear.name}}<br><text class="star-wars-text">{{data.currentGear.name}}</text></span>
+      <span class="col-xs-12 cg-edit-body">
+        <span class="col-xs-12 gear-edit-input">
+          <label for="gearName">Name</label><br>
+          <input class="sw-input full-width-input" type="text" id="gearName" name="gearName" value="{{data.currentGear.name}}"/>
+        </span>
+        <span class="col-xs-12 col-md-4 gear-edit-input">
+          <label for="gearCritRating">Critical Rating</label><br>
+          <input class="sw-input" type="text" id="gearCritRating" name="gearCritRating" inputmode="numeric" pattern="[0-9]*" value="{{data.currentGear.crit}}"/>
+        </span>
+        <span class="col-xs-12 col-md-4 gear-edit-input">
+          <label for="gearDamage">Damage</label><br>
+          <input class="sw-input" type="text" id="gearDamage" name="gearDamage" inputmode="numeric" pattern="[0-9]*" value="{{data.currentGear.damage}}"/>
+        </span>
+        <span class="col-xs-12 col-md-4 gear-edit-input">
+          <label for="gearDefense">Defense</label><br>
+          <input class="sw-input" type="text" id="gearDefense" name="gearDefense" inputmode="numeric" pattern="[0-9]*" value="{{data.currentGear.defense}}"/>
+        </span>
+        <span class="col-xs-12 col-md-4 gear-edit-input">
+          <label for="gearHardPoints">Hard Points</label><br>
+          <input class="sw-input" type="text" id="gearHardPoints" name="gearHardPoints" inputmode="numeric" pattern="[0-9]*" value="{{data.currentGear.hardPoints}}"/>
+        </span>
+        <span class="col-xs-12 col-md-4 gear-edit-input">
+          <label for="gearRange">Range</label><br>
+          <select class="sw-input" id="gearRange" name="gearRange">
+            <option value="null">-- None --</option>
+            <option value="engaged">Engaged</option>
+            <option value="short">Short</option>
+            <option value="medium">Medium</option>
+            <option value="long">Long</option>
+            <option value="extreme">Extreme</option>
+          </select>
+        </span>
+        <span class="col-xs-12 col-md-4 gear-edit-input">
+          <label for="gearSoak">Soak</label><br>
+          <input class="sw-input" type="text" id="gearSoak" name="gearSoak" inputmode="numeric" pattern="[0-9]*" value="{{data.currentGear.soak}}"/>
+        </span>
+        <span class="col-xs-12 col-md-4 gear-edit-input">
+          <label for="gearLocation">Location</label><br>
+          <select class="sw-input" id="gearLocation" name="gearLocation" value={{data.currentGear.locValue}}>
+            <option value="on_person">On Person</option>
+            <option value="on_ship">On Ship</option>
+          </select>
+        </span>
+        <span class="col-xs-12 gear-edit-input">
+          <label for="gearDescription">Description</label><br>
+          <textarea class="sw-input" id="gearDescription" rows="5" value="{{data.currentGear.description}}">{{data.currentGear.description}}</textarea>
+        </span>
+      </span>
+      <span class="col-xs-12 save-edits">
+        <span class="col-xs-12 save-button-container">
+          <button id="addGearSpecialsButton" ng-click="editCharacter('gearQuality', data.currentGear)">Add Gear Quality<br><text class="star-wars-text">Add Gear Quality</text></button>
+          <button id="saveEditsButton" ng-click="saveEdits('gearEdits'); c.isSubmitting = true" ng-disabled="c.isSubmitting">Save<br><text class="star-wars-text">Save</text></button>
+        </span>
+      </span>
+    </span>
+    <!-- edit gear quality -->
+    <span class="edit-character" id="editGearQuality">
+      <span class="col-xs-12 close-button" ng-click="closeEditContainer('gearQuality')"><i class="fas fa-swords-laser slideout-close-icon"></i></span>
+      <span ng-if="data.currentGear" class="col-xs-12">
+        <sp-widget widget="data.gearQualityWidget"/>
+      </span>
+    </span>
+    <!-- edit other gear -->
+    <span class="edit-character" id="editOtherGearDetailsContainer">
+      <span class="col-xs-12 close-button" ng-click="closeEditContainer('otherGear')"><i class="fas fa-swords-laser slideout-close-icon"></i></span>
+      <span class="col-xs-12 description-field">
+        <label for="otherGearInput">Other Gear:</label><br>
+        <textarea class="sw-input" type="text" id="otherGearInput" name="otherGearInput"></textarea>
+      </span>
+      <span class="col-xs-12 save-edits">
+        <span class="col-xs-12 save-button-container">
+          <button id="saveEditsButton" ng-click="saveEdits('otherGear'); c.isSubmitting = true" ng-disabled="c.isSubmitting">Save<br><text class="star-wars-text" id="swSaveButton">Save</text></button>
+        </span>
+      </span>
+    </span>
+    <!-- edit soak -->
+    <span class="edit-character" id="editSoakContainer">
+      <span class="col-xs-12 close-button" ng-click="closeEditContainer('soak')"><i class="fas fa-swords-laser slideout-close-icon"></i></span>
+      <span class="col-xs-12 edit-soak-body">
+        <label for="soakInput">Soak:</label><br>
+        <input class="sw-input" type="text" id="soakInput" name="soakInput" inputmode="numeric" patter="[0-9]*" value="{{data.character.soakString}}"/>
+        <span class="col-xs-12 save-edits">
+          <span class="col-xs-12 save-button-container">
+            <button id="saveEditsButton" ng-click="saveEdits('soak'); c.isSubmitting = true" ng-disabled="c.isSubmitting">Save<br><text class="star-wars-text" id="swSaveButton">Save</text></button>
+          </span>
+        </span>
+      </span>
+    </span>
+    <!-- edit wounds -->
+    <span class="edit-character" id="editWoundsContainer">
+      <span class="col-xs-12 close-button" ng-click="closeEditContainer('wounds')"><i class="fas fa-swords-laser slideout-close-icon"></i></span>
+      <span class="col-xs-12 edit-wounds-body">
+        <span class="col-xs-12 col-md-4">
+          <label for="woundThresholdInput">Wounds Threshold:</label><br>
+          <input class="sw-input" type="text" id="woundThresholdInput" name="woundThresholdInput" inputmode="numeric" pattern="[0-9]*" value="{{data.character.woundThresholdString}}"/>
+        </span>
+        <span class="col-xs-12 col-md-4">
+          <label for="woundCurrentInput">Wounds Current:</label><br>
+          <input class="sw-input" type="text" id="woundCurrentInput" name="woundCurrentInput" inputmode="numeric" pattern="[0-9]*" value="{{data.character.woundCurrentString}}">
+        </span>
+        <span class="col-xs-12 save-edits">
+          <span class="col-xs-12 save-button-container">
+            <button id="saveEditsButton" ng-click="saveEdits('wounds'); c.isSubmitting = true" ng-disabled="c.isSubmitting">Save<br><text class="star-wars-text" id="swSaveButton">Save</text></button>
+          </span>
+        </span>
+      </span>
+    </span>
+    <!-- edit strain -->
+    <span class="edit-character" id="editStrainContainer">
+      <span class="col-xs-12 close-button" ng-click="closeEditContainer('strain')"><i class="fas fa-swords-laser slideout-close-icon"></i></span>
+      <span class="col-xs-12 edit-wounds-body">
+        <span class="col-xs-12 col-md-4">
+          <label for="strainThresholdInput">Strain Threshold:</label><br>
+          <input class="sw-input" type="text" id="strainThresholdInput" name="strainThresholdInput" inputmode="numeric" pattern="[0-9]*" value="{{data.character.strainThresholdString}}"/>
+        </span>
+        <span class="col-xs-12 col-md-4">
+          <label for="strainCurrentInput">Strain Current:</label><br>
+          <input class="sw-input" type="text" id="strainCurrentInput" name="strainCurrentInput" inputmode="numeric" pattern="[0-9]*" value="{{data.character.strainCurrentString}}">
+        </span>
+        <span class="col-xs-12 save-edits">
+          <span class="col-xs-12 save-button-container">
+            <button id="saveEditsButton" ng-click="saveEdits('strain'); c.isSubmitting = true" ng-disabled="c.isSubmitting">Save<br><text class="star-wars-text" id="swSaveButton">Save</text></button>
+          </span>
+        </span>
+      </span>
+    </span>
+    <!-- edit defense -->
+    <span class="edit-character" id="editDefenseContainer">
+      <span class="col-xs-12 close-button" ng-click="closeEditContainer('defense')"><i class="fas fa-swords-laser slideout-close-icon"></i></span>
+      <span class="col-xs-12 edit-wounds-body">
+        <span class="col-xs-12 col-md-4">
+          <label for="rangedDefenseInput">Ranged Defense:</label><br>
+          <input class="sw-input" type="text" id="rangedDefenseInput" name="rangedDefenseInput" inputmode="numeric" pattern="[0-9]*" value="{{data.character.rangedDefenseString}}"/>
+        </span>
+        <span class="col-xs-12 col-md-4">
+          <label for="meleeDefenseInput">Melee Defense:</label><br>
+          <input class="sw-input" type="text" id="meleeDefenseInput" name="meleeDefenseInput" inputmode="numeric" pattern="[0-9]*" value="{{data.character.meleeDefenseString}}">
+        </span>
+        <span class="col-xs-12 save-edits">
+          <span class="col-xs-12 save-button-container">
+            <button id="saveEditsButton" ng-click="saveEdits('defense'); c.isSubmitting = true" ng-disabled="c.isSubmitting">Save<br><text class="star-wars-text" id="swSaveButton">Save</text></button>
+          </span>
+        </span>
+      </span>
+    </span>
+    <!-- edit characteristics -->
+    <span class="edit-character" id="editCharacteristicsContainer">
+      <span class="col-xs-12 close-button" ng-click="closeEditContainer('characteristics')"><i class="fas fa-swords-laser slideout-close-icon"></i></span>
+      <span class="col-xs-12 edit-characteristics-body">
+        <span class="col-xs-12 col-md-4">
+          <label for="brawn">Brawn:</label><br>
+          <input class="sw-input" type="text" id="brawn" name="brawn" inputmode="numeric" pattern="[0-9]*" value="{{data.character.brawn}}"/>
+        </span>
+        <span class="col-xs-12 col-md-4">
+          <label for="agility">Agility:</label><br>
+          <input class="sw-input" type="text" id="agility" name="agility" inputmode="numeric" pattern="[0-9]*" value="{{data.character.agility}}"/>
+        </span>
+        <span class="col-xs-12 col-md-4">
+          <label for="intellect">Intellect:</label><br>
+          <input class="sw-input" type="text" id="intellect" name="intellect" inputmode="numeric" pattern="[0-9]*" value="{{data.character.intellect}}"/>
+        </span>
+        <span class="col-xs-12 col-md-4">
+          <label for="cunning">Cunning:</label><br>
+          <input class="sw-input" type="text" id="cunning" name="cunning" inputmode="numeric" pattern="[0-9]*" value="{{data.character.cunning}}"/>
+        </span>
+        <span class="col-xs-12 col-md-4">
+          <label for="willpower">Willpower:</label><br>
+          <input class="sw-input" type="text" id="willpower" name="willpower" inputmode="numeric" pattern="[0-9]*" value="{{data.character.willpower}}"/>
+        </span>
+        <span class="col-xs-12 col-md-4">
+          <label for="presence">Presence:</label><br>
+          <input class="sw-input" type="text" id="presence" name="presence" inputmode="numeric" pattern="[0-9]*" value="{{data.character.presence}}"/>
+        </span>
+        <span class="col-xs-12 save-edits">
+          <span class="col-xs-12 save-button-container">
+            <button id="saveEditsButton" ng-click="saveEdits('characteristics'); c.isSubmitting = true" ng-disabled="c.isSubmitting">Save<br><text class="star-wars-text" id="swSaveButton">Save</text></button>
+          </span>
+        </span>
+      </span>
+    </span>
+  </div>
+</div>]]></template>
+    </sp_widget>
+</record_update>
