@@ -2,7 +2,7 @@
     <sys_dictionary action="INSERT_OR_UPDATE" element="can_commit" table="x_176383_star_wars_force_power_enhancement">
         <active>true</active>
         <array>false</array>
-        <attributes/>
+        <attributes>edge_encryption_enabled=true</attributes>
         <audit>false</audit>
         <calculation><![CDATA[(function calculatedFieldValue(current) {
 
@@ -52,12 +52,10 @@
         <sys_class_name>sys_dictionary</sys_class_name>
         <sys_created_by>ben.fisher</sys_created_by>
         <sys_created_on>2022-02-18 17:27:42</sys_created_on>
-        <sys_customer_update>false</sys_customer_update>
         <sys_id>0f8176f42fb14990e0f497eef699b6fc</sys_id>
         <sys_name>Can commit</sys_name>
         <sys_package display_value="Star Wars RPG" source="x_176383_star_wars">64b3517bdb5a08542901de90cf961993</sys_package>
         <sys_policy/>
-        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
         <sys_scope display_value="Star Wars RPG">64b3517bdb5a08542901de90cf961993</sys_scope>
         <sys_update_name>sys_dictionary_x_176383_star_wars_force_power_enhancement_can_commit</sys_update_name>
         <sys_updated_by>ben.fisher</sys_updated_by>

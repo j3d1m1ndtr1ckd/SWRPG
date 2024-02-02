@@ -2,7 +2,7 @@
     <sys_dictionary action="INSERT_OR_UPDATE" element="status_effects" table="x_176383_star_wars_character">
         <active>true</active>
         <array>false</array>
-        <attributes/>
+        <attributes>edge_encryption_enabled=true,no_sort=true,slushbucket_ref_no_expand=true</attributes>
         <audit>false</audit>
         <calculation><![CDATA[(function calculatedFieldValue(current) {
 
@@ -34,7 +34,7 @@
         <function_field>false</function_field>
         <internal_type display_value="">glide_list</internal_type>
         <mandatory>false</mandatory>
-        <max_length>32</max_length>
+        <max_length>1024</max_length>
         <name>x_176383_star_wars_character</name>
         <next_element/>
         <primary>false</primary>
@@ -52,12 +52,10 @@
         <sys_class_name>sys_dictionary</sys_class_name>
         <sys_created_by>ben.fisher</sys_created_by>
         <sys_created_on>2021-06-29 15:13:16</sys_created_on>
-        <sys_customer_update>false</sys_customer_update>
         <sys_id>15cc5d612f413050e0f497eef699b6e3</sys_id>
         <sys_name>Status Effects</sys_name>
         <sys_package display_value="Star Wars RPG" source="x_176383_star_wars">64b3517bdb5a08542901de90cf961993</sys_package>
         <sys_policy/>
-        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
         <sys_scope display_value="Star Wars RPG">64b3517bdb5a08542901de90cf961993</sys_scope>
         <sys_update_name>sys_dictionary_x_176383_star_wars_character_status_effects</sys_update_name>
         <sys_updated_by>ben.fisher</sys_updated_by>
