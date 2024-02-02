@@ -3,7 +3,7 @@
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>number</element>
-            <list_id display_value="x_176383_star_wars_vehicle" element="NULL" name="x_176383_star_wars_vehicle" parent="NULL" relationship="NULL" sys_domain="global" view="3976271090300300a21c513b6aad7680">68e17bb62f1cec50e0f497eef699b639</list_id>
+            <list_id display_value="x_176383_star_wars_vehicle" element="NULL" name="x_176383_star_wars_vehicle" parent="NULL" relationship="NULL" sys_domain="global" view="25cac060d9313110cedf7dffddb48f4f">68e17bb62f1cec50e0f497eef699b639</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>0</position>
@@ -28,7 +28,6 @@
             <sys_class_name>sys_ui_list</sys_class_name>
             <sys_created_by>admin</sys_created_by>
             <sys_created_on>2020-11-09 20:16:33</sys_created_on>
-            <sys_customer_update>false</sys_customer_update>
             <sys_domain>global</sys_domain>
             <sys_domain_path>/</sys_domain_path>
             <sys_id>68e17bb62f1cec50e0f497eef699b639</sys_id>
@@ -36,13 +35,12 @@
             <sys_name>x_176383_star_wars_vehicle</sys_name>
             <sys_package display_value="Star Wars RPG" source="x_176383_star_wars">64b3517bdb5a08542901de90cf961993</sys_package>
             <sys_policy/>
-            <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
             <sys_scope display_value="Star Wars RPG">64b3517bdb5a08542901de90cf961993</sys_scope>
             <sys_update_name>sys_ui_list_x_176383_star_wars_vehicle_sys_ref_list</sys_update_name>
             <sys_updated_by>admin</sys_updated_by>
             <sys_updated_on>2020-11-09 20:16:33</sys_updated_on>
             <sys_user/>
-            <view display_value="Reference List" name="sys_ref_list">3976271090300300a21c513b6aad7680</view>
+            <view display_value="Reference List" name="sys_ref_list">25cac060d9313110cedf7dffddb48f4f</view>
             <view_name/>
         </sys_ui_list>
     </sys_ui_list>

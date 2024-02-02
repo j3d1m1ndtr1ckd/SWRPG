@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_package_dependency_m2m">
+    <sys_package_dependency_m2m action="INSERT_OR_UPDATE">
+        <dependency display_value="Knowledge Management Core" source="com.glideapp.knowledge">b56e80e8d9b13110cedf7dffddb48f9b</dependency>
+        <min_version>1.0.0</min_version>
+        <sys_created_by>ben.fisher</sys_created_by>
+        <sys_created_on>2024-01-31 19:07:39</sys_created_on>
+        <sys_id>a4f2c28697c40210a99a938de053af5a</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_package display_value="Star Wars RPG" source="x_176383_star_wars">64b3517bdb5a08542901de90cf961993</sys_package>
+        <sys_updated_by>ben.fisher</sys_updated_by>
+        <sys_updated_on>2024-01-31 19:07:39</sys_updated_on>
+    </sys_package_dependency_m2m>
+</record_update>
