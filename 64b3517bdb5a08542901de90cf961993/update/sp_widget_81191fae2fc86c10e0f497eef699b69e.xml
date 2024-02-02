@@ -2911,17 +2911,15 @@ input:checked + .slider:before {
         <sys_class_name>sp_widget</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-10-27 13:34:00</sys_created_on>
-        <sys_customer_update>false</sys_customer_update>
         <sys_id>81191fae2fc86c10e0f497eef699b69e</sys_id>
-        <sys_mod_count>1517</sys_mod_count>
+        <sys_mod_count>1518</sys_mod_count>
         <sys_name>Star Wars Character Sheet</sys_name>
         <sys_package display_value="Star Wars RPG" source="x_176383_star_wars">64b3517bdb5a08542901de90cf961993</sys_package>
         <sys_policy/>
-        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
         <sys_scope display_value="Star Wars RPG">64b3517bdb5a08542901de90cf961993</sys_scope>
         <sys_update_name>sp_widget_81191fae2fc86c10e0f497eef699b69e</sys_update_name>
         <sys_updated_by>ben.fisher</sys_updated_by>
-        <sys_updated_on>2024-01-07 18:32:59</sys_updated_on>
+        <sys_updated_on>2024-02-02 22:03:43</sys_updated_on>
         <template><![CDATA[<head>
   <script src="https://kit.fontawesome.com/035f51c999.js"></script>
 </head>
@@ -3673,10 +3671,10 @@ input:checked + .slider:before {
             <span class="col-xs-2 force-power-header">XP Cost</span>
             <span class="col-xs-4 force-power-header"></span>
           </span>
-          <span class="col-xs-12 force-power" ng-if="!p.isPurchased && p.canPurchase" ng-repeat="p in data.forcePowers">
+          <span class="col-xs-12 force-power" ng-if="!p.isPurchased" ng-repeat="p in data.forcePowers">
             <span class="col-xs-6 force-power-detail">{{p.name}} <span ng-click="showForceInfo(p)"><i class="far fa-info-circle"></i></span></span>
             <span class="col-xs-2 force-power-detail">{{p.costToPurchase}}</span>
-            <span class="col-xs-2 vehicle-detail talent-detail force-power-detail"><button class="purchase-gear-button" ng-click="purchaseForcePower(p)" ng-disabled="c.isSubmitting">Purchase</button></span>
+            <span class="col-xs-2 vehicle-detail talent-detail force-power-detail"><button class="purchase-gear-button" ng-click="purchaseForcePower(p)" ng-disabled="c.isSubmitting" ng-if="p.canPurchase">Purchase</button></span>
           </span>
         </span>
         <!-- enhancements -->
@@ -3687,11 +3685,11 @@ input:checked + .slider:before {
             <span class="col-xs-2 force-power-header">XP Cost</span>
             <span class="col-xs-2 force-power-header"></span>
           </span>
-          <span class="col-xs-12 force-power" ng-if="enh.canPurchase && !enh.isPurchased" ng-repeat="enh in data.forceEnhancements">
+          <span class="col-xs-12 force-power" ng-if="!enh.isPurchased" ng-repeat="enh in data.forceEnhancements">
             <span class="col-xs-2 fe-name force-power-detail">{{enh.forcePower}} - {{enh.type}}</span>
             <span class="col-xs-6 force-power-detail" ng-bind-html="enh.description"></span>
             <span class="col-xs-2 force-power-detail">{{enh.costToPurchase}}</span>
-            <span class="col-xs-2 vehicle-detail talent-detail force-power-detail"><button class="purchase-gear-button" ng-click="purchaseForceEnhancement(enh)" ng-disabled="c.isSubmitting">Purchase</button></span>
+            <span class="col-xs-2 vehicle-detail talent-detail force-power-detail"><button class="purchase-gear-button" ng-click="purchaseForceEnhancement(enh)" ng-disabled="c.isSubmitting" ng-if="enh.canPurchase">Purchase</button></span>
           </span>
         </span>
       </span>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_ui_form_sections form_id="1393024e97c40210a99a938de053af62" sys_domain="global" table="sys_ui_related_list" version="3">
+        <sys_ui_form_section action="INSERT_OR_UPDATE">
+            <position>0</position>
+            <sys_created_by>ben.fisher</sys_created_by>
+            <sys_created_on>2024-01-31 19:10:33</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>db93024e97c40210a99a938de053af62</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_overrides/>
+            <sys_ui_form display_value="sys_ui_related_list" name="sys_ui_related_list" sys_domain="global" view="Default view">1393024e97c40210a99a938de053af62</sys_ui_form>
+            <sys_ui_section caption="NULL" display_value="" name="sys_ui_related_list" sys_domain="global" view="Default view">f9128f3ac6112284012adac5363dac2f</sys_ui_section>
+            <sys_updated_by>ben.fisher</sys_updated_by>
+            <sys_updated_on>2024-01-31 19:10:33</sys_updated_on>
+        </sys_ui_form_section>
+        <sys_ui_form_section action="INSERT_OR_UPDATE">
+            <position>1</position>
+            <sys_created_by>ben.fisher</sys_created_by>
+            <sys_created_on>2024-01-31 19:10:33</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>d793024e97c40210a99a938de053af63</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_overrides/>
+            <sys_ui_form display_value="sys_ui_related_list" name="sys_ui_related_list" sys_domain="global" view="Default view">1393024e97c40210a99a938de053af62</sys_ui_form>
+            <sys_ui_section caption="SWRPG" display_value="SWRPG" name="sys_ui_related_list" sys_domain="global" view="Default view">464e3a792fdd8110e0f497eef699b61a</sys_ui_section>
+            <sys_updated_by>ben.fisher</sys_updated_by>
+            <sys_updated_on>2024-01-31 19:10:33</sys_updated_on>
+        </sys_ui_form_section>
+        <sys_ui_form action="INSERT_OR_UPDATE">
+            <name>sys_ui_related_list</name>
+            <roles/>
+            <sys_class_name>sys_ui_form</sys_class_name>
+            <sys_created_by>ben.fisher</sys_created_by>
+            <sys_created_on>2024-01-31 19:10:33</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>1393024e97c40210a99a938de053af62</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>sys_ui_related_list</sys_name>
+            <sys_overrides/>
+            <sys_package display_value="View Management" source="com.glide.view_management">77ea48a0d9313110cedf7dffddb48f41</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="Star Wars RPG">64b3517bdb5a08542901de90cf961993</sys_scope>
+            <sys_update_name>sys_ui_form_sections_1393024e97c40210a99a938de053af62</sys_update_name>
+            <sys_updated_by>ben.fisher</sys_updated_by>
+            <sys_updated_on>2024-01-31 19:10:33</sys_updated_on>
+            <sys_user/>
+            <view display_value="Default view" name="NULL">Default view</view>
+            <view_name/>
+        </sys_ui_form>
+    </sys_ui_form_sections>
+</record_update>
