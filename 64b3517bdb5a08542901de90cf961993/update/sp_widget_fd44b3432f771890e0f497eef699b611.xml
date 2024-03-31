@@ -2,107 +2,107 @@
     <sp_widget action="INSERT_OR_UPDATE">
         <category>custom</category>
         <client_script><![CDATA[api.controller=function($scope, $location, spUtil) {
-  /* widget controller */
-  var c = this;
-	
+	/* widget controller */
+	var c = this;
+
 	$scope.stashName = function(){
 		$location.search('character_name', document.getElementById('characterName').value);
 		$location.search('spa', 1);
 	}
-	
+
 	$scope.openLargeImage = function(img){
 		$scope.data.currentImage = img;
 		document.getElementById('largeImgContainer').style.display = 'inline';
 	}
-	
+
 	$scope.closeLargerImage = function(){
 		document.getElementById('largeImgContainer').style.display = 'none';
 	}
-	
+
 	$scope.showInfo = function(element, obj){
 		switch(element){
 			case 'species':
-			$scope.data.currentSpecies = obj;
-			document.getElementById('speciesInfoContainer').style.display = 'inline';
-			document.getElementById('speciesInfoContainer').scrollIntoView();
-			break;
-				
+				$scope.data.currentSpecies = obj;
+				document.getElementById('speciesInfoContainer').style.display = 'inline';
+				document.getElementById('speciesInfoContainer').scrollIntoView();
+				break;
+
 			case 'career':
-			$scope.data.currentCareer = obj;
-			document.getElementById('careerInfoContainer').style.display = 'inline';
-			document.getElementById('careerInfoContainer').scrollIntoView();
-			break;
-				
+				$scope.data.currentCareer = obj;
+				document.getElementById('careerInfoContainer').style.display = 'inline';
+				document.getElementById('careerInfoContainer').scrollIntoView();
+				break;
+
 			case 'specialization':
-			$scope.data.currentSpecialization = obj;
-			document.getElementById('specializationInfoContainer').style.display = 'inline';
-			document.getElementById('specializationInfoContainer').scrollIntoView();
-			break;
-				
+				$scope.data.currentSpecialization = obj;
+				document.getElementById('specializationInfoContainer').style.display = 'inline';
+				document.getElementById('specializationInfoContainer').scrollIntoView();
+				break;
+
 			case 'talent':
-			$scope.data.currentTalent = obj;
-			document.getElementById('talentInfoContainer').style.display = 'inline';
-			document.getElementById('talentInfoContainer').scrollIntoView();
-			break;
-				
+				$scope.data.currentTalent = obj;
+				document.getElementById('talentInfoContainer').style.display = 'inline';
+				document.getElementById('talentInfoContainer').scrollIntoView();
+				break;
+
 			case 'investSpec':
-			$scope.data.currentSpecialization = obj;
-			document.getElementById('investSpecInfoContainer').style.display = 'inline'
-			document.getElementById('investSpecInfoContainer').scrollIntoView();
-			break;
-				
+				$scope.data.currentSpecialization = obj;
+				document.getElementById('investSpecInfoContainer').style.display = 'inline'
+				document.getElementById('investSpecInfoContainer').scrollIntoView();
+				break;
+
 			case 'investForce':
-			$scope.data.currentForcePower = obj;
-			document.getElementById('investForceInfo').style.display = 'inline';
-			document.getElementById('investForceInfo').scrollIntoView();
-			break;
-				
+				$scope.data.currentForcePower = obj;
+				document.getElementById('investForceInfo').style.display = 'inline';
+				document.getElementById('investForceInfo').scrollIntoView();
+				break;
+
 			case 'investForceEnhancement':
-			$scope.data.currentForceEnhancement = obj;
-			document.getElementById('investForceEnhancementInfo').style.display = 'inline';
-			document.getElementById('investForceEnhancementInfo').scrollIntoView();
-			break;
-				
+				$scope.data.currentForceEnhancement = obj;
+				document.getElementById('investForceEnhancementInfo').style.display = 'inline';
+				document.getElementById('investForceEnhancementInfo').scrollIntoView();
+				break;
+
 			default:
 				break;
 		}
 	}
-	
+
 	$scope.closeInfo = function(element){
 		switch(element){
 			case 'species':
-			document.getElementById('speciesInfoContainer').style.display = 'none';
-			break;
-				
+				document.getElementById('speciesInfoContainer').style.display = 'none';
+				break;
+
 			case 'career':
-			document.getElementById('careerInfoContainer').style.display = 'none';
-			break;
-				
+				document.getElementById('careerInfoContainer').style.display = 'none';
+				break;
+
 			case 'specialization':
-			document.getElementById('specializationInfoContainer').style.display = 'none';
-			break;
-				
+				document.getElementById('specializationInfoContainer').style.display = 'none';
+				break;
+
 			case 'talent':
-			document.getElementById('talentInfoContainer').style.display = 'none';
-			break;
-				
+				document.getElementById('talentInfoContainer').style.display = 'none';
+				break;
+
 			case 'investSpec':
-			document.getElementById('investSpecInfoContainer').style.display = 'none';
-			break;
-				
+				document.getElementById('investSpecInfoContainer').style.display = 'none';
+				break;
+
 			case 'investForce':
-			document.getElementById('investForceInfo').style.display = 'none';
-			break;
-				
+				document.getElementById('investForceInfo').style.display = 'none';
+				break;
+
 			case 'investForceEnhancement':
-			document.getElementById('investForceEnhancementInfo').style.display = 'none';
-			break;
-				
+				document.getElementById('investForceEnhancementInfo').style.display = 'none';
+				break;
+
 			default:
 				break;
 		}
 	}
-	
+
 	$scope.makeSelection = function(objID){
 		if($scope.data.step == 1){
 			$location.search('step', 2);
@@ -125,7 +125,7 @@
 			document.getElementById('characterCreatorHeader').scrollIntoView();
 		}
 	}
-	
+
 	$scope.goBack = function(step){
 		if(step == 2){
 			$location.search('species', null);
@@ -144,61 +144,61 @@
 			document.getElementById('characterCreatorHeader').scrollIntoView();
 		}
 	}
-	
+
 	$scope.investXP = function(table, element){
 		if(table == 'characteristic'){
 			switch(element){
 				case "brawn":
-				$scope.data.investXPSpecies.startingXPInt -= $scope.data.investXPSpecies.costOfBrawnIncrease;
-				$scope.data.investXPSpecies.startingXPString = $scope.data.investXPSpecies.startingXPInt + '';
-				$scope.data.investXPSpecies.investedBrawnInt++;
-				$scope.data.investXPSpecies.brawnString = $scope.data.investXPSpecies.investedBrawnInt + '';
-				$scope.data.investXPSpecies.costOfBrawnIncrease = ($scope.data.investXPSpecies.investedBrawnInt + 1) * 10;
-				break;
-					
+					$scope.data.investXPSpecies.startingXPInt -= $scope.data.investXPSpecies.costOfBrawnIncrease;
+					$scope.data.investXPSpecies.startingXPString = $scope.data.investXPSpecies.startingXPInt + '';
+					$scope.data.investXPSpecies.investedBrawnInt++;
+					$scope.data.investXPSpecies.brawnString = $scope.data.investXPSpecies.investedBrawnInt + '';
+					$scope.data.investXPSpecies.costOfBrawnIncrease = ($scope.data.investXPSpecies.investedBrawnInt + 1) * 10;
+					break;
+
 				case "agility":
-				$scope.data.investXPSpecies.startingXPInt -= $scope.data.investXPSpecies.costOfAgilityIncrease;
-				$scope.data.investXPSpecies.startingXPString = $scope.data.investXPSpecies.startingXPInt + '';
-				$scope.data.investXPSpecies.investedAgilityInt++;
-				$scope.data.investXPSpecies.agilityString = $scope.data.investXPSpecies.investedAgilityInt + '';
-				$scope.data.investXPSpecies.costOfAgilityIncrease = ($scope.data.investXPSpecies.investedAgilityInt + 1) * 10;
-				break;
-					
+					$scope.data.investXPSpecies.startingXPInt -= $scope.data.investXPSpecies.costOfAgilityIncrease;
+					$scope.data.investXPSpecies.startingXPString = $scope.data.investXPSpecies.startingXPInt + '';
+					$scope.data.investXPSpecies.investedAgilityInt++;
+					$scope.data.investXPSpecies.agilityString = $scope.data.investXPSpecies.investedAgilityInt + '';
+					$scope.data.investXPSpecies.costOfAgilityIncrease = ($scope.data.investXPSpecies.investedAgilityInt + 1) * 10;
+					break;
+
 				case "intellect":
-				$scope.data.investXPSpecies.startingXPInt -= $scope.data.investXPSpecies.costOfIntellectIncrease;
-				$scope.data.investXPSpecies.startingXPString = $scope.data.investXPSpecies.startingXPInt + '';
-				$scope.data.investXPSpecies.investedIntellectInt++;
-				$scope.data.investXPSpecies.intellectString = $scope.data.investXPSpecies.investedIntellectInt + '';
-				$scope.data.investXPSpecies.costOfIntellectIncrease = ($scope.data.investXPSpecies.investedIntellectInt + 1) * 10;
-				break;
-					
+					$scope.data.investXPSpecies.startingXPInt -= $scope.data.investXPSpecies.costOfIntellectIncrease;
+					$scope.data.investXPSpecies.startingXPString = $scope.data.investXPSpecies.startingXPInt + '';
+					$scope.data.investXPSpecies.investedIntellectInt++;
+					$scope.data.investXPSpecies.intellectString = $scope.data.investXPSpecies.investedIntellectInt + '';
+					$scope.data.investXPSpecies.costOfIntellectIncrease = ($scope.data.investXPSpecies.investedIntellectInt + 1) * 10;
+					break;
+
 				case "cunning":
-				$scope.data.investXPSpecies.startingXPInt -= $scope.data.investXPSpecies.costOfCunningIncrease;
-				$scope.data.investXPSpecies.startingXPString = $scope.data.investXPSpecies.startingXPInt + '';
-				$scope.data.investXPSpecies.investedCunningInt++;
-				$scope.data.investXPSpecies.cunningString = $scope.data.investXPSpecies.investedCunningInt + '';
-				$scope.data.investXPSpecies.costOfCunningIncrease = ($scope.data.investXPSpecies.investedCunningInt + 1) * 10;
-				break;
-					
+					$scope.data.investXPSpecies.startingXPInt -= $scope.data.investXPSpecies.costOfCunningIncrease;
+					$scope.data.investXPSpecies.startingXPString = $scope.data.investXPSpecies.startingXPInt + '';
+					$scope.data.investXPSpecies.investedCunningInt++;
+					$scope.data.investXPSpecies.cunningString = $scope.data.investXPSpecies.investedCunningInt + '';
+					$scope.data.investXPSpecies.costOfCunningIncrease = ($scope.data.investXPSpecies.investedCunningInt + 1) * 10;
+					break;
+
 				case "willpower":
-				$scope.data.investXPSpecies.startingXPInt -= $scope.data.investXPSpecies.costOfWillpowerIncrease;
-				$scope.data.investXPSpecies.startingXPString = $scope.data.investXPSpecies.startingXPInt + '';
-				$scope.data.investXPSpecies.investedWillpowerInt++;
-				$scope.data.investXPSpecies.willpowerString = $scope.data.investXPSpecies.investedWillpowerInt + '';
-				$scope.data.investXPSpecies.costOfWillpowerIncrease = ($scope.data.investXPSpecies.investedWillpowerInt + 1) * 10;
-				break;
-					
+					$scope.data.investXPSpecies.startingXPInt -= $scope.data.investXPSpecies.costOfWillpowerIncrease;
+					$scope.data.investXPSpecies.startingXPString = $scope.data.investXPSpecies.startingXPInt + '';
+					$scope.data.investXPSpecies.investedWillpowerInt++;
+					$scope.data.investXPSpecies.willpowerString = $scope.data.investXPSpecies.investedWillpowerInt + '';
+					$scope.data.investXPSpecies.costOfWillpowerIncrease = ($scope.data.investXPSpecies.investedWillpowerInt + 1) * 10;
+					break;
+
 				case "presence":
-				$scope.data.investXPSpecies.startingXPInt -= $scope.data.investXPSpecies.costOfPresenceIncrease;
-				$scope.data.investXPSpecies.startingXPString = $scope.data.investXPSpecies.startingXPInt + '';
-				$scope.data.investXPSpecies.investedPresenceInt++;
-				$scope.data.investXPSpecies.presenceString = $scope.data.investXPSpecies.investedPresenceInt + '';
-				$scope.data.investXPSpecies.costOfPresenceIncrease = ($scope.data.investXPSpecies.investedPresenceInt + 1) * 10;
-				break;
-					
+					$scope.data.investXPSpecies.startingXPInt -= $scope.data.investXPSpecies.costOfPresenceIncrease;
+					$scope.data.investXPSpecies.startingXPString = $scope.data.investXPSpecies.startingXPInt + '';
+					$scope.data.investXPSpecies.investedPresenceInt++;
+					$scope.data.investXPSpecies.presenceString = $scope.data.investXPSpecies.investedPresenceInt + '';
+					$scope.data.investXPSpecies.costOfPresenceIncrease = ($scope.data.investXPSpecies.investedPresenceInt + 1) * 10;
+					break;
+
 				default:
-				alert('something went wrong with the invest XP switch');
-				break;
+					alert('something went wrong with the invest XP switch');
+					break;
 			}
 		} else if(table == 'skill'){
 			for(var i = 0; i < $scope.data.skills.length; i++){
@@ -223,11 +223,11 @@
 					$scope.data.investXPSpecies.startingXPString = $scope.data.investXPSpecies.startingXPInt + '';
 				}
 			}
-			
+
 			for(var j = 0; j < $scope.data.talents.length; j++){
 				for(var p = 0; p < $scope.data.talents[j].preReqs.length; p++){
 					if($scope.data.talents[j].preReqs[p] == element.sysID){
-						 $scope.data.talents[j].canPurchase = true;
+						$scope.data.talents[j].canPurchase = true;
 					}
 				}
 			}
@@ -242,7 +242,7 @@
 					$scope.data.availableCareerSpecializations[i].costToPurchase = ($scope.data.specializations.length + 1) * 10;
 				}
 			}
-			
+
 			c.server.get({action: 'getNewTalents', spec: element.sysID, talents: $scope.data.talents}).then(function(response){
 				$scope.data.talents = response.data.talents;
 				$scope.data.skills = response.data.skills;
@@ -255,7 +255,7 @@
 					$scope.data.forcePowers[i].isPurchased = true;
 				}
 			}
-			
+
 			for(i = 0; i < $scope.data.forceEnhancements.length; i++){
 				if($scope.data.forceEnhancements[i].forcePowerID == element.sysID && $scope.data.forceEnhancements[i].preReqs == ''){
 					$scope.data.forceEnhancements[i].canPurchase = true;	 
@@ -268,74 +268,74 @@
 				if($scope.data.forceEnhancements[i].preReqs.indexOf(element.sysID) > -1 && !$scope.data.forceEnhancements[i].isPurchased){
 					$scope.data.forceEnhancements[i].canPurchase = true;
 				}
-				
+
 				if($scope.data.forceEnhancements[i].sysID == element.sysID){
 					$scope.data.forceEnhancements[i].isPurchased = true;
 				}
 			}
 		}
 	}
-	
+
 	$scope.divestXP = function(table, element){
 		if(table == 'characteristic'){
 			switch(element){
 				case "brawn":
-				var xpRefund = $scope.data.investXPSpecies.investedBrawnInt * 10;
-				$scope.data.investXPSpecies.startingXPInt += xpRefund;
-				$scope.data.investXPSpecies.startingXPString = $scope.data.investXPSpecies.startingXPInt + '';
-				$scope.data.investXPSpecies.investedBrawnInt--;
-				$scope.data.investXPSpecies.brawnString = $scope.data.investXPSpecies.investedBrawnInt + '';
-				$scope.data.investXPSpecies.costOfBrawnIncrease = ($scope.data.investXPSpecies.investedBrawnInt + 1) * 10;
-				break;
-					
+					var xpRefund = $scope.data.investXPSpecies.investedBrawnInt * 10;
+					$scope.data.investXPSpecies.startingXPInt += xpRefund;
+					$scope.data.investXPSpecies.startingXPString = $scope.data.investXPSpecies.startingXPInt + '';
+					$scope.data.investXPSpecies.investedBrawnInt--;
+					$scope.data.investXPSpecies.brawnString = $scope.data.investXPSpecies.investedBrawnInt + '';
+					$scope.data.investXPSpecies.costOfBrawnIncrease = ($scope.data.investXPSpecies.investedBrawnInt + 1) * 10;
+					break;
+
 				case "agility":
-				var xpRefund = $scope.data.investXPSpecies.investedAgilityInt * 10;
-				$scope.data.investXPSpecies.startingXPInt += xpRefund;
-				$scope.data.investXPSpecies.startingXPString = $scope.data.investXPSpecies.startingXPInt + '';
-				$scope.data.investXPSpecies.investedAgilityInt--;
-				$scope.data.investXPSpecies.agilityString = $scope.data.investXPSpecies.investedAgilityInt + '';
-				$scope.data.investXPSpecies.costOfAgilityIncrease = ($scope.data.investXPSpecies.investedAgilityInt + 1) * 10;
-				break;
-					
+					var xpRefund = $scope.data.investXPSpecies.investedAgilityInt * 10;
+					$scope.data.investXPSpecies.startingXPInt += xpRefund;
+					$scope.data.investXPSpecies.startingXPString = $scope.data.investXPSpecies.startingXPInt + '';
+					$scope.data.investXPSpecies.investedAgilityInt--;
+					$scope.data.investXPSpecies.agilityString = $scope.data.investXPSpecies.investedAgilityInt + '';
+					$scope.data.investXPSpecies.costOfAgilityIncrease = ($scope.data.investXPSpecies.investedAgilityInt + 1) * 10;
+					break;
+
 				case "intellect":
-				var xpRefund = $scope.data.investXPSpecies.investedIntellectInt * 10;
-				$scope.data.investXPSpecies.startingXPInt += xpRefund;
-				$scope.data.investXPSpecies.startingXPString = $scope.data.investXPSpecies.startingXPInt + '';
-				$scope.data.investXPSpecies.investedIntellectInt--;
-				$scope.data.investXPSpecies.intellectString = $scope.data.investXPSpecies.investedIntellectInt + '';
-				$scope.data.investXPSpecies.costOfIntellectIncrease = ($scope.data.investXPSpecies.investedIntellectInt + 1) * 10;
-				break;
-					
+					var xpRefund = $scope.data.investXPSpecies.investedIntellectInt * 10;
+					$scope.data.investXPSpecies.startingXPInt += xpRefund;
+					$scope.data.investXPSpecies.startingXPString = $scope.data.investXPSpecies.startingXPInt + '';
+					$scope.data.investXPSpecies.investedIntellectInt--;
+					$scope.data.investXPSpecies.intellectString = $scope.data.investXPSpecies.investedIntellectInt + '';
+					$scope.data.investXPSpecies.costOfIntellectIncrease = ($scope.data.investXPSpecies.investedIntellectInt + 1) * 10;
+					break;
+
 				case "cunning":
-				var xpRefund = $scope.data.investXPSpecies.investedCunningInt * 10;
-				$scope.data.investXPSpecies.startingXPInt += xpRefund;
-				$scope.data.investXPSpecies.startingXPString = $scope.data.investXPSpecies.startingXPInt + '';
-				$scope.data.investXPSpecies.investedCunningInt--;
-				$scope.data.investXPSpecies.cunningString = $scope.data.investXPSpecies.investedCunningInt + '';
-				$scope.data.investXPSpecies.costOfCunningIncrease = ($scope.data.investXPSpecies.investedCunningInt + 1) * 10;
-				break;
-					
+					var xpRefund = $scope.data.investXPSpecies.investedCunningInt * 10;
+					$scope.data.investXPSpecies.startingXPInt += xpRefund;
+					$scope.data.investXPSpecies.startingXPString = $scope.data.investXPSpecies.startingXPInt + '';
+					$scope.data.investXPSpecies.investedCunningInt--;
+					$scope.data.investXPSpecies.cunningString = $scope.data.investXPSpecies.investedCunningInt + '';
+					$scope.data.investXPSpecies.costOfCunningIncrease = ($scope.data.investXPSpecies.investedCunningInt + 1) * 10;
+					break;
+
 				case "willpower":
-				var xpRefund = $scope.data.investXPSpecies.investedWillpowerInt * 10;
-				$scope.data.investXPSpecies.startingXPInt += xpRefund;
-				$scope.data.investXPSpecies.startingXPString = $scope.data.investXPSpecies.startingXPInt + '';
-				$scope.data.investXPSpecies.investedWillpowerInt--;
-				$scope.data.investXPSpecies.willpowerString = $scope.data.investXPSpecies.investedWillpowerInt + '';
-				$scope.data.investXPSpecies.costOfWillpowerIncrease = ($scope.data.investXPSpecies.investedWillpowerInt + 1) * 10;
-				break;
-					
+					var xpRefund = $scope.data.investXPSpecies.investedWillpowerInt * 10;
+					$scope.data.investXPSpecies.startingXPInt += xpRefund;
+					$scope.data.investXPSpecies.startingXPString = $scope.data.investXPSpecies.startingXPInt + '';
+					$scope.data.investXPSpecies.investedWillpowerInt--;
+					$scope.data.investXPSpecies.willpowerString = $scope.data.investXPSpecies.investedWillpowerInt + '';
+					$scope.data.investXPSpecies.costOfWillpowerIncrease = ($scope.data.investXPSpecies.investedWillpowerInt + 1) * 10;
+					break;
+
 				case "presence":
-				var xpRefund = $scope.data.investXPSpecies.investedPresenceInt * 10;
-				$scope.data.investXPSpecies.startingXPInt += xpRefund;
-				$scope.data.investXPSpecies.startingXPString = $scope.data.investXPSpecies.startingXPInt + '';
-				$scope.data.investXPSpecies.investedPresenceInt--;
-				$scope.data.investXPSpecies.presenceString = $scope.data.investXPSpecies.investedPresenceInt + '';
-				$scope.data.investXPSpecies.costOfPresenceIncrease = ($scope.data.investXPSpecies.investedPresenceInt + 1) * 10;
-				break;
-					
+					var xpRefund = $scope.data.investXPSpecies.investedPresenceInt * 10;
+					$scope.data.investXPSpecies.startingXPInt += xpRefund;
+					$scope.data.investXPSpecies.startingXPString = $scope.data.investXPSpecies.startingXPInt + '';
+					$scope.data.investXPSpecies.investedPresenceInt--;
+					$scope.data.investXPSpecies.presenceString = $scope.data.investXPSpecies.investedPresenceInt + '';
+					$scope.data.investXPSpecies.costOfPresenceIncrease = ($scope.data.investXPSpecies.investedPresenceInt + 1) * 10;
+					break;
+
 				default:
-				alert('something went wrong with the divest XP switch');
-				break;
+					alert('something went wrong with the divest XP switch');
+					break;
 			}
 		} else if(table == 'skill'){
 			for(var i = 0; i < $scope.data.skills.length; i++){
@@ -354,7 +354,7 @@
 		} else if(table == 'talent'){
 			for(var t = 0; t < $scope.data.purchasedTalents.length; t++){
 				if($scope.data.purchasedTalents[t].sysID == element.sysID){
-					 $scope.data.purchasedTalents.splice(t, 1);
+					$scope.data.purchasedTalents.splice(t, 1);
 				}
 			}
 			for(var i = 0; i < $scope.data.talents.length; i++){
@@ -364,49 +364,49 @@
 					$scope.data.investXPSpecies.startingXPString = $scope.data.investXPSpecies.startingXPInt + '';
 				}
 			}
-			
+
 			for(var j = 0; j < $scope.data.talents.length; j++){
 				for(var p = 0; p < $scope.data.talents[j].preReqs.length; p++){
 					if($scope.data.talents[j].preReqs[p] == element.sysID){
-						 $scope.data.talents[j].canPurchase = false;
+						$scope.data.talents[j].canPurchase = false;
 					}
 				}
 			}
 		} else if(table == 'investSpec'){
-				$scope.data.investXPSpecies.startingXPInt += element.costToPurchase;
-				$scope.data.investXPSpecies.startingXPString = $scope.data.investXPSpecies.startingXPInt + '';
-				
-				for(var s = 0; s < $scope.data.specializations.length; s++){
-					if($scope.data.specializations[s] == element.sysID){
-						 $scope.data.specializations.splice(s, 1);
-					}
+			$scope.data.investXPSpecies.startingXPInt += element.costToPurchase;
+			$scope.data.investXPSpecies.startingXPString = $scope.data.investXPSpecies.startingXPInt + '';
+
+			for(var s = 0; s < $scope.data.specializations.length; s++){
+				if($scope.data.specializations[s] == element.sysID){
+					$scope.data.specializations.splice(s, 1);
 				}
-			
-				for(var i = 0; i < $scope.data.availableCareerSpecializations.length; i++){
-					if($scope.data.availableCareerSpecializations[i].sysID == element.sysID){
-						$scope.data.availableCareerSpecializations[i].isPurchased = false;
-					}
-					if(!$scope.data.availableCareerSpecializations[i].isPurchased){
-						$scope.data.availableCareerSpecializations[i].costToPurchase = ($scope.data.specializations.length + 1) * 10;
-					}
-				}	
-			
+			}
+
+			for(var i = 0; i < $scope.data.availableCareerSpecializations.length; i++){
+				if($scope.data.availableCareerSpecializations[i].sysID == element.sysID){
+					$scope.data.availableCareerSpecializations[i].isPurchased = false;
+				}
+				if(!$scope.data.availableCareerSpecializations[i].isPurchased){
+					$scope.data.availableCareerSpecializations[i].costToPurchase = ($scope.data.specializations.length + 1) * 10;
+				}
+			}	
+
 			//collect the indexes in the talents array to remove talents related to the removed specialization
-				var spliceIndexes = [];
-				for(var t = 0; t < $scope.data.talents.length; t++){
-					if($scope.data.talents[t].specID == element.sysID){
-						spliceIndexes.push(t);
-						if($scope.data.talents[t].isPurchased){
-							 $scope.divestXP('talent', $scope.data.talents[t]);
-						}
+			var spliceIndexes = [];
+			for(var t = 0; t < $scope.data.talents.length; t++){
+				if($scope.data.talents[t].specID == element.sysID){
+					spliceIndexes.push(t);
+					if($scope.data.talents[t].isPurchased){
+						$scope.divestXP('talent', $scope.data.talents[t]);
 					}
 				}
+			}
 			//remove the talents
 			spliceIndexes.sort(function(a,b){return(b-a)});
-				for(t = 0; t < spliceIndexes.length; t++){
-					$scope.data.talents.splice(spliceIndexes[t], 1);
-				}
-			
+			for(t = 0; t < spliceIndexes.length; t++){
+				$scope.data.talents.splice(spliceIndexes[t], 1);
+			}
+
 			//remove the career skills tag
 			var skillsToRemove = [];
 			for(t = 0; t < element.careerSkills.length; t++){
@@ -416,22 +416,22 @@
 						removeSkill = false;
 					}
 				}
-				
+
 				for(var i = 0; i < $scope.data.availableCareerSpecializations.length; i++){
 					for(var l = 0; l < $scope.data.availableCareerSpecializations[i].careerSkills.length; l++){
 						if($scope.data.availableCareerSpecializations[i].careerSkills[l] == element.careerSkills[t] && $scope.data.availableCareerSpecializations[i].sysID != element.sysID){
-							 removeSkill = false;
+							removeSkill = false;
 						}
 					}
 				}
 				if(removeSkill){
-					 skillsToRemove.push(element.careerSkills[t]);
+					skillsToRemove.push(element.careerSkills[t]);
 				}
 			}
 			for(var skill = 0; skill < $scope.data.skills.length; skill++){
 				for(var s = 0; s < skillsToRemove.length; s++){
 					if($scope.data.skills[skill].sysID == skillsToRemove[s]){
-							$scope.data.skills[skill].isCareer = false;
+						$scope.data.skills[skill].isCareer = false;
 					}
 				}
 			}
@@ -443,12 +443,12 @@
 					$scope.data.forcePowers[i].isPurchased = false;
 				}
 			}
-			
+
 			for(i = 0; i < $scope.data.forceEnhancements.length; i++){
 				if($scope.data.forceEnhancements[i].forcePowerID == element.sysID){
-					 $scope.data.forceEnhancements[i].canPurchase = false;
+					$scope.data.forceEnhancements[i].canPurchase = false;
 				}
-				
+
 				if($scope.data.forceEnhancements[i].isPurchased){
 					$scope.data.investXPSpecies.startingXPInt += parseInt($scope.data.forceEnhancements[i].costToPurchase);
 					$scope.data.investXPSpecies.startingXPString = $scope.data.investXPSpecies.startingXPInt + '';
@@ -465,7 +465,7 @@
 			}
 		}
 	}
-	
+
 	$scope.showForce = function(section){
 		if(section == 'powers'){
 			document.getElementById('forcePowersContainer').style.display = 'inline';
@@ -479,7 +479,7 @@
 			document.getElementById('enhancementHeader').style.borderBottom = '2px groove white';
 		}
 	}
-	
+
 	$scope.useFreeCareerRank = function(skill){
 		for(var i = 0; i < $scope.data.freeCareerSkillRanks.length; i++){
 			if($scope.data.freeCareerSkillRanks[i].sysID == skill.sysID){
@@ -493,7 +493,7 @@
 			}
 		}
 	}
-	
+
 	$scope.useFreeSpecRank = function(skill){
 		for(var i = 0; i < $scope.data.freeSpecSkillRanks.length; i++){
 			if($scope.data.freeSpecSkillRanks[i].sysID == skill.sysID){
@@ -507,7 +507,7 @@
 			}
 		}
 	}
-	
+
 	$scope.useFreeSpeciesRank = function(skill){
 		for(var i = 0; i < $scope.data.freeSpeciesRanks.length; i++){
 			if($scope.data.freeSpeciesRanks[i].sysID == skill.sysID){
@@ -521,7 +521,7 @@
 			}
 		}
 	}
-	
+
 	$scope.confirmFreeSkills = function(){
 		for(var i = 0; i < $scope.data.skills.length; i++){
 			for(var j = 0; j < $scope.data.freeCareerSkillRanks.length; j++){
@@ -533,7 +533,7 @@
 					$scope.data.skills[i].costToNextRank = (($scope.data.skills[i].rank + 1) * 5);	 
 				}
 			}
-			
+
 			for(var k = 0; k < $scope.data.freeSpecSkillRanks.length; k++){
 				if($scope.data.skills[i].sysID == $scope.data.freeSpecSkillRanks[k].sysID && $scope.data.freeSpecSkillRanks[k].freeRankUsed){
 					$scope.data.skills[i].rank++;
@@ -543,20 +543,24 @@
 					$scope.data.skills[i].costToNextRank = (($scope.data.skills[i].rank + 1) * 5);
 				}
 			}
-			
+
 			for(var k = 0; k < $scope.data.freeSpeciesRanks.length; k++){
 				if($scope.data.skills[i].sysID == $scope.data.freeSpeciesRanks[k].sysID && $scope.data.freeSpeciesRanks[k].freeRankUsed){
 					$scope.data.skills[i].rank++;
 					$scope.data.skills[i].baseRank++;
 					$scope.data.skills[i].rankString = $scope.data.skills[i].rank + '';
 					$scope.data.skills[i].freeRanks++;
-					$scope.data.skills[i].costToNextRank = (($scope.data.skills[i].rank + 1) * 5);
+					if(!$scope.data.skills[i].isCareer){
+						$scope.data.skills[i].costToNextRank = (($scope.data.skills[i].rank + 1) * 5) + 5;	
+					} else{
+						$scope.data.skills[i].costToNextRank = (($scope.data.skills[i].rank + 1) * 5);
+					}
 				}
 			}
 		}
 		$scope.data.freeSkillRanksSelected = true;
 	}
-	
+
 	$scope.switchInvestmentTabs = function(tab){
 		if(tab == 'skills'){
 			$scope.data.investingXPCategory = 'skills';
@@ -584,13 +588,13 @@
 			document.getElementById('forceInvestHeader').style.borderBottom = '3px groove white';
 		}
 	}
-	
+
 	$scope.serverRefresh = function(){
 		c.server.get().then(function(){
 			c.server.refresh();
 		});
 	}
-	
+
 	$scope.finalizeCharacter = function(){
 		c.server.get({action: 'finalizeCharacter', skills: $scope.data.skills, talents: $scope.data.talents, characterDetails: $scope.data.investXPSpecies, specializations: $scope.data.specializations, forcePowers: $scope.data.forcePowers, forceEnhancements: $scope.data.forceEnhancements}).then(function(response){
 			$location.search('id', 'star_wars_character_sheet');
@@ -1641,14 +1645,14 @@ input{
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-10-16 18:34:06</sys_created_on>
         <sys_id>fd44b3432f771890e0f497eef699b611</sys_id>
-        <sys_mod_count>759</sys_mod_count>
+        <sys_mod_count>764</sys_mod_count>
         <sys_name>Star Wars Character Creator</sys_name>
         <sys_package display_value="Star Wars RPG" source="x_176383_star_wars">64b3517bdb5a08542901de90cf961993</sys_package>
         <sys_policy/>
         <sys_scope display_value="Star Wars RPG">64b3517bdb5a08542901de90cf961993</sys_scope>
         <sys_update_name>sp_widget_fd44b3432f771890e0f497eef699b611</sys_update_name>
         <sys_updated_by>ben.fisher</sys_updated_by>
-        <sys_updated_on>2023-05-18 18:05:21</sys_updated_on>
+        <sys_updated_on>2024-03-31 00:00:42</sys_updated_on>
         <template><![CDATA[<head>
   <script src="https://kit.fontawesome.com/035f51c999.js" crossorigin="anonymous"></script>
 </head>

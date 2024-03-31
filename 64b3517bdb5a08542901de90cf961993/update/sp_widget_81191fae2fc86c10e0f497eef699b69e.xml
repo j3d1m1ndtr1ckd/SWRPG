@@ -55,6 +55,12 @@
 			});
 		}
 	});
+	
+	$scope.toggleCareerSkill = function(skill){
+		c.server.get({action: 'toggleCareerSkill', skill: skill}).then(function(response){
+			c.server.refresh();
+		});
+	}
 
 	$scope.showStatusEffectDetail = function(effect){
 		$scope.data.currentEffect = effect;
@@ -226,15 +232,19 @@
 		if($scope.data.canEdit || section == 'career' || section == 'specializations' || section == 'species'){
 			switch(section){
 				case 'addXP':
-					var container = document.getElementById('editCharacterXP');
-					container.style.display = 'inline';
-					if(parseInt(screen.width) < 762){
-						container.style.width = '95%';
+					if($scope.data.isGM){
+						var container = document.getElementById('editCharacterXP');
+						container.style.display = 'inline';
+						if(parseInt(screen.width) < 762){
+							container.style.width = '95%';
+						} else{
+							container.style.width = '40%';
+						}
 					} else{
-						container.style.width = '40%';
+						alert("Your GM has just been alerted to you trying to give yourself XP...you've been warned.");
 					}
 					break;
-					
+
 				case 'description':
 					document.getElementById('notableFeatures').innerHTML = $scope.data.character.notableFeatures;
 					document.getElementById('background').innerHTML = $scope.data.character.background;
@@ -536,7 +546,7 @@
 					});
 				});
 				break;
-				
+
 			case 'description':
 				var gender = document.getElementById('gender').value;
 				var age = parseInt(document.getElementById('age').value);
@@ -793,7 +803,7 @@
 			case 'addXP':
 				container = document.getElementById('editCharacterXP');
 				break;
-			
+
 			case 'description':
 				container = document.getElementById('editCharacterDescription');	
 				break;
@@ -976,7 +986,7 @@
 		}
 		c.server.get({action: 'updateLimitedUseTalent', talent: talent});
 	}
-	
+
 	setTimeout(clearDiceRolls, 10);
 };]]></client_script>
         <controller_as>c</controller_as>
@@ -1459,9 +1469,9 @@
 
   .current-credits-container{
     text-align: right;
-    
+
     .credits-wrapper{
-    	background-color: #000;
+      background-color: #000;
       font-size: 1.6rem;
     }
   }
@@ -1532,6 +1542,19 @@
 #removeItemButtonContainer{
   margin-top:20px;
   text-align:center;
+}
+
+.toggle-career-skill-button-container{
+  margin-top: 1rem;
+  padding-left: 0;
+
+  .toggle-career-skill-button{
+    background: transparent;
+    border: 1px groove #1933f4;
+    border-radius: 20px;
+    box-shadow: 0px 0px 6px 2px #1933f4;
+    font-size: 1.6rem;
+  }
 }
 
 #editItemButton{
@@ -2320,7 +2343,7 @@ input:checked + .slider:before {
 
 		//retrieve character skills and values
 		data.skills = util.buildSkills(data.characterID, data.character, data.talents);
-
+		console.log(data.skills);
 		//retrieve inventory list
 		data.availableGear = [];
 		var gear = new GlideRecord('x_176383_star_wars_gear');
@@ -2425,6 +2448,21 @@ input:checked + .slider:before {
 					data.character.totalXPInt = parseInt(charGR.total_xp);
 					data.character.totalXPString = data.character.totalXPInt + '';
 					break;
+					
+				case 'toggleCareerSkill':
+					var skillGR = new GlideRecord('x_176383_star_wars_m2m_character_skills');
+					skillGR.get(input.skill.sysID);
+					var newCost = 0;
+					if(input.skill.isCareer == 'true'){
+						skillGR.career = false;
+						newCost = ((parseInt(skillGR.rank) + 1) * 5) + 5;
+					} else{
+						skillGR.career = true;
+						newCost = (parseInt(skillGR.rank) + 1) * 5;
+					}
+					skillGR.cost_to_next_rank = newCost;
+					skillGR.update();
+				break;
 
 				case 'saveCharacterDescription':
 					charGR.gender = input.gender;
@@ -2912,14 +2950,14 @@ input:checked + .slider:before {
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-10-27 13:34:00</sys_created_on>
         <sys_id>81191fae2fc86c10e0f497eef699b69e</sys_id>
-        <sys_mod_count>1518</sys_mod_count>
+        <sys_mod_count>1525</sys_mod_count>
         <sys_name>Star Wars Character Sheet</sys_name>
         <sys_package display_value="Star Wars RPG" source="x_176383_star_wars">64b3517bdb5a08542901de90cf961993</sys_package>
         <sys_policy/>
         <sys_scope display_value="Star Wars RPG">64b3517bdb5a08542901de90cf961993</sys_scope>
         <sys_update_name>sp_widget_81191fae2fc86c10e0f497eef699b69e</sys_update_name>
         <sys_updated_by>ben.fisher</sys_updated_by>
-        <sys_updated_on>2024-02-02 22:03:43</sys_updated_on>
+        <sys_updated_on>2024-03-30 23:49:59</sys_updated_on>
         <template><![CDATA[<head>
   <script src="https://kit.fontawesome.com/035f51c999.js"></script>
 </head>
@@ -3619,7 +3657,9 @@ input:checked + .slider:before {
         </span>
         <span class="col-xs-12 edit-skills-list">
           <span class="col-xs-12 edit-skills" ng-repeat="skill in data.skills">
-            <span class="col-xs-5 skill-detail">{{skill.name}} <i ng-if="skill.isCareer == 'true'" class="far fa-medal"></i></span>
+            <span class="col-xs-5 skill-detail">{{skill.name}} <i ng-if="skill.isCareer == 'true'" class="far fa-medal"></i>
+              <span class="col-xs-12 toggle-career-skill-button-container"><button class="toggle-career-skill-button" ng-click="toggleCareerSkill(skill)">Toggle Career Skill</button></span>
+            </span>
             <span class="col-xs-2 skill-detail">{{skill.rankString}}</span>
             <span class="col-xs-2 skill-detail">{{skill.costToNextRank}} XP</span>
             <span class="col-xs-3 skill-detail skill-increase-button" ng-if="skill.costToNextRank <= data.character.availableXPInt && skill.rankInt < 5"><button id="increaseSkillButton" ng-click="increaseSkill(skill)" ng-disabled="c.isSubmitting"><i class="fad fa-swords-laser lightsabers-plus-minus"></i></button></span>

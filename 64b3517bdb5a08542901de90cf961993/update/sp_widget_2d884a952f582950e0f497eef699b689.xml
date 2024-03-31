@@ -3,48 +3,52 @@
         <category>custom</category>
         <client_script><![CDATA[api.controller=function($scope, $location, spUtil, $rootScope) {
 	/* widget controller */
-	var c = this;
-	var queryString = 'campaign=' + $scope.data.campaignID;
-	$location.search('query', queryString);
-	$location.search('spa', 1);
-	
-	$scope.openNewDetailForm = function(sysID){
-		var parameters = {
-			table: $scope.data.detailTable,
-			sys_id: sysID
-		};
-		spUtil.get('widget-form', parameters).then(function(response){
-			c.showModal = true;
-			$scope.data.newDetailForm = response;
-		});
-	}
+	try{
+		var c = this;
+		var queryString = 'campaign=' + $scope.data.campaignID;
+		$location.search('query', queryString);
+		$location.search('spa', 1);
 
-	$rootScope.$on('sp.form.submitted', function(evt, data){
-		c.showModal = false;
-		$location.search('id', 'star_wars_campaign_detail');
-		c.server.refresh().then(function(response){
-			if($scope.data.detail == 'sessions'){
-				if(c.activeSessionTab == 'open'){
-					$scope.data.records = response.data.openSessions;
-				} else{
-					$scope.data.records = response.data.completedSessions;
-				}
-			}
-		});		
-	});
-
-	$scope.toggleSideNav = function(bool){
-		if(bool){
-			c.sideNavOpen = false;
-		} else{
-			c.sideNavOpen = true;
+		$scope.openNewDetailForm = function(sysID){
+			var parameters = {
+				table: $scope.data.detailTable,
+				sys_id: sysID
+			};
+			spUtil.get('widget-form', parameters).then(function(response){
+				c.showModal = true;
+				$scope.data.newDetailForm = response;
+			});
 		}
-	}
 
-	$scope.goTo = function(detail){
-		$location.search('detail', detail);
-		$location.search('sys_id', null);
-		$location.search('spa', null);
+		$rootScope.$on('sp.form.submitted', function(evt, data){
+			c.showModal = false;
+			$location.search('id', 'star_wars_campaign_detail');
+			c.server.refresh().then(function(response){
+				if($scope.data.detail == 'sessions'){
+					if(c.activeSessionTab == 'open'){
+						$scope.data.records = response.data.openSessions;
+					} else{
+						$scope.data.records = response.data.completedSessions;
+					}
+				}
+			});		
+		});
+
+		$scope.toggleSideNav = function(bool){
+			if(bool){
+				c.sideNavOpen = false;
+			} else{
+				c.sideNavOpen = true;
+			}
+		}
+
+		$scope.goTo = function(detail){
+			$location.search('detail', detail);
+			$location.search('sys_id', null);
+			$location.search('spa', null);
+		}
+	} catch(e){
+		console.log(e.message);
 	}
 };]]></client_script>
         <controller_as>c</controller_as>
@@ -524,14 +528,14 @@
         <sys_created_by>ben.fisher</sys_created_by>
         <sys_created_on>2023-01-09 05:29:57</sys_created_on>
         <sys_id>2d884a952f582950e0f497eef699b689</sys_id>
-        <sys_mod_count>186</sys_mod_count>
+        <sys_mod_count>205</sys_mod_count>
         <sys_name>Star Wars Campaign Detail</sys_name>
         <sys_package display_value="Star Wars RPG" source="x_176383_star_wars">64b3517bdb5a08542901de90cf961993</sys_package>
         <sys_policy/>
         <sys_scope display_value="Star Wars RPG">64b3517bdb5a08542901de90cf961993</sys_scope>
         <sys_update_name>sp_widget_2d884a952f582950e0f497eef699b689</sys_update_name>
         <sys_updated_by>ben.fisher</sys_updated_by>
-        <sys_updated_on>2023-11-28 15:46:35</sys_updated_on>
+        <sys_updated_on>2024-03-23 06:17:21</sys_updated_on>
         <template><![CDATA[<head>
   <script src="https://kit.fontawesome.com/5539187d1b.js" crossorigin="anonymous"></script>
 </head>
@@ -590,15 +594,15 @@
 </div>
 
 <!-- flyout details -->
-<div ng-if="c.showFullDetails" class="star-wars-detail-flyout">
-  <div class="close-button-container" ng-click="c.showFullDetails = false">
+<div ng-show="c.showFullDetails" class="star-wars-detail-flyout" id="starWarsDetailFlyout">
+  <div class="close-button-container" ng-click="c.showFullDetails = false;">
     <i class="fa-regular fa-swords-laser"></i>
   </div>
   <div class="star-wars-full-detail-flyout-body">
     <h3 class="full-detail-title">{{c.detailRec.name}}</h3>
     <p class="full-detail-sub-title star-wars-text">{{c.detailRec.name}}</p>
     <p class="full-detail-sub-title order" ng-if="data.detail == 'sessions'">Order: {{c.detailRec.order}}</p>
-    <span ng-if="data.detail == 'sessions'" class="session-plan-tabs" ng-init="c.detailRec.description = c.detailRec.outline; c.activeTab = 'outline'">
+    <span ng-if="data.detail == 'sessions'" class="session-plan-tabs" ng-init="c.activeTab = 'outline'; c.detailRec.description = c.detailRec.outline">
       <span class="swfdf-outline-tab session-plan-tab" ng-class="{'full-detail-active-tab': c.activeTab == 'outline'}" ng-click="c.activeTab = 'outline'; c.detailRec.description = c.detailRec.outline">Outline<br><text class="star-wars-text">Outline</text></span>
       <span class="swfdf-gm-notes-tab session-plan-tab" ng-class="{'full-detail-active-tab': c.activeTab == 'gm_notes'}" ng-click="c.activeTab = 'gm_notes'; c.detailRec.description = c.detailRec.gm_notes">GM Notes<br><text class="star-wars-text">GM Notes</text></span>
     </span>
