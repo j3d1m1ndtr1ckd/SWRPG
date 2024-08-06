@@ -518,12 +518,11 @@
 
 				case 'crit':
 					var container = document.getElementById('editCritContainer');
-					document.getElementById('critDescription').innerHTML = $scope.data.character.criticalInjuriesDescription;
 					container.style.display = 'inline';
 					if(parseInt(screen.width) < 762){
 						container.style.width = '95%';
 					} else{
-						container.style.width = '40%';
+						container.style.width = '60%';
 					}
 					break;
 
@@ -775,13 +774,13 @@
 		}
 	}
 
-	$scope.purhcaseItem = function(item){
+	$scope.purhcaseItem = function(item, pay){
 		var qID = item.name + 'QuantityInput';
 		var quantity = document.getElementById(qID).value;
 		var tempPrice = parseInt(quantity) * parseInt(item.price);
-		if(tempPrice <= $scope.data.character.creditsInt){
+		if((tempPrice <= $scope.data.character.creditsInt && pay) || !pay){
 			c.isSubmitting = true;
-			c.server.get({action: 'purchaseItem', item: item, quantity: quantity, price: tempPrice}).then(function(response){
+			c.server.get({action: 'purchaseItem', item: item, quantity: quantity, price: tempPrice, pay: pay}).then(function(response){
 				$scope.data.characterGear = response.data.characterGear;
 				$scope.data.character = response.data.character;
 				c.isSubmitting = false;
@@ -933,6 +932,22 @@
 	$scope.toggleVehicleInfo = function(vehicle){
 		$scope.data.currentVehicleInfo = vehicle;
 		document.getElementById('vehicleInfoBox').style.display = 'inline';
+	}
+	
+	$scope.addCrit = function(critID){
+		c.isSubmitting = true;
+		c.server.get({action: 'addCrit', crit: critID}).then(function(response){
+			c.isSubmitting = false;
+			$scope.data.character.criticalInjuries = response.data.character.criticalInjuries;
+		});
+	}
+	
+	$scope.removeCrit = function(critID){
+		c.isSubmitting = true;
+		c.server.get({action: 'removeCrit', crit: critID}).then(function(response){
+			c.isSubmitting = false;
+			$scope.data.character.criticalInjuries = response.data.character.criticalInjuries;
+		});
 	}
 
 	$scope.purchaseTalent = function(item){
@@ -1607,6 +1622,11 @@
   border:1px groove #54f403;
   border-radius:20px;
   box-shadow:0px 0px 6px 2px #54f403;
+  margin-bottom: 1.5rem;
+}
+
+.free-gear-button{
+	padding: 0 2.2rem;
 }
 
 .item-quality:hover{
@@ -2016,6 +2036,52 @@ input:checked + .slider:before {
 }
 //end W3 css
 
+#editCritContainer{
+  padding-bottom: 2rem;
+  
+  .crit-table{
+    display: flex;
+    flex-flow: column wrap;
+    row-gap: 2rem;
+    border: .1rem solid white;
+    padding: .5rem;
+
+    .crit-table-headers{
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: space-around;
+      align-items: center;
+      font-size: 1.8rem;
+      font-weight: bold;
+      border-bottom: .1rem solid white;
+    }
+
+    .crit-table-rows{
+      display: flex;
+      flex-flow: row nowrap;
+      font-size: 1.6rem;
+      justify-content: space-around;
+      text-align: center;
+      align-items: center;
+      border-bottom: .1rem dotted white;
+
+      .crit-detail{
+        flex: 0 0 25%;
+      }
+
+      .crit-result{
+        text-align: left;
+      }
+      
+      .remove-crit-button{
+      	.fa-swords-laser{
+        	color: #e21414;
+        }
+      }
+    }
+  }
+}
+
 @media only screen and (min-width:762px){
   .lg-hidden{
     display:none;
@@ -2065,6 +2131,10 @@ input:checked + .slider:before {
 
   .purchase-gear-button{
     font-size:11px;
+  }
+  
+  .free-gear-button{
+  	padding: 0 1.8rem;
   }
 
   #marketplaceContainer{
@@ -2224,6 +2294,10 @@ input:checked + .slider:before {
 	//retrieve caharacter details and pass to data object.
 	try{
 		var util = new x_176383_star_wars.starWarsUtil();
+		data.critHeaders = ['D100', 'Severity', 'Result', 'Add'];
+		data.charCritHeaders = ['D100', 'Severity', 'Result', 'Remove'];
+		data.critTable = util.buildCriticalInjuryTable();
+		console.log(data.critTable);
 		var user = gs.getUser();
 		data.showRankOneBadge = user.getPreference('show_rank_one_talent_badge');
 		var characterID = $sp.getParameter('character_id');
@@ -2280,6 +2354,7 @@ input:checked + .slider:before {
 			criticalInjuriesInt: parseInt(charGR.critical_injuries),
 			criticalInjuriesString: charGR.critical_injuries + '',
 			criticalInjuriesDescription: charGR.critical_injury_description + '',
+			criticalInjuries: util.getCharacterCriticalInjuries(characterID),
 			forceRatingInt: parseInt(charGR.force_rating),
 			forceRatingString: charGR.force_rating + '',
 			forceCommittedInt: parseInt(charGR.force_committed),
@@ -2343,7 +2418,6 @@ input:checked + .slider:before {
 
 		//retrieve character skills and values
 		data.skills = util.buildSkills(data.characterID, data.character, data.talents);
-		console.log(data.skills);
 		//retrieve inventory list
 		data.availableGear = [];
 		var gear = new GlideRecord('x_176383_star_wars_gear');
@@ -2448,7 +2522,7 @@ input:checked + .slider:before {
 					data.character.totalXPInt = parseInt(charGR.total_xp);
 					data.character.totalXPString = data.character.totalXPInt + '';
 					break;
-					
+
 				case 'toggleCareerSkill':
 					var skillGR = new GlideRecord('x_176383_star_wars_m2m_character_skills');
 					skillGR.get(input.skill.sysID);
@@ -2462,7 +2536,7 @@ input:checked + .slider:before {
 					}
 					skillGR.cost_to_next_rank = newCost;
 					skillGR.update();
-				break;
+					break;
 
 				case 'saveCharacterDescription':
 					charGR.gender = input.gender;
@@ -2584,11 +2658,13 @@ input:checked + .slider:before {
 					break;
 
 				case 'purchaseItem':
-					charGR.get(characterID);
-					charGR.credits = data.character.creditsInt - parseInt(input.price);
-					charGR.update();
-					data.character.creditsInt = parseInt(charGR.credits);
-					data.character.creditsString = data.character.creditsInt + '';
+					if(input.pay){
+						charGR.get(characterID);
+						charGR.credits = data.character.creditsInt - parseInt(input.price);
+						charGR.update();
+						data.character.creditsInt = parseInt(charGR.credits);
+						data.character.creditsString = data.character.creditsInt + '';
+					}
 					cg = new GlideRecord('x_176383_star_wars_character_gear_m2m');
 					cg.addQuery('item.name', input.item.name).addCondition('character', characterID).addCondition('item.type', 'gear');
 					cg.query();
@@ -2925,6 +3001,22 @@ input:checked + .slider:before {
 					characterTalent.update();
 					break;
 
+				case 'addCrit':
+					var charCrit = new GlideRecord('x_176383_star_wars_character_critical_injuries');
+					charCrit.initialize();
+					charCrit.character = characterID;
+					charCrit.critical_injury = input.crit;
+					charCrit.insert();
+					data.character.criticalInjuries = util.getCharacterCriticalInjuries(characterID);
+					break;
+
+				case 'removeCrit':
+					var charCrit = new GlideRecord('x_176383_star_wars_character_critical_injuries');
+					charCrit.get(input.crit);
+					charCrit.deleteRecord();
+					data.character.criticalInjuries = util.getCharacterCriticalInjuries(characterID);
+					break;
+
 				default:
 					break;
 			}
@@ -2950,14 +3042,14 @@ input:checked + .slider:before {
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-10-27 13:34:00</sys_created_on>
         <sys_id>81191fae2fc86c10e0f497eef699b69e</sys_id>
-        <sys_mod_count>1525</sys_mod_count>
+        <sys_mod_count>1587</sys_mod_count>
         <sys_name>Star Wars Character Sheet</sys_name>
         <sys_package display_value="Star Wars RPG" source="x_176383_star_wars">64b3517bdb5a08542901de90cf961993</sys_package>
         <sys_policy/>
         <sys_scope display_value="Star Wars RPG">64b3517bdb5a08542901de90cf961993</sys_scope>
         <sys_update_name>sp_widget_81191fae2fc86c10e0f497eef699b69e</sys_update_name>
         <sys_updated_by>ben.fisher</sys_updated_by>
-        <sys_updated_on>2024-03-30 23:49:59</sys_updated_on>
+        <sys_updated_on>2024-08-05 21:38:24</sys_updated_on>
         <template><![CDATA[<head>
   <script src="https://kit.fontawesome.com/035f51c999.js"></script>
 </head>
@@ -2982,7 +3074,7 @@ input:checked + .slider:before {
           <span class="col-xs-12 xp-label">AVAILABLE XP</span>
         </span>
         <span class="col-xs-12 col-md-4 available-xp critical-injuries" ng-click="editCharacter('crit')">
-          <span class="col-xs-12 xp-value">{{data.character.criticalInjuriesString}}</span>
+          <span class="col-xs-12 xp-value">{{data.character.criticalInjuries.length}}</span>
           <span class="col-xs-12 xp-label">Critical Injuries</span>
         </span>
         <!-- status effects -->
@@ -3312,6 +3404,10 @@ input:checked + .slider:before {
                 <span class="col-xs-2 gear-detail expand-icon" ng-click="toggleGearInfo(item.sysID)"><i class="fal fa-chevron-left gear-info-icon" id="{{item.iconID}}"></i></span>
                 <span class="col-xs-12 full-gear-detail" id="{{item.sysID}}">
                   <span class="col-xs-4 gear-detail">
+                    <span class="col-xs-12 gear-detail-label">Price:</span>
+                    <span class="col-xs-12 gear-detail-value"><img src="credits.png" height="15px" width="15px"/>{{item.price}}</span>
+                  </span>
+                  <span class="col-xs-4 gear-detail">
                     <span class="col-xs-12 gear-detail-label">Encumbrance:</span>
                     <span class="col-xs-12 gear-detail-value">{{item.encumbrance}}</span>
                   </span>
@@ -3634,14 +3730,31 @@ input:checked + .slider:before {
     <span class="edit-character" id="editCritContainer">
       <span class="col-xs-12 close-button" ng-click="closeEditContainer('crit')"><i class="fas fa-swords-laser slideout-close-icon"></i></span>
       <span class="col-xs-12">
-        <label for="crits">Critical Injuries:</label><br/>
-        <input class="sw-input" type="text" id="crits" name="crits" inputmode="numeric" pattern="[0-9]*" value="{{data.character.criticalInjuriesString}}"/><br/>
-        <label for="critDescription">Critical Injury Notes:</label><br/>
-        <textarea class="sw-input" type="text" id="critDescription" name="critDescription" ng-bind-html="data.character.criticalInjuriesDescription"></textarea>
-      </span>
-      <span class="col-xs-12 save-edits">
-        <span class="col-xs-12 save-button-container">
-          <button id="saveEditsButton" ng-click="saveEdits('crit'); c.isSubmitting = true" ng-disabled="c.isSubmitting">Save<br><text class="star-wars-text" id="swSaveButton">Save</text></button>
+        <label for="crits">Critical Injuries: {{data.character.criticalInjuries.length}}</label><br/>
+        <label>Critical Injury Notes:</label><br/>
+        <span ng-if="data.character.criticalInjuries.length == 0">You have no critical injuries...good job!</span><br><br>
+        <span ng-if="data.character.criticalInjuries.length > 0" class="character-crit-table crit-table">
+          <span class="crit-table-headers">
+            <span class="crit-table-header" ng-repeat="critHead in data.charCritHeaders">{{critHead}}</span>
+          </span>
+          <span class="crit-table-rows" ng-repeat="crit in data.character.criticalInjuries">
+            <span class="crit-detail">{{crit.dice}}</span>
+            <span class="crit-detail">{{crit.severity}}</span>
+            <span class="crit-detail crit-result" ng-bind-html="crit.result"></span>
+            <span class="crit-detail remove-crit-button-container"><button id="removeItemButton" class="remove-crit-button" ng-click="removeCrit(crit.sys_id)" ng-disabled="c.isSubmitting"><i class="fas fa-swords-laser"></i></button></span>
+          </span>
+        </span><br><br>
+        <span class="crit-table-label">Critical Injuries Table:</span><br/>
+      	<span class="crit-table">
+          <span class="crit-table-headers">
+            <span class="crit-table-header" ng-repeat="critHead in data.critHeaders">{{critHead}}</span>
+          </span>
+          <span class="crit-table-rows" ng-repeat="crit in data.critTable">
+            <span class="crit-detail">{{crit.dice}}</span>
+            <span class="crit-detail">{{crit.severity}}</span>
+            <span class="crit-detail crit-result" ng-bind-html="crit.result"></span>
+            <span class="crit-detail add-crit-button-container"><button id="saveEditsButton" class="add-crit-button" ng-click="addCrit(crit.sys_id)" ng-disabled="c.isSubmitting">Add</button></span>
+          </span>
         </span>
       </span>
     </span>
@@ -3954,7 +4067,10 @@ input:checked + .slider:before {
             <span class="col-xs-6 item-detail">{{item.name}} <span ng-click="showGearInfo(item)"><i class="far fa-info-circle"></i></span></span>
             <span class="col-xs-2 item-detail">{{item.price}}</span>
             <input class="col-xs-2 sw-input" type="text" id="{{item.name}}QuantityInput" name="{{item.name}}QuantityInput" inputmode="numeric" pattern="[0-9]*" value="1"/>
-            <span class="col-xs-2 item-detail"><button class="purchase-gear-button" ng-click="purhcaseItem(item)" ng-disabled="c.isSubmitting">Purchase</button></span>
+            <span class="col-xs-2 item-detail">
+              <span class="col-xs-12 auto-deduct-purchase"><button class="purchase-gear-button" ng-click="purhcaseItem(item, true)" ng-disabled="c.isSubmitting">Purchase</button></span>
+              <span class="col-xs-12 free-purchase"><button class="purchase-gear-button free-gear-button" ng-click="purhcaseItem(item, false)" ng-disabled="c.isSubmitting">Add</button></span>
+            </span>
           </span>
         </span>
       </span>

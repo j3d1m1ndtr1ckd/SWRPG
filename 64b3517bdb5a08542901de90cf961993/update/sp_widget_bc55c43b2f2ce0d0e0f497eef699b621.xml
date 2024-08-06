@@ -667,6 +667,7 @@
 		var user = gs.getUser();
 		var prefName = data.sessionID + '_' + user.getID() + '_sw_roll_history';
 		var diceHistory = user.getPreference(prefName);
+		console.log(diceHistory);
 		if(diceHistory){
 			data.diceHistory = JSON.parse(diceHistory);
 		}
@@ -699,7 +700,14 @@
 
 function checkGM(){
 	var campaign = new GlideRecord('x_176383_star_wars_campaign');
-	campaign.get($sp.getParameter('campaign'));
+	if($sp.getParameter('id') == 'star_wars_game_session'){
+		campaign.get($sp.getParameter('campaign'));	
+	} else{
+		var character = new GlideRecord('x_176383_star_wars_character');
+		character.get($sp.getParameter('character_id'));
+		campaign.get(character.campaign.sys_id);
+	}
+	
 	if(gs.getUserID() == campaign.game_master.sys_id + ''){
 		return true;
 	} else{
@@ -711,14 +719,14 @@ function checkGM(){
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-11-24 15:52:38</sys_created_on>
         <sys_id>bc55c43b2f2ce0d0e0f497eef699b621</sys_id>
-        <sys_mod_count>290</sys_mod_count>
+        <sys_mod_count>292</sys_mod_count>
         <sys_name>Star Wars RPG Dice Roller</sys_name>
         <sys_package display_value="Star Wars RPG" source="x_176383_star_wars">64b3517bdb5a08542901de90cf961993</sys_package>
         <sys_policy/>
         <sys_scope display_value="Star Wars RPG">64b3517bdb5a08542901de90cf961993</sys_scope>
         <sys_update_name>sp_widget_bc55c43b2f2ce0d0e0f497eef699b621</sys_update_name>
         <sys_updated_by>ben.fisher</sys_updated_by>
-        <sys_updated_on>2023-11-12 05:25:51</sys_updated_on>
+        <sys_updated_on>2024-08-03 21:18:52</sys_updated_on>
         <template><![CDATA[<head>
   <script src="https://kit.fontawesome.com/035f51c999.js" crossorigin="anonymous"></script>
 </head>
