@@ -12,6 +12,7 @@
         <copied_from/>
         <copied_from_name/>
         <description>Copy vehicle gear to character vehicle gear</description>
+        <display_name_after_preview/>
         <flow_priority/>
         <generation_source/>
         <internal_name>copy_vehicle_gear_to_character_vehicle_gear</internal_name>
@@ -29,6 +30,7 @@
         <show_draft_actions>false</show_draft_actions>
         <show_triggered_flows>false</show_triggered_flows>
         <status>draft</status>
+        <substatus/>
         <sys_class_name>sys_hub_flow</sys_class_name>
         <sys_created_by>ben.fisher</sys_created_by>
         <sys_created_on>2021-07-06 16:15:32</sys_created_on>

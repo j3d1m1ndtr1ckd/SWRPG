@@ -12,6 +12,7 @@
         <copied_from/>
         <copied_from_name/>
         <description>when a tier 5 talent is purchased within a career specialization, check if all 4 tier 5 talents are purchased.  If so, update character sheet "Signature abilities unlocked" field.</description>
+        <display_name_after_preview/>
         <flow_priority/>
         <generation_source/>
         <internal_name>unlock_signature_ability</internal_name>
@@ -29,6 +30,7 @@
         <show_draft_actions>false</show_draft_actions>
         <show_triggered_flows>false</show_triggered_flows>
         <status>draft</status>
+        <substatus/>
         <sys_class_name>sys_hub_flow</sys_class_name>
         <sys_created_by>ben.fisher</sys_created_by>
         <sys_created_on>2022-03-07 05:07:09</sys_created_on>
