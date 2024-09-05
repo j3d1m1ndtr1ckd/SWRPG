@@ -17,7 +17,7 @@
         <provider_class/>
         <read_access>true</read_access>
         <scriptable_table>false</scriptable_table>
-        <super_class display_value="Personal Critical Injury" name="x_176383_star_wars_personal_critical_injury">7d9f8b6197bbc210a99a938de053af2b</super_class>
+        <super_class display_value="Critical Injury/Hits" name="x_176383_star_wars_personal_critical_injury">7d9f8b6197bbc210a99a938de053af2b</super_class>
         <sys_class_name>sys_db_object</sys_class_name>
         <sys_created_by>ben.fisher</sys_created_by>
         <sys_created_on>2024-08-05 14:53:16</sys_created_on>

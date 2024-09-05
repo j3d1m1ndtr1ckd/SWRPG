@@ -1273,6 +1273,10 @@
   display:inline;
 }
 
+#currentForceDescription, .enhancement{
+	font-size: 1.6rem;
+}
+
 #purchaseTalentsButtonContainer, #purchaseSignatureAbilitiesContainer{
   margin-top:20px;
 }
@@ -2296,8 +2300,7 @@ input:checked + .slider:before {
 		var util = new x_176383_star_wars.starWarsUtil();
 		data.critHeaders = ['D100', 'Severity', 'Result', 'Add'];
 		data.charCritHeaders = ['D100', 'Severity', 'Result', 'Remove'];
-		data.critTable = util.buildCriticalInjuryTable();
-		console.log(data.critTable);
+		data.critTable = util.buildCriticalInjuryTable('personal');
 		var user = gs.getUser();
 		data.showRankOneBadge = user.getPreference('show_rank_one_talent_badge');
 		var characterID = $sp.getParameter('character_id');
@@ -2354,7 +2357,7 @@ input:checked + .slider:before {
 			criticalInjuriesInt: parseInt(charGR.critical_injuries),
 			criticalInjuriesString: charGR.critical_injuries + '',
 			criticalInjuriesDescription: charGR.critical_injury_description + '',
-			criticalInjuries: util.getCharacterCriticalInjuries(characterID),
+			criticalInjuries: util.getCharacterCriticalInjuries(characterID, ''),
 			forceRatingInt: parseInt(charGR.force_rating),
 			forceRatingString: charGR.force_rating + '',
 			forceCommittedInt: parseInt(charGR.force_committed),
@@ -3007,14 +3010,14 @@ input:checked + .slider:before {
 					charCrit.character = characterID;
 					charCrit.critical_injury = input.crit;
 					charCrit.insert();
-					data.character.criticalInjuries = util.getCharacterCriticalInjuries(characterID);
+					data.character.criticalInjuries = util.getCharacterCriticalInjuries(characterID, '');
 					break;
 
 				case 'removeCrit':
 					var charCrit = new GlideRecord('x_176383_star_wars_character_critical_injuries');
 					charCrit.get(input.crit);
 					charCrit.deleteRecord();
-					data.character.criticalInjuries = util.getCharacterCriticalInjuries(characterID);
+					data.character.criticalInjuries = util.getCharacterCriticalInjuries(characterID, '');
 					break;
 
 				default:
@@ -3042,14 +3045,14 @@ input:checked + .slider:before {
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-10-27 13:34:00</sys_created_on>
         <sys_id>81191fae2fc86c10e0f497eef699b69e</sys_id>
-        <sys_mod_count>1587</sys_mod_count>
+        <sys_mod_count>1592</sys_mod_count>
         <sys_name>Star Wars Character Sheet</sys_name>
         <sys_package display_value="Star Wars RPG" source="x_176383_star_wars">64b3517bdb5a08542901de90cf961993</sys_package>
         <sys_policy/>
         <sys_scope display_value="Star Wars RPG">64b3517bdb5a08542901de90cf961993</sys_scope>
         <sys_update_name>sp_widget_81191fae2fc86c10e0f497eef699b69e</sys_update_name>
         <sys_updated_by>ben.fisher</sys_updated_by>
-        <sys_updated_on>2024-08-05 21:38:24</sys_updated_on>
+        <sys_updated_on>2024-09-05 15:49:10</sys_updated_on>
         <template><![CDATA[<head>
   <script src="https://kit.fontawesome.com/035f51c999.js"></script>
 </head>
@@ -3731,7 +3734,6 @@ input:checked + .slider:before {
       <span class="col-xs-12 close-button" ng-click="closeEditContainer('crit')"><i class="fas fa-swords-laser slideout-close-icon"></i></span>
       <span class="col-xs-12">
         <label for="crits">Critical Injuries: {{data.character.criticalInjuries.length}}</label><br/>
-        <label>Critical Injury Notes:</label><br/>
         <span ng-if="data.character.criticalInjuries.length == 0">You have no critical injuries...good job!</span><br><br>
         <span ng-if="data.character.criticalInjuries.length > 0" class="character-crit-table crit-table">
           <span class="crit-table-headers">

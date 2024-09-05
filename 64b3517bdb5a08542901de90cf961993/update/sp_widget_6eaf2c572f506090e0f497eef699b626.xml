@@ -53,12 +53,11 @@
 
 			case 'crit':
 				var container = document.getElementById('editVehicleCrits');
-				document.getElementById('vehicleCritDescription').innerHTML = $scope.data.vehicle.critDescription;
 				container.style.display = 'inline';
 				if(parseInt(screen.width) < 762){
-					container.style.width = '80%';
+					container.style.width = '100%';
 				} else{
-					container.style.width = '40%';
+					container.style.width = '60%';
 				}
 				break;
 
@@ -299,6 +298,22 @@
 			default:
 				break;
 		}
+	}
+	
+	$scope.addCrit = function(critID){
+		c.isSubmitting = true;
+		c.server.get({action: 'addCrit', crit: critID}).then(function(response){
+			c.isSubmitting = false;
+			$scope.data.vehicle.criticalHits = response.data.vehicle.criticalHits;
+		});
+	}
+	
+	$scope.removeCrit = function(critID){
+		c.isSubmitting = true;
+		c.server.get({action: 'removeCrit', crit: critID}).then(function(response){
+			c.isSubmitting = false;
+			$scope.data.vehicle.criticalHits = response.data.vehicle.criticalHits;
+		});
 	}
 };]]></client_script>
         <controller_as>c</controller_as>
@@ -675,6 +690,73 @@ label,.sw-input{
   font-size:16px;
 }
 
+#saveEditsButton{
+  background:transparent;
+  box-shadow: 0px 0px 4px 2px #1933f4;
+  border: 1px groove #1933f4;
+  border-radius:20px;
+  padding:3px 25px 3px 25px;
+  text-align:center;
+  font-size:18px;
+  margin-top:20px;
+}
+
+#removeItemButton{
+  color:white;
+  border:1px groove #e21414;
+  border-radius:20px;
+  box-shadow:0px 0px 6px 2px #e21414;
+  background:transparent;
+  padding:5px 15px 5px 15px;
+  margin-bottom:20px;
+}
+
+#editVehicleCrits{
+  padding-bottom: 2rem;
+  
+  .crit-table{
+    display: flex;
+    flex-flow: column wrap;
+    row-gap: 2rem;
+    border: .1rem solid white;
+    padding: .5rem;
+
+    .crit-table-headers{
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: space-around;
+      align-items: center;
+      font-size: 1.8rem;
+      font-weight: bold;
+      border-bottom: .1rem solid white;
+    }
+
+    .crit-table-rows{
+      display: flex;
+      flex-flow: row nowrap;
+      font-size: 1.6rem;
+      justify-content: space-around;
+      text-align: center;
+      align-items: center;
+      border-bottom: .1rem dotted white;
+
+      .crit-detail{
+        flex: 0 0 25%;
+      }
+
+      .crit-result{
+        text-align: left;
+      }
+      
+      .remove-crit-button{
+      	.fa-swords-laser{
+        	color: #e21414;
+        }
+      }
+    }
+  }
+}
+
 @media only screen and (min-width:762px) and (max-width:1400px){
   .fa-starship-freighter{
     left:38.8%; 
@@ -770,12 +852,17 @@ label,.sw-input{
         <public>false</public>
         <roles/>
         <script><![CDATA[(function() {
-  /* populate the 'data' object */
-  /* e.g., data.table = $sp.getValue('table'); */
-var vehicleID = $sp.getParameter('vehicleID');
-var vehicleGR = new GlideRecord('x_176383_star_wars_character_vehicle');
-		vehicleGR.get(vehicleID);
-	
+	/* populate the 'data' object */
+	/* e.g., data.table = $sp.getValue('table'); */
+	var vehicleID = $sp.getParameter('vehicleID');
+	var vehicleGR = new GlideRecord('x_176383_star_wars_character_vehicle');
+	vehicleGR.get(vehicleID);
+
+	var util = new x_176383_star_wars.starWarsUtil();
+	data.critHeaders = ['D100', 'Severity', 'Result', 'Add'];
+	data.charCritHeaders = ['D100', 'Severity', 'Result', 'Remove'];
+	data.critTable = util.buildCriticalInjuryTable('ship');
+
 	data.vehicle = {
 		pilot: vehicleGR.character.name + '',
 		nickName: vehicleGR.name + '' || 'Name your ship',
@@ -802,21 +889,22 @@ var vehicleGR = new GlideRecord('x_176383_star_wars_character_vehicle');
 		characterVehicleSysId: vehicleGR.sys_id + '',
 		cargo: vehicleGR.cargo_hold + '',
 		crits: vehicleGR.critical_injuries + '',
-		critDescription: vehicleGR.critical_injuries_description + ''
+		critDescription: vehicleGR.critical_injuries_description + '',
+		criticalHits: util.getCharacterCriticalInjuries('', vehicleID)
 	};
-	
+
 	if(vehicleGR.vehicle.primary_hyperdrive_class != ''){
 		data.vehicle.hyperdrive = 'Primary Class: ' + vehicleGR.vehicle.primary_hyperdrive_class + '; Backup Class: ' + vehicleGR.vehicle.backup_hyperdrive_class;
 	} else{
 		data.vehicle.hyperdrive = 'None';
 	}
-	
+
 	if(vehicleGR.vehicle.navicomputer){
 		data.vehicle.navicomputer = 'Yes';
 	} else{
 		data.vehicle.navicomputer = 'No';
 	}
-	
+
 	var vehicleGear = new GlideRecord('x_176383_star_wars_character_vehicle_gear');
 	vehicleGear.addQuery('character_vehicle', data.vehicle.characterVehicleSysId);
 	vehicleGear.orderBy('gear.name');
@@ -854,67 +942,83 @@ var vehicleGR = new GlideRecord('x_176383_star_wars_character_vehicle');
 			data.vehicleMods.push(obj);
 		}
 	}
-	
+
 	data.player = vehicleGR.character.player.sys_id + '';
-	
+
 	if(input){
 		switch(input.action){
 			case 'saveName':
-			vehicleGR.name = input.name;
-			vehicleGR.update();
-			break;
-				
+				vehicleGR.name = input.name;
+				vehicleGR.update();
+				break;
+
 			case 'saveHP':
-			vehicleGR.hard_points = input.hp;
-			vehicleGR.update();
-			break;
-				
+				vehicleGR.hard_points = input.hp;
+				vehicleGR.update();
+				break;
+
 			case 'saveCrit':
-			vehicleGR.critical_injuries = input.crits;
-			vehicleGR.critical_injuries_description = input.critDescription;
-			vehicleGR.update();
-			break;
-				
+				vehicleGR.critical_injuries = input.crits;
+				vehicleGR.critical_injuries_description = input.critDescription;
+				vehicleGR.update();
+				break;
+
 			case 'saveSpeed':
-			vehicleGR.speed = input.speed;
-			vehicleGR.update();
-			break;
-				
+				vehicleGR.speed = input.speed;
+				vehicleGR.update();
+				break;
+
 			case 'saveHandling':
-			vehicleGR.handling = input.handling;
-			vehicleGR.update();
-			break;
-				
+				vehicleGR.handling = input.handling;
+				vehicleGR.update();
+				break;
+
 			case 'saveArmor':
-			vehicleGR.armor = input.armor;
-			vehicleGR.update();
-			break;
-				
+				vehicleGR.armor = input.armor;
+				vehicleGR.update();
+				break;
+
 			case 'saveHullTrauma':
-			vehicleGR.hull_trauma_threshold = input.threshold;
-			vehicleGR.hull_trauma_current = input.current;
-			vehicleGR.update();
-			break;
-				
+				vehicleGR.hull_trauma_threshold = input.threshold;
+				vehicleGR.hull_trauma_current = input.current;
+				vehicleGR.update();
+				break;
+
 			case 'saveSystemStrain':
-			vehicleGR.system_strain_threshold = input.threshold;
-			vehicleGR.system_strain_current = input.current;
-			vehicleGR.update();
-			break;
-				
+				vehicleGR.system_strain_threshold = input.threshold;
+				vehicleGR.system_strain_current = input.current;
+				vehicleGR.update();
+				break;
+
 			case 'saveDefense':
-			vehicleGR.defense_fore = input.fore;
-			vehicleGR.defense_aft = input.aft;
-			vehicleGR.defense_starboard = input.starboard;
-			vehicleGR.defense_port = input.port;
-			vehicleGR.update();
-			break;
-				
+				vehicleGR.defense_fore = input.fore;
+				vehicleGR.defense_aft = input.aft;
+				vehicleGR.defense_starboard = input.starboard;
+				vehicleGR.defense_port = input.port;
+				vehicleGR.update();
+				break;
+
 			case 'saveCargo':
-			vehicleGR.cargo_hold = input.cargo;
-			vehicleGR.update();
-			break;
-				
+				vehicleGR.cargo_hold = input.cargo;
+				vehicleGR.update();
+				break;
+
+			case 'addCrit':
+				var charCrit = new GlideRecord('x_176383_star_wars_character_critical_injuries');
+				charCrit.initialize();
+				charCrit.character_vehicle = vehicleID;
+				charCrit.critical_injury = input.crit;
+				charCrit.insert();
+				data.vehicle.criticalHits = util.getCharacterCriticalInjuries('', vehicleID);
+				break;
+
+			case 'removeCrit':
+				var charCrit = new GlideRecord('x_176383_star_wars_character_critical_injuries');
+				charCrit.get(input.crit);
+				charCrit.deleteRecord();
+				data.vehicle.criticalHits = util.getCharacterCriticalInjuries('', vehicleID);
+				break;
+
 			default:
 				break;
 		}
@@ -925,14 +1029,14 @@ var vehicleGR = new GlideRecord('x_176383_star_wars_character_vehicle');
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-11-10 19:24:58</sys_created_on>
         <sys_id>6eaf2c572f506090e0f497eef699b626</sys_id>
-        <sys_mod_count>273</sys_mod_count>
+        <sys_mod_count>288</sys_mod_count>
         <sys_name>Star Wars Vehicle Sheet</sys_name>
         <sys_package display_value="Star Wars RPG" source="x_176383_star_wars">64b3517bdb5a08542901de90cf961993</sys_package>
         <sys_policy/>
         <sys_scope display_value="Star Wars RPG">64b3517bdb5a08542901de90cf961993</sys_scope>
         <sys_update_name>sp_widget_6eaf2c572f506090e0f497eef699b626</sys_update_name>
         <sys_updated_by>ben.fisher</sys_updated_by>
-        <sys_updated_on>2023-04-26 19:21:55</sys_updated_on>
+        <sys_updated_on>2024-09-05 16:45:35</sys_updated_on>
         <template><![CDATA[<head>
   <script src="https://kit.fontawesome.com/035f51c999.js"></script>
 </head>
@@ -990,7 +1094,7 @@ var vehicleGR = new GlideRecord('x_176383_star_wars_character_vehicle');
       </span>
       <span class="col-xs-12 col-md-4 characteristic-container" ng-click="editVehicle('crit')">
         <span class="col-xs-12 vehicle-characteristic-label vehicle-combat-charactistic-label">Critical Hits</span>
-        <span class="col-xs-12 vehicle-characteristic">{{data.vehicle.crits}}</span>
+        <span class="col-xs-12 vehicle-characteristic">{{data.vehicle.criticalHits.length}}</span>
       </span>
     </span>
     <span class="col-xs-12 col-md-5 defense-characteristics" ng-click="editVehicle('defense')">
@@ -1141,7 +1245,7 @@ var vehicleGR = new GlideRecord('x_176383_star_wars_character_vehicle');
 <!-- edit vehicle critical hits -->
 <span class="edit-vehicle" id="editVehicleCrits">
   <span class="col-xs-12 close-button" ng-click="closeEditContainer('crit')"><i class="fas fa-swords-laser"></i></span>
-  <span class="col-xs-12 edit-vehicle-info-container">
+  <!--span class="col-xs-12 edit-vehicle-info-container">
     <label for="vehicleInputCrit">Critical Hits:</label><br>
     <input class="sw-input" type="text" id="vehicleInputCrit" name="vehicleInputCrit" inputmode="numeric" pattern="[0-9]*" value="{{data.vehicle.crits}}"/><br/>
     <label for="vehicleCritDescription">Critical Hit Notes:</label><br/>
@@ -1151,7 +1255,34 @@ var vehicleGR = new GlideRecord('x_176383_star_wars_character_vehicle');
   	<span class="col-xs-12 save-button-container">
     	<button class="save-edits-button" ng-click="saveEdits('crit')">Save<br><text class="star-wars-text" id="swSaveButton">Save</text></button>
     </span>
-  </span>
+  </span-->
+  <span class="col-xs-12">
+        <label for="crits">Critical Hits: {{data.vehicle.criticalHits.length}}</label><br/>
+        <span ng-if="data.vehicle.criticalHits.length == 0">Your ship has no critical hits...good job!</span><br><br>
+        <span ng-if="data.vehicle.criticalHits.length > 0" class="character-crit-table crit-table">
+          <span class="crit-table-headers">
+            <span class="crit-table-header" ng-repeat="critHead in data.charCritHeaders">{{critHead}}</span>
+          </span>
+          <span class="crit-table-rows" ng-repeat="crit in data.vehicle.criticalHits">
+            <span class="crit-detail">{{crit.dice}}</span>
+            <span class="crit-detail">{{crit.severity}}</span>
+            <span class="crit-detail crit-result" ng-bind-html="crit.result"></span>
+            <span class="crit-detail remove-crit-button-container"><button id="removeItemButton" class="remove-crit-button" ng-click="removeCrit(crit.sys_id)" ng-disabled="c.isSubmitting"><i class="fas fa-swords-laser"></i></button></span>
+          </span>
+        </span><br><br>
+        <span class="crit-table-label">Critical Injuries Table:</span><br/>
+      	<span class="crit-table">
+          <span class="crit-table-headers">
+            <span class="crit-table-header" ng-repeat="critHead in data.critHeaders">{{critHead}}</span>
+          </span>
+          <span class="crit-table-rows" ng-repeat="crit in data.critTable">
+            <span class="crit-detail">{{crit.dice}}</span>
+            <span class="crit-detail">{{crit.severity}}</span>
+            <span class="crit-detail crit-result" ng-bind-html="crit.result"></span>
+            <span class="crit-detail add-crit-button-container"><button id="saveEditsButton" class="add-crit-button" ng-click="addCrit(crit.sys_id)" ng-disabled="c.isSubmitting">Add</button></span>
+          </span>
+        </span>
+      </span>
 </span>
 <!-- edit vehicle hull trauma -->
 <span class="edit-vehicle" id="editVehicleHullTrauma">
