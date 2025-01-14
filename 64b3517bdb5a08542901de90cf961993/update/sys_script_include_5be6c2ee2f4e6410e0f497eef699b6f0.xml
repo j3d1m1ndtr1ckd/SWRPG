@@ -6,6 +6,7 @@
         <caller_access/>
         <client_callable>true</client_callable>
         <description/>
+        <mobile_callable>false</mobile_callable>
         <name>StarWarsClientHelperFunctions</name>
         <script><![CDATA[var StarWarsClientHelperFunctions = Class.create();
 StarWarsClientHelperFunctions.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {

@@ -18,6 +18,7 @@
         <internal_name>check_character_talents_tier_5_count</internal_name>
         <label_cache>[]</label_cache>
         <master_snapshot>784fb7422f068d10e0f497eef699b67e</master_snapshot>
+        <master_snapshot_digest/>
         <name>check character talents tier 5 count</name>
         <natlang/>
         <outputs/>

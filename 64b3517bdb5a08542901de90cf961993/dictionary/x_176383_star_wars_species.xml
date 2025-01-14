@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element db_object_id="b2cae17bdbda08542901de90cf9619ca" label="Species" max_length="40" name="x_176383_star_wars_species" type="collection">
+        <element attributes="edge_encryption_enabled=true" label="Wound Calculation" max_length="32" name="wound_calculation" type="simple_name_values"/>
+        <element attributes="edge_encryption_enabled=true,pdf_cell_type=image" label="Portrait" max_length="1000" name="portrait" type="user_image"/>
+        <element attributes="edge_encryption_enabled=true" label="Intellect" max_length="32" name="intellect" type="integer"/>
+        <element attributes="ignore_filter_on_new=true" default="javascript:global.getNextObjNumberPadded();" label="Number" max_length="40" name="number" type="string"/>
+        <element attributes="edge_encryption_enabled=true" label="Base strain threshold" mandatory="true" max_length="32" name="base_strain_threshold" type="integer"/>
+        <element attributes="edge_encryption_enabled=true" label="Willpower" max_length="32" name="willpower" type="integer"/>
+        <element attributes="edge_encryption_enabled=true" label="Presence" max_length="32" name="presence" type="integer"/>
+        <element attributes="edge_encryption_enabled=true,no_sort=true,slushbucket_ref_no_expand=true" label="Skill Ranks" max_length="1024" name="skill_ranks_list" reference="x_176383_star_wars_skills" type="glide_list"/>
+        <element attributes="edge_encryption_enabled=true" label="Base wound threshold" mandatory="true" max_length="32" name="base_wound_threshold" type="integer"/>
+        <element attributes="edge_encryption_enabled=true" label="Strain Calculation" max_length="32" name="strain_calculation" type="simple_name_values"/>
+        <element attributes="edge_encryption_enabled=true,no_sort=true,slushbucket_ref_no_expand=true" label="Skills choice" max_length="1024" name="skills_choice" reference="x_176383_star_wars_skills" type="glide_list"/>
+        <element attributes="edge_encryption_enabled=true" label="Agility" max_length="32" name="agility" type="integer"/>
+        <element label="Name" mandatory="true" max_length="32" name="name" type="string"/>
+        <element attributes="edge_encryption_enabled=true" label="Starting XP" max_length="32" name="starting_xp" type="integer"/>
+        <element attributes="edge_encryption_enabled=true" label="Cunning" max_length="32" name="cunning" type="integer"/>
+        <element attributes="edge_encryption_enabled=true" label="Skill Ranks" max_length="32" name="skill_ranks" type="simple_name_values"/>
+        <element attributes="edge_encryption_enabled=true" label="Brawn" max_length="32" name="brawn" type="integer"/>
+        <element attributes="edge_encryption_enabled=true" label="Description" max_length="5000" name="description" type="html"/>
+        <element attributes="edge_encryption_enabled=true,no_sort=true,slushbucket_ref_no_expand=true" label="Talent ranks" max_length="1024" name="talent_ranks" reference="x_176383_star_wars_talents" type="glide_list"/>
+    </element>
+</database>

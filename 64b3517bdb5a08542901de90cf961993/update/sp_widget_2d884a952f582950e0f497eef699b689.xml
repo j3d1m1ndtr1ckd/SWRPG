@@ -149,19 +149,19 @@
         order:1;
         font-size:1.8rem;
       }
-      
+
       .star-wars-detail-search-container{
-      	order:2;
+        order:2;
         margin-top:1rem;
-        
+
         .sw-input{
-        	padding:.5rem;
+          padding:.5rem;
         }
       }
     }
-    
+
     .star-wars-sessions-tab-selector{
-    	order:1;
+      order:1;
       display:flex;
       flex-flow:row nowrap;
       justify-content:center;
@@ -169,15 +169,15 @@
       width:100%;
       margin-top:2rem;
       column-gap:20rem;
-      
+
       .session-tab-selector{
-      	font-size:2rem;
+        font-size:2rem;
         font-weight:bold;
         text-align:center;
       }
-      
+
       .active-session-tab{
-      	border-bottom:.1rem solid white;
+        border-bottom:.1rem solid white;
       }
     }
 
@@ -208,9 +208,9 @@
         font-size:1.6rem;
         min-width:25rem;
         background-color:black;
-        
+
         .star-wars-campaign-detail{
-        	font-size:1.8rem;
+          font-size:1.8rem;
         }
 
         .star-wars-campaign-detail-links-container{
@@ -281,6 +281,7 @@
     text-align:right;
     transform: rotate(270deg);
     text-align:center;
+    transition: all .5s ease-in-out;
   }
 
   .side-nav-closed-icon{
@@ -329,8 +330,18 @@
   }
 
   .side-nav-closed{
-    display:none;
     width:0;
+
+    .swgmsn-button{
+      display: none;
+      font-size: 0;
+      width: 0;
+
+      .swgmsn-button-label{
+        font-size: 0;
+        width: 0;
+      }
+    }
   }
 }
 
@@ -350,6 +361,25 @@
   border: .1rem solid silver;
   border-radius: 2rem;
   box-shadow: 0 0 0.5rem 0.2rem silver;
+
+  &amp;::-webkit-scrollbar{
+    width:.5rem;
+    background-color: lightgray;
+    border-radius: 2rem;
+    margin-top: 10rem;
+    margin-bottom: 10rem;
+    display: none;
+  }
+
+  &amp;::-webkit-scrollbar-track{
+    margin-top: 10rem;
+    margin-bottom: 10rem;
+    border-radius: 2rem;
+  }
+
+  &amp;::-webkit-scrollbar-thumb{
+    background-color: #fff;
+  }
 
   .close-button-container{
     order:0;
@@ -377,32 +407,32 @@
       order:1;
       font-size:2.2rem;
     }
-    
+
     .session-plan-tabs{
-    	order:2;
+      order:2;
       display:flex;
       flex-flow:row nowrap;
       justify-content:space-evenly;
       align-items:center;
       width:100%;
       margin-bottom:2rem;
-      
+
       .session-plan-tab{
         text-align:center;
-      	font-size:1.8rem;
+        font-size:1.8rem;
         font-weight:bold;
       }
-      
+
       .swfdf-outline-tab{
-      	order:0;
+        order:0;
       }
-      
+
       .swfdf-gm-notes-tab{
-      	order:1;
+        order:1;
       }
-      
+
       .full-detail-active-tab{
-      	border-bottom:.1rem solid white;
+        border-bottom:.1rem solid white;
       }
     }
 
@@ -416,11 +446,11 @@
 
 @media only screen and (min-width:763px) and (max-width:1280px){
   .star-wars-new-detail-form-container{
-  	top:5rem;
+    top:5rem;
     max-height:55rem;
     z-index:11;
   }
-  
+
   .star-wars-detail-flyout{
     top:5rem;
     max-height:55rem;
@@ -432,22 +462,22 @@
   .star-wars-campaign-detail-container{
     .star-wars-campaign-detail-body{
       width:100%;
-      
+
       .star-wars-sessions-tab-selector{
-      	column-gap:10rem;
+        column-gap:10rem;
       }
-      
+
       .star-wars-campaign-detail-records-container{
-      	flex-flow:column wrap;
+        flex-flow:column wrap;
         width:100%;
-        
+
         .star-wars-campaign-detail-record{
-        	width:100%;
+          width:100%;
         }
       }
     }
   }
-  
+
   .star-wars-new-detail-form-container{
     left:1rem;
     top:8rem;
@@ -456,9 +486,9 @@
     padding-bottom:20rem;
     z-index:11;
   }
-  
+
   .star-wars-detail-flyout{
-  	left:1rem;
+    left:1rem;
     top:8rem;
     width:95%;
     z-index:11;
@@ -528,14 +558,14 @@
         <sys_created_by>ben.fisher</sys_created_by>
         <sys_created_on>2023-01-09 05:29:57</sys_created_on>
         <sys_id>2d884a952f582950e0f497eef699b689</sys_id>
-        <sys_mod_count>205</sys_mod_count>
+        <sys_mod_count>227</sys_mod_count>
         <sys_name>Star Wars Campaign Detail</sys_name>
         <sys_package display_value="Star Wars RPG" source="x_176383_star_wars">64b3517bdb5a08542901de90cf961993</sys_package>
         <sys_policy/>
         <sys_scope display_value="Star Wars RPG">64b3517bdb5a08542901de90cf961993</sys_scope>
         <sys_update_name>sp_widget_2d884a952f582950e0f497eef699b689</sys_update_name>
         <sys_updated_by>ben.fisher</sys_updated_by>
-        <sys_updated_on>2024-03-23 06:17:21</sys_updated_on>
+        <sys_updated_on>2024-12-31 20:33:58</sys_updated_on>
         <template><![CDATA[<head>
   <script src="https://kit.fontawesome.com/5539187d1b.js" crossorigin="anonymous"></script>
 </head>

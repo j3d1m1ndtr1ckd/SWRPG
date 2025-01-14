@@ -1029,14 +1029,14 @@ label,.sw-input{
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-11-10 19:24:58</sys_created_on>
         <sys_id>6eaf2c572f506090e0f497eef699b626</sys_id>
-        <sys_mod_count>288</sys_mod_count>
+        <sys_mod_count>289</sys_mod_count>
         <sys_name>Star Wars Vehicle Sheet</sys_name>
         <sys_package display_value="Star Wars RPG" source="x_176383_star_wars">64b3517bdb5a08542901de90cf961993</sys_package>
         <sys_policy/>
         <sys_scope display_value="Star Wars RPG">64b3517bdb5a08542901de90cf961993</sys_scope>
         <sys_update_name>sp_widget_6eaf2c572f506090e0f497eef699b626</sys_update_name>
         <sys_updated_by>ben.fisher</sys_updated_by>
-        <sys_updated_on>2024-09-05 16:45:35</sys_updated_on>
+        <sys_updated_on>2024-12-17 00:04:16</sys_updated_on>
         <template><![CDATA[<head>
   <script src="https://kit.fontawesome.com/035f51c999.js"></script>
 </head>
@@ -1137,7 +1137,7 @@ label,.sw-input{
         <span class="col-xs-2 weapon-detail">{{w.range}}</span>
         <span class="col-xs-1 weapon-detail wd-number">{{w.crit}}</span>
         <span class="col-xs-5 weapon-detail">{{w.specials}};
-          <span class="weapon-qualities" ng-repeat="wq in w.wq">{{wq.name}}: {{wq.rating}}; <i class="far fa-info-circle" ng-click="c.showWeaponQualityInfo = true; c.weaponQuality = wq"></i></span>
+          <span class="weapon-qualities" ng-repeat="wq in w.wq">{{wq.name}}: {{wq.rating}} <i class="far fa-info-circle" ng-click="c.showWeaponQualityInfo = true; c.weaponQuality = wq"></i>; </span>
         </span>
       </span>
     </span>

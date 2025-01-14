@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element db_object_id="7d9f8b6197bbc210a99a938de053af2b" label="Critical Injury/Hits" max_length="40" name="x_176383_star_wars_personal_critical_injury" type="collection">
+        <element choice="1" label="Type" mandatory="true" max_length="40" name="type" type="choice">
+            <choice>
+                <element inactive_on_update="false" label="Ship" sequence="100" value="ship"/>
+                <element inactive_on_update="false" label="Personal" sequence="0" value="personal"/>
+            </choice>
+        </element>
+        <element choice="1" label="Severity" max_length="32" name="severity" type="choice">
+            <choice>
+                <element inactive_on_update="false" label="Average (♦♦)" sequence="100" value="average"/>
+                <element inactive_on_update="false" label="Hard (♦♦♦)" sequence="200" value="hard"/>
+                <element inactive_on_update="false" label="Easy (♦)" sequence="0" value="easy"/>
+                <element inactive_on_update="false" label="Daunting (♦♦♦♦)" sequence="300" value="daunting"/>
+            </choice>
+        </element>
+        <element label="Result" max_length="500" name="result" type="html"/>
+        <element default="javascript:current.getTableName();" dynamic_default_value="b5cb83a85f220100a9ad2572f2b4773c" label="Class" max_length="80" name="sys_class_name" type="sys_class_name" use_dynamic_default="true"/>
+        <element label="Order" max_length="32" name="order" type="integer"/>
+        <element display="true" label="D100" max_length="32" name="d100" type="string"/>
+        <index name="index">
+            <element name="sys_class_name"/>
+        </index>
+    </element>
+</database>

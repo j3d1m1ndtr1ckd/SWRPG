@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element db_object_id="f06a96462f4a4d10e0f497eef699b632" label="Signature Ability" max_length="40" name="x_176383_star_wars_signature_ability" type="collection">
+        <element attributes="edge_encryption_enabled=true" label="Unlock criteria" mandatory="true" max_length="8000" name="unlock_criteria" type="simple_name_values"/>
+        <element attributes="edge_encryption_enabled=true" label="Description" max_length="1000" name="description" type="html"/>
+        <element attributes="edge_encryption_enabled=true,encode_utf8=false" label="Career" mandatory="true" max_length="32" name="career" reference="x_176383_star_wars_career" type="reference"/>
+        <element attributes="ignore_filter_on_new=true" default="javascript:global.getNextObjNumberPadded();" label="Number" max_length="40" name="number" type="string"/>
+        <element attributes="edge_encryption_enabled=true" label="Cost to purchase" mandatory="true" max_length="32" name="cost_to_purchase" type="integer"/>
+        <element label="Name" mandatory="true" max_length="100" name="name" type="string"/>
+        <index name="index">
+            <element name="career"/>
+        </index>
+    </element>
+</database>

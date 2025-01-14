@@ -5,6 +5,18 @@
   /* widget controller */
   var c = this;
 	
+	$scope.editCampaign = function(campaign){
+		var formParams = {
+			table: 'x_176383_star_wars_campaign',
+			sys_id: campaign.sys_id
+		};
+		
+		spUtil.get('widget-form', formParams).then(function(response){
+			$scope.data.newCampaignWidget = response;
+			c.showNewCampaignForm = true;
+		});
+	}
+	
 	$scope.createNewCampaign = function(){
 		var formParams = {
 			table: 'x_176383_star_wars_campaign',
@@ -72,6 +84,10 @@
         border-radius: 20px;
         box-shadow: 0px 0px 6px 3px #1933f4;
         padding: 1rem;
+
+        &amp;:hover{
+          transform: scale(1.05);
+        }
       }
     }
   }
@@ -107,9 +123,11 @@
         order:1;
         font-size:1.8rem;
       }
-      
+
       .description-link{
-      	order:2;
+        order:2;
+        margin-top: .5rem;
+        font-size: 1.6rem;
       }
 
       .campaign-detail-count-container{
@@ -162,7 +180,7 @@
 }
 
 .new-campaign-flyout-container{
-	position:fixed;
+  position:fixed;
   top:10%;
   left:20%;
   width:60%;
@@ -176,30 +194,30 @@
   padding:1.5rem;
   max-height:70rem;
   overflow-y:scroll;
-  
+
   .new-campaign-flyout-header-container{
-  	order:0;
-    
+    order:0;
+
     .close-button{
-    	color: red;
+      color: red;
       font-size:3rem;
     }
   }
-  
+
   .campaign-description-container{
-  	display:flex;
+    display:flex;
     flex-flow: column nowrap;
     row-gap: 2rem;
-    
+
     .campaign-description-header{
-    	order: 0;
+      order: 0;
       width: 100%;
       text-align: center;
       font-size: 2.2rem;
     }
-    
+
     .campaign-description{
-    	order: 1;
+      order: 1;
       width: 100%;
       font-size: 1.8rem;
     }
@@ -214,7 +232,7 @@
       }
     }
   }
-  
+
   .new-campaign-flyout-container{
     top:10%;
     left:.5rem;
@@ -250,14 +268,14 @@ var util = new starWarsGMUtil();
         <sys_created_by>ben.fisher</sys_created_by>
         <sys_created_on>2023-01-05 00:39:48</sys_created_on>
         <sys_id>50cf58c82f98ed10e0f497eef699b626</sys_id>
-        <sys_mod_count>69</sys_mod_count>
+        <sys_mod_count>78</sys_mod_count>
         <sys_name>Star Wars GM Home</sys_name>
         <sys_package display_value="Star Wars RPG" source="x_176383_star_wars">64b3517bdb5a08542901de90cf961993</sys_package>
         <sys_policy/>
         <sys_scope display_value="Star Wars RPG">64b3517bdb5a08542901de90cf961993</sys_scope>
         <sys_update_name>sp_widget_50cf58c82f98ed10e0f497eef699b626</sys_update_name>
         <sys_updated_by>ben.fisher</sys_updated_by>
-        <sys_updated_on>2023-09-13 21:46:13</sys_updated_on>
+        <sys_updated_on>2024-10-21 14:59:26</sys_updated_on>
         <template><![CDATA[<head>
   <script src="https://kit.fontawesome.com/5539187d1b.js" crossorigin="anonymous"></script>
 </head>
@@ -276,6 +294,7 @@ var util = new starWarsGMUtil();
       <div class="campaign-container" ng-repeat="c in data.campaigns">
         <div class="campaign-header">{{c.name}}</div>
         <div class="campaign-sub-header star-wars-text">{{c.name}}</div>
+        <div class="description-link"><a href="#" ng-click="editCampaign(c)">Edit</a></div>
         <div class="description-link"><a href="#" ng-click="viewDescription(c)">View Description</a></div>
         <div class="campaign-detail-count-container">
           <a href="?id=star_wars_campaign_detail&campaign={{c.sys_id}}&detail=orgs">
