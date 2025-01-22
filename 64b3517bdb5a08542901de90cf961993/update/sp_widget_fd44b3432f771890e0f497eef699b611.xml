@@ -604,40 +604,40 @@
 };]]></client_script>
         <controller_as>c</controller_as>
         <css>.character-creator-container{
-	margin-bottom:50px;
+  margin-bottom:50px;
 }
 
 #searchBox{
-	margin-top:40px;
+  margin-top:40px;
   margin-left:70%;
 }
 
 .header-container{
-	text-align:center;
+  text-align:center;
   margin-bottom:50px;
 }
 
 input{
-	border-radius: 15px;
+  border-radius: 15px;
   background: black;
   border:2px groove #e21414;
   font-size:18px;
 }
 
 #speciesSkillsChoice{
-	margin-bottom:20px;
+  margin-bottom:20px;
 }
 
 .starting-xp,.base-wound,.base-strain{
-	font-weight:bold;
+  font-weight:bold;
 }
 
 #characterNameLabel{
-	font-size:24px;
+  font-size:24px;
 }
 
 .specialization-item{
-	border:1px groove #e21414;
+  border:1px groove #e21414;
   border-radius: 5px;
   box-shadow: 0px 0px 5px 3px lightgray;
   margin-bottom: 20px;
@@ -648,7 +648,7 @@ input{
 }
 
 .species-record{
-	border:1px groove #e21414;
+  border:1px groove #e21414;
   border-radius: 5px;
   box-shadow: 0px 0px 5px 3px lightgray;
   margin-bottom: 20px;
@@ -658,12 +658,12 @@ input{
 }
 
 .career-name{
-	font-size:22px;
+  font-size:22px;
   margin-top:20px;
 }
 
 .career-item{
-	border:1px groove #e21414;
+  border:1px groove #e21414;
   border-radius: 5px;
   box-shadow: 0px 0px 5px 3px lightgray;
   margin-bottom: 20px;
@@ -674,46 +674,46 @@ input{
 }
 
 .careers-header-container{
-	text-align:center;
+  text-align:center;
 }
 
 .species-name{
-	font-size: 18px;
+  font-size: 18px;
   text-align: center;
 }
 
 .species-name-sw{
-	text-align: center;
+  text-align: center;
   font-size: 14px;
 }
 
 .species-record,.species-list,.species-image{
-	z-index:0;
+  z-index:0;
 }
 
 .fa-expand-alt{
-	position:absolute;
+  position:absolute;
   top:0;
   left:80px;
 }
 
 .fa-expand-alt:hover{
-	cursor:pointer;
+  cursor:pointer;
 }
 
 .large-image-container{
-	position:fixed;
+  position:fixed;
   top:100px;
   left:43%;
 }
 
 .fa-times{
-	color: #e21414;
+  color: #e21414;
   padding-left:15px;
 }
 
 .large-image-container{
-	display:none;
+  display:none;
 }
 
 .info-button,.select-button,.career-info-button,.career-select-button{
@@ -725,17 +725,17 @@ input{
 .info-button, .career-info-button{
   position:absolute;
   right:0;
-	border:1px groove #54f403;
+  border:1px groove #54f403;
   border-radius:15px;
   box-shadow: 0px 0px 4px 2px #54f403;
   margin-bottom:15px;
 }
 
 .career-select-button{
-	position:absolute;
+  position:absolute;
   right:0;
   margin-top:40px;
-	border:1px groove #1933f4;
+  border:1px groove #1933f4;
   border-radius:15px;
   box-shadow: 0px 0px 4px 2px #1933f4;
 }
@@ -744,17 +744,17 @@ input{
   position:absolute;
   right:0;
   margin-top:15px;
-	border:1px groove #1933f4;
+  border:1px groove #1933f4;
   border-radius:15px;
   box-shadow: 0px 0px 4px 2px #1933f4;
 }
 
 .close-button{
-	padding-top:15px;
+  padding-top:15px;
 }
 
 .info-container{
-	display:none;
+  display:none;
   position:fixed;
   max-height:90%;
   overflow-y:scroll;
@@ -763,7 +763,11 @@ input{
   width:95%;
   background-color:black;
   padding-bottom:50px;
+  max-height: 80rem;
   z-index:5;
+  border-radius: 5px;
+  border: 1px groove #54f403;
+  box-shadow: 0px 0px 4px 2px #54f403;
 }
 
 .characteristic{
@@ -778,23 +782,23 @@ input{
 }
 
 .starting-values{
-	text-align:center;
+  text-align:center;
   margin-top: 40px;
   margin-bottom:40px;
   padding:0;
 }
 
 .species-detail-image{
-	padding:0;
+  padding:0;
 }
 
 .select-species-button, .select-career-button, .select-spec-button{
-	text-align:center;
+  text-align:center;
   margin-top:40px;
 }
 
 .select-button-details-container{
-	border:1px groove #1933f4;
+  border:1px groove #1933f4;
   border-radius:15px;
   box-shadow: 0px 0px 4px 2px #1933f4;
   text-align:center;
@@ -804,36 +808,36 @@ input{
 }
 
 .spec-name{
-	font-size: 18px;
+  font-size: 18px;
   margin-top:20px;
 }
 
 .back-button{
   padding:0;
-	text-align:left;
+  text-align:left;
   z-index:4;
   margin-top:40px;
 }
 
 .center-text{
-	text-align:center;
+  text-align:center;
 }
 
 .description{
-	margin-top:25px;
+  margin-top:25px;
 }
 
 #backButtonText{
-	font-size:18px;
+  font-size:18px;
 }
 
 #starfighterBackButton{
-	transform: rotate(270deg);
+  transform: rotate(270deg);
   color:#e17012;
 }
 
 .characteristics-investment-container{
-	background-color:black;
+  background-color:black;
   padding-top:10px;
 }
 
@@ -844,70 +848,70 @@ input{
   top:80px;
   right:20px;
   padding:1%;
-	border:2px groove #e21414;
+  border:2px groove #e21414;
   text-align:center;
   border-radius:15px;
   margin-bottom:20px;
 }
 
 #xpValue{
-	font-size:28px;
+  font-size:28px;
 }
 
 #xpValueSW{
-	font-size:22px;
+  font-size:22px;
 }
 
 #xpNumber{
-	font-size: 34px;
+  font-size: 34px;
 }
 
 .finalize-button{
-	margin-top:15px;
+  margin-top:15px;
 }
 
 #finalizeButton{
   padding: 2px 15px 2px 15px;
-	border:1px groove #54f403;
+  border:1px groove #54f403;
   border-radius:15px;
   box-shadow: 0px 0px 4px 2px #54f403;
   background:transparent;
 }
 
 .increase-characteristic{
-	margin-top:10px;
+  margin-top:10px;
   margin-bottom:10px;
   padding:0;
 }
 
 .characteristic-plus-button{
-	border:1px groove #1933f4;
+  border:1px groove #1933f4;
   border-radius:15px;
   background:transparent;
   //padding: 5px 25px 5px 25px;
 }
 
 .characteristic-minus-button{
-	border:1px groove #e21414;
+  border:1px groove #e21414;
   border-radius:15px;
   background: transparent;
   padding: 5px 25px 5px 25px;
 }
 
 .lightsabers-plus-minus{
-	transform: rotate(45deg);
+  transform: rotate(45deg);
   color:lightgray;
   font-size:22px;
   padding-top:5px;
   padding-bottom:5px;
- }
+}
 
 .invest-characteristics{
   //padding-top: 6px;
   //padding-bottom:6px;
   padding-left:0;
   padding-right:0;
-	text-align:center;
+  text-align:center;
   border:1px groove #e21414;
   border-radius:15px;
   min-height:180px;
@@ -915,7 +919,7 @@ input{
 
 .characteristic-value{
   padding:0;
-	text-align:center;
+  text-align:center;
   //border:1px groove #54f403;
   border-radius:15px;
   margin-bottom: 5px;
@@ -923,17 +927,17 @@ input{
 }
 
 .decrease-characteristic{
-	margin-top:10px;
+  margin-top:10px;
   margin-bottom:10px;
   padding:0;
 }
 
 .skills-investment-container, .talent-investment-container, .specialization-investment-container{
-	margin-top:20px;
+  margin-top:20px;
 }
 
 .skill, .talent, .specialization,.force-power{
-	background-color:black;
+  background-color:black;
   border: 1px groove #e21414;
   font-size:18px;
   padding:5px 0px 5px 0px;
@@ -945,47 +949,47 @@ input{
 
 .force-power-header,.skill-name-header, .skill-rank-header, .talent-name-header,.talent-tier-header, .spec-name-header{
   margin-top:10px;
-	text-align: left;
+  text-align: left;
   font-size: 18px;
   margin-bottom:10px;
 }
 
 #powerHeader{
-	border-bottom:2px groove white;
+  border-bottom:2px groove white;
 }
 
 .skill-name, .skill-rank, .talent-name, .talent-tier{
-	margin-top:25px;
+  margin-top:25px;
 }
 
 .fa-medal{
-	color:#54f403;
+  color:#54f403;
   font-size:16px;
 }
 
 .icon-definition{
-	text-align:center;
+  text-align:center;
   margin-top:15px;
 }
 
 .skill-rank, .skill-rank-header{
-	text-align:center;
+  text-align:center;
 }
 
 #investCharacteristicsHeader, #skillInvestHeader, .investment-tab-header{
-	font-size:22px;
+  font-size:22px;
 }
 
 #skillInvestHeader{
-	border-bottom:3px groove white;
+  border-bottom:3px groove white;
 }
 
 #investCharacteristicsHeaderSW, #investCharacteristicsHeader{
-	text-align:center;
+  text-align:center;
 }
 
 .investment-tabs-container{
-	margin-top:30px;
+  margin-top:30px;
   padding:0;
 }
 
@@ -997,7 +1001,7 @@ input{
 }
 
 .skill-decrease-button{
-	border:1px groove #e21414;
+  border:1px groove #e21414;
   border-radius:15px;
   background: transparent;
   padding: 0px 10px 0px 10px;
@@ -1005,52 +1009,52 @@ input{
 }
 
 #freeSkillHeader{
-	text-align:center;
+  text-align:center;
   font-size:22px;
   margin-top:20px;
 }
 
 #freeSkillHeaderSW{
-	text-align:center;
+  text-align:center;
   font-size:18px;
   margin-bottom:10px;
 }
 
 #careerSkillsLabel,.free-skills-label{
-	font-size:16px;
+  font-size:16px;
   font-weight:bold;
 }
 
 .free-career-skill-rank{
-	background-color:black;
+  background-color:black;
   border: 1px groove #e21414;
   border-radius:15px;
   padding:0;
 }
 
 .free-career-skill-rank[free-rank-used="true"]{
-	background-color:#1933f4;
+  background-color:#1933f4;
 }
 
 .free-skill-name{
-	padding: 10px 0px 10px 0px;
+  padding: 10px 0px 10px 0px;
   text-align:center;
 }
 
 .specialization-skill-selection{
-	margin-top:20px;
+  margin-top:20px;
 }
 
 .confirm-button-container{
-	margin-top:40px;
+  margin-top:40px;
 }
 
 .increase-skill-button,.decrease-skill-button{
-	text-align:right;
+  text-align:right;
 }
 
 #confirmFreeSkillsButton{
-	background-color:black;
+  background-color:black;
   border: 1px groove #1933f4;
   border-radius:15px;
   box-shadow: 0px 0px 8px 3px #1933f4;
@@ -1061,117 +1065,125 @@ input{
 }
 
 .buttons{
-	margin-top:-10px;
+  margin-top:-10px;
 }
 
 .talent-specialization-name{
-	font-size:14px !important;
+  font-size:14px !important;
 }
 
 #forcePowerEnhancements{
-	display:none;
+  display:none;
 }
 
 @media only screen and (min-width:762px) and (max-width:1600px){
   .characteristic{
-  	font-size:12px;
+    font-size:12px;
     padding-left:0;
     padding-right:0;
     padding-top:5px;
     padding-bottom:5px;
   }
+  
+  .info-container{
+  	max-height: 50rem;
+  }
 }
 
 @media only screen and (max-width:762px){  
   #searchBox{
-   margin-left: 0; 
+    margin-left: 0; 
   }
-  
+
   .investment-tab-header{
-  	word-break: break-word;
+    word-break: break-word;
   }
-  
+
   .species-description, .description{
-  	padding-left:10px !important;
+    padding-left:10px !important;
     padding-right:10px !important;
   }
-  
+
   .species-image{
-  	margin:5px 0px 5px 10px;
+    margin:5px 0px 5px 10px;
   }
-  
+
   .career-buttons,.spec-buttons,.buttons{
-  	padding-top:10px;
+    padding-top:10px;
     margin-left:-20px;
   }
-  
+
   .mobile-sw-text{
-  	font-size:10px;
+    font-size:10px;
   }
-  
+
   .col-xs-12, .col-xs-3{
-  	padding:0;
+    padding:0;
   }
-  
+
   .investments-container{
-  	padding:0px 7px 0px 7px !important;
+    padding:0px 7px 0px 7px !important;
   }
-  
+
   .investment-tabs-container{
- 		font-size:12px; 
-	}
-  
-  .free-career-skill-rank{
-  	margin-bottom:10px; 
+    font-size:12px; 
   }
-  
+
+  .free-career-skill-rank{
+    margin-bottom:10px; 
+  }
+
   .free-skill-name{
-  	min-height:60px;
+    min-height:60px;
     font-size:12px;
   }
-  
+
   .xp-tracker{
-   top: 170px; 
+    top: 170px; 
   }
-  
+
   #xpValue{
-		font-size:22px;
-	}
+    font-size:22px;
+  }
 
-#xpValueSW{
-	font-size:18px;
-}
+  #xpValueSW{
+    font-size:18px;
+  }
 
-#xpNumber{
-	font-size: 26px;
-}
-  
+  #xpNumber{
+    font-size: 26px;
+  }
+
   .invest-characteristics{
-  	 border:none;
+    border:none;
   }
-  
+
   .fa-expand-alt{
-  	display:none;
+    display:none;
   }
-  
+
   .top-characteristic{
-  	margin-bottom:10px;
+    margin-bottom:10px;
   }
-  
+
   .large-image-container{
-  	left:85px;
+    left:85px;
   }
-  
+
   .species-list{
-  	padding-left:0;
+    padding-left:0;
     padding-right:0;
   }
-  
+
   .characteristic{
-  	margin-right:0;
+    margin-right:0;
+  }
+  
+  .info-container{
+  	max-height: 70rem;
   }
 }
-}</css>
+</css>
         <data_table>sp_instance</data_table>
         <demo_data/>
         <description/>
@@ -1645,14 +1657,14 @@ input{
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-10-16 18:34:06</sys_created_on>
         <sys_id>fd44b3432f771890e0f497eef699b611</sys_id>
-        <sys_mod_count>764</sys_mod_count>
+        <sys_mod_count>769</sys_mod_count>
         <sys_name>Star Wars Character Creator</sys_name>
         <sys_package display_value="Star Wars RPG" source="x_176383_star_wars">64b3517bdb5a08542901de90cf961993</sys_package>
         <sys_policy/>
         <sys_scope display_value="Star Wars RPG">64b3517bdb5a08542901de90cf961993</sys_scope>
         <sys_update_name>sp_widget_fd44b3432f771890e0f497eef699b611</sys_update_name>
         <sys_updated_by>ben.fisher</sys_updated_by>
-        <sys_updated_on>2024-03-31 00:00:42</sys_updated_on>
+        <sys_updated_on>2025-01-22 21:41:02</sys_updated_on>
         <template><![CDATA[<head>
   <script src="https://kit.fontawesome.com/035f51c999.js" crossorigin="anonymous"></script>
 </head>
