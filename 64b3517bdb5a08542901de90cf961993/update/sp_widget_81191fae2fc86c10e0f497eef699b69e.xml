@@ -55,7 +55,7 @@
 			});
 		}
 	});
-	
+
 	$scope.toggleCareerSkill = function(skill){
 		c.server.get({action: 'toggleCareerSkill', skill: skill}).then(function(response){
 			c.server.refresh();
@@ -933,7 +933,7 @@
 		$scope.data.currentVehicleInfo = vehicle;
 		document.getElementById('vehicleInfoBox').style.display = 'inline';
 	}
-	
+
 	$scope.addCrit = function(critID){
 		c.isSubmitting = true;
 		c.server.get({action: 'addCrit', crit: critID}).then(function(response){
@@ -941,7 +941,7 @@
 			$scope.data.character.criticalInjuries = response.data.character.criticalInjuries;
 		});
 	}
-	
+
 	$scope.removeCrit = function(critID){
 		c.isSubmitting = true;
 		c.server.get({action: 'removeCrit', crit: critID}).then(function(response){
@@ -1000,6 +1000,36 @@
 			talent.used = 'false';
 		}
 		c.server.get({action: 'updateLimitedUseTalent', talent: talent});
+	}
+
+	$scope.sortGear = function(orderBy, reverse){
+		if(orderBy == 'item.name'){
+			if(reverse){
+				$scope.data.availableGear.sort(function(a,b){
+					var x = a.name.toLowerCase();
+					var y = b.name.toLowerCase();
+					if (x < y) {return 1;}
+					if (x > y) {return -1;}
+					return 0;
+				});
+			} else{
+				$scope.data.availableGear.sort(function(a,b){
+					var x = a.name.toLowerCase();
+					var y = b.name.toLowerCase();
+					if (x < y) {return -1;}
+					if (x > y) {return 1;}
+					return 0;
+				});
+			}
+		} else{
+			$scope.data.availableGear.sort(function(a,b){
+				if(reverse){
+					return b.priceInt - a.priceInt;
+				} else{
+					return a.priceInt - b.priceInt;
+				}
+			});
+		}
 	}
 
 	setTimeout(clearDiceRolls, 10);
@@ -2438,6 +2468,7 @@ input:checked + .slider:before {
 				typeID: gear.type + '',
 				skillUsed: gear.skill_used.getDisplayValue(),
 				price: gear.price + '',
+				priceInt: parseInt(gear.price),
 				defense: gear.defense + '',
 				soak: gear.soak + '',
 				damage: gear.base_damage + '',
@@ -3046,14 +3077,14 @@ input:checked + .slider:before {
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-10-27 13:34:00</sys_created_on>
         <sys_id>81191fae2fc86c10e0f497eef699b69e</sys_id>
-        <sys_mod_count>1594</sys_mod_count>
+        <sys_mod_count>1620</sys_mod_count>
         <sys_name>Star Wars Character Sheet</sys_name>
         <sys_package display_value="Star Wars RPG" source="x_176383_star_wars">64b3517bdb5a08542901de90cf961993</sys_package>
         <sys_policy/>
         <sys_scope display_value="Star Wars RPG">64b3517bdb5a08542901de90cf961993</sys_scope>
         <sys_update_name>sp_widget_81191fae2fc86c10e0f497eef699b69e</sys_update_name>
         <sys_updated_by>ben.fisher</sys_updated_by>
-        <sys_updated_on>2025-01-08 05:38:33</sys_updated_on>
+        <sys_updated_on>2025-01-23 15:35:24</sys_updated_on>
         <template><![CDATA[<head>
   <script src="https://kit.fontawesome.com/035f51c999.js"></script>
 </head>
@@ -4036,13 +4067,13 @@ input:checked + .slider:before {
       </span>
     </span>
     <!-- edit gear/marketplace -->
-    <span class="edit-character" id="marketplaceContainer" ng-init="c.gearSearchInput = ''">
+    <span class="edit-character" id="marketplaceContainer" ng-init="c.gearSearchInput = ''; c.orderBy = 'item.name'; c.reverse = false">
       <span class="col-xs-12 close-button" ng-click="closeEditContainer('gear')"><i class="fas fa-swords-laser slideout-close-icon"></i></span>
       <span class="col-xs-12 marketplace-body">
         <span class="col-xs-12 filter-buttons">
           <span class="gear-filter-select-container">
           <label for="gearFilterSelect">Type: </label>
-          <select class="sw-input" name="gearFilterSelect" id="gearFilterSelect" ng-change="filterGear()" ng-model="All">
+          <select class="sw-input" name="gearFilterSelect" id="gearFilterSelect" ng-change="filterGear()" ng-model="all" value="all">
             <option value="all">All</option>
             <option value="weapon">Weapon</option>
             <option value="armor">Armor</option>
@@ -4061,8 +4092,8 @@ input:checked + .slider:before {
         </span>
         <span class="col-xs-12 marketplace-items-container">
           <span class="col-xs-12 marketplace-headers">
-            <span class="col-xs-6 marketplace-header">Name:</span>
-            <span class="col-xs-2 marketplace-header">Price:</span>
+            <span class="col-xs-6 marketplace-header" ng-click="c.orderBy = 'item.name'; c.reverse = !c.reverse; sortGear(c.orderBy, c.reverse)">Name: <span ng-if="c.orderBy == 'item.name' && c.reverse"><i class="fas fa-caret-down"></i></span><span ng-if="c.orderBy == 'item.name' && !c.reverse"><i class="fas fa-caret-up"></i></span></span>
+            <span class="col-xs-2 marketplace-header" ng-click="c.orderBy = 'item.priceInt'; c.reverse = !c.reverse; sortGear(c.orderBy, c.reverse)">Price: <span ng-if="c.orderBy == 'item.priceInt' && c.reverse"><i class="fas fa-caret-down"></i></span><span ng-if="c.orderBy == 'item.priceInt' && !c.reverse"><i class="fas fa-caret-up"></i></span></span>
             <span class="col-xs-2 marketplace-header">Quantity:</span>
             <span class="col-xs-2 marketplace-header"></span>
           </span>
