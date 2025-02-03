@@ -209,6 +209,12 @@ a:hover{
   color:lightgray !important;
 }
 
+.campaign-detail-body{
+  .description-link{
+  	font-size: 1.6rem;
+  }
+}
+
 .character{
   background-color:black;
   margin-bottom:15px;
@@ -338,10 +344,14 @@ a:hover{
   box-shadow: 0px 0px 4px 2px #54f403;
   max-height: 500px;
   overflow-y: scroll;
-  z-index: 2;
+  z-index: 5;
   display:flex;
   flex-flow: column nowrap;
   padding:2rem;
+  
+  a{
+  	text-decoration: underline;
+  }
   
   .close-container{
   	order: 0;
@@ -518,9 +528,13 @@ a:hover{
 				name: vehicles.name + '',
 				shipName: vehicles.vehicle.ship_name + '',
 				type: vehicles.vehicle.type.getDisplayValue(),
-				sysID: vehicles.sys_id + ''
+				sysID: vehicles.sys_id + '',
+				visible: vehicles.character.visible_to_players ? true:false
 			};
-			data.campaignVehicles.push(vObj);
+			
+			if(vObj.visible || data.isGm){
+				data.campaignVehicles.push(vObj);
+			}
 		}
 
 		//retrieve campaign session notes
@@ -685,14 +699,14 @@ a:hover{
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-12-30 20:58:45</sys_created_on>
         <sys_id>80a4e2d72fd5ac10e0f497eef699b6c0</sys_id>
-        <sys_mod_count>286</sys_mod_count>
+        <sys_mod_count>292</sys_mod_count>
         <sys_name>Star Wars Campaigns</sys_name>
         <sys_package display_value="Star Wars RPG" source="x_176383_star_wars">64b3517bdb5a08542901de90cf961993</sys_package>
         <sys_policy/>
         <sys_scope display_value="Star Wars RPG">64b3517bdb5a08542901de90cf961993</sys_scope>
         <sys_update_name>sp_widget_80a4e2d72fd5ac10e0f497eef699b6c0</sys_update_name>
         <sys_updated_by>ben.fisher</sys_updated_by>
-        <sys_updated_on>2024-02-27 00:30:28</sys_updated_on>
+        <sys_updated_on>2025-02-03 22:34:30</sys_updated_on>
         <template><![CDATA[<head>
   <script src="https://kit.fontawesome.com/035f51c999.js" crossorigin="anonymous"></script>
 </head>
@@ -731,6 +745,7 @@ a:hover{
       <i class="fad fa-starfighter fa-2x" id="starfighterBackButton"></i> <text id="backButtonText">Back</text>
     </div>
     <span class="col-xs-12 header text-center">{{data.currentCampaign.name}}<br><text class="star-wars-text">{{data.currentCampaign.name}}</text></span>
+    <span ng-if="data.currentCampaign.gmID == data.userID" class="col-xs-12 description-link text-center"><a href="javascript:void(0)" ng-click="showCampaignDescription(data.currentCampaign)">View Description</a></span>
     <!-- campaign ID for GM's -->
     <div ng-if="data.currentCampaign.gmID == data.userID" id="campaignIdButton">
       <span class="col-xs-12 campaign-id-title">Campaign ID: {{data.currentCampaign.sysID}}</span>

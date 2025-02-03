@@ -4,6 +4,17 @@
   background-color:black !important;&#13;
 }&#13;
 &#13;
+th{&#13;
+  border: .1rem solid white;&#13;
+  padding: .5rem 1rem;&#13;
+  text-align: center;&#13;
+}&#13;
+&#13;
+td{&#13;
+  border: .1rem solid white;&#13;
+  padding: .5rem 1rem;&#13;
+}&#13;
+&#13;
 .form-group{&#13;
   .type-reference{&#13;
     .field-has-reference{&#13;
@@ -61,14 +72,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-01-19 17:58:58</sys_created_on>
         <sys_id>dd3bbcb52f31e410e0f497eef699b6e8</sys_id>
-        <sys_mod_count>17</sys_mod_count>
+        <sys_mod_count>18</sys_mod_count>
         <sys_name>Star Wars Styling Tweaks</sys_name>
         <sys_package display_value="Star Wars RPG" source="x_176383_star_wars">64b3517bdb5a08542901de90cf961993</sys_package>
         <sys_policy/>
         <sys_scope display_value="Star Wars RPG">64b3517bdb5a08542901de90cf961993</sys_scope>
         <sys_update_name>sp_css_dd3bbcb52f31e410e0f497eef699b6e8</sys_update_name>
         <sys_updated_by>ben.fisher</sys_updated_by>
-        <sys_updated_on>2024-04-09 14:44:20</sys_updated_on>
+        <sys_updated_on>2025-01-24 17:29:28</sys_updated_on>
         <turn_off_scss_compilation>false</turn_off_scss_compilation>
     </sp_css>
 </record_update>
