@@ -508,12 +508,13 @@ a:hover{
 			if(characters.player.sys_id != data.currentCampaign.gmID){
 				data.campaignCharacters.push(cObj);
 				characterIDString += characters.sys_id + ',';
-			} else if(cObj.visible && !data.isGm){
-				data.npcs.push(cObj);
-			} else if(data.isGm){
+			} else if((cObj.visible && !data.isGm) || data.isGm){
 				data.npcs.push(cObj);
 				characterIDString += characters.sys_id + ',';
-			}
+			} /*else if(data.isGm){
+				data.npcs.push(cObj);
+				characterIDString += characters.sys_id + ',';
+			}*/
 		}
 
 		//retrieve all vehicles assigned to a character within this campaign.
@@ -529,7 +530,7 @@ a:hover{
 				shipName: vehicles.vehicle.ship_name + '',
 				type: vehicles.vehicle.type.getDisplayValue(),
 				sysID: vehicles.sys_id + '',
-				visible: vehicles.character.visible_to_players ? true:false
+				visible: vehicles.character.visible_to_players.toString() == 'true' ? true: vehicles.character.player != data.currentCampaign.gmID ? true : false
 			};
 			
 			if(vObj.visible || data.isGm){
@@ -699,14 +700,14 @@ a:hover{
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-12-30 20:58:45</sys_created_on>
         <sys_id>80a4e2d72fd5ac10e0f497eef699b6c0</sys_id>
-        <sys_mod_count>292</sys_mod_count>
+        <sys_mod_count>299</sys_mod_count>
         <sys_name>Star Wars Campaigns</sys_name>
         <sys_package display_value="Star Wars RPG" source="x_176383_star_wars">64b3517bdb5a08542901de90cf961993</sys_package>
         <sys_policy/>
         <sys_scope display_value="Star Wars RPG">64b3517bdb5a08542901de90cf961993</sys_scope>
         <sys_update_name>sp_widget_80a4e2d72fd5ac10e0f497eef699b6c0</sys_update_name>
         <sys_updated_by>ben.fisher</sys_updated_by>
-        <sys_updated_on>2025-02-03 22:34:30</sys_updated_on>
+        <sys_updated_on>2025-02-08 21:44:13</sys_updated_on>
         <template><![CDATA[<head>
   <script src="https://kit.fontawesome.com/035f51c999.js" crossorigin="anonymous"></script>
 </head>

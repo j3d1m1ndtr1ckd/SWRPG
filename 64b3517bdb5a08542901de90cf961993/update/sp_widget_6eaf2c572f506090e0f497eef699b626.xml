@@ -227,7 +227,8 @@
 
 			case 'speed':
 				var speed = parseInt(document.getElementById('vehicleInputSpeed').value);
-				c.server.get({action: 'saveSpeed', speed: speed}).then(function(response){
+				var currentSpeed = parseInt(document.getElementById('vehicleInputCurrentSpeed').value);
+				c.server.get({action: 'saveSpeed', speed: speed, currentSpeed: currentSpeed}).then(function(response){
 					c.server.refresh();
 					$scope.closeEditContainer('speed');
 				});
@@ -872,6 +873,7 @@ label,.sw-input{
 		hp: vehicleGR.hard_points + '',
 		armor: vehicleGR.armor + '',
 		speed: vehicleGR.speed + '',
+		currentSpeed: vehicleGR.current_speed + '',
 		handling: vehicleGR.handling + '',
 		htThreshold: vehicleGR.hull_trauma_threshold + '',
 		ssThreshold: vehicleGR.system_strain_threshold + '',
@@ -965,6 +967,7 @@ label,.sw-input{
 
 			case 'saveSpeed':
 				vehicleGR.speed = input.speed;
+				vehicleGR.current_speed = input.currentSpeed;
 				vehicleGR.update();
 				break;
 
@@ -1029,14 +1032,14 @@ label,.sw-input{
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-11-10 19:24:58</sys_created_on>
         <sys_id>6eaf2c572f506090e0f497eef699b626</sys_id>
-        <sys_mod_count>289</sys_mod_count>
+        <sys_mod_count>294</sys_mod_count>
         <sys_name>Star Wars Vehicle Sheet</sys_name>
         <sys_package display_value="Star Wars RPG" source="x_176383_star_wars">64b3517bdb5a08542901de90cf961993</sys_package>
         <sys_policy/>
         <sys_scope display_value="Star Wars RPG">64b3517bdb5a08542901de90cf961993</sys_scope>
         <sys_update_name>sp_widget_6eaf2c572f506090e0f497eef699b626</sys_update_name>
         <sys_updated_by>ben.fisher</sys_updated_by>
-        <sys_updated_on>2024-12-17 00:04:16</sys_updated_on>
+        <sys_updated_on>2025-02-08 07:00:45</sys_updated_on>
         <template><![CDATA[<head>
   <script src="https://kit.fontawesome.com/035f51c999.js"></script>
 </head>
@@ -1058,10 +1061,6 @@ label,.sw-input{
         <span class="col-xs-12 vehicle-characteristic-label">Silhouette</span>
         <span class="col-xs-12 vehicle-characteristic">{{data.vehicle.silhouette}}</span>
       </span>
-      <span class="col-xs-6 col-md-4 characteristic-container" ng-click="editVehicle('speed')">
-        <span class="col-xs-12 vehicle-characteristic-label">Speed</span>
-        <span class="col-xs-12 vehicle-characteristic">{{data.vehicle.speed}}</span>
-      </span>
       <span class="col-xs-6 col-md-4 characteristic-container" ng-click="editVehicle('handling')">
         <span class="col-xs-12 vehicle-characteristic-label">Handling</span>
         <span class="col-xs-12 vehicle-characteristic">{{data.vehicle.handling}}</span>
@@ -1069,6 +1068,17 @@ label,.sw-input{
       <span class="col-xs-6 col-md-4 characteristic-container" ng-click="editVehicle('armor')">
         <span class="col-xs-12 vehicle-characteristic-label vehicle-combat-charactistic-label">Armor</span>
         <span class="col-xs-12 vehicle-characteristic">{{data.vehicle.armor}}</span>
+      </span>
+      <span class="col-xs-6 col-md-4 characteristic-container" ng-click="editVehicle('speed')">
+        <span class="col-xs-12 vehicle-characteristic-label">Speed</span>
+        <span class="col-xs-6 threshold-container">
+        	<span class="col-xs-12 vehicle-characteristic">{{data.vehicle.speed}}</span>
+        	<span class="col-xs-12 vehicle-characteristic-label threshold">Max Speed</span>
+        </span>
+        <span class="col-xs-6 current-container">
+          <span class="col-xs-12 vehicle-characteristic">{{data.vehicle.currentSpeed}}</span>
+          <span class="col-xs-12 vehicle-characteristic-label current">Current Speed</span>
+        </span>
       </span>
       <span class="col-xs-6 col-md-4 characteristic-container" ng-click="editVehicle('hullTrauma')">
         <span class="col-xs-12 vehicle-characteristic-label vehicle-combat-characteristic-label">Hull Trauma</span>
@@ -1207,8 +1217,10 @@ label,.sw-input{
 <span class="edit-vehicle" id="editVehicleSpeed">
   <span class="col-xs-12 close-button" ng-click="closeEditContainer('speed')"><i class="fas fa-swords-laser"></i></span>
   <span class="col-xs-12 edit-vehicle-info-container">
-    <label for="vehicleInputSpeed">Speed:</label><br>
-    <input class="sw-input" type="text" id="vehicleInputSpeed" name="vehicleInputSpeed" inputmode="numeric" pattern="[0-9]*" value="{{data.vehicle.speed}}"/>
+    <label for="vehicleInputSpeed">Max Speed:</label><br>
+    <input class="sw-input" type="text" id="vehicleInputSpeed" name="vehicleInputSpeed" inputmode="numeric" pattern="[0-9]*" value="{{data.vehicle.speed}}"/><br/>
+    <label for="vehicleInputCurrentSpeed">Current Speed:</label><br>
+    <input class="sw-input" type="text" id="vehicleInputCurrentSpeed" name="vehicleInputCurrentSpeed" inputmode="numeric" pattern="[0-9]*" value="{{data.vehicle.currentSpeed}}"/>
   </span>
   <span class="col-xs-12 save-edits">
   	<span class="col-xs-12 save-button-container">

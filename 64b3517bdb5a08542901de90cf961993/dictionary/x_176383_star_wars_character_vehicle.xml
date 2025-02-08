@@ -13,6 +13,7 @@
         <element attributes="edge_encryption_enabled=true" default="0" label="System Strain Current" max_length="32" name="system_strain_current" type="integer"/>
         <element attributes="edge_encryption_enabled=true" default="0" label="Defense Aft" max_length="32" name="defense_aft" type="integer"/>
         <element attributes="edge_encryption_enabled=true" default="javascript:current.vehicle.hard_points" label="Hard Points" max_length="32" name="hard_points" type="integer"/>
+        <element default="0" label="Current speed" max_length="32" name="current_speed" type="integer"/>
         <element attributes="edge_encryption_enabled=true" default="0" label="Critical Injuries" max_length="32" name="critical_injuries" type="integer"/>
         <element attributes="edge_encryption_enabled=true" label="Cargo hold" max_length="5000" name="cargo_hold" type="html"/>
         <element attributes="edge_encryption_enabled=true,encode_utf8=false" label="Character" max_length="32" name="character" reference="x_176383_star_wars_character" type="reference"/>
