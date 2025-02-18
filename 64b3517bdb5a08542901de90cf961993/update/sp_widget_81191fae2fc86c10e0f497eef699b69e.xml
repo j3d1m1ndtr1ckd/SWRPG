@@ -232,7 +232,7 @@
 		if($scope.data.canEdit || section == 'career' || section == 'specializations' || section == 'species'){
 			switch(section){
 				case 'addXP':
-					if($scope.data.isGM){
+					if($scope.data.isGM || ($scope.data.character.campaign == '' && $scope.data.character.playerID == $scope.data.playerID)){
 						var container = document.getElementById('editCharacterXP');
 						container.style.display = 'inline';
 						if(parseInt(screen.width) < 762){
@@ -2346,6 +2346,8 @@ input:checked + .slider:before {
 		}
 		data.character = {
 			name: charGR.name + '' || 'Name your character',
+			campaign: charGR.campaign.getDisplayValue(),
+			playerID: charGR.player + '',
 			species: charGR.species.getDisplayValue(),
 			speciesDescription: charGR.species.description + '',
 			career: charGR.career.getDisplayValue(),
@@ -2423,7 +2425,6 @@ input:checked + .slider:before {
 			name:charGR.career.getDisplayValue(),
 			description:charGR.career.description + ''
 		};
-		//data.careers = util.getCareers();
 
 		//retrieve career specialization display values
 		var specializationShit = util.buildCareerSpecializationDetails(data.character.specializationIDs, data.character.specializationNames, data.character.careerID, data.character.availableXPInt);
@@ -2448,15 +2449,14 @@ input:checked + .slider:before {
 		data.talents = talentShit.talents;
 		var signatureAbilityTalentArray = talentShit.signatureAbilityTalentArray;
 		data.availableTalents = talentShit.availableTalents;
-		console.log(data.availableTalents);
 
 		//retrieve character skills and values
 		data.skills = util.buildSkills(data.characterID, data.character, data.talents);
+
 		//retrieve inventory list
 		data.availableGear = [];
 		var gear = new GlideRecord('x_176383_star_wars_gear');
 		gear.addQuery('type', '!=', 'vehicle_weapon').addCondition('type', '!=', 'vehicle_mod');
-		gear.orderBy('type');
 		gear.orderBy('name');
 		gear.query();
 		while(gear.next()){
@@ -2519,13 +2519,14 @@ input:checked + .slider:before {
 		data.characterVehicles = vehicleShit.characterVehicles;
 
 		//retrieve force powers and enhancements
-		data.characterPowers = util.getCharacterForcePowers(data.characterID);
-		var forceEnhancementShit = util.getCharacterForceEnhancements(data.characterID);
-		data.cForceEnhancements = forceEnhancementShit.cForceEnhancements;
-		data.ownedEnhancements = forceEnhancementShit.ownedEnhancements;
-		data.forcePowers = util.buildForcePowers(data.character, data.characterPowers);
-		data.forceEnhancements = util.buildForcePowerEnhancements(data.character, data.ownedEnhancements, data.characterPowers);
-
+		if(data.character.forceRatingInt > 0){
+			data.characterPowers = util.getCharacterForcePowers(data.characterID);
+			var forceEnhancementShit = util.getCharacterForceEnhancements(data.characterID);
+			data.cForceEnhancements = forceEnhancementShit.cForceEnhancements;
+			data.ownedEnhancements = forceEnhancementShit.ownedEnhancements;
+			data.forcePowers = util.buildForcePowers(data.character, data.characterPowers);
+			data.forceEnhancements = util.buildForcePowerEnhancements(data.character, data.ownedEnhancements, data.characterPowers);
+		}
 		//character signature abilities
 		//get unlocked signature abilities first
 		var sigAbilityShit = util.getCharacterSignatureAbilities(data.characterID);
@@ -3057,7 +3058,7 @@ input:checked + .slider:before {
 			}
 		}
 	} catch(e){
-		gs.addErrorMessage(e.message);
+		gs.addErrorMessage('error in character sheet: ' + e.message);
 	}
 
 	function checkGM(campaign){
@@ -3077,14 +3078,14 @@ input:checked + .slider:before {
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-10-27 13:34:00</sys_created_on>
         <sys_id>81191fae2fc86c10e0f497eef699b69e</sys_id>
-        <sys_mod_count>1620</sys_mod_count>
+        <sys_mod_count>1630</sys_mod_count>
         <sys_name>Star Wars Character Sheet</sys_name>
         <sys_package display_value="Star Wars RPG" source="x_176383_star_wars">64b3517bdb5a08542901de90cf961993</sys_package>
         <sys_policy/>
         <sys_scope display_value="Star Wars RPG">64b3517bdb5a08542901de90cf961993</sys_scope>
         <sys_update_name>sp_widget_81191fae2fc86c10e0f497eef699b69e</sys_update_name>
         <sys_updated_by>ben.fisher</sys_updated_by>
-        <sys_updated_on>2025-01-23 15:35:24</sys_updated_on>
+        <sys_updated_on>2025-02-18 23:49:55</sys_updated_on>
         <template><![CDATA[<head>
   <script src="https://kit.fontawesome.com/035f51c999.js"></script>
 </head>

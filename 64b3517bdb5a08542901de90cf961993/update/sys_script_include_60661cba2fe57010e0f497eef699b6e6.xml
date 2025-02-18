@@ -8,6 +8,7 @@
         <description/>
         <mobile_callable>false</mobile_callable>
         <name>starWarsUtil</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[var starWarsUtil = Class.create();
 starWarsUtil.prototype = {
     initialize: function() {},
@@ -57,6 +58,7 @@ starWarsUtil.prototype = {
     },
 
     getCharacterSignatureAbilities: function(characterID) {
+		try{
         var purchasedAbilities = '';
         var purchasedUpgrades = '';
         var specsUsed = '';
@@ -85,6 +87,9 @@ starWarsUtil.prototype = {
             characterSignatureAbilities: characterSignatureAbilities
         };
         return returnObj;
+		} catch(e){
+			gs.addErrorMessage('error with sig ability script');
+		}
     },
 
     getCharacterSignatureAbilityUpgrades: function(sa, characterID) {
@@ -257,6 +262,7 @@ starWarsUtil.prototype = {
     },
 
     buildCareerSpecializationDetails: function(currentSpecs, specNames, career, availableXP) {
+		try{
         var specializationInfo = [];
         var specsToPurchase = [];
         var spec = new GlideRecord('x_176383_star_wars_career_specialization');
@@ -301,6 +307,9 @@ starWarsUtil.prototype = {
             specNames: specNames
         };
         return returnObj;
+		} catch(e){
+			gs.addErrorMessage('error getting specialization details');
+		}
     },
 
     buildSkills: function(characterID, characterObj, talents) {
@@ -796,14 +805,14 @@ starWarsUtil.prototype = {
         <sys_created_by>ben.fisher</sys_created_by>
         <sys_created_on>2021-07-28 03:50:03</sys_created_on>
         <sys_id>60661cba2fe57010e0f497eef699b6e6</sys_id>
-        <sys_mod_count>60</sys_mod_count>
+        <sys_mod_count>63</sys_mod_count>
         <sys_name>starWarsUtil</sys_name>
         <sys_package display_value="Star Wars RPG" source="x_176383_star_wars">64b3517bdb5a08542901de90cf961993</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="Star Wars RPG">64b3517bdb5a08542901de90cf961993</sys_scope>
         <sys_update_name>sys_script_include_60661cba2fe57010e0f497eef699b6e6</sys_update_name>
         <sys_updated_by>ben.fisher</sys_updated_by>
-        <sys_updated_on>2025-01-08 05:58:31</sys_updated_on>
+        <sys_updated_on>2025-02-18 20:01:14</sys_updated_on>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
         <id>60661cba2fe57010e0f497eef699b6e6</id>
