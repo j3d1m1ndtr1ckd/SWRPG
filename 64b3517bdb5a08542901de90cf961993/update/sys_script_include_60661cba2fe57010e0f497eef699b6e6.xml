@@ -58,38 +58,38 @@ starWarsUtil.prototype = {
     },
 
     getCharacterSignatureAbilities: function(characterID) {
-		try{
-        var purchasedAbilities = '';
-        var purchasedUpgrades = '';
-        var specsUsed = '';
-        var characterSignatureAbilities = [];
-        var charSa = new GlideRecord('x_176383_star_wars_character_signature_ability');
-        charSa.addQuery('character', characterID);
-        charSa.orderBy('signature_ability.name');
-        charSa.query();
-        while (charSa.next()) {
-            specsUsed += charSa.career_specialization.sys_id + ',';
-            var obj = {
-                name: charSa.signature_ability.getDisplayValue(),
-                specialization: charSa.career_specialization.getDisplayValue(),
-                sys_id: charSa.signature_ability.sys_id + '',
-                description: charSa.signature_ability.description + '',
-                upgrades: this.getCharacterSignatureAbilityUpgrades(charSa.signature_ability.sys_id.toString(), characterID)
+        try {
+            var purchasedAbilities = '';
+            var purchasedUpgrades = '';
+            var specsUsed = '';
+            var characterSignatureAbilities = [];
+            var charSa = new GlideRecord('x_176383_star_wars_character_signature_ability');
+            charSa.addQuery('character', characterID);
+            charSa.orderBy('signature_ability.name');
+            charSa.query();
+            while (charSa.next()) {
+                specsUsed += charSa.career_specialization.sys_id + ',';
+                var obj = {
+                    name: charSa.signature_ability.getDisplayValue(),
+                    specialization: charSa.career_specialization.getDisplayValue(),
+                    sys_id: charSa.signature_ability.sys_id + '',
+                    description: charSa.signature_ability.description + '',
+                    upgrades: this.getCharacterSignatureAbilityUpgrades(charSa.signature_ability.sys_id.toString(), characterID)
+                };
+                purchasedAbilities += obj.sys_id + ',';
+                purchasedUpgrades += obj.upgrades.idString;
+                characterSignatureAbilities.push(obj);
+            }
+            var returnObj = {
+                specsUsed: specsUsed,
+                purchasedAbilities: purchasedAbilities,
+                purchasedUpgrades: purchasedUpgrades,
+                characterSignatureAbilities: characterSignatureAbilities
             };
-            purchasedAbilities += obj.sys_id + ',';
-            purchasedUpgrades += obj.upgrades.idString;
-            characterSignatureAbilities.push(obj);
+            return returnObj;
+        } catch (e) {
+            gs.addErrorMessage('error with sig ability script');
         }
-        var returnObj = {
-            specsUsed: specsUsed,
-            purchasedAbilities: purchasedAbilities,
-            purchasedUpgrades: purchasedUpgrades,
-            characterSignatureAbilities: characterSignatureAbilities
-        };
-        return returnObj;
-		} catch(e){
-			gs.addErrorMessage('error with sig ability script');
-		}
     },
 
     getCharacterSignatureAbilityUpgrades: function(sa, characterID) {
@@ -262,57 +262,57 @@ starWarsUtil.prototype = {
     },
 
     buildCareerSpecializationDetails: function(currentSpecs, specNames, career, availableXP) {
-		try{
-        var specializationInfo = [];
-        var specsToPurchase = [];
-        var spec = new GlideRecord('x_176383_star_wars_career_specialization');
-        spec.orderBy('name');
-        spec.query();
-        while (spec.next()) {
-            if (currentSpecs.indexOf(spec.sys_id.toString()) > -1) {
-                var specObj = {
-                    name: spec.name + '',
-                    description: spec.description + ''
-                };
-                specializationInfo.push(specObj);
-                if (specNames == '') {
-                    specNames = spec.getDisplayValue();
+        try {
+            var specializationInfo = [];
+            var specsToPurchase = [];
+            var spec = new GlideRecord('x_176383_star_wars_career_specialization');
+            spec.orderBy('name');
+            spec.query();
+            while (spec.next()) {
+                if (currentSpecs.indexOf(spec.sys_id.toString()) > -1) {
+                    var specObj = {
+                        name: spec.name + '',
+                        description: spec.description + ''
+                    };
+                    specializationInfo.push(specObj);
+                    if (specNames == '') {
+                        specNames = spec.getDisplayValue();
+                    } else {
+                        specNames += ', ' + spec.getDisplayValue();
+                    }
                 } else {
-                    specNames += ', ' + spec.getDisplayValue();
+                    var spObj = {
+                        name: spec.getDisplayValue(),
+                        sysID: spec.sys_id + '',
+                        careerID: spec.career.sys_id + '',
+                        careerName: spec.career.getDisplayValue(),
+                        costToPurchase: (currentSpecs.split(',').length + 1) * 10,
+                        careerSkills: spec.specialization_skills + '',
+                        description: spec.description + ''
+                    };
+                    if (spec.career.sys_id.toString() != career) {
+                        spObj.costToPurchase += 10;
+                    }
+                    if (spObj.costToPurchase <= availableXP) {
+                        spObj.canPurchase = true;
+                    } else {
+                        spObj.canPurchase = false;
+                    }
+                    specsToPurchase.push(spObj);
                 }
-            } else {
-                var spObj = {
-                    name: spec.getDisplayValue(),
-                    sysID: spec.sys_id + '',
-                    careerID: spec.career.sys_id + '',
-                    careerName: spec.career.getDisplayValue(),
-                    costToPurchase: (currentSpecs.split(',').length + 1) * 10,
-                    careerSkills: spec.specialization_skills + '',
-                    description: spec.description + ''
-                };
-                if (spec.career.sys_id.toString() != career) {
-                    spObj.costToPurchase += 10;
-                }
-                if (spObj.costToPurchase <= availableXP) {
-                    spObj.canPurchase = true;
-                } else {
-                    spObj.canPurchase = false;
-                }
-                specsToPurchase.push(spObj);
             }
+            var returnObj = {
+                currentSpecInfo: specializationInfo,
+                specsToPurchase: specsToPurchase,
+                specNames: specNames
+            };
+            return returnObj;
+        } catch (e) {
+            gs.addErrorMessage('error getting specialization details');
         }
-        var returnObj = {
-            currentSpecInfo: specializationInfo,
-            specsToPurchase: specsToPurchase,
-            specNames: specNames
-        };
-        return returnObj;
-		} catch(e){
-			gs.addErrorMessage('error getting specialization details');
-		}
     },
 
-    buildSkills: function(characterID, characterObj, talents) {
+    buildSkills: function(characterID, characterObj, talents, sessionID, campaignID) {
         var skillArray = [];
         var ataru = JSON.parse(gs.getProperty('x_176383_star_wars.sw.ataru_technique'));
         var makashi = JSON.parse(gs.getProperty('x_176383_star_wars.sw.makashi_technique'));
@@ -379,7 +379,17 @@ starWarsUtil.prototype = {
                 rec.upgrades = rec.characteristic;
                 rec.abilityDice = rec.rankInt - rec.upgrades;
             } else {
-                rec.upgrades = rec.abilityDice = rec.rankInt;
+                //rec.upgrades = rec.abilityDice = rec.rankInt;
+                rec.abilityDice = 0;
+                rec.upgrades = rec.rankInt;
+            }
+            if (campaignID != '') {
+                var rollURL = '?id=star_wars_game_session&table=x_176383_star_wars_game_session&sys_id=' + sessionID + '&campaign=' + campaignID + '&roll=' + rec.abilityDice + ';' + rec.upgrades + ';';
+                rec.rollURL = rollURL;
+				rec.urlTarget = '_blank';
+            } else {
+                rec.rollURL = 'javascript:void(0)';
+				rec.urlTarget = '_self';
             }
             skillArray.push(rec);
         }
@@ -805,14 +815,14 @@ starWarsUtil.prototype = {
         <sys_created_by>ben.fisher</sys_created_by>
         <sys_created_on>2021-07-28 03:50:03</sys_created_on>
         <sys_id>60661cba2fe57010e0f497eef699b6e6</sys_id>
-        <sys_mod_count>63</sys_mod_count>
+        <sys_mod_count>74</sys_mod_count>
         <sys_name>starWarsUtil</sys_name>
         <sys_package display_value="Star Wars RPG" source="x_176383_star_wars">64b3517bdb5a08542901de90cf961993</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="Star Wars RPG">64b3517bdb5a08542901de90cf961993</sys_scope>
         <sys_update_name>sys_script_include_60661cba2fe57010e0f497eef699b6e6</sys_update_name>
         <sys_updated_by>ben.fisher</sys_updated_by>
-        <sys_updated_on>2025-02-18 20:01:14</sys_updated_on>
+        <sys_updated_on>2025-03-15 22:52:49</sys_updated_on>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
         <id>60661cba2fe57010e0f497eef699b6e6</id>

@@ -9,19 +9,22 @@
 	function buildDiceRolls(){
 		for(var i = 0; i < $scope.data.skills.length; i++){
 			var parentElement = document.getElementById($scope.data.skills[i].sysID);
-
+			var childElement = document.createElement("a");
+			parentElement.appendChild(childElement);
+			childElement.setAttribute('href', $scope.data.skills[i].rollURL);
+			childElement.setAttribute('target', $scope.data.skills[i].urlTarget);
 			if($scope.data.skills[i].rankInt != $scope.data.skills[i].characteristic){
 				for(var j = 0; j < $scope.data.skills[i].abilityDice; j++){
 					var icon = document.createElement("i");
 					icon.classList.add('fas', 'fa-dice-d8', 'ability-dice', 'dice');
-					parentElement.appendChild(icon);
+					childElement.appendChild(icon);
 				}
 			}
 
 			for(var j = 0; j < $scope.data.skills[i].upgrades; j++){
 				var icon = document.createElement("i");
 				icon.classList.add('fas', 'fa-dice-d12', 'proficiency-dice', 'dice');
-				parentElement.appendChild(icon);
+				childElement.appendChild(icon);
 			}
 		}
 	}
@@ -2339,6 +2342,7 @@ input:checked + .slider:before {
 		var charGR = new GlideRecord('x_176383_star_wars_character');
 		charGR.get(characterID);
 		data.isGM = checkGM(charGR.campaign);
+		var sessionID = '';
 		if(data.playerID == charGR.player.sys_id || gs.hasRole('admin') || data.isGM){
 			data.canEdit = true;
 		} else{
@@ -2347,6 +2351,7 @@ input:checked + .slider:before {
 		data.character = {
 			name: charGR.name + '' || 'Name your character',
 			campaign: charGR.campaign.getDisplayValue(),
+			campaignID: charGR.campaign.sys_id + '',
 			playerID: charGR.player + '',
 			species: charGR.species.getDisplayValue(),
 			speciesDescription: charGR.species.description + '',
@@ -2402,6 +2407,16 @@ input:checked + .slider:before {
 			portrait: charGR.portrait + '.iix',
 			signatureAbilitiesUnlocked: parseInt(charGR.signature_abilities_unlocked)
 		};
+		
+		//game session details to auto-populate rolls:
+		if(data.character.campaignID != ''){
+		var session = new GlideRecord('x_176383_star_wars_game_session');
+			session.addActiveQuery().addCondition('campaign', data.character.campaignID);
+			session.query();
+			if(session.next()){
+				sessionID = session.sys_id + '';
+			}
+		}
 
 		if(data.character.portrait == '.iix'){
 			data.character.portrait = data.character.species.toLowerCase() + '.png';
@@ -2451,7 +2466,7 @@ input:checked + .slider:before {
 		data.availableTalents = talentShit.availableTalents;
 
 		//retrieve character skills and values
-		data.skills = util.buildSkills(data.characterID, data.character, data.talents);
+		data.skills = util.buildSkills(data.characterID, data.character, data.talents, sessionID, data.character.campaignID);
 
 		//retrieve inventory list
 		data.availableGear = [];
@@ -3078,14 +3093,14 @@ input:checked + .slider:before {
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-10-27 13:34:00</sys_created_on>
         <sys_id>81191fae2fc86c10e0f497eef699b69e</sys_id>
-        <sys_mod_count>1630</sys_mod_count>
+        <sys_mod_count>1642</sys_mod_count>
         <sys_name>Star Wars Character Sheet</sys_name>
         <sys_package display_value="Star Wars RPG" source="x_176383_star_wars">64b3517bdb5a08542901de90cf961993</sys_package>
         <sys_policy/>
         <sys_scope display_value="Star Wars RPG">64b3517bdb5a08542901de90cf961993</sys_scope>
         <sys_update_name>sp_widget_81191fae2fc86c10e0f497eef699b69e</sys_update_name>
         <sys_updated_by>ben.fisher</sys_updated_by>
-        <sys_updated_on>2025-02-18 23:49:55</sys_updated_on>
+        <sys_updated_on>2025-03-15 22:50:45</sys_updated_on>
         <template><![CDATA[<head>
   <script src="https://kit.fontawesome.com/035f51c999.js"></script>
 </head>
