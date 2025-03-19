@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?><database>
     <element db_object_id="988bdb902fd06450e0f497eef699b6d5" label="Character Gear" max_length="40" name="x_176383_star_wars_character_gear_m2m" type="collection">
         <element attributes="edge_encryption_enabled=true,encode_utf8=false" label="Character" max_length="32" name="character" reference="x_176383_star_wars_character" type="reference"/>
+        <element default="0" label="Sunder level" max_length="32" name="sunder_level" type="integer"/>
         <element attributes="edge_encryption_enabled=true" default="javascript:current.item.hard_points" label="Hard Points" max_length="32" name="hard_points" type="integer"/>
         <element attributes="edge_encryption_enabled=true" default="javascript:current.item.description_html;" label="Description" max_length="5000" name="description" type="html"/>
         <element attributes="edge_encryption_enabled=true" label="Quantity" max_length="32" name="quantity" type="integer"/>

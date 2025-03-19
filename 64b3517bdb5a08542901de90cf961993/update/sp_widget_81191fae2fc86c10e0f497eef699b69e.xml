@@ -1034,6 +1034,13 @@
 			});
 		}
 	}
+	
+	$scope.updateSunderLevel = function(itemID, level){
+		c.isSubmitting = true;
+		c.server.get({action: 'updateSunderLevel', itemID: itemID, level: level}).then(function(){
+			c.isSubmitting = false;
+		});
+	}
 
 	setTimeout(clearDiceRolls, 10);
 };]]></client_script>
@@ -1307,7 +1314,7 @@
 }
 
 #currentForceDescription, .enhancement{
-	font-size: 1.6rem;
+  font-size: 1.6rem;
 }
 
 #purchaseTalentsButtonContainer, #purchaseSignatureAbilitiesContainer{
@@ -1663,7 +1670,7 @@
 }
 
 .free-gear-button{
-	padding: 0 2.2rem;
+  padding: 0 2.2rem;
 }
 
 .item-quality:hover{
@@ -2075,7 +2082,7 @@ input:checked + .slider:before {
 
 #editCritContainer{
   padding-bottom: 2rem;
-  
+
   .crit-table{
     display: flex;
     flex-flow: column wrap;
@@ -2109,14 +2116,21 @@ input:checked + .slider:before {
       .crit-result{
         text-align: left;
       }
-      
+
       .remove-crit-button{
-      	.fa-swords-laser{
-        	color: #e21414;
+        .fa-swords-laser{
+          color: #e21414;
         }
       }
     }
   }
+}
+
+//sunder details on gear
+.sunder-level-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 @media only screen and (min-width:762px){
@@ -2169,9 +2183,9 @@ input:checked + .slider:before {
   .purchase-gear-button{
     font-size:11px;
   }
-  
+
   .free-gear-button{
-  	padding: 0 1.8rem;
+    padding: 0 1.8rem;
   }
 
   #marketplaceContainer{
@@ -3067,6 +3081,13 @@ input:checked + .slider:before {
 					charCrit.deleteRecord();
 					data.character.criticalInjuries = util.getCharacterCriticalInjuries(characterID, '');
 					break;
+					
+				case 'updateSunderLevel':
+					var sunderGear = new GlideRecord('x_176383_star_wars_character_gear_m2m');
+					sunderGear.get(input.itemID);
+					sunderGear.sunder_level = input.level;
+					sunderGear.update();
+					break;
 
 				default:
 					break;
@@ -3093,14 +3114,14 @@ input:checked + .slider:before {
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-10-27 13:34:00</sys_created_on>
         <sys_id>81191fae2fc86c10e0f497eef699b69e</sys_id>
-        <sys_mod_count>1642</sys_mod_count>
+        <sys_mod_count>1659</sys_mod_count>
         <sys_name>Star Wars Character Sheet</sys_name>
         <sys_package display_value="Star Wars RPG" source="x_176383_star_wars">64b3517bdb5a08542901de90cf961993</sys_package>
         <sys_policy/>
         <sys_scope display_value="Star Wars RPG">64b3517bdb5a08542901de90cf961993</sys_scope>
         <sys_update_name>sp_widget_81191fae2fc86c10e0f497eef699b69e</sys_update_name>
         <sys_updated_by>ben.fisher</sys_updated_by>
-        <sys_updated_on>2025-03-15 22:50:45</sys_updated_on>
+        <sys_updated_on>2025-03-18 23:48:26</sys_updated_on>
         <template><![CDATA[<head>
   <script src="https://kit.fontawesome.com/035f51c999.js"></script>
 </head>
@@ -3505,6 +3526,25 @@ input:checked + .slider:before {
                   <span class="col-xs-4 gear-detail">
                     <span class="col-xs-12 gear-detail-label">Location:</span>
                     <span class="col-xs-12 gear-detail-value">{{item.location}}</span>
+                  </span>
+                  <span class="col-xs-12 col-md-4 gear-detail">
+                    <span class="col-xs-12 gear-detail-label">Sunder Level:</span>
+                    <span class="col-xs-3 gear-detail-value sunder-level-container">
+                      <span class="sunder-level-label">None</span>
+                      <span class="sunder-level-radio"><input ng-disabled="c.isSubmitting" type="radio" id="sunderLevelNone" ng-checked="item.sunderLevelInt == 0" value="0" name="sunderLevelRadioGroup{{item.sysID}}" ng-click="updateSunderLevel(item.sysID, 0)"></span>
+                    </span>
+                    <span class="col-xs-3 gear-detail-value sunder-level-container">
+                      <span class="sunder-level-label">Minor</span>
+                      <span class="sunder-level-radio"><input ng-disabled="c.isSubmitting" type="radio" id="sunderLevelMinor" ng-checked="item.sunderLevelInt == 1" value="1" name="sunderLevelRadioGroup{{item.sysID}}" ng-click="updateSunderLevel(item.sysID, 1)"></span>
+                    </span>
+                    <span class="col-xs-3 gear-detail-value sunder-level-container">
+                      <span class="sunder-level-label">Moderate</span>
+                      <span class="sunder-level-radio"><input ng-disabled="c.isSubmitting" type="radio" id="sunderLevelModerate" ng-checked="item.sunderLevelInt == 2" value="2" name="sunderLevelRadioGroup{{item.sysID}}" ng-click="updateSunderLevel(item.sysID, 2)"></span>
+                    </span>
+                    <span class="col-xs-3 gear-detail-value sunder-level-container">
+                      <span class="sunder-level-label">Major</span>
+                      <span class="sunder-level-radio"><input ng-disabled="c.isSubmitting" type="radio" id="sunderLevelMajor" ng-checked="item.sunderLevelInt == 3" value="3" name="sunderLevelRadioGroup{{item.sysID}}" ng-click="updateSunderLevel(item.sysID, 3)"></span>
+                    </span>
                   </span>
                   <span class="col-xs-12 gear-detail">
                     <span class="col-xs-12 gear-detail-label">Description:</span>
