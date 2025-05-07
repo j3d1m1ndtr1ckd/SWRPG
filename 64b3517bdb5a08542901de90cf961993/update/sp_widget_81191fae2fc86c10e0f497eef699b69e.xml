@@ -1,9 +1,93 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
     <sp_widget action="INSERT_OR_UPDATE">
         <category>custom</category>
-        <client_script><![CDATA[api.controller=function($scope, $rootScope, spUtil, $location) {
+        <client_script><![CDATA[api.controller=function($scope, $rootScope, spUtil, $location, $window) {
 	/* widget controller */
 	var c = this;
+	c.showAttackModal = false;
+	c.currentAttackWeapon = '';
+	c.currentAttackObj = {};
+
+	$scope.launchDiceRoll = function(weapon, attackDetails){
+		try{
+			var difficulty = 0;
+			var upgrades = 0;
+			var boost = 0;
+			var setback = 0;
+
+			switch(attackDetails.range){
+				case "engaged":
+					if(weapon.rangeID == 'engaged' || weapon.skillUsed == "Ranged - Light (Ag)"){
+						difficulty = 2;
+					} else{
+						difficulty = 3;
+					}
+					break;
+
+				case "short":
+					difficulty = 1;
+					break;
+
+				case "medium":
+					difficulty = 2;
+					break;
+
+				case "long":
+					difficulty = 3;
+					break;
+
+				case "extreme":
+					difficulty = 4;
+					break;
+
+				default:
+					difficulty = 2;
+					break;
+			}
+
+			if(attackDetails.isEngaged && attackDetails.range != 'engaged'){
+				if(weapon.skillUsed == 'Ranged - Light (Ag)'){
+					difficulty++;
+				} else if(weapon.skillUsed == 'Ranged - Heavy (Ag)'){
+					difficulty = difficulty + 2;
+				}
+			}
+
+			if(attackDetails.targetIsEngaged){
+				upgrades++;
+			}
+
+			if(attackDetails.targetIsProne && weapon.rangeID == 'engaged'){
+				boost++;
+			}
+
+			if(attackDetails.isProne && weapon.rangeID == 'engaged'){
+				setback++;
+			}
+
+			if(attackDetails.targetIsProne && weapon.rangeID != 'engaged'){
+				setback++;
+			}
+
+			if(attackDetails.aimedOnce){
+				boost++;
+			}
+
+			if(attackDetails.aimedTwice){
+				boost++;
+			}
+			difficulty = difficulty - upgrades;
+
+			for(var i = 0; i < $scope.data.skills.length; i++){
+				if(weapon.skillUsed == $scope.data.skills[i].name){
+					$scope.data.skills[i].rollURL += boost + ';' + difficulty + ';' + upgrades + ';' + setback;
+					$window.open($scope.data.skills[i].rollURL);
+				}
+			}
+		} catch(e){
+			alert(e.message);
+		}
+	}
 
 	//build roll visual
 	function buildDiceRolls(){
@@ -1034,7 +1118,7 @@
 			});
 		}
 	}
-	
+
 	$scope.updateSunderLevel = function(itemID, level){
 		c.isSubmitting = true;
 		c.server.get({action: 'updateSunderLevel', itemID: itemID, level: level}).then(function(){
@@ -1599,8 +1683,14 @@
 }
 
 #removeItemButtonContainer{
-  margin-top:20px;
-  text-align:center;
+  margin-top: 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  column-gap: 2rem;
 }
 
 .toggle-career-skill-button-container{
@@ -1623,7 +1713,6 @@
   background:transparent;
   padding: 5px 15px 5px 15px;
   margin-bottom:20px;
-  margin-right:20px;
 }
 
 #removeItemButton{
@@ -1631,6 +1720,16 @@
   border:1px groove #e21414;
   border-radius:20px;
   box-shadow:0px 0px 6px 2px #e21414;
+  background:transparent;
+  padding:5px 15px 5px 15px;
+  margin-bottom:20px;
+}
+
+#attackButton{
+  color:white;
+  border:1px groove #1933f4;
+  border-radius:20px;
+  box-shadow:0px 0px 6px 2px #1933f4;
   background:transparent;
   padding:5px 15px 5px 15px;
   margin-bottom:20px;
@@ -2131,6 +2230,69 @@ input:checked + .slider:before {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+//attack modal
+.attack-modal-container{
+  position: fixed;
+  top: 10%;
+  left: 10%;
+  width: 80%;
+  max-height: 80%;
+  overflow-y: scroll;
+  background: black;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: center;
+  row-gap: 2rem;
+  border-radius: 5px;
+  border: 1px groove #1933f4;
+  box-shadow: 0px 0px 6px 3px #1933f4;
+
+  .attack-modal-body{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 1rem;
+
+    .attack-modal-question-container{
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      align-items: center;
+
+      .attack-modal-question{
+        font-size: 1.8rem;
+        font-weight: bold;
+        margin-bottom: 1rem;
+      }
+
+      .attack-modal-response-options-container{
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        column-gap: 5rem;
+        margin-bottom: 1rem;
+
+        .attack-modal-response-option{
+          text-align: center;
+          padding: 1rem;
+          border: .1rem solid #1933f4;
+          border-radius: 1rem;
+        }
+        
+        .attack-option-selected{
+        	box-shadow: 0px 0px 6px 3px lightgray;
+          transform: scale(1.05);
+        }
+      }
+    }
+  }
 }
 
 @media only screen and (min-width:762px){
@@ -3114,14 +3276,14 @@ input:checked + .slider:before {
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-10-27 13:34:00</sys_created_on>
         <sys_id>81191fae2fc86c10e0f497eef699b69e</sys_id>
-        <sys_mod_count>1659</sys_mod_count>
+        <sys_mod_count>1699</sys_mod_count>
         <sys_name>Star Wars Character Sheet</sys_name>
         <sys_package display_value="Star Wars RPG" source="x_176383_star_wars">64b3517bdb5a08542901de90cf961993</sys_package>
         <sys_policy/>
         <sys_scope display_value="Star Wars RPG">64b3517bdb5a08542901de90cf961993</sys_scope>
         <sys_update_name>sp_widget_81191fae2fc86c10e0f497eef699b69e</sys_update_name>
-        <sys_updated_by>ben.fisher</sys_updated_by>
-        <sys_updated_on>2025-03-18 23:48:26</sys_updated_on>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-05-07 05:07:33</sys_updated_on>
         <template><![CDATA[<head>
   <script src="https://kit.fontawesome.com/035f51c999.js"></script>
 </head>
@@ -3553,6 +3715,7 @@ input:checked + .slider:before {
                   <span class="col-xs-12" id="removeItemButtonContainer">
                     <button ng-if="data.canEdit" id="editItemButton" ng-click="editCharacter('gearEdit', item)">Edit<br><text class="star-wars-text">Edit</text></button>
                     <button ng-if="data.canEdit" id="removeItemButton" ng-click="removeItem(item.sysID)">Remove<br><text class="star-wars-text">Remove</text></button>
+                    <button ng-if="item.type.toLowerCase() == 'weapon'" id="attackButton" ng-click="c.showAttackModal = true; c.currentAttackWeapon = item">Attack<br><text class="star-wars-text">Attack</text></button>
                   </span>
                 </span>
               </div>
@@ -4350,6 +4513,68 @@ input:checked + .slider:before {
       </span>
     </span>
   </div>
+</div>
+
+<!-- attack modal -->
+<div ng-if="c.showAttackModal" class="attack-modal-container">
+  <span class="col-xs-12 close-button" ng-click="c.showAttackModal = false"><i class="fas fa-swords-laser"></i></span>
+  <span class="attack-modal-body">
+  	<span ng-if="c.currentAttackWeapon.rangeId != 'engaged'" class="attack-modal-question-container">
+      <span class="attack-modal-question">What range is the attack?</span>
+      <span class="attack-modal-response-options-container">
+        <span class="attack-modal-response-option" ng-click="c.currentAttackObj.range = 'engaged'" ng-class="{'attack-option-selected': c.currentAttackObj.range == 'engaged'}">Engaged<br><text class="star-wars-text">Engaged</text></span>
+        <span class="attack-modal-response-option" ng-click="c.currentAttackObj.range = 'short'" ng-class="{'attack-option-selected': c.currentAttackObj.range == 'short'}">Short<br><text class="star-wars-text">Short</text></span>
+        <span class="attack-modal-response-option" ng-click="c.currentAttackObj.range = 'medium'" ng-class="{'attack-option-selected': c.currentAttackObj.range == 'medium'}">Medium<br><text class="star-wars-text">Medium</text></span>
+        <span class="attack-modal-response-option" ng-click="c.currentAttackObj.range = 'long'" ng-class="{'attack-option-selected': c.currentAttackObj.range == 'long'}">Long<br><text class="star-wars-text">Long</text></span>
+        <span class="attack-modal-response-option" ng-click="c.currentAttackObj.range = 'extreme'" ng-class="{'attack-option-selected': c.currentAttackObj.range == 'extreme'}">Extreme<br><text class="star-wars-text">Extreme</text></span>
+      </span>
+    </span>
+    <span ng-if="c.currentAttackWeapon.rangeId != 'engaged'" class="attack-modal-question-container">
+      <span class="attack-modal-question">Are you currently engaged with an enemy?</span>
+      <span class="attack-modal-response-options-container">
+        <span class="attack-modal-response-option" ng-click="c.currentAttackObj.isEngaged = true" ng-class="{'attack-option-selected': c.currentAttackObj.isEngaged == true}">Yes<br><text class="star-wars-text">Yes</text></span>
+        <span class="attack-modal-response-option" ng-click="c.currentAttackObj.isEngaged = false" ng-class="{'attack-option-selected': c.currentAttackObj.isEngaged == false}">No<br><text class="star-wars-text">No</text></span>
+      </span>
+    </span>
+    <span ng-if="c.currentAttackWeapon.rangeId != 'engaged'" class="attack-modal-question-container">
+      <span class="attack-modal-question">Is your target currently engaged with an ally?</span>
+      <span class="attack-modal-response-options-container">
+        <span class="attack-modal-response-option" ng-click="c.currentAttackObj.targetIsEngaged = true" ng-class="{'attack-option-selected': c.currentAttackObj.targetIsEngaged == true}">Yes<br><text class="star-wars-text">Yes</text></span>
+        <span class="attack-modal-response-option" ng-click="c.currentAttackObj.targetIsEngaged = false" ng-class="{'attack-option-selected': c.currentAttackObj.targetIsEngaged == false}">No<br><text class="star-wars-text">No</text></span>
+      </span>
+    </span>
+    <span class="attack-modal-question-container">
+      <span class="attack-modal-question">Is your target currently prone?</span>
+      <span class="attack-modal-response-options-container">
+        <span class="attack-modal-response-option" ng-click="c.currentAttackObj.targetIsProne = true" ng-class="{'attack-option-selected': c.currentAttackObj.targetIsProne == true}">Yes<br><text class="star-wars-text">Yes</text></span>
+        <span class="attack-modal-response-option" ng-click="c.currentAttackObj.targetIsProne = false" ng-class="{'attack-option-selected': c.currentAttackObj.targetIsProne == false}">No<br><text class="star-wars-text">No</text></span>
+      </span>
+    </span>
+    <span class="attack-modal-question-container">
+      <span class="attack-modal-question">Are you currently prone?</span>
+      <span class="attack-modal-response-options-container">
+        <span class="attack-modal-response-option" ng-click="c.currentAttackObj.isProne = true" ng-class="{'attack-option-selected': c.currentAttackObj.isProne == true}">Yes<br><text class="star-wars-text">Yes</text></span>
+        <span class="attack-modal-response-option" ng-click="c.currentAttackObj.isProne = false" ng-class="{'attack-option-selected': c.currentAttackObj.isProne == false}">No<br><text class="star-wars-text">No</text></span>
+      </span>
+    </span>
+    <span class="attack-modal-question-container">
+      <span class="attack-modal-question">Did you aim this turn?</span>
+      <span class="attack-modal-response-options-container">
+        <span class="attack-modal-response-option" ng-click="c.currentAttackObj.aimedOnce = true" ng-class="{'attack-option-selected': c.currentAttackObj.aimedOnce == true}">Yes<br><text class="star-wars-text">Yes</text></span>
+        <span class="attack-modal-response-option" ng-click="c.currentAttackObj.aimedOnce = false" ng-class="{'attack-option-selected': c.currentAttackObj.aimedOnce == false}">No<br><text class="star-wars-text">No</text></span>
+      </span>
+    </span>
+    <span ng-if="c.currentAttackObj.aimedOnce" class="attack-modal-question-container">
+      <span class="attack-modal-question">Did you aim last turn?</span>
+      <span class="attack-modal-response-options-container">
+        <span class="attack-modal-response-option" ng-click="c.currentAttackObj.aimedTwice = true" ng-class="{'attack-option-selected': c.currentAttackObj.aimedTwice == true}">Yes<br><text class="star-wars-text">Yes</text></span>
+        <span class="attack-modal-response-option" ng-click="c.currentAttackObj.aimedTwice = false" ng-class="{'attack-option-selected': c.currentAttackObj.aimedTwice == false}">No<br><text class="star-wars-text">No</text></span>
+      </span>
+    </span>
+  </span>
+  <span class="attack-modal-submit-button-container">
+    <button class="purchase-gear-button" ng-click="launchDiceRoll(c.currentAttackWeapon, c.currentAttackObj)">You may fire when ready<br><text class="star-wars-text">You may fire when ready</text></button>
+  </span>
 </div>]]></template>
     </sp_widget>
 </record_update>

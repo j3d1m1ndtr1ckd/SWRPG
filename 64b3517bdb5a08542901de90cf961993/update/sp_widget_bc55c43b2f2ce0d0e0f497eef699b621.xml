@@ -694,6 +694,42 @@
 				};
 				data.dicePool.push(dieToAdd);
 			}
+			
+			for(i = 0; i < paramDiceArray[2]; i++){
+				var dieToAdd = {
+					name: 'boost',
+					icon: 'fas fa-dice-d6',
+					max: 6
+				};
+				data.dicePool.push(dieToAdd);
+			}
+			
+			for(i = 0; i < paramDiceArray[3]; i++){
+				var dieToAdd = {
+					name: 'difficulty',
+					icon: 'fas fa-dice-d8',
+					max: 8
+				};
+				data.dicePool.push(dieToAdd);
+			}
+			
+			for(i = 0; i < paramDiceArray[4]; i++){
+				var dieToAdd = {
+					name: 'challenge',
+					icon: 'fas fa-dice-d8',
+					max: 12
+				};
+				data.dicePool.push(dieToAdd);
+			}
+			
+			for(i = 0; i < paramDiceArray[5]; i++){
+				var dieToAdd = {
+					name: 'setback',
+					icon: 'fas fa-dice-d6',
+					max: 6
+				};
+				data.dicePool.push(dieToAdd);
+			}
 		}
 		
 		if(input){
@@ -743,14 +779,14 @@ function checkGM(){
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-11-24 15:52:38</sys_created_on>
         <sys_id>bc55c43b2f2ce0d0e0f497eef699b621</sys_id>
-        <sys_mod_count>296</sys_mod_count>
+        <sys_mod_count>297</sys_mod_count>
         <sys_name>Star Wars RPG Dice Roller</sys_name>
         <sys_package display_value="Star Wars RPG" source="x_176383_star_wars">64b3517bdb5a08542901de90cf961993</sys_package>
         <sys_policy/>
         <sys_scope display_value="Star Wars RPG">64b3517bdb5a08542901de90cf961993</sys_scope>
         <sys_update_name>sp_widget_bc55c43b2f2ce0d0e0f497eef699b621</sys_update_name>
-        <sys_updated_by>ben.fisher</sys_updated_by>
-        <sys_updated_on>2025-04-25 03:49:34</sys_updated_on>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-05-07 05:13:03</sys_updated_on>
         <template><![CDATA[<head>
   <script src="https://kit.fontawesome.com/035f51c999.js" crossorigin="anonymous"></script>
 </head>
