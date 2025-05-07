@@ -2257,6 +2257,7 @@ input:checked + .slider:before {
     flex-direction: column;
     align-items: center;
     row-gap: 1rem;
+    margin-top: 1.5rem;
 
     .attack-modal-question-container{
       display: flex;
@@ -2274,6 +2275,8 @@ input:checked + .slider:before {
         width: 100%;
         display: flex;
         flex-direction: row;
+        flex-wrap: wrap;
+        row-gap: 1rem;
         align-items: center;
         justify-content: center;
         column-gap: 5rem;
@@ -2291,6 +2294,16 @@ input:checked + .slider:before {
           transform: scale(1.05);
         }
       }
+    }
+  }
+  
+  .attack-modal-submit-button-container{
+    .fire-when-ready-button{
+      font-size: 1.8rem;
+    }
+    
+    .star-wars-text{
+    	font-size: 1.4rem;
     }
   }
 }
@@ -3276,14 +3289,14 @@ input:checked + .slider:before {
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-10-27 13:34:00</sys_created_on>
         <sys_id>81191fae2fc86c10e0f497eef699b69e</sys_id>
-        <sys_mod_count>1699</sys_mod_count>
+        <sys_mod_count>1704</sys_mod_count>
         <sys_name>Star Wars Character Sheet</sys_name>
         <sys_package display_value="Star Wars RPG" source="x_176383_star_wars">64b3517bdb5a08542901de90cf961993</sys_package>
         <sys_policy/>
         <sys_scope display_value="Star Wars RPG">64b3517bdb5a08542901de90cf961993</sys_scope>
         <sys_update_name>sp_widget_81191fae2fc86c10e0f497eef699b69e</sys_update_name>
-        <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-05-07 05:07:33</sys_updated_on>
+        <sys_updated_by>ben.fisher</sys_updated_by>
+        <sys_updated_on>2025-05-07 21:23:26</sys_updated_on>
         <template><![CDATA[<head>
   <script src="https://kit.fontawesome.com/035f51c999.js"></script>
 </head>
@@ -4573,7 +4586,7 @@ input:checked + .slider:before {
     </span>
   </span>
   <span class="attack-modal-submit-button-container">
-    <button class="purchase-gear-button" ng-click="launchDiceRoll(c.currentAttackWeapon, c.currentAttackObj)">You may fire when ready<br><text class="star-wars-text">You may fire when ready</text></button>
+    <button class="purchase-gear-button fire-when-ready-button" ng-click="launchDiceRoll(c.currentAttackWeapon, c.currentAttackObj)">You may fire when ready<br><text class="star-wars-text">You may fire when ready</text></button>
   </span>
 </div>]]></template>
     </sp_widget>
