@@ -11,38 +11,42 @@
 	$scope.launchDiceRoll = function(weapon, attackDetails){
 		try{
 			var difficulty = 0;
-			var upgrades = 0;
+			var upgrades = parseInt(attackDetails.adversary) || 0;
 			var boost = 0;
-			var setback = 0;
+			var setback = parseInt(attackDetails.defense) || 0;
 
-			switch(attackDetails.range){
-				case "engaged":
-					if(weapon.rangeID == 'engaged' || weapon.skillUsed == "Ranged - Light (Ag)"){
+			if(weapon.rangeID == 'engaged'){
+				difficulty = 2;
+			} else{
+				switch(attackDetails.range){
+					case "engaged":
+						if(weapon.skillUsed == "Ranged - Light (Ag)"){
+							difficulty = 2;
+						} else{
+							difficulty = 3;
+						}
+						break;
+
+					case "short":
+						difficulty = 1;
+						break;
+
+					case "medium":
 						difficulty = 2;
-					} else{
+						break;
+
+					case "long":
 						difficulty = 3;
-					}
-					break;
+						break;
 
-				case "short":
-					difficulty = 1;
-					break;
+					case "extreme":
+						difficulty = 4;
+						break;
 
-				case "medium":
-					difficulty = 2;
-					break;
-
-				case "long":
-					difficulty = 3;
-					break;
-
-				case "extreme":
-					difficulty = 4;
-					break;
-
-				default:
-					difficulty = 2;
-					break;
+					default:
+						difficulty = 2;
+						break;
+				}
 			}
 
 			if(attackDetails.isEngaged && attackDetails.range != 'engaged'){
@@ -53,7 +57,7 @@
 				}
 			}
 
-			if(attackDetails.targetIsEngaged){
+			if(attackDetails.targetIsEngaged && weapon.rangeID != 'engaged'){
 				upgrades++;
 			}
 
@@ -76,16 +80,62 @@
 			if(attackDetails.aimedTwice){
 				boost++;
 			}
+
+			if(attackDetails.autoFire){
+				difficulty++;
+			}
+
+			var wqArray = weapon.weaponQualities.split(',');
+			wqArray.forEach(function(wq){
+				var itemArray = wq.split(':');
+				var labelArray = itemArray[0].trim().split(' ');
+				if(labelArray[0].toLowerCase() == 'accurate'){
+					boost = boost + parseInt(itemArray[1].trim());
+				} else if(labelArray[0].toLowerCase() == 'inaccurate'){
+					setback = setback + parseInt(itemArray[1].trim());
+				} else if(labelArray[0].toLowerCase() == 'cumbersome' && parseInt(itemArray[1].trim()) > parseInt($scope.data.character.brawn)){
+					var increaseDiff = parseInt(itemArray[1].trim()) - parseInt($scope.data.character.brawn);
+					difficulty = difficulty + increaseDiff;
+				} else if(labelArray[0].toLowerCase() == 'unwieldy' && parseInt(itemArray[1].trim()) > parseInt($scope.data.character.agility)){
+					var increaseDiff = parseInt(itemArray[1].trim()) - parseInt($scope.data.character.agility);
+					difficulty = difficulty + increaseDiff;
+				}
+			});
+			
 			difficulty = difficulty - upgrades;
+			if(difficulty < 0){
+				var tempDifficulty = 0;
+				var index = 0;
+				do{
+					if(isOdd(index) && index > 0){
+						tempDifficulty--;
+					} else{
+						tempDifficulty++;
+						upgrades--;
+					}
+					index++;
+					difficulty++;
+				} while(difficulty < 0);
+				difficulty = tempDifficulty;
+			}
 
 			for(var i = 0; i < $scope.data.skills.length; i++){
 				if(weapon.skillUsed == $scope.data.skills[i].name){
-					$scope.data.skills[i].rollURL += boost + ';' + difficulty + ';' + upgrades + ';' + setback;
-					$window.open($scope.data.skills[i].rollURL);
+					var rollUrl = $scope.data.skills[i].rollURL;
+					rollUrl += boost + ';' + difficulty + ';' + upgrades + ';' + setback;
+					$window.open(rollUrl);
 				}
 			}
 		} catch(e){
 			alert(e.message);
+		}
+	}
+
+	function isOdd(numToCheck){
+		if(numToCheck % 2 == 0){
+			return false;
+		} else{
+			return true;
 		}
 	}
 
@@ -3289,14 +3339,14 @@ input:checked + .slider:before {
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-10-27 13:34:00</sys_created_on>
         <sys_id>81191fae2fc86c10e0f497eef699b69e</sys_id>
-        <sys_mod_count>1704</sys_mod_count>
+        <sys_mod_count>1740</sys_mod_count>
         <sys_name>Star Wars Character Sheet</sys_name>
         <sys_package display_value="Star Wars RPG" source="x_176383_star_wars">64b3517bdb5a08542901de90cf961993</sys_package>
         <sys_policy/>
         <sys_scope display_value="Star Wars RPG">64b3517bdb5a08542901de90cf961993</sys_scope>
         <sys_update_name>sp_widget_81191fae2fc86c10e0f497eef699b69e</sys_update_name>
         <sys_updated_by>ben.fisher</sys_updated_by>
-        <sys_updated_on>2025-05-07 21:23:26</sys_updated_on>
+        <sys_updated_on>2025-05-08 19:37:06</sys_updated_on>
         <template><![CDATA[<head>
   <script src="https://kit.fontawesome.com/035f51c999.js"></script>
 </head>
@@ -4582,6 +4632,25 @@ input:checked + .slider:before {
       <span class="attack-modal-response-options-container">
         <span class="attack-modal-response-option" ng-click="c.currentAttackObj.aimedTwice = true" ng-class="{'attack-option-selected': c.currentAttackObj.aimedTwice == true}">Yes<br><text class="star-wars-text">Yes</text></span>
         <span class="attack-modal-response-option" ng-click="c.currentAttackObj.aimedTwice = false" ng-class="{'attack-option-selected': c.currentAttackObj.aimedTwice == false}">No<br><text class="star-wars-text">No</text></span>
+      </span>
+    </span>
+    <span ng-if="c.currentAttackWeapon.weaponQualities.toLowerCase().indexOf('auto-fire') > -1" class="attack-modal-question-container">
+      <span class="attack-modal-question">Is your weapon set to auto-fire mode?</span>
+      <span class="attack-modal-response-options-container">
+        <span class="attack-modal-response-option" ng-click="c.currentAttackObj.autoFire = true" ng-class="{'attack-option-selected': c.currentAttackObj.autoFire == true}">Yes<br><text class="star-wars-text">Yes</text></span>
+        <span class="attack-modal-response-option" ng-click="c.currentAttackObj.autoFire = false" ng-class="{'attack-option-selected': c.currentAttackObj.autoFire == false}">No<br><text class="star-wars-text">No</text></span>
+      </span>
+    </span>
+    <span class="attack-modal-question-container">
+      <span class="attack-modal-question">How much defense does the target have that would apply to this attack?</span>
+      <span class="attack-modal-response-options-container">
+        <span><input type="text" class="sw-input" inputmode="numeric" pattern="[0-9]*" id="defense" name="defense" ng-model="c.currentAttackObj.defense"></span>
+      </span>
+    </span>
+    <span class="attack-modal-question-container">
+      <span class="attack-modal-question">How many levels of Adversary does the target have?</span>
+      <span class="attack-modal-response-options-container">
+        <span><input type="text" class="sw-input" inputmode="numeric" pattern="[0-9]*" id="adversary" name="adversary" ng-model="c.currentAttackObj.adversary"></span>
       </span>
     </span>
   </span>
