@@ -137,6 +137,7 @@
 	sessionGR.get(gameSession);
 	if(sessionGR.campaign.game_master == gs.getUserID()){
 		data.isGM = true;
+		data.pcDestiny = sessionGR.campaign.pc_destiny;
 	}
 	
 	data.sessionDetails = {
@@ -194,14 +195,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-11-23 05:45:37</sys_created_on>
         <sys_id>4fc030932fac60d0e0f497eef699b63d</sys_id>
-        <sys_mod_count>63</sys_mod_count>
+        <sys_mod_count>65</sys_mod_count>
         <sys_name>Star Wars Game Session</sys_name>
         <sys_package display_value="Star Wars RPG" source="x_176383_star_wars">64b3517bdb5a08542901de90cf961993</sys_package>
         <sys_policy/>
         <sys_scope display_value="Star Wars RPG">64b3517bdb5a08542901de90cf961993</sys_scope>
         <sys_update_name>sp_widget_4fc030932fac60d0e0f497eef699b63d</sys_update_name>
         <sys_updated_by>ben.fisher</sys_updated_by>
-        <sys_updated_on>2022-02-16 16:11:06</sys_updated_on>
+        <sys_updated_on>2025-05-11 14:13:04</sys_updated_on>
         <template><![CDATA[<head>
   <script src="https://kit.fontawesome.com/035f51c999.js" crossorigin="anonymous"></script>
 </head>
@@ -214,7 +215,7 @@
     <span ng-if="data.enterDestiny" class="destiny-input">
       <input class="sw-input" type="text" id="lightSideInput" name="lightSideInput" inputmode="numeric" pattern="[0-9]*">
     </span>
-    <span ng-if="!data.enterDestiny && data.sessionDetails.lightSide != '0'" class="col-xs-12 use-destiny-point-container">
+    <span ng-if="!data.enterDestiny && data.sessionDetails.lightSide != '0' && (data.isGM || data.pcDestiny == 'light')" class="col-xs-12 use-destiny-point-container">
       <button class="lightside-button" ng-click="useDestinyPoint('light')">Use</button>
     </span>
   </div>
@@ -224,7 +225,7 @@
     <span ng-if="data.enterDestiny" class="destiny-input">
       <input class="sw-input" type="text" id="darkSideInput" name="darkSideInput" inputmode="numeric" pattern="[0-9]*">
     </span>
-    <span ng-if="!data.enterDestiny && data.sessionDetails.darkSide != '0' && data.isGM" class="col-xs-12 use-destiny-point-container">
+    <span ng-if="!data.enterDestiny && data.sessionDetails.darkSide != '0' && (data.isGM || data.pcDestiny == 'dark')" class="col-xs-12 use-destiny-point-container">
       <button class="darkside-button" ng-click="useDestinyPoint('dark')">Use</button>
     </span>
   </div>
