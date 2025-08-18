@@ -17,6 +17,7 @@
             <choice>
                 <element inactive_on_update="false" label="Aft" sequence="300" value="aft"/>
                 <element inactive_on_update="false" label="Dorsal" sequence="0" value="dorsal"/>
+                <element inactive_on_update="false" label="Wing" sequence="600" value="wing"/>
                 <element inactive_on_update="false" label="Port" sequence="400" value="port"/>
                 <element inactive_on_update="false" label="Ventral" sequence="100" value="ventral"/>
                 <element inactive_on_update="false" label="Foreward" sequence="200" value="foreward"/>
