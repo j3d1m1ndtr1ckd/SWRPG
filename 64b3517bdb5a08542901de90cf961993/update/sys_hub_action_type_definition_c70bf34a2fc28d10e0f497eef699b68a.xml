@@ -399,9 +399,7 @@
         <sys_updated_on>2022-03-07 05:17:48</sys_updated_on>
     </sys_hub_action_status_metadata>
     <sys_hub_status_condition action="delete_multiple" query="action_status_metadata_id=6c1c7bca2fc28d10e0f497eef699b61c"/>
-    <sys_documentation action="delete_multiple" query="name=var__m_sys_hub_action_input_c70bf34a2fc28d10e0f497eef699b68a"/>
     <sys_choice action="delete_multiple" query="name=var__m_sys_hub_action_input_c70bf34a2fc28d10e0f497eef699b68a"/>
-    <sys_documentation action="delete_multiple" query="name=var__m_sys_hub_action_output_c70bf34a2fc28d10e0f497eef699b68a^sys_idNOT IN1fcdfb8e2fc28d10e0f497eef699b603,328df38e2fc28d10e0f497eef699b6d0,fe8df38e2fc28d10e0f497eef699b6db"/>
     <sys_documentation action="INSERT_OR_UPDATE">
         <element>talent_count</element>
         <help/>
@@ -869,9 +867,7 @@
         <sys_updated_on>2022-03-07 05:31:46</sys_updated_on>
     </sys_hub_action_status_metadata>
     <sys_hub_status_condition action="delete_multiple" query="action_status_metadata_id=8d4fb7422f068d10e0f497eef699b6cf"/>
-    <sys_documentation action="delete_multiple" query="name=var__m_sys_hub_action_input_784fb7422f068d10e0f497eef699b67e"/>
     <sys_choice action="delete_multiple" query="name=var__m_sys_hub_action_input_784fb7422f068d10e0f497eef699b67e"/>
-    <sys_documentation action="delete_multiple" query="name=var__m_sys_hub_action_output_784fb7422f068d10e0f497eef699b67e^sys_idNOT IN494fb7422f068d10e0f497eef699b69c,c54fb7422f068d10e0f497eef699b6a3,f04fb7422f068d10e0f497eef699b690"/>
     <sys_documentation action="INSERT_OR_UPDATE">
         <element>__dont_treat_as_error__</element>
         <help/>

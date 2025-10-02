@@ -8,6 +8,7 @@
         <description/>
         <mobile_callable>false</mobile_callable>
         <name>StarWarsClientHelperFunctions</name>
+        <sandbox_callable>true</sandbox_callable>
         <script><![CDATA[var StarWarsClientHelperFunctions = Class.create();
 StarWarsClientHelperFunctions.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
 

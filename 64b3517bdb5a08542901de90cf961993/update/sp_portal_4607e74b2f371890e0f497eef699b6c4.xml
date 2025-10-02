@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="sp_portal">
     <sp_portal action="INSERT_OR_UPDATE">
         <alternate_portal/>
+        <communication_channels/>
         <css_variables>$brand-primary:#1225d9;
 $body-bg:#000000;
 $state-success-text:#21de21;
@@ -24,8 +25,10 @@ $text-muted:#e6e8ea;
 </css_variables>
         <dark_theme/>
         <default>false</default>
+        <embeddable_macroponents/>
         <enable_ais>false</enable_ais>
         <enable_certificate_based_authentication>false</enable_certificate_based_authentication>
+        <enable_embeddables>false</enable_embeddables>
         <enable_favorites>false</enable_favorites>
         <hide_portal_name>false</hide_portal_name>
         <homepage display_value="star_wars_home">a39b2bc72f371890e0f497eef699b6fc</homepage>
@@ -35,6 +38,7 @@ $text-muted:#e6e8ea;
         <kb_knowledge_page/>
         <login_page display_value="star_wars_login">3c1da0c92f6e6410e0f497eef699b606</login_page>
         <logo>43c9270f2f371890e0f497eef699b6b1</logo>
+        <logo_alt_text/>
         <notfound_page/>
         <quick_start_config/>
         <rtl_enabled>false</rtl_enabled>

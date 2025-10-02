@@ -8,6 +8,7 @@
         <description/>
         <mobile_callable>false</mobile_callable>
         <name>starWarsGMUtil</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[var starWarsGMUtil = Class.create();
 starWarsGMUtil.prototype = {
 	initialize: function() {

@@ -48,7 +48,9 @@
         <sys_updated_by>ben.fisher</sys_updated_by>
         <sys_updated_on>2021-07-06 16:15:32</sys_updated_on>
         <type>flow</type>
+        <updation_source/>
         <version>1</version>
+        <version_record/>
     </sys_hub_flow>
     <sys_translated_text action="delete_multiple" query="documentkey=00be29f72f813010e0f497eef699b6ef"/>
     <sys_variable_value action="delete_multiple" query="document_key=00be29f72f813010e0f497eef699b6ef"/>
@@ -75,9 +77,7 @@
     <sys_hub_sub_flow_instance action="delete_multiple" query="flow=00be29f72f813010e0f497eef699b6ef"/>
     <sys_hub_pill_compound action="delete_multiple" query="attached_to=00be29f72f813010e0f497eef699b6ef"/>
     <sys_hub_flow_variable action="delete_multiple" query="model=00be29f72f813010e0f497eef699b6ef"/>
-    <sys_documentation action="delete_multiple" query="name=var__m_sys_hub_flow_input_00be29f72f813010e0f497eef699b6ef"/>
     <sys_choice action="delete_multiple" query="name=var__m_sys_hub_flow_input_00be29f72f813010e0f497eef699b6ef"/>
-    <sys_documentation action="delete_multiple" query="name=var__m_sys_hub_flow_output_00be29f72f813010e0f497eef699b6ef"/>
     <sys_choice action="delete_multiple" query="name=var__m_sys_hub_flow_output_00be29f72f813010e0f497eef699b6ef"/>
     <sys_flow_trigger_plan action="delete_multiple" query="plan_id=00be29f72f813010e0f497eef699b6ef"/>
     <sys_flow_subflow_plan action="delete_multiple" query="plan_id=00be29f72f813010e0f497eef699b6ef"/>

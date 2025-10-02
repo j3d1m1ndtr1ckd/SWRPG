@@ -8,7 +8,9 @@
         <configuration_access>false</configuration_access>
         <create_access>true</create_access>
         <create_access_controls>true</create_access_controls>
-        <delete_access>false</delete_access>
+        <delete_access>true</delete_access>
+        <filter_extension/>
+        <is_df_table>false</is_df_table>
         <is_extendable>false</is_extendable>
         <label>Character Talents</label>
         <live_feed_enabled>false</live_feed_enabled>
@@ -22,14 +24,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-01-20 23:34:16</sys_created_on>
         <sys_id>719b1a58db26c8542901de90cf9619c9</sys_id>
-        <sys_mod_count>0</sys_mod_count>
+        <sys_mod_count>1</sys_mod_count>
         <sys_name>Character Talents</sys_name>
         <sys_package display_value="Star Wars RPG" source="x_176383_star_wars">64b3517bdb5a08542901de90cf961993</sys_package>
         <sys_policy/>
         <sys_scope display_value="Star Wars RPG">64b3517bdb5a08542901de90cf961993</sys_scope>
         <sys_update_name>sys_db_object_719b1a58db26c8542901de90cf9619c9</sys_update_name>
-        <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2020-01-20 23:34:16</sys_updated_on>
+        <sys_updated_by>ben.fisher</sys_updated_by>
+        <sys_updated_on>2025-10-02 15:54:30</sys_updated_on>
         <update_access>true</update_access>
         <user_role display_value="x_176383_star_wars.character_talents_user" name="x_176383_star_wars.character_talents_user">0abb5ed4db26c8542901de90cf961964</user_role>
         <ws_access>true</ws_access>
