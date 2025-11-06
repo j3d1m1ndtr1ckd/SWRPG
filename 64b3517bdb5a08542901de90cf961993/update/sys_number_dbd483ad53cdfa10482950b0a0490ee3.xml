@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_number">
+    <sys_number action="INSERT_OR_UPDATE">
+        <category display_value="" name="x_176383_star_wars_career_specialization_talent_tree_m2m">x_176383_star_wars_career_specialization_talent_tree_m2m</category>
+        <maximum_digits>7</maximum_digits>
+        <number>0</number>
+        <prefix>CSTT</prefix>
+        <sys_class_name>sys_number</sys_class_name>
+        <sys_created_by>ben.fisher</sys_created_by>
+        <sys_created_on>2025-11-06 16:14:55</sys_created_on>
+        <sys_id>dbd483ad53cdfa10482950b0a0490ee3</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>CSTT</sys_name>
+        <sys_package display_value="Star Wars RPG" source="x_176383_star_wars">64b3517bdb5a08542901de90cf961993</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Star Wars RPG">64b3517bdb5a08542901de90cf961993</sys_scope>
+        <sys_update_name>sys_number_dbd483ad53cdfa10482950b0a0490ee3</sys_update_name>
+        <sys_updated_by>ben.fisher</sys_updated_by>
+        <sys_updated_on>2025-11-06 16:14:55</sys_updated_on>
+    </sys_number>
+</record_update>

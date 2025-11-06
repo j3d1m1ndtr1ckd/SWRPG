@@ -3339,14 +3339,14 @@ input:checked + .slider:before {
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-10-27 13:34:00</sys_created_on>
         <sys_id>81191fae2fc86c10e0f497eef699b69e</sys_id>
-        <sys_mod_count>1746</sys_mod_count>
+        <sys_mod_count>1747</sys_mod_count>
         <sys_name>Star Wars Character Sheet</sys_name>
         <sys_package display_value="Star Wars RPG" source="x_176383_star_wars">64b3517bdb5a08542901de90cf961993</sys_package>
         <sys_policy/>
         <sys_scope display_value="Star Wars RPG">64b3517bdb5a08542901de90cf961993</sys_scope>
         <sys_update_name>sp_widget_81191fae2fc86c10e0f497eef699b69e</sys_update_name>
         <sys_updated_by>ben.fisher</sys_updated_by>
-        <sys_updated_on>2025-08-28 20:33:56</sys_updated_on>
+        <sys_updated_on>2025-11-06 17:42:05</sys_updated_on>
         <template><![CDATA[<head>
   <script src="https://kit.fontawesome.com/035f51c999.js"></script>
 </head>
@@ -4285,7 +4285,7 @@ input:checked + .slider:before {
         <span class="col-xs-12" id="purchaseTalentsContainer">
           <!--span class="col-xs-12 talent-item" ng-if="item.canPurchase && !item.isPurchased" ng-repeat="item in data.availableTalents"-->
           <span class="col-xs-12 talent-item" ng-if="!item.isPurchased" ng-repeat="item in data.availableTalents">
-            <span class="col-xs-6 talent-detail">{{item.name}} <i ng-if="item.forceTalent == 'true'" class="fab fa-jedi-order"></i> <span ng-click="toggleTalentInfo(item)"><i class="far fa-info-circle"></i></span><br/>{{item.specName}}</span>
+            <span class="col-xs-6 talent-detail">{{item.name}} <i ng-if="item.forceTalent == 'true'" class="fab fa-jedi-order"></i> <span ng-click="toggleTalentInfo(item)"><i class="far fa-info-circle"></i></span><br/>{{item.specName}}<br/>{{item.number}}</span>
             <span class="col-xs-2 talent-detail">{{item.tierString}}</span>
             <span class="col-xs-2 talent-detail">{{item.costToPurchase}}</span>
             <span ng-if="item.canPurchase" class="col-xs-2 talent-detail"><button class="purchase-gear-button" ng-click="purchaseTalent(item)" ng-disabled="c.isSubmitting">Purchase</button></span>
@@ -4303,7 +4303,7 @@ input:checked + .slider:before {
         <span class="col-xs-12 talent-info" id="talentInfoPrereqs">
           <span class="col-xs-12">Must purchase one of the following talents first:</span>
           <span class="col-xs-12 col-sm-6 col-md-4 col-lg-3 pre-req" ng-repeat="pr in data.currentTalentInfo.preReqDisplay">
-            <span class="col-xs-12 talent-info">{{pr.name}}<br/>Tier: {{pr.tier}}</span>
+            <span class="col-xs-12 talent-info">{{pr.name}}<br/>Tier: {{pr.tier}}<br/>{{pr.number}}</span>
           </span>
         </span>
       </span>
