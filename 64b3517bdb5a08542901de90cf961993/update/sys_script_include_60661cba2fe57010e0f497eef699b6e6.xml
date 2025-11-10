@@ -220,11 +220,13 @@ starWarsUtil.prototype = {
         upgrades.query();
         while (upgrades.next()) {
             var upgradeObj = {
-                name: upgrades.getDisplayValue(),
+                name: upgrades.name + '',
+				number: upgrades.number + '',
                 sys_id: upgrades.sys_id + '',
                 description: upgrades.description + '',
                 costToPurchase: parseInt(upgrades.cost_to_purchase),
                 prereqs: upgrades.pre_requisite_upgrades + '',
+				prereqsDisplay: upgrades.pre_requisite_upgrades.getDisplayValue(),
                 ability: upgrades.signature_ability.getDisplayValue(),
                 canPurchase: false
             };
@@ -486,6 +488,7 @@ starWarsUtil.prototype = {
                 activeOrPassive: talentTree.talent.passive_or_active.getDisplayValue(),
                 forceTalent: talentTree.talent.force_talent + '',
                 preReqs: talentTree.pre_requisite_talents.toString().split(','),
+				preReqsShortDisplay: talentTree.pre_requisite_talents.getDisplayValue(),
                 preReqDisplay: [],
                 isPurchased: false
             };
@@ -692,6 +695,7 @@ starWarsUtil.prototype = {
                     type: cfe.character_force_enhcancement.type.getDisplayValue(),
                     description: cfe.character_force_enhcancement.description + '',
                     ranks: 1,
+					number: cfe.character_force_enhcancement.number + '',
                     forceID: cfe.character_force_power.force_power.sys_id + '',
                     enhancementID: cfe.character_force_enhcancement.sys_id + ''
                 };
@@ -703,6 +707,7 @@ starWarsUtil.prototype = {
                     type: cfe.character_force_enhcancement.type.getDisplayValue(),
                     description: cfe.character_force_enhcancement.description + '',
                     ranks: 1,
+					number: cfe.character_force_enhcancement.number + '',
                     forceID: cfe.character_force_power.force_power.sys_id + '',
                     enhancementID: cfe.character_force_enhcancement.sys_id + ''
                 };
@@ -753,6 +758,8 @@ starWarsUtil.prototype = {
                 var feObj = {
                     type: fe.type.getDisplayValue(),
                     preReqs: fe.pre_req_force_enhancements + '',
+					preReqsDisplay: fe.pre_req_force_enhancements.getDisplayValue(),
+					number: fe.number + '',
                     forcePower: fe.force_power.getDisplayValue(),
                     forcePowerID: fe.force_power.sys_id + '',
                     costToPurchase: fe.cost_to_purchase + '',
@@ -820,14 +827,14 @@ starWarsUtil.prototype = {
         <sys_created_by>ben.fisher</sys_created_by>
         <sys_created_on>2021-07-28 03:50:03</sys_created_on>
         <sys_id>60661cba2fe57010e0f497eef699b6e6</sys_id>
-        <sys_mod_count>79</sys_mod_count>
+        <sys_mod_count>87</sys_mod_count>
         <sys_name>starWarsUtil</sys_name>
         <sys_package display_value="Star Wars RPG" source="x_176383_star_wars">64b3517bdb5a08542901de90cf961993</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="Star Wars RPG">64b3517bdb5a08542901de90cf961993</sys_scope>
         <sys_update_name>sys_script_include_60661cba2fe57010e0f497eef699b6e6</sys_update_name>
         <sys_updated_by>ben.fisher</sys_updated_by>
-        <sys_updated_on>2025-11-06 17:39:00</sys_updated_on>
+        <sys_updated_on>2025-11-10 18:54:10</sys_updated_on>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
         <id>60661cba2fe57010e0f497eef699b6e6</id>

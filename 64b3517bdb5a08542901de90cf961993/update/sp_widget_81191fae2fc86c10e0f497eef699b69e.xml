@@ -1836,8 +1836,8 @@
 }
 
 .talent-item{
-  display: flex;
-  column-gap: 1rem;
+  /*display: flex;
+  column-gap: 1rem;*/
   padding:10px 2px 10px 2px;
   border-bottom:1px dotted white;
 }
@@ -3339,14 +3339,14 @@ input:checked + .slider:before {
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-10-27 13:34:00</sys_created_on>
         <sys_id>81191fae2fc86c10e0f497eef699b69e</sys_id>
-        <sys_mod_count>1747</sys_mod_count>
+        <sys_mod_count>1758</sys_mod_count>
         <sys_name>Star Wars Character Sheet</sys_name>
         <sys_package display_value="Star Wars RPG" source="x_176383_star_wars">64b3517bdb5a08542901de90cf961993</sys_package>
         <sys_policy/>
         <sys_scope display_value="Star Wars RPG">64b3517bdb5a08542901de90cf961993</sys_scope>
         <sys_update_name>sp_widget_81191fae2fc86c10e0f497eef699b69e</sys_update_name>
         <sys_updated_by>ben.fisher</sys_updated_by>
-        <sys_updated_on>2025-11-06 17:42:05</sys_updated_on>
+        <sys_updated_on>2025-11-10 19:06:30</sys_updated_on>
         <template><![CDATA[<head>
   <script src="https://kit.fontawesome.com/035f51c999.js"></script>
 </head>
@@ -4149,16 +4149,17 @@ input:checked + .slider:before {
         <!-- enhancements -->
         <span class="col-xs-12 force-power-shop" id="forceEnhancementShop">
           <span class="col-xs-12 force-power-headers">
-            <span class="col-xs-2 force-power-header">Type</span>
-            <span class="col-xs-6 force-power-header">Description</span>
-            <span class="col-xs-2 force-power-header">XP Cost</span>
-            <span class="col-xs-2 force-power-header"></span>
+            <span class="col-xs-2 force-power-header">Type:</span>
+            <span class="col-xs-6 force-power-header">Description:</span>
+            <span class="col-xs-2 force-power-header">XP Cost:</span>
+            <span class="col-xs-2 force-power-header">Pre-reqs:</span>
           </span>
           <span class="col-xs-12 force-power" ng-if="!enh.isPurchased" ng-repeat="enh in data.forceEnhancements">
-            <span class="col-xs-2 fe-name force-power-detail">{{enh.forcePower}} - {{enh.type}}</span>
+            <span class="col-xs-2 fe-name force-power-detail">{{enh.forcePower}} - {{enh.type}}<br/>{{enh.number}}</span>
             <span class="col-xs-6 force-power-detail" ng-bind-html="enh.description"></span>
             <span class="col-xs-2 force-power-detail">{{enh.costToPurchase}}</span>
-            <span class="col-xs-2 vehicle-detail talent-detail force-power-detail"><button class="purchase-gear-button" ng-click="purchaseForceEnhancement(enh)" ng-disabled="c.isSubmitting" ng-if="enh.canPurchase">Purchase</button></span>
+            <span class="col-xs-2 vehicle-detail talent-detail force-power-detail">{{enh.preReqsDisplay}}</span>
+            <span class="col-xs-12 vehicle-detail talent-detail force-power-detail text-center"><button class="purchase-gear-button" ng-click="purchaseForceEnhancement(enh)" ng-disabled="c.isSubmitting" ng-if="enh.canPurchase">Purchase</button></span>
           </span>
         </span>
       </span>
@@ -4196,16 +4197,17 @@ input:checked + .slider:before {
         <!-- signature ability upgrades -->
         <span class="col-xs-12 force-power-shop" ng-if="c.sigToShow == 'upgrades'">
           <span class="col-xs-12 force-power-headers">
-            <span class="col-xs-2 force-power-header">Name</span>
-            <span class="col-xs-6 force-power-header">Description</span>
-            <span class="col-xs-2 force-power-header">XP Cost</span>
-            <span class="col-xs-2 force-power-header"></span>
+            <span class="col-xs-2 force-power-header">Name:</span>
+            <span class="col-xs-6 force-power-header">Description:</span>
+            <span class="col-xs-2 force-power-header">XP Cost:</span>
+            <span class="col-xs-2 force-power-header">Pre-reqs:</span>
           </span>
           <span class="col-xs-12 force-power" ng-repeat="upgrade in data.availableSignatureAbilityUpgrades">
-            <span class="col-xs-2 force-power-detail fe-name">{{upgrade.name}} -<br>{{upgrade.ability}}</span>
+            <span class="col-xs-2 force-power-detail fe-name">{{upgrade.name}} -<br>{{upgrade.ability}}<br/>{{upgrade.number}}</span>
             <span class="col-xs-6 force-power-detail" ng-bind-html="upgrade.description"></span>
             <span class="col-xs-2 force-power-detail">{{upgrade.costToPurchase}}</span>
-            <span class="col-xs-2 force-power-detail"><button ng-if="upgrade.canPurchase" class="purchase-gear-button" ng-click="purchaseSignatureAbilityUpgrade(upgrade)" ng-disabled="c.isSubmitting">Purchase</button></span>
+            <span class="col-xs-2 force-power-detail">{{upgrade.prereqsDisplay}}</span>
+            <span class="col-xs-12 force-power-detail text-center"><button ng-if="upgrade.canPurchase" class="purchase-gear-button" ng-click="purchaseSignatureAbilityUpgrade(upgrade)" ng-disabled="c.isSubmitting">Purchase</button></span>
           </span>
         </span>
       </span>
@@ -4278,17 +4280,18 @@ input:checked + .slider:before {
       <span class="col-xs-12 purchase-talents-body">
         <span class="col-xs-12 talents-headers">
           <span class="col-xs-6 talent-header">Name:</span>
-          <span class="col-xs-2 talent-header">Tier:</span>
-          <span class="col-xs-2 talent-header">XP Cost:</span>
-          <span class="col-xs-2 talent-header"></span>
+          <span class="col-xs-2 talent-header text-center">Tier:</span>
+          <span class="col-xs-2 talent-header text-center">XP Cost:</span>
+          <span class="col-xs-2 talent-header">Pre-reqs:</span>
         </span>
         <span class="col-xs-12" id="purchaseTalentsContainer">
           <!--span class="col-xs-12 talent-item" ng-if="item.canPurchase && !item.isPurchased" ng-repeat="item in data.availableTalents"-->
           <span class="col-xs-12 talent-item" ng-if="!item.isPurchased" ng-repeat="item in data.availableTalents">
             <span class="col-xs-6 talent-detail">{{item.name}} <i ng-if="item.forceTalent == 'true'" class="fab fa-jedi-order"></i> <span ng-click="toggleTalentInfo(item)"><i class="far fa-info-circle"></i></span><br/>{{item.specName}}<br/>{{item.number}}</span>
-            <span class="col-xs-2 talent-detail">{{item.tierString}}</span>
-            <span class="col-xs-2 talent-detail">{{item.costToPurchase}}</span>
-            <span ng-if="item.canPurchase" class="col-xs-2 talent-detail"><button class="purchase-gear-button" ng-click="purchaseTalent(item)" ng-disabled="c.isSubmitting">Purchase</button></span>
+            <span class="col-xs-2 talent-detail text-center">{{item.tierString}}</span>
+            <span class="col-xs-2 talent-detail text-center">{{item.costToPurchase}}</span>
+            <span class="col-xs-2 talent-detail">{{item.preReqsShortDisplay}}</span><br>
+            <span class="col-xs-12 talent-detail text-center"><button ng-if="item.canPurchase" class="purchase-gear-button" ng-click="purchaseTalent(item)" ng-disabled="c.isSubmitting">Purchase</button></span>
           </span>
         </span>
       </span>

@@ -2,6 +2,7 @@
     <element db_object_id="1e6cd64a2f4a4d10e0f497eef699b633" label="Signature Ability Upgrade" max_length="40" name="x_176383_star_wars_signature_ability_upgrade" type="collection">
         <element attributes="edge_encryption_enabled=true" label="Cost to purchase" mandatory="true" max_length="32" name="cost_to_purchase" type="integer"/>
         <element attributes="edge_encryption_enabled=true,encode_utf8=false" label="Signature ability" mandatory="true" max_length="32" name="signature_ability" reference="x_176383_star_wars_signature_ability" type="reference"/>
+        <element attributes="ignore_filter_on_new=true" default="javascript:global.getNextObjNumberPadded();" display="true" label="Number" max_length="40" name="number" type="string"/>
         <element attributes="edge_encryption_enabled=true,no_sort=true,slushbucket_ref_no_expand=true" label="Pre-requisite upgrades" max_length="1024" name="pre_requisite_upgrades" reference="x_176383_star_wars_signature_ability_upgrade" reference_qual="signature_abilitySAMEASsignature_ability^EQ" reference_qual_condition="signature_abilitySAMEASsignature_ability^EQ" type="glide_list"/>
         <element attributes="edge_encryption_enabled=true" label="Description" max_length="1000" name="description" type="html"/>
         <element label="Name" mandatory="true" max_length="80" name="name" type="string"/>

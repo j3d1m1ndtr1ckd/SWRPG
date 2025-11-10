@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_fix">
+    <sys_script_fix action="INSERT_OR_UPDATE">
+        <before>false</before>
+        <description/>
+        <name>backfill numbers on records</name>
+        <record_for_rollback>true</record_for_rollback>
+        <script><![CDATA[try {
+    var tableName = 'x_176383_star_wars_signature_ability_upgrade';
+    var nm = new global.numberFixingForScopedApp();
+
+    var gr = new GlideRecord(tableName);
+    gr.query();
+    while (gr.next()) {
+        gr.number = nm.getNextNumber(tableName);
+		//gr.number = '';
+        gr.update();
+    }
+} catch (e) {
+    gs.info(e.message);
+}]]></script>
+        <sys_class_name>sys_script_fix</sys_class_name>
+        <sys_created_by>ben.fisher</sys_created_by>
+        <sys_created_on>2025-11-10 16:52:34</sys_created_on>
+        <sys_id>7dd373be538d7650482950b0a0490e42</sys_id>
+        <sys_mod_count>7</sys_mod_count>
+        <sys_name>backfill numbers on records</sys_name>
+        <sys_package display_value="Star Wars RPG" source="x_176383_star_wars">64b3517bdb5a08542901de90cf961993</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Star Wars RPG">64b3517bdb5a08542901de90cf961993</sys_scope>
+        <sys_update_name>sys_script_fix_7dd373be538d7650482950b0a0490e42</sys_update_name>
+        <sys_updated_by>ben.fisher</sys_updated_by>
+        <sys_updated_on>2025-11-10 18:38:47</sys_updated_on>
+        <unloadable>false</unloadable>
+    </sys_script_fix>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>7dd373be538d7650482950b0a0490e42</id>
+        <sys_created_by>ben.fisher</sys_created_by>
+        <sys_created_on>2025-11-10 16:52:34</sys_created_on>
+        <sys_id>79d3b3be538d7650482950b0a0490ecd</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>ben.fisher</sys_updated_by>
+        <sys_updated_on>2025-11-10 16:52:34</sys_updated_on>
+        <table>sys_script_fix</table>
+        <use_es_latest>true</use_es_latest>
+    </sys_es_latest_script>
+</record_update>
