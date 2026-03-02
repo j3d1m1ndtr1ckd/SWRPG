@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[api.controller=function() {  /* widget controller */  var c = this;};]]></client_script>
+        <controller_as>c</controller_as>
+        <css>.image-background{
+  position:fixed;
+  top:65px;
+  left:0;
+  height: 100%; /* You must set a specified height */
+  background-position: center !important; /* Center the image */
+  background-attachment: fixed;
+  background-repeat:no-repeat;
+  background-size:cover !important;
+  opacity:.7;
+  z-index:-5;
+}
+
+.sw-campaign-full-page-detail-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  row-gap: 5rem;
+
+  .detail-body-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 2rem;
+    font-size: 1.8rem;
+
+    .session-tabs-container{
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      column-gap: 10rem;
+
+      .active-tab{
+        font-weight: bold;
+        text-decoration: underline;
+      }
+    }
+  }
+}</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>false</has_preview>
+        <id>sw_campaign_full_page_detail</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
+        <name>SW Campaign Full Page Detail</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {
+  /* populate the 'data' object */
+  /* e.g., data.table = $sp.getValue('table'); */
+try{
+	var table = $sp.getParameter('table');
+	data.isSessionNote = table == 'x_176383_star_wars_session_plan' ? true : false;
+	var sys_id = $sp.getParameter('sys_id');
+	var util = new starWarsGMUtil();
+	data.record = util.getFullPageCampaignDetail(table, sys_id);
+} catch(e){
+	console.log('full page campaign detail error: ' + e.message);
+}
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>ben.fisher</sys_created_by>
+        <sys_created_on>2026-03-02 16:32:23</sys_created_on>
+        <sys_id>8641208f539f7210482950b0a0490ea2</sys_id>
+        <sys_mod_count>16</sys_mod_count>
+        <sys_name>SW Campaign Full Page Detail</sys_name>
+        <sys_package display_value="Star Wars RPG" source="x_176383_star_wars">64b3517bdb5a08542901de90cf961993</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Star Wars RPG">64b3517bdb5a08542901de90cf961993</sys_scope>
+        <sys_update_name>sp_widget_8641208f539f7210482950b0a0490ea2</sys_update_name>
+        <sys_updated_by>ben.fisher</sys_updated_by>
+        <sys_updated_on>2026-03-02 23:26:05</sys_updated_on>
+        <template><![CDATA[<head>
+  <script src="https://kit.fontawesome.com/5539187d1b.js" crossorigin="anonymous"></script>
+</head>
+
+<div class="col-xs-12 image-background" style="background: url('sw_space.jpg')"></div>
+
+<div class="sw-campaign-full-page-detail-container">
+  <div class="detail-header-container">
+    <span class="detail-header">
+      <h2>{{data.record.name}}</h2>
+      <h4 class="star-wars-text">{{data.record.name}}</h4>
+    </span>
+  </div>
+  <div class="detail-body-container">
+    <span class="session-tabs-container" ng-if="data.isSessionNote" ng-init="c.currentTab = 'outline'">
+      <span class="session-note-tab" ng-class="{'active-tab' : c.currentTab == 'outline'}" ng-click="c.currentTab = 'outline'; data.record.description = data.record.outline;">Outline</span>
+      <span class="session-note-tab" ng-class="{'active-tab' : c.currentTab == 'gm_notes'}" ng-click="c.currentTab = 'gm_notes'; data.record.description = data.record.gm_notes;">GM Notes</span>
+    </span>
+    <span ng-if="data.record.planet">Planet: {{data.record.planet}}</span>
+    <span ng-if="data.record.location">Location: {{data.record.location}}</span>
+    <span class="description" ng-bind-html="data.record.description"></span>
+  </div>
+</div>]]></template>
+    </sp_widget>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>8641208f539f7210482950b0a0490ea2</id>
+        <sys_created_by>ben.fisher</sys_created_by>
+        <sys_created_on>2026-03-02 16:32:23</sys_created_on>
+        <sys_id>0641208f539f7210482950b0a0490ea7</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>ben.fisher</sys_updated_by>
+        <sys_updated_on>2026-03-02 16:32:23</sys_updated_on>
+        <table>sp_widget</table>
+        <use_es_latest>true</use_es_latest>
+    </sys_es_latest_script>
+</record_update>

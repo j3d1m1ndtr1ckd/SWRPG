@@ -565,14 +565,14 @@
         <sys_created_by>ben.fisher</sys_created_by>
         <sys_created_on>2023-01-09 05:29:57</sys_created_on>
         <sys_id>2d884a952f582950e0f497eef699b689</sys_id>
-        <sys_mod_count>233</sys_mod_count>
+        <sys_mod_count>234</sys_mod_count>
         <sys_name>Star Wars Campaign Detail</sys_name>
         <sys_package display_value="Star Wars RPG" source="x_176383_star_wars">64b3517bdb5a08542901de90cf961993</sys_package>
         <sys_policy/>
         <sys_scope display_value="Star Wars RPG">64b3517bdb5a08542901de90cf961993</sys_scope>
         <sys_update_name>sp_widget_2d884a952f582950e0f497eef699b689</sys_update_name>
         <sys_updated_by>ben.fisher</sys_updated_by>
-        <sys_updated_on>2025-08-28 20:33:01</sys_updated_on>
+        <sys_updated_on>2026-03-02 16:30:22</sys_updated_on>
         <template><![CDATA[<head>
   <script src="https://kit.fontawesome.com/5539187d1b.js" crossorigin="anonymous"></script>
 </head>
@@ -640,6 +640,7 @@
     <h3 class="full-detail-title">{{c.detailRec.name}}</h3>
     <p class="full-detail-sub-title star-wars-text">{{c.detailRec.name}}</p>
     <p class="full-detail-sub-title order" ng-if="data.detail == 'sessions'">Order: {{c.detailRec.order}}</p>
+    <p class="full-detail-sub-title"><a href="?id=sw_campaign_full_page_detail&table={{data.detailTable}}&sys_id={{c.detailRec.sys_id}}" target="_blank">View Full Page</a></p>
     <span ng-if="data.detail == 'sessions'" class="session-plan-tabs" ng-init="c.activeTab = 'outline'; c.detailRec.description = c.detailRec.outline">
       <span class="swfdf-outline-tab session-plan-tab" ng-class="{'full-detail-active-tab': c.activeTab == 'outline'}" ng-click="c.activeTab = 'outline'; c.detailRec.description = c.detailRec.outline">Outline<br><text class="star-wars-text">Outline</text></span>
       <span class="swfdf-gm-notes-tab session-plan-tab" ng-class="{'full-detail-active-tab': c.activeTab == 'gm_notes'}" ng-click="c.activeTab = 'gm_notes'; c.detailRec.description = c.detailRec.gm_notes">GM Notes<br><text class="star-wars-text">GM Notes</text></span>

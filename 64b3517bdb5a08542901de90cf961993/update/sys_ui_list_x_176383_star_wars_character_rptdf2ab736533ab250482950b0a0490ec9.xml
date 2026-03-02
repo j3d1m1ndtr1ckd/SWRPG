@@ -1,0 +1,782 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_ui_list parent="" relationship="" sys_domain="global" table="x_176383_star_wars_character" version="2" view="RPTdf2ab736533ab250482950b0a0490ec9">
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>species</element>
+            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="1b2a733a53323650482950b0a0490ec2">972a733a53323650482950b0a0490ec4</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>0</position>
+            <sum>false</sum>
+            <sys_created_by>ben.fisher</sys_created_by>
+            <sys_created_on>2026-02-05 17:10:08</sys_created_on>
+            <sys_id>572a733a53323650482950b0a0490ec5</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>ben.fisher</sys_updated_by>
+            <sys_updated_on>2026-02-05 17:10:08</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>sys_updated_by</element>
+            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="1b2a733a53323650482950b0a0490ec2">972a733a53323650482950b0a0490ec4</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>1</position>
+            <sum>false</sum>
+            <sys_created_by>ben.fisher</sys_created_by>
+            <sys_created_on>2026-02-05 17:10:08</sys_created_on>
+            <sys_id>db2a733a53323650482950b0a0490ec5</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>ben.fisher</sys_updated_by>
+            <sys_updated_on>2026-02-05 17:10:08</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>sys_updated_on</element>
+            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="1b2a733a53323650482950b0a0490ec2">972a733a53323650482950b0a0490ec4</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>2</position>
+            <sum>false</sum>
+            <sys_created_by>ben.fisher</sys_created_by>
+            <sys_created_on>2026-02-05 17:10:08</sys_created_on>
+            <sys_id>532a733a53323650482950b0a0490ec6</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>ben.fisher</sys_updated_by>
+            <sys_updated_on>2026-02-05 17:10:08</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>total_xp</element>
+            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="1b2a733a53323650482950b0a0490ec2">972a733a53323650482950b0a0490ec4</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>3</position>
+            <sum>false</sum>
+            <sys_created_by>ben.fisher</sys_created_by>
+            <sys_created_on>2026-02-05 17:10:08</sys_created_on>
+            <sys_id>d72a733a53323650482950b0a0490ec6</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>ben.fisher</sys_updated_by>
+            <sys_updated_on>2026-02-05 17:10:08</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>available_xp</element>
+            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="1b2a733a53323650482950b0a0490ec2">972a733a53323650482950b0a0490ec4</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>4</position>
+            <sum>false</sum>
+            <sys_created_by>ben.fisher</sys_created_by>
+            <sys_created_on>2026-02-05 17:10:08</sys_created_on>
+            <sys_id>5f2a733a53323650482950b0a0490ec6</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>ben.fisher</sys_updated_by>
+            <sys_updated_on>2026-02-05 17:10:08</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>critical_injuries</element>
+            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="1b2a733a53323650482950b0a0490ec2">972a733a53323650482950b0a0490ec4</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>5</position>
+            <sum>false</sum>
+            <sys_created_by>ben.fisher</sys_created_by>
+            <sys_created_on>2026-02-05 17:10:08</sys_created_on>
+            <sys_id>d32a733a53323650482950b0a0490ec7</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>ben.fisher</sys_updated_by>
+            <sys_updated_on>2026-02-05 17:10:08</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>age</element>
+            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="1b2a733a53323650482950b0a0490ec2">972a733a53323650482950b0a0490ec4</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>6</position>
+            <sum>false</sum>
+            <sys_created_by>ben.fisher</sys_created_by>
+            <sys_created_on>2026-02-05 17:10:08</sys_created_on>
+            <sys_id>5b2a733a53323650482950b0a0490ec7</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>ben.fisher</sys_updated_by>
+            <sys_updated_on>2026-02-05 17:10:08</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>agility</element>
+            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="1b2a733a53323650482950b0a0490ec2">972a733a53323650482950b0a0490ec4</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>7</position>
+            <sum>false</sum>
+            <sys_created_by>ben.fisher</sys_created_by>
+            <sys_created_on>2026-02-05 17:10:08</sys_created_on>
+            <sys_id>df2a733a53323650482950b0a0490ec7</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>ben.fisher</sys_updated_by>
+            <sys_updated_on>2026-02-05 17:10:08</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>notable_features</element>
+            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="1b2a733a53323650482950b0a0490ec2">972a733a53323650482950b0a0490ec4</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>8</position>
+            <sum>false</sum>
+            <sys_created_by>ben.fisher</sys_created_by>
+            <sys_created_on>2026-02-05 17:10:08</sys_created_on>
+            <sys_id>572a733a53323650482950b0a0490ec8</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>ben.fisher</sys_updated_by>
+            <sys_updated_on>2026-02-05 17:10:08</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>background</element>
+            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="1b2a733a53323650482950b0a0490ec2">972a733a53323650482950b0a0490ec4</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>9</position>
+            <sum>false</sum>
+            <sys_created_by>ben.fisher</sys_created_by>
+            <sys_created_on>2026-02-05 17:10:08</sys_created_on>
+            <sys_id>db2a733a53323650482950b0a0490ec8</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>ben.fisher</sys_updated_by>
+            <sys_updated_on>2026-02-05 17:10:08</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>brawn</element>
+            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="1b2a733a53323650482950b0a0490ec2">972a733a53323650482950b0a0490ec4</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>10</position>
+            <sum>false</sum>
+            <sys_created_by>ben.fisher</sys_created_by>
+            <sys_created_on>2026-02-05 17:10:08</sys_created_on>
+            <sys_id>532a733a53323650482950b0a0490ec9</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>ben.fisher</sys_updated_by>
+            <sys_updated_on>2026-02-05 17:10:08</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>build</element>
+            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="1b2a733a53323650482950b0a0490ec2">972a733a53323650482950b0a0490ec4</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>11</position>
+            <sum>false</sum>
+            <sys_created_by>ben.fisher</sys_created_by>
+            <sys_created_on>2026-02-05 17:10:08</sys_created_on>
+            <sys_id>d72a733a53323650482950b0a0490ec9</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>ben.fisher</sys_updated_by>
+            <sys_updated_on>2026-02-05 17:10:08</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>career_specializations</element>
+            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="1b2a733a53323650482950b0a0490ec2">972a733a53323650482950b0a0490ec4</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>12</position>
+            <sum>false</sum>
+            <sys_created_by>ben.fisher</sys_created_by>
+            <sys_created_on>2026-02-05 17:10:08</sys_created_on>
+            <sys_id>5f2a733a53323650482950b0a0490ec9</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>ben.fisher</sys_updated_by>
+            <sys_updated_on>2026-02-05 17:10:08</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>sys_class_name</element>
+            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="1b2a733a53323650482950b0a0490ec2">972a733a53323650482950b0a0490ec4</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>13</position>
+            <sum>false</sum>
+            <sys_created_by>ben.fisher</sys_created_by>
+            <sys_created_on>2026-02-05 17:10:08</sys_created_on>
+            <sys_id>d32a733a53323650482950b0a0490eca</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>ben.fisher</sys_updated_by>
+            <sys_updated_on>2026-02-05 17:10:08</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>sys_created_on</element>
+            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="1b2a733a53323650482950b0a0490ec2">972a733a53323650482950b0a0490ec4</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>14</position>
+            <sum>false</sum>
+            <sys_created_by>ben.fisher</sys_created_by>
+            <sys_created_on>2026-02-05 17:10:08</sys_created_on>
+            <sys_id>5b2a733a53323650482950b0a0490eca</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>ben.fisher</sys_updated_by>
+            <sys_updated_on>2026-02-05 17:10:08</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>sys_created_by</element>
+            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="1b2a733a53323650482950b0a0490ec2">972a733a53323650482950b0a0490ec4</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>15</position>
+            <sum>false</sum>
+            <sys_created_by>ben.fisher</sys_created_by>
+            <sys_created_on>2026-02-05 17:10:08</sys_created_on>
+            <sys_id>df2a733a53323650482950b0a0490eca</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>ben.fisher</sys_updated_by>
+            <sys_updated_on>2026-02-05 17:10:08</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>credits</element>
+            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="1b2a733a53323650482950b0a0490ec2">972a733a53323650482950b0a0490ec4</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>16</position>
+            <sum>false</sum>
+            <sys_created_by>ben.fisher</sys_created_by>
+            <sys_created_on>2026-02-05 17:10:08</sys_created_on>
+            <sys_id>572a733a53323650482950b0a0490ecb</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>ben.fisher</sys_updated_by>
+            <sys_updated_on>2026-02-05 17:10:08</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>critical_injury_description</element>
+            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="1b2a733a53323650482950b0a0490ec2">972a733a53323650482950b0a0490ec4</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>17</position>
+            <sum>false</sum>
+            <sys_created_by>ben.fisher</sys_created_by>
+            <sys_created_on>2026-02-05 17:10:08</sys_created_on>
+            <sys_id>db2a733a53323650482950b0a0490ecb</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>ben.fisher</sys_updated_by>
+            <sys_updated_on>2026-02-05 17:10:08</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>cunning</element>
+            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="1b2a733a53323650482950b0a0490ec2">972a733a53323650482950b0a0490ec4</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>18</position>
+            <sum>false</sum>
+            <sys_created_by>ben.fisher</sys_created_by>
+            <sys_created_on>2026-02-05 17:10:08</sys_created_on>
+            <sys_id>532a733a53323650482950b0a0490ecc</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>ben.fisher</sys_updated_by>
+            <sys_updated_on>2026-02-05 17:10:08</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>defense_melee</element>
+            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="1b2a733a53323650482950b0a0490ec2">972a733a53323650482950b0a0490ec4</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>19</position>
+            <sum>false</sum>
+            <sys_created_by>ben.fisher</sys_created_by>
+            <sys_created_on>2026-02-05 17:10:08</sys_created_on>
+            <sys_id>d72a733a53323650482950b0a0490ecc</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>ben.fisher</sys_updated_by>
+            <sys_updated_on>2026-02-05 17:10:08</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>defense_ranged</element>
+            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="1b2a733a53323650482950b0a0490ec2">972a733a53323650482950b0a0490ec4</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>20</position>
+            <sum>false</sum>
+            <sys_created_by>ben.fisher</sys_created_by>
+            <sys_created_on>2026-02-05 17:10:08</sys_created_on>
+            <sys_id>db2a733a53323650482950b0a0490ee5</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>ben.fisher</sys_updated_by>
+            <sys_updated_on>2026-02-05 17:10:08</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>description_html</element>
+            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="1b2a733a53323650482950b0a0490ec2">972a733a53323650482950b0a0490ec4</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>21</position>
+            <sum>false</sum>
+            <sys_created_by>ben.fisher</sys_created_by>
+            <sys_created_on>2026-02-05 17:10:08</sys_created_on>
+            <sys_id>532a733a53323650482950b0a0490ee6</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>ben.fisher</sys_updated_by>
+            <sys_updated_on>2026-02-05 17:10:08</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>eyes</element>
+            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="1b2a733a53323650482950b0a0490ec2">972a733a53323650482950b0a0490ec4</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>22</position>
+            <sum>false</sum>
+            <sys_created_by>ben.fisher</sys_created_by>
+            <sys_created_on>2026-02-05 17:10:08</sys_created_on>
+            <sys_id>d72a733a53323650482950b0a0490ee6</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>ben.fisher</sys_updated_by>
+            <sys_updated_on>2026-02-05 17:10:08</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>force_committed</element>
+            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="1b2a733a53323650482950b0a0490ec2">972a733a53323650482950b0a0490ec4</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>23</position>
+            <sum>false</sum>
+            <sys_created_by>ben.fisher</sys_created_by>
+            <sys_created_on>2026-02-05 17:10:08</sys_created_on>
+            <sys_id>5f2a733a53323650482950b0a0490ee6</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>ben.fisher</sys_updated_by>
+            <sys_updated_on>2026-02-05 17:10:08</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>force_rating</element>
+            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="1b2a733a53323650482950b0a0490ec2">972a733a53323650482950b0a0490ec4</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>24</position>
+            <sum>false</sum>
+            <sys_created_by>ben.fisher</sys_created_by>
+            <sys_created_on>2026-02-05 17:10:08</sys_created_on>
+            <sys_id>d32a733a53323650482950b0a0490ee7</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>ben.fisher</sys_updated_by>
+            <sys_updated_on>2026-02-05 17:10:08</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>gender</element>
+            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="1b2a733a53323650482950b0a0490ec2">972a733a53323650482950b0a0490ec4</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>25</position>
+            <sum>false</sum>
+            <sys_created_by>ben.fisher</sys_created_by>
+            <sys_created_on>2026-02-05 17:10:08</sys_created_on>
+            <sys_id>5b2a733a53323650482950b0a0490ee7</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>ben.fisher</sys_updated_by>
+            <sys_updated_on>2026-02-05 17:10:08</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>hair</element>
+            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="1b2a733a53323650482950b0a0490ec2">972a733a53323650482950b0a0490ec4</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>26</position>
+            <sum>false</sum>
+            <sys_created_by>ben.fisher</sys_created_by>
+            <sys_created_on>2026-02-05 17:10:08</sys_created_on>
+            <sys_id>df2a733a53323650482950b0a0490ee7</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>ben.fisher</sys_updated_by>
+            <sys_updated_on>2026-02-05 17:10:08</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>height</element>
+            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="1b2a733a53323650482950b0a0490ec2">972a733a53323650482950b0a0490ec4</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>27</position>
+            <sum>false</sum>
+            <sys_created_by>ben.fisher</sys_created_by>
+            <sys_created_on>2026-02-05 17:10:08</sys_created_on>
+            <sys_id>572a733a53323650482950b0a0490ee8</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>ben.fisher</sys_updated_by>
+            <sys_updated_on>2026-02-05 17:10:08</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>intellect</element>
+            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="1b2a733a53323650482950b0a0490ec2">972a733a53323650482950b0a0490ec4</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>28</position>
+            <sum>false</sum>
+            <sys_created_by>ben.fisher</sys_created_by>
+            <sys_created_on>2026-02-05 17:10:08</sys_created_on>
+            <sys_id>db2a733a53323650482950b0a0490ee8</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>ben.fisher</sys_updated_by>
+            <sys_updated_on>2026-02-05 17:10:08</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>notes</element>
+            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="1b2a733a53323650482950b0a0490ec2">972a733a53323650482950b0a0490ec4</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>29</position>
+            <sum>false</sum>
+            <sys_created_by>ben.fisher</sys_created_by>
+            <sys_created_on>2026-02-05 17:10:08</sys_created_on>
+            <sys_id>532a733a53323650482950b0a0490ee9</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>ben.fisher</sys_updated_by>
+            <sys_updated_on>2026-02-05 17:10:08</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>other_gear</element>
+            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="1b2a733a53323650482950b0a0490ec2">972a733a53323650482950b0a0490ec4</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>30</position>
+            <sum>false</sum>
+            <sys_created_by>ben.fisher</sys_created_by>
+            <sys_created_on>2026-02-05 17:10:08</sys_created_on>
+            <sys_id>d72a733a53323650482950b0a0490ee9</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>ben.fisher</sys_updated_by>
+            <sys_updated_on>2026-02-05 17:10:08</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>portrait</element>
+            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="1b2a733a53323650482950b0a0490ec2">972a733a53323650482950b0a0490ec4</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>31</position>
+            <sum>false</sum>
+            <sys_created_by>ben.fisher</sys_created_by>
+            <sys_created_on>2026-02-05 17:10:08</sys_created_on>
+            <sys_id>5f2a733a53323650482950b0a0490ee9</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>ben.fisher</sys_updated_by>
+            <sys_updated_on>2026-02-05 17:10:08</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>presence</element>
+            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="1b2a733a53323650482950b0a0490ec2">972a733a53323650482950b0a0490ec4</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>32</position>
+            <sum>false</sum>
+            <sys_created_by>ben.fisher</sys_created_by>
+            <sys_created_on>2026-02-05 17:10:08</sys_created_on>
+            <sys_id>d32a733a53323650482950b0a0490eea</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>ben.fisher</sys_updated_by>
+            <sys_updated_on>2026-02-05 17:10:08</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>signature_abilities_unlocked</element>
+            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="1b2a733a53323650482950b0a0490ec2">972a733a53323650482950b0a0490ec4</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>33</position>
+            <sum>false</sum>
+            <sys_created_by>ben.fisher</sys_created_by>
+            <sys_created_on>2026-02-05 17:10:08</sys_created_on>
+            <sys_id>5b2a733a53323650482950b0a0490eea</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>ben.fisher</sys_updated_by>
+            <sys_updated_on>2026-02-05 17:10:08</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>soak_value</element>
+            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="1b2a733a53323650482950b0a0490ec2">972a733a53323650482950b0a0490ec4</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>34</position>
+            <sum>false</sum>
+            <sys_created_by>ben.fisher</sys_created_by>
+            <sys_created_on>2026-02-05 17:10:08</sys_created_on>
+            <sys_id>df2a733a53323650482950b0a0490eea</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>ben.fisher</sys_updated_by>
+            <sys_updated_on>2026-02-05 17:10:08</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>status_effects</element>
+            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="1b2a733a53323650482950b0a0490ec2">972a733a53323650482950b0a0490ec4</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>35</position>
+            <sum>false</sum>
+            <sys_created_by>ben.fisher</sys_created_by>
+            <sys_created_on>2026-02-05 17:10:08</sys_created_on>
+            <sys_id>572a733a53323650482950b0a0490eeb</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>ben.fisher</sys_updated_by>
+            <sys_updated_on>2026-02-05 17:10:08</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>strain_current</element>
+            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="1b2a733a53323650482950b0a0490ec2">972a733a53323650482950b0a0490ec4</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>36</position>
+            <sum>false</sum>
+            <sys_created_by>ben.fisher</sys_created_by>
+            <sys_created_on>2026-02-05 17:10:08</sys_created_on>
+            <sys_id>db2a733a53323650482950b0a0490eeb</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>ben.fisher</sys_updated_by>
+            <sys_updated_on>2026-02-05 17:10:08</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>strain_threshold</element>
+            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="1b2a733a53323650482950b0a0490ec2">972a733a53323650482950b0a0490ec4</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>37</position>
+            <sum>false</sum>
+            <sys_created_by>ben.fisher</sys_created_by>
+            <sys_created_on>2026-02-05 17:10:08</sys_created_on>
+            <sys_id>532a733a53323650482950b0a0490eec</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>ben.fisher</sys_updated_by>
+            <sys_updated_on>2026-02-05 17:10:08</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>sys_tags</element>
+            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="1b2a733a53323650482950b0a0490ec2">972a733a53323650482950b0a0490ec4</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>38</position>
+            <sum>false</sum>
+            <sys_created_by>ben.fisher</sys_created_by>
+            <sys_created_on>2026-02-05 17:10:08</sys_created_on>
+            <sys_id>d72a733a53323650482950b0a0490eec</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>ben.fisher</sys_updated_by>
+            <sys_updated_on>2026-02-05 17:10:08</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>sys_mod_count</element>
+            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="1b2a733a53323650482950b0a0490ec2">972a733a53323650482950b0a0490ec4</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>39</position>
+            <sum>false</sum>
+            <sys_created_by>ben.fisher</sys_created_by>
+            <sys_created_on>2026-02-05 17:10:08</sys_created_on>
+            <sys_id>5f2a733a53323650482950b0a0490eec</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>ben.fisher</sys_updated_by>
+            <sys_updated_on>2026-02-05 17:10:08</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>visible_to_players</element>
+            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="1b2a733a53323650482950b0a0490ec2">972a733a53323650482950b0a0490ec4</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>40</position>
+            <sum>false</sum>
+            <sys_created_by>ben.fisher</sys_created_by>
+            <sys_created_on>2026-02-05 17:10:08</sys_created_on>
+            <sys_id>d32a733a53323650482950b0a0490eed</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>ben.fisher</sys_updated_by>
+            <sys_updated_on>2026-02-05 17:10:08</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>weight</element>
+            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="1b2a733a53323650482950b0a0490ec2">972a733a53323650482950b0a0490ec4</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>41</position>
+            <sum>false</sum>
+            <sys_created_by>ben.fisher</sys_created_by>
+            <sys_created_on>2026-02-05 17:10:08</sys_created_on>
+            <sys_id>5b2a733a53323650482950b0a0490eed</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>ben.fisher</sys_updated_by>
+            <sys_updated_on>2026-02-05 17:10:08</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>willpower</element>
+            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="1b2a733a53323650482950b0a0490ec2">972a733a53323650482950b0a0490ec4</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>42</position>
+            <sum>false</sum>
+            <sys_created_by>ben.fisher</sys_created_by>
+            <sys_created_on>2026-02-05 17:10:08</sys_created_on>
+            <sys_id>df2a733a53323650482950b0a0490eed</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>ben.fisher</sys_updated_by>
+            <sys_updated_on>2026-02-05 17:10:08</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>wounds_current</element>
+            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="1b2a733a53323650482950b0a0490ec2">972a733a53323650482950b0a0490ec4</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>43</position>
+            <sum>false</sum>
+            <sys_created_by>ben.fisher</sys_created_by>
+            <sys_created_on>2026-02-05 17:10:08</sys_created_on>
+            <sys_id>572a733a53323650482950b0a0490eee</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>ben.fisher</sys_updated_by>
+            <sys_updated_on>2026-02-05 17:10:08</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>wounds_threshold</element>
+            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="1b2a733a53323650482950b0a0490ec2">972a733a53323650482950b0a0490ec4</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>44</position>
+            <sum>false</sum>
+            <sys_created_by>ben.fisher</sys_created_by>
+            <sys_created_on>2026-02-05 17:10:08</sys_created_on>
+            <sys_id>db2a733a53323650482950b0a0490eee</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>ben.fisher</sys_updated_by>
+            <sys_updated_on>2026-02-05 17:10:08</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>name</element>
+            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="1b2a733a53323650482950b0a0490ec2">972a733a53323650482950b0a0490ec4</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>45</position>
+            <sum>false</sum>
+            <sys_created_by>ben.fisher</sys_created_by>
+            <sys_created_on>2026-02-05 17:10:08</sys_created_on>
+            <sys_id>532a733a53323650482950b0a0490eef</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>ben.fisher</sys_updated_by>
+            <sys_updated_on>2026-02-05 17:10:08</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>number</element>
+            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="1b2a733a53323650482950b0a0490ec2">972a733a53323650482950b0a0490ec4</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>46</position>
+            <sum>false</sum>
+            <sys_created_by>ben.fisher</sys_created_by>
+            <sys_created_on>2026-02-05 17:10:08</sys_created_on>
+            <sys_id>d72a733a53323650482950b0a0490eef</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>ben.fisher</sys_updated_by>
+            <sys_updated_on>2026-02-05 17:10:08</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>career</element>
+            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="1b2a733a53323650482950b0a0490ec2">972a733a53323650482950b0a0490ec4</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>47</position>
+            <sum>false</sum>
+            <sys_created_by>ben.fisher</sys_created_by>
+            <sys_created_on>2026-02-05 17:10:08</sys_created_on>
+            <sys_id>5f2a733a53323650482950b0a0490eef</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>ben.fisher</sys_updated_by>
+            <sys_updated_on>2026-02-05 17:10:08</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>campaign</element>
+            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="1b2a733a53323650482950b0a0490ec2">972a733a53323650482950b0a0490ec4</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>48</position>
+            <sum>false</sum>
+            <sys_created_by>ben.fisher</sys_created_by>
+            <sys_created_on>2026-02-05 17:10:08</sys_created_on>
+            <sys_id>d32a733a53323650482950b0a0490ef0</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>ben.fisher</sys_updated_by>
+            <sys_updated_on>2026-02-05 17:10:08</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>player</element>
+            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="1b2a733a53323650482950b0a0490ec2">972a733a53323650482950b0a0490ec4</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>49</position>
+            <sum>false</sum>
+            <sys_created_by>ben.fisher</sys_created_by>
+            <sys_created_on>2026-02-05 17:10:08</sys_created_on>
+            <sys_id>5b2a733a53323650482950b0a0490ef0</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>ben.fisher</sys_updated_by>
+            <sys_updated_on>2026-02-05 17:10:08</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element/>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <name>x_176383_star_wars_character</name>
+            <parent/>
+            <position/>
+            <relationship/>
+            <sum>false</sum>
+            <sys_class_name>sys_ui_list</sys_class_name>
+            <sys_created_by>ben.fisher</sys_created_by>
+            <sys_created_on>2026-02-05 17:10:08</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>972a733a53323650482950b0a0490ec4</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>x_176383_star_wars_character</sys_name>
+            <sys_package display_value="Star Wars RPG" source="x_176383_star_wars">64b3517bdb5a08542901de90cf961993</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="Star Wars RPG">64b3517bdb5a08542901de90cf961993</sys_scope>
+            <sys_update_name>sys_ui_list_x_176383_star_wars_character_RPTdf2ab736533ab250482950b0a0490ec9</sys_update_name>
+            <sys_updated_by>ben.fisher</sys_updated_by>
+            <sys_updated_on>2026-02-05 17:10:08</sys_updated_on>
+            <sys_user/>
+            <view display_value="Rptdf2ab736533ab250482950b0a0490ec9" name="RPTdf2ab736533ab250482950b0a0490ec9">1b2a733a53323650482950b0a0490ec2</view>
+            <view_name/>
+        </sys_ui_list>
+    </sys_ui_list>
+</record_update>

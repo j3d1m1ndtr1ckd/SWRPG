@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_ui_list parent="" relationship="" sys_domain="global" table="x_176383_star_wars_character_force_enhancements" version="2" view="RPT7b2c7ffa53323650482950b0a0490eea">
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>character_force_enhcancement</element>
+            <list_id display_value="x_176383_star_wars_character_force_enhancements" element="NULL" name="x_176383_star_wars_character_force_enhancements" parent="NULL" relationship="NULL" sys_domain="global" view="bb2c733e53323650482950b0a0490e2a">bb2c733e53323650482950b0a0490e2c</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>0</position>
+            <sum>false</sum>
+            <sys_created_by>ben.fisher</sys_created_by>
+            <sys_created_on>2026-02-05 17:18:55</sys_created_on>
+            <sys_id>fb2c733e53323650482950b0a0490e2d</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>ben.fisher</sys_updated_by>
+            <sys_updated_on>2026-02-05 17:18:55</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>character_force_power</element>
+            <list_id display_value="x_176383_star_wars_character_force_enhancements" element="NULL" name="x_176383_star_wars_character_force_enhancements" parent="NULL" relationship="NULL" sys_domain="global" view="bb2c733e53323650482950b0a0490e2a">bb2c733e53323650482950b0a0490e2c</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>1</position>
+            <sum>false</sum>
+            <sys_created_by>ben.fisher</sys_created_by>
+            <sys_created_on>2026-02-05 17:18:55</sys_created_on>
+            <sys_id>732c733e53323650482950b0a0490e2e</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>ben.fisher</sys_updated_by>
+            <sys_updated_on>2026-02-05 17:18:55</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>character</element>
+            <list_id display_value="x_176383_star_wars_character_force_enhancements" element="NULL" name="x_176383_star_wars_character_force_enhancements" parent="NULL" relationship="NULL" sys_domain="global" view="bb2c733e53323650482950b0a0490e2a">bb2c733e53323650482950b0a0490e2c</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>2</position>
+            <sum>false</sum>
+            <sys_created_by>ben.fisher</sys_created_by>
+            <sys_created_on>2026-02-05 17:18:55</sys_created_on>
+            <sys_id>f72c733e53323650482950b0a0490e2e</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>ben.fisher</sys_updated_by>
+            <sys_updated_on>2026-02-05 17:18:55</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>sys_created_on</element>
+            <list_id display_value="x_176383_star_wars_character_force_enhancements" element="NULL" name="x_176383_star_wars_character_force_enhancements" parent="NULL" relationship="NULL" sys_domain="global" view="bb2c733e53323650482950b0a0490e2a">bb2c733e53323650482950b0a0490e2c</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>3</position>
+            <sum>false</sum>
+            <sys_created_by>ben.fisher</sys_created_by>
+            <sys_created_on>2026-02-05 17:18:55</sys_created_on>
+            <sys_id>7f2c733e53323650482950b0a0490e2e</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>ben.fisher</sys_updated_by>
+            <sys_updated_on>2026-02-05 17:18:55</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>sys_created_by</element>
+            <list_id display_value="x_176383_star_wars_character_force_enhancements" element="NULL" name="x_176383_star_wars_character_force_enhancements" parent="NULL" relationship="NULL" sys_domain="global" view="bb2c733e53323650482950b0a0490e2a">bb2c733e53323650482950b0a0490e2c</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>4</position>
+            <sum>false</sum>
+            <sys_created_by>ben.fisher</sys_created_by>
+            <sys_created_on>2026-02-05 17:18:55</sys_created_on>
+            <sys_id>f32c733e53323650482950b0a0490e2f</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>ben.fisher</sys_updated_by>
+            <sys_updated_on>2026-02-05 17:18:55</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>sys_tags</element>
+            <list_id display_value="x_176383_star_wars_character_force_enhancements" element="NULL" name="x_176383_star_wars_character_force_enhancements" parent="NULL" relationship="NULL" sys_domain="global" view="bb2c733e53323650482950b0a0490e2a">bb2c733e53323650482950b0a0490e2c</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>5</position>
+            <sum>false</sum>
+            <sys_created_by>ben.fisher</sys_created_by>
+            <sys_created_on>2026-02-05 17:18:55</sys_created_on>
+            <sys_id>7b2c733e53323650482950b0a0490e2f</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>ben.fisher</sys_updated_by>
+            <sys_updated_on>2026-02-05 17:18:55</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>sys_updated_on</element>
+            <list_id display_value="x_176383_star_wars_character_force_enhancements" element="NULL" name="x_176383_star_wars_character_force_enhancements" parent="NULL" relationship="NULL" sys_domain="global" view="bb2c733e53323650482950b0a0490e2a">bb2c733e53323650482950b0a0490e2c</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>6</position>
+            <sum>false</sum>
+            <sys_created_by>ben.fisher</sys_created_by>
+            <sys_created_on>2026-02-05 17:18:55</sys_created_on>
+            <sys_id>ff2c733e53323650482950b0a0490e2f</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>ben.fisher</sys_updated_by>
+            <sys_updated_on>2026-02-05 17:18:55</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>sys_updated_by</element>
+            <list_id display_value="x_176383_star_wars_character_force_enhancements" element="NULL" name="x_176383_star_wars_character_force_enhancements" parent="NULL" relationship="NULL" sys_domain="global" view="bb2c733e53323650482950b0a0490e2a">bb2c733e53323650482950b0a0490e2c</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>7</position>
+            <sum>false</sum>
+            <sys_created_by>ben.fisher</sys_created_by>
+            <sys_created_on>2026-02-05 17:18:55</sys_created_on>
+            <sys_id>772c733e53323650482950b0a0490e30</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>ben.fisher</sys_updated_by>
+            <sys_updated_on>2026-02-05 17:18:55</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>sys_mod_count</element>
+            <list_id display_value="x_176383_star_wars_character_force_enhancements" element="NULL" name="x_176383_star_wars_character_force_enhancements" parent="NULL" relationship="NULL" sys_domain="global" view="bb2c733e53323650482950b0a0490e2a">bb2c733e53323650482950b0a0490e2c</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>8</position>
+            <sum>false</sum>
+            <sys_created_by>ben.fisher</sys_created_by>
+            <sys_created_on>2026-02-05 17:18:55</sys_created_on>
+            <sys_id>fb2c733e53323650482950b0a0490e30</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>ben.fisher</sys_updated_by>
+            <sys_updated_on>2026-02-05 17:18:55</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element/>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <name>x_176383_star_wars_character_force_enhancements</name>
+            <parent/>
+            <position/>
+            <relationship/>
+            <sum>false</sum>
+            <sys_class_name>sys_ui_list</sys_class_name>
+            <sys_created_by>ben.fisher</sys_created_by>
+            <sys_created_on>2026-02-05 17:18:55</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>bb2c733e53323650482950b0a0490e2c</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>x_176383_star_wars_character_force_enhancements</sys_name>
+            <sys_package display_value="Star Wars RPG" source="x_176383_star_wars">64b3517bdb5a08542901de90cf961993</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="Star Wars RPG">64b3517bdb5a08542901de90cf961993</sys_scope>
+            <sys_update_name>sys_ui_list_x_176383_star_wars_character_force_enhancements_RPT7b2c7ffa53323650482950b0a0490eea</sys_update_name>
+            <sys_updated_by>ben.fisher</sys_updated_by>
+            <sys_updated_on>2026-02-05 17:18:55</sys_updated_on>
+            <sys_user/>
+            <view display_value="Rpt7b2c7ffa53323650482950b0a0490eea" name="RPT7b2c7ffa53323650482950b0a0490eea">bb2c733e53323650482950b0a0490e2a</view>
+            <view_name/>
+        </sys_ui_list>
+    </sys_ui_list>
+</record_update>
