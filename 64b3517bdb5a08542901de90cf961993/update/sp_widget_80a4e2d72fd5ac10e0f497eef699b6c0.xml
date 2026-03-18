@@ -4,6 +4,7 @@
         <client_script><![CDATA[api.controller=function($scope, $rootScope, $location, spUtil) {
   /* widget controller */
   var c = this;
+	c.showFullNotes = false;
 	
 	$scope.viewCampaign = function(campaign){
 		c.server.get({action: 'showCampaignDetail', campaign: campaign}).then(function(response){
@@ -32,7 +33,7 @@
 	}
 	
 	$scope.viewNotes = function(date){
-		$scope.data.currentNotesDate = date;
+		$scope.data.currentNotesDate = date.date;
 	}
 	
 	$scope.closeNotesContainer = function(){
@@ -211,7 +212,7 @@ a:hover{
 
 .campaign-detail-body{
   .description-link{
-  	font-size: 1.6rem;
+    font-size: 1.6rem;
   }
 }
 
@@ -279,12 +280,29 @@ a:hover{
   font-size:16px;
 }
 
-.note-selector{
-  text-align:center;
-  padding:10px;
-  
-  .view-details-button-container{
-  	margin-top: 1rem;
+.session-notes-parent-container{
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: space-evenly;
+  width: 100%;
+  flex-wrap: wrap;
+  row-gap: 1.5rem;
+  column-gap: 1.5rem;
+
+  .note-container{
+    height: 100%;
+
+    .note-selector{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding:10px;
+
+      .view-details-button-container{
+        margin-top: 1rem;
+      }
+    }
   }
 }
 
@@ -304,6 +322,23 @@ a:hover{
   box-shadow: 0px 0px 4px 2px #54f403;
   z-index:5;
   padding-bottom:20px;
+
+  .full-notes-body{
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    row-gap: 2rem;
+
+    .close-button-container{
+      text-align: right;
+    }
+
+    .note{
+      .note-title{
+        font-weight: bold;
+      }
+    }
+  }
 
   .note-detail{
     font-size:1.6rem;
@@ -348,31 +383,31 @@ a:hover{
   display:flex;
   flex-flow: column nowrap;
   padding:2rem;
-  
+
   a{
-  	text-decoration: underline;
+    text-decoration: underline;
   }
-  
+
   .close-container{
-  	order: 0;
+    order: 0;
     width: 100%;
     text-align: right;
   }
-  
+
   .campaign-description-body{
-  	order: 0;
+    order: 0;
     display:flex;
     flex-flow: column nowrap;
-    
+
     .campaign-description-header{
-    	order: 0;
+      order: 0;
       width: 100%;
       text-align: center;
       font-size:2.2rem;
     }
-    
+
     .campaign-description{
-    	order: 1;
+      order: 1;
       width: 100%;
       font-size: 1.8rem;
     }
@@ -393,15 +428,15 @@ a:hover{
 
 @media only screen and (max-width:762px){
   .campaign-description-flyout-container{
-  	left:.4rem;
+    left:.4rem;
   }
-  
+
   .create-campaign-container{
-  	left:.4rem;
+    left:.4rem;
     max-height:60rem;
     overflow-y: scroll;
   }
-  
+
   .campaigns-container, .campaigns-body, .campaign-detail-body{
     padding:0;
   }
@@ -541,6 +576,7 @@ a:hover{
 		//retrieve campaign session notes
 		data.notes = [];
 		data.noteDates = [];
+		data.reverseNotes = [];
 		var notes = new GlideRecord('x_176383_star_wars_session_note');
 		notes.addQuery('campaign', data.currentCampaignID);
 		notes.orderByDesc('session_date');
@@ -551,6 +587,7 @@ a:hover{
 				sysID: notes.sys_id + '',
 				character: notes.character.getDisplayValue(),
 				notes: notes.notes + '',
+				title: notes.title + '',
 				date: notes.session_date + ''
 			};
 			if(notes.character.player == userID){
@@ -559,10 +596,14 @@ a:hover{
 				notesObj.canEdit = false;
 			}
 			data.notes.push(notesObj);
+			data.reverseNotes.push(notesObj);
 			if(notes.session_date.getDisplayValue() != data.noteDates[data.noteDates.length - 1]){
 				data.noteDates.push(notes.session_date + '');
 			}
 		}
+		
+		data.reverseNotes.reverse();
+		
 		data.hasActiveSession = false;
 		var sessionGR = new GlideRecord('x_176383_star_wars_game_session');
 		sessionGR.addQuery('campaign', data.currentCampaignID).addCondition('active', true);
@@ -639,6 +680,7 @@ a:hover{
 				var notesObj = {
 					sysID: notes.sys_id + '',
 					character: notes.character.getDisplayValue(),
+					title: notes.title + '',
 					notes: notes.notes + '',
 					date: notes.session_date + ''
 				};
@@ -700,14 +742,14 @@ a:hover{
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-12-30 20:58:45</sys_created_on>
         <sys_id>80a4e2d72fd5ac10e0f497eef699b6c0</sys_id>
-        <sys_mod_count>300</sys_mod_count>
+        <sys_mod_count>318</sys_mod_count>
         <sys_name>Star Wars Campaigns</sys_name>
         <sys_package display_value="Star Wars RPG" source="x_176383_star_wars">64b3517bdb5a08542901de90cf961993</sys_package>
         <sys_policy/>
         <sys_scope display_value="Star Wars RPG">64b3517bdb5a08542901de90cf961993</sys_scope>
         <sys_update_name>sp_widget_80a4e2d72fd5ac10e0f497eef699b6c0</sys_update_name>
         <sys_updated_by>ben.fisher</sys_updated_by>
-        <sys_updated_on>2025-10-09 16:11:10</sys_updated_on>
+        <sys_updated_on>2026-03-18 19:14:09</sys_updated_on>
         <template><![CDATA[<head>
   <script src="https://kit.fontawesome.com/035f51c999.js" crossorigin="anonymous"></script>
 </head>
@@ -753,7 +795,7 @@ a:hover{
     </div>
     <!-- session notes -->
     <span class="col-xs-12 campaign-notes">
-      <span class="col-xs-12 detail-header text-center">Session Notes<br><text class="star-wars-text">Session Notes</text></span>
+      <span class="col-xs-12 detail-header text-center">Session Notes<br><text class="star-wars-text">Session Notes</text><br><a href="#" ng-click="c.showFullNotes = true;">View All</a></span>
       <span class="col-xs-12 session-record-buttons text-center">
         <span ng-if="data.hasActiveSession" class="col-xs-12 col-md-6 active-session-button">
           <button class="session-button">
@@ -766,12 +808,25 @@ a:hover{
           </button>
         </span>
       </span>
-      <span class="col-xs-12 col-md-2" ng-repeat="date in data.noteDates">
-        <span class="col-xs-12 character note-selector">
-          <span class="col-xs-12 character-detail date">{{date}}</span>
-          <span class="col-xs-12 view-details-button-container">
-            <button class="text-center view-campaign-button notes-button" ng-click="viewNotes(date)">View Notes</button>
+      <span class="session-notes-parent-container">
+        <span class="note-container" ng-repeat="date in data.notes">
+          <span class="character note-selector">
+            <span class="character-detail date" ng-bind="date.title"></span>
+            <span class="character-detail date">{{date.date}}</span>
+            <span class="view-details-button-container">
+              <button class="text-center view-campaign-button notes-button" ng-click="viewNotes(date)">View Notes</button>
+            </span>
           </span>
+        </span>
+      </span>
+    </span>
+    <!-- view full notes at once flyout -->
+    <span ng-if="c.showFullNotes" class="session-note-detail-container">
+      <span class="full-notes-body">
+        <span class="pull-right close-button-container" ng-click="c.showFullNotes = false;"><i class="fas fa-times fa-2x"></i></span>
+        <span class="note" ng-repeat="note in data.reverseNotes">
+          <span class="note-detail note-title">{{note.character}} - {{note.date}}: {{note.title}}</span>
+          <span class="note-detail" ng-bind-html="note.notes"></span>
         </span>
       </span>
     </span>
@@ -780,6 +835,7 @@ a:hover{
       <span class="pull-right close-button-container" ng-click="closeNotesContainer()"><i class="fas fa-times fa-2x"></i></span>
       <span ng-if="note.date == data.currentNotesDate" class="col-xs-12 session-note" ng-repeat="note in data.notes">
         <span class="col-xs-12 note-detail date">{{note.character}}: <a href="?id=form&table=x_176383_star_wars_session_note&sys_id={{note.sysID}}" target="_blank"><i ng-if="note.canEdit" class="fas fa-pen-fancy"> Edit</i></a></span>
+        <span class="col-xs-12 note-detail" ng-bind="note.title"></span>
         <span class="col-xs-12 note-detail" ng-bind-html="note.notes"></span>
       </span>
     </span>
