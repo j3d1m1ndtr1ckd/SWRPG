@@ -1657,14 +1657,14 @@ input{
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-10-16 18:34:06</sys_created_on>
         <sys_id>fd44b3432f771890e0f497eef699b611</sys_id>
-        <sys_mod_count>769</sys_mod_count>
+        <sys_mod_count>770</sys_mod_count>
         <sys_name>Star Wars Character Creator</sys_name>
         <sys_package display_value="Star Wars RPG" source="x_176383_star_wars">64b3517bdb5a08542901de90cf961993</sys_package>
         <sys_policy/>
         <sys_scope display_value="Star Wars RPG">64b3517bdb5a08542901de90cf961993</sys_scope>
         <sys_update_name>sp_widget_fd44b3432f771890e0f497eef699b611</sys_update_name>
         <sys_updated_by>ben.fisher</sys_updated_by>
-        <sys_updated_on>2025-01-22 21:41:02</sys_updated_on>
+        <sys_updated_on>2026-03-20 18:40:42</sys_updated_on>
         <template><![CDATA[<head>
   <script src="https://kit.fontawesome.com/035f51c999.js" crossorigin="anonymous"></script>
 </head>
@@ -1901,7 +1901,7 @@ input{
         <span class="col-xs-6 col-md-8 talent-name-header">Talent</span>
         <span class="col-xs-2 talent-tier-header">Tier</span>
         <span class="col-xs-12 talent" ng-if="talent.canPurchase" ng-repeat="talent in data.talents">
-          <span class="col-xs-6 col-md-8 talent-name">{{talent.name}} <i class="far fa-info-circle" ng-click="showInfo('talent', talent)"></i><br><text class="talent-specialization-name">{{talent.specName}}</text></span>
+          <span class="col-xs-6 col-md-8 talent-name" ng-click="showInfo('talent', talent)">{{talent.name}} <i class="far fa-info-circle"></i><br><text class="talent-specialization-name">{{talent.specName}}</text></span>
           <span class="col-xs-2 talent-tier">{{talent.tierString}}</span>
           <span class="col-xs-4 col-md-2 invest-buttons-container">
             <span ng-if="!talent.isPurchased && talent.costToPurchase <= data.investXPSpecies.startingXPInt" class="col-xs-12 increase-skill-button"><button class="skill-increase-button" ng-click="investXP('talent', talent)">Purchase</button></span>
@@ -1926,7 +1926,7 @@ input{
       <div ng-if="data.investingXPCategory == 'specializations'" class="col-xs-12 specialization-investment-container">
         <span class="col-xs-8 spec-name-header">Specialization</span>
         <span class="col-xs-12 specialization" ng-repeat="spec in data.availableCareerSpecializations">
-          <span class="col-xs-8 spec-name">{{spec.name}} <i class="far fa-info-circle" ng-click="showInfo('investSpec', spec)"></i></span>
+          <span class="col-xs-8 spec-name" ng-click="showInfo('investSpec', spec)">{{spec.name}} <i class="far fa-info-circle"></i></span>
           <span class="col-xs-4 invest-buttons-container">
             <span ng-if="!spec.isPurchased && spec.costToPurchase <= data.investXPSpecies.startingXPInt" class="col-xs-12 increase-skill-button"><button class="skill-increase-button" ng-click="investXP('investSpec', spec)">Purchase</button></span>
             <span ng-if="spec.isPurchased" class="col-xs-12 decrease-skill-button"><button class="skill-decrease-button" ng-click="divestXP('investSpec', spec)">Refund</button></span>
