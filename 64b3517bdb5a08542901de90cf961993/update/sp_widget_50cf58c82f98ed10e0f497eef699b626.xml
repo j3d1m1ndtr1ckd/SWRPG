@@ -268,14 +268,14 @@ var util = new starWarsGMUtil();
         <sys_created_by>ben.fisher</sys_created_by>
         <sys_created_on>2023-01-05 00:39:48</sys_created_on>
         <sys_id>50cf58c82f98ed10e0f497eef699b626</sys_id>
-        <sys_mod_count>79</sys_mod_count>
+        <sys_mod_count>80</sys_mod_count>
         <sys_name>Star Wars GM Home</sys_name>
         <sys_package display_value="Star Wars RPG" source="x_176383_star_wars">64b3517bdb5a08542901de90cf961993</sys_package>
         <sys_policy/>
         <sys_scope display_value="Star Wars RPG">64b3517bdb5a08542901de90cf961993</sys_scope>
         <sys_update_name>sp_widget_50cf58c82f98ed10e0f497eef699b626</sys_update_name>
         <sys_updated_by>ben.fisher</sys_updated_by>
-        <sys_updated_on>2025-08-29 21:36:01</sys_updated_on>
+        <sys_updated_on>2026-04-14 16:20:18</sys_updated_on>
         <template><![CDATA[<head>
   <script src="https://kit.fontawesome.com/5539187d1b.js" crossorigin="anonymous"></script>
 </head>
@@ -327,6 +327,14 @@ var util = new starWarsGMUtil();
               <span class="campaign-detail-label">(N)PCs</span>
               <span class="campaign-detail-sub-label star-wars-text">(N)PCs</span>
               <span class="campaign-detail-integer">{{c.charactersCount}}</span>
+            </span>
+          </a>
+          <a href="?id=star_wars_campaign_detail&campaign={{c.sys_id}}&detail=sessionNotes">
+            <span class="campaign-detail-count">
+              <span class="campaign-detail-icon"><i class="fa-sharp fa-solid fa-notes"></i></span>
+              <span class="campaign-detail-label">Session Notes</span>
+              <span class="campaign-detail-sub-label star-wars-text">Session Notes</span>
+              <span class="campaign-detail-integer">{{c.sessionNotesCount}}</span>
             </span>
           </a>
           <a href="?id=star_wars_campaign_detail&campaign={{c.sys_id}}&detail=sessions">

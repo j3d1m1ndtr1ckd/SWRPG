@@ -53,6 +53,13 @@
 			$location.search('sys_id', null);
 			$location.search('spa', null);
 		}
+		
+		$scope.startNewSession = function(){
+			c.server.get({action: 'startNewSession'}).then(function(response){
+				window.open(response.data.newSessionURL);
+			});
+		}
+		
 	} catch(e){
 		console.log(e.message);
 	}
@@ -84,6 +91,43 @@
     justify-content:center;
     align-items:center;
     text-align:center;
+
+    .session-buttons-container{
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      align-items: center;
+      column-gap: 4rem;
+
+      .star-wars-session-button{
+        display:flex;
+        flex-flow:row nowrap;
+        justify-content:center;
+        align-items:center;
+        padding:1rem;
+        border: 1px groove #54f403;
+        border-radius:2rem;
+        box-shadow: 0px 0px 6px 3px #54f403;
+        background-color:transparent;
+        column-gap:2rem;
+        margin-top:2rem;
+        margin-bottom:2rem;
+        background-color:black;
+        color: white;
+        
+        &amp;:hover{
+        	color: lightgray;
+        }
+        
+        a{
+        	color: white;
+          
+          &amp;:hover{
+          	color: lightgray;
+          }
+        }
+      }
+    }
   }
 
   .star-wars-new-detail-button-container{
@@ -309,8 +353,16 @@
         color:#587059;
       }
 
+      .fa-space-station-moon{
+        color: gray;
+      }
+
       .fa-sword-laser{
         color:#54f403;
+      }
+
+      .fa-notes{
+        color: brown;
       }
 
       .fa-book-journal-whills{
@@ -525,6 +577,12 @@
 	data.campaignDisplay = campaignGR.getDisplayValue();
 	data.campaignDescription = campaignGR.description + '';
 
+	//session check
+	data.sessionDetails = util.getActiveSessionDetails(campaignID);
+	if(input && input.action == 'startNewSession'){
+		data.newSessionURL = util.startNewSession(campaignID, data.sessionDetails);
+	}
+
 	if(data.detail == 'orgs'){
 		data.detailTable = 'x_176383_star_wars_organization';
 		data.detailIcon = 'fa-solid fa-user-bounty-hunter';
@@ -550,6 +608,12 @@
 		data.newDetailButtonLabel = 'hide';
 		data.records = '';
 		data.detailWidget = $sp.getWidget('star_wars_campaigns');
+	} else if(data.detail == 'sessionNotes'){
+		data.sectionHeader = 'Session Notes';
+		data.detailIcon = 'fa-sharp fa-solid fa-notes';
+		data.detailTable = 'x_176383_star_wars_session_note';
+		data.records = util.getCampaignSessionNotes(campaignID);
+		data.newDetailButtonLabel = 'Session Note';
 	} else{
 		data.newDetailButtonLabel = "Session Plan";
 		data.detailIcon = 'fa-duotone fa-book-journal-whills';
@@ -565,14 +629,14 @@
         <sys_created_by>ben.fisher</sys_created_by>
         <sys_created_on>2023-01-09 05:29:57</sys_created_on>
         <sys_id>2d884a952f582950e0f497eef699b689</sys_id>
-        <sys_mod_count>234</sys_mod_count>
+        <sys_mod_count>248</sys_mod_count>
         <sys_name>Star Wars Campaign Detail</sys_name>
         <sys_package display_value="Star Wars RPG" source="x_176383_star_wars">64b3517bdb5a08542901de90cf961993</sys_package>
         <sys_policy/>
         <sys_scope display_value="Star Wars RPG">64b3517bdb5a08542901de90cf961993</sys_scope>
         <sys_update_name>sp_widget_2d884a952f582950e0f497eef699b689</sys_update_name>
         <sys_updated_by>ben.fisher</sys_updated_by>
-        <sys_updated_on>2026-03-02 16:30:22</sys_updated_on>
+        <sys_updated_on>2026-04-14 18:57:38</sys_updated_on>
         <template><![CDATA[<head>
   <script src="https://kit.fontawesome.com/5539187d1b.js" crossorigin="anonymous"></script>
 </head>
@@ -585,6 +649,12 @@
     <h1 class="star-wars-campaign-detail-header">{{data.campaignDisplay}}</h1>
     <h4 class="star-wars-campaign-detail-sub-header star-wars-text">{{data.campaignDisplay}}</h4>
     <a href="javascript:void(0)" ng-click="c.showFullDetails = true; c.detailRec = data.campaignRec">View Description</a>
+    <!-- active/new session button section -->
+    <span class="session-buttons-container">
+      <button class="star-wars-session-button" ng-if="data.sessionDetails.hasActiveSession"><a href="{{data.sessionDetails.activeSessionURL}}" target="_blank">Active Session</a></button>
+      <button class="star-wars-session-button" ng-click="startNewSession()">New Session</button>
+    </span>
+    
     <span ng-if="data.newDetailButtonLabel != 'hide'" class="star-wars-new-detail-button-container">
       <button class="star-wars-new-detail-button" ng-click="openNewDetailForm(-1)">
         <i id="swndb-first-icon" class="{{data.detailIcon}}"></i>
@@ -611,6 +681,7 @@
     <div class="star-wars-campaign-detail-records-container">
       <div ng-if="data.records" class="star-wars-campaign-detail-record" ng-repeat="rec in data.records | filter: c.filter">
         <span class="star-wars-campaign-detail detail-title"><b>Name:</b> {{rec.name}}</span>
+        <span class="star-wars-campaign-detail sub-detail" ng-if="data.detail == 'sessionNotes'">{{rec.date}}</span>
         <span class="star-wars-campaign-detail sub-detail" ng-if="data.detail == 'locations'"><b>Planet:</b> {{rec.planet}}</span>
         <span class="star-wars-campaign-detail sub-detail" ng-if="data.detail == 'artifacts'"><b>Location:</b> {{rec.location}}</span>
         <span class="star-wars-campaign-detail-links-container">
@@ -670,6 +741,10 @@
     <div class="swgmsn-button" ng-click="goTo('characters')">
       <i class="fa-solid fa-user-hair-buns"></i>
     	<span class="swgmsn-button-label">(N)PCs</span>
+    </div>
+    <div class="swgmsn-button" ng-click="goTo('sessionNotes')">
+      <i class="fa-sharp fa-solid fa-notes button-icon"></i>
+      <span class="swgmsn-button-label">Session Notes</span>
     </div>
     <div class="swgmsn-button" ng-click="goTo('sessions')">
       <i class="fa-duotone fa-book-journal-whills button-icon"></i>
