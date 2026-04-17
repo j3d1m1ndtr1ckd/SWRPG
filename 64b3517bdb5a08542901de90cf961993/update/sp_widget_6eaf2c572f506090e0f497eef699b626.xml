@@ -356,7 +356,7 @@
 }
 
 .wd-name:hover{
-	text-decoration:underline;
+  text-decoration:underline;
 }
 
 .edit-vehicle{
@@ -370,11 +370,11 @@
   background-color:black;
   border:1px groove #e21414;
   transition:all 1s ease-in-out;
-  
+
   .close-button{
-  	background:transparent;
+    background:transparent;
   }
-  
+
   .widget-container{
     .panel-heading, .panel-footer, .panel{
       background:transparent;
@@ -384,7 +384,7 @@
 }
 
 .gear-quality-info-container{
-	position:fixed;
+  position:fixed;
   top:20%;
   left:10%;
   width:80%;
@@ -401,22 +401,22 @@
   background-color:black;
   padding:2rem;
   z-index:5;
-  
+
   .close-button{
-  	order: 0;
+    order: 0;
     width:100%;
     display:flex;
     justify-content:flex-end;
   }
-  
+
   .gear-quality-info-header{
-  	order:1;
+    order:1;
     width:100%;
     text-align:center;
   }
-  
+
   .gear-quality-description{
-  	order:2;
+    order:2;
     font-size:1.6rem;
   }
 }
@@ -500,80 +500,77 @@ label,.sw-input{
   text-align:center;
 }
 
-.fa-starship-freighter{
-  transform:rotate(270deg);
-  font-size:100px;
-  position:absolute;
-  top:130px;
-  left:43%;
-  color:white;
-  text-shadow:0px 0px 5px lightgray;
-}
+.defense-characteristics{
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
 
-.defense-header{
-  text-align:center;
-  margin-bottom:20px;
-}
+  .defense-header{
+    text-align:center;
+    margin-bottom:20px;
 
-.defense{
-  box-shadow:0px 0px 6px 2px lightgray;
-}
+    #defenseHeaderText{
+      background-color:#2f3860;
+      font-size:18px;
+      padding:5px 15px 5px 15px;
+      border-radius:20px;
+    }
+  }
 
-#defenseHeaderText{
-  background-color:#2f3860;
-  font-size:18px;
-  padding:5px 15px 5px 15px;
-  border-radius:20px;
-}
+  .defense-container{
+    display: grid;
+    grid-template-areas: '. fore .'
+      'middleLeft middle middleRight'
+      '. aft .';
+    grid-gap: 2rem;
 
-#defenseFore{
-  position:absolute;
-  top:50px;
-  left:41.5%;
-  background-color:black;
-  text-align:center;
-  border-radius:20px;
-  min-width:130px;
-}
+    .defense{
+      background-color:black;
+      text-align:center;
+      border-radius:20px;
+      min-width:130px;
+      box-shadow:0px 0px 6px 2px lightgray;
 
-#defensePort{
-  position:absolute;
-  top:160px;
-  left:160px;
-  background-color:black;
-  text-align:center;
-  border-radius:20px;
-  min-width:130px;
-}
+      .defense-value{
+        font-size:18px;
+        padding:5px 0px 5px 0px;
+      }
 
-#defenseStarboard{
-  position:absolute;
-  top:160px;
-  right:160px;
-  background-color:black;
-  text-align:center;
-  border-radius:20px;
-  min-width:130px;
-}
+      .defense-label{
+        border-radius:0px 0px 20px 20px;
+        background-color:#e21414;
+      }
+    }
 
-#defenseAft{
-  position:absolute;
-  top:260px;
-  left:41.5%;
-  background-color:black;
-  text-align:center;
-  border-radius:20px;
-  min-width:130px;
-}
+    #defenseFore{
+      grid-area: fore;
+    }
 
-.defense-value{
-  font-size:18px;
-  padding:5px 0px 5px 0px;
-}
+    #defensePort{
+      grid-area: middleLeft;
+    }
 
-.defense-label{
-  border-radius:0px 0px 20px 20px;
-  background-color:#e21414;
+    #shipIcon{
+      grid-area: middle;
+			text-align: center;
+      
+      .fa-starship-freighter{
+        transform:rotate(270deg);
+        font-size:5.5rem;
+        color:white;
+        text-shadow:0px 0px 5px lightgray;
+      }
+    }
+
+    #defenseStarboard{
+      grid-area: middleRight;
+    }
+
+    #defenseAft{
+      grid-area: aft;
+    }
+  }
 }
 
 .badge{
@@ -634,7 +631,7 @@ label,.sw-input{
 .edit-mods-link-container{
   text-align:right;
   padding:1rem;
-  
+
   .sw-button{
     font-size:1.6rem;
     background: transparent;
@@ -714,7 +711,7 @@ label,.sw-input{
 
 #editVehicleCrits{
   padding-bottom: 2rem;
-  
+
   .crit-table{
     display: flex;
     flex-flow: column wrap;
@@ -748,10 +745,10 @@ label,.sw-input{
       .crit-result{
         text-align: left;
       }
-      
+
       .remove-crit-button{
-      	.fa-swords-laser{
-        	color: #e21414;
+        .fa-swords-laser{
+          color: #e21414;
         }
       }
     }
@@ -797,25 +794,12 @@ label,.sw-input{
   .fa-starship-freighter{
     left:36%; 
   }
-
-  #defenseFore{
-    left:32.5%;
+  
+  #defenseFore, #defensePort, #defenseStarboard, #defenseAft, .defense{
+    min-width: 8.8rem;
   }
-
-  #defensePort{
-    left:0;
-  }
-
-  #defenseStarboard{
-    right:0;
-  }
-
-  #defenseAft{
-    left:32.5%;
-  }
-
+  
   .weapons-container{
-    padding-top:75%;
     padding-right:2px;
     padding-left:2px;
   }
@@ -1032,14 +1016,14 @@ label,.sw-input{
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-11-10 19:24:58</sys_created_on>
         <sys_id>6eaf2c572f506090e0f497eef699b626</sys_id>
-        <sys_mod_count>295</sys_mod_count>
+        <sys_mod_count>308</sys_mod_count>
         <sys_name>Star Wars Vehicle Sheet</sys_name>
         <sys_package display_value="Star Wars RPG" source="x_176383_star_wars">64b3517bdb5a08542901de90cf961993</sys_package>
         <sys_policy/>
         <sys_scope display_value="Star Wars RPG">64b3517bdb5a08542901de90cf961993</sys_scope>
         <sys_update_name>sp_widget_6eaf2c572f506090e0f497eef699b626</sys_update_name>
         <sys_updated_by>ben.fisher</sys_updated_by>
-        <sys_updated_on>2025-02-19 14:36:32</sys_updated_on>
+        <sys_updated_on>2026-04-17 18:40:50</sys_updated_on>
         <template><![CDATA[<head>
   <script src="https://kit.fontawesome.com/035f51c999.js"></script>
 </head>
@@ -1056,7 +1040,7 @@ label,.sw-input{
   </div>
   <div class="col-xs-12 vehicle-characteristic-body">
     <span class="col-xs-12 characteristics-header">Characteristics<br><text class="star-wars-text">Characteristics</text></span>
-  	<span class="col-xs-12 col-md-7 primary-vehicle-characteristics">
+    <span class="col-xs-12 col-md-7 primary-vehicle-characteristics">
       <span class="col-xs-6 col-md-4 characteristic-container">
         <span class="col-xs-12 vehicle-characteristic-label">Silhouette</span>
         <span class="col-xs-12 vehicle-characteristic">{{data.vehicle.silhouette}}</span>
@@ -1072,8 +1056,8 @@ label,.sw-input{
       <span class="col-xs-6 col-md-4 characteristic-container" ng-click="editVehicle('speed')">
         <span class="col-xs-12 vehicle-characteristic-label">Speed</span>
         <span class="col-xs-6 threshold-container">
-        	<span class="col-xs-12 vehicle-characteristic">{{data.vehicle.speed}}</span>
-        	<span class="col-xs-12 vehicle-characteristic-label threshold">Max</span>
+          <span class="col-xs-12 vehicle-characteristic">{{data.vehicle.speed}}</span>
+          <span class="col-xs-12 vehicle-characteristic-label threshold">Max</span>
         </span>
         <span class="col-xs-6 current-container">
           <span class="col-xs-12 vehicle-characteristic">{{data.vehicle.currentSpeed}}</span>
@@ -1083,8 +1067,8 @@ label,.sw-input{
       <span class="col-xs-6 col-md-4 characteristic-container" ng-click="editVehicle('hullTrauma')">
         <span class="col-xs-12 vehicle-characteristic-label vehicle-combat-characteristic-label">Hull Trauma</span>
         <span class="col-xs-6 threshold-container">
-        	<span class="col-xs-12 vehicle-characteristic">{{data.vehicle.htThreshold}}</span>
-        	<span class="col-xs-12 vehicle-characteristic-label threshold">Threshold</span>
+          <span class="col-xs-12 vehicle-characteristic">{{data.vehicle.htThreshold}}</span>
+          <span class="col-xs-12 vehicle-characteristic-label threshold">Threshold</span>
         </span>
         <span class="col-xs-6 current-container">
           <span class="col-xs-12 vehicle-characteristic">{{data.vehicle.htCurrent}}</span>
@@ -1092,10 +1076,10 @@ label,.sw-input{
         </span>
       </span>
       <span class="col-xs-6 col-md-4 characteristic-container" ng-click="editVehicle('systemStrain')">
-      <span class="col-xs-12 vehicle-characteristic-label vehicle-combat-characteristic-label">System Strain</span>
+        <span class="col-xs-12 vehicle-characteristic-label vehicle-combat-characteristic-label">System Strain</span>
         <span class="col-xs-6 threshold-container">
-        	<span class="col-xs-12 vehicle-characteristic">{{data.vehicle.ssThreshold}}</span>
-        	<span class="col-xs-12 vehicle-characteristic-label threshold">Threshold</span>
+          <span class="col-xs-12 vehicle-characteristic">{{data.vehicle.ssThreshold}}</span>
+          <span class="col-xs-12 vehicle-characteristic-label threshold">Threshold</span>
         </span>
         <span class="col-xs-6 current-container">
           <span class="col-xs-12 vehicle-characteristic">{{data.vehicle.ssCurrent}}</span>
@@ -1109,26 +1093,31 @@ label,.sw-input{
     </span>
     <span class="col-xs-12 col-md-5 defense-characteristics" ng-click="editVehicle('defense')">
       <span class="col-xs-12 defense-header"><text id="defenseHeaderText">Defense</text></span>
-      <span class="defense" id="defenseFore">
-        <text class="col-xs-12 defense-value">{{data.vehicle.defenseFore}}</text>
-        <text class="col-xs-12 defense-label">Fore</text>
+      <span class="defense-container">
+        <span class="defense" id="defenseFore">
+          <text class="col-xs-12 defense-value">{{data.vehicle.defenseFore}}</text>
+          <text class="col-xs-12 defense-label">Fore</text>
+        </span>
+        <span class="defense" id="defensePort">
+          <text class="col-xs-12 defense-value">{{data.vehicle.defensePort}}</text>
+          <text class="col-xs-12 defense-label">Port</text>
+        </span>
+        <span id="shipIcon">
+          <i class="fal fa-starship-freighter"></i>
+        </span>
+        <span class="defense" id="defenseAft">
+          <text class="col-xs-12 defense-value">{{data.vehicle.defenseAft}}</text>
+          <text class="col-xs-12 defense-label">Aft</text>
+        </span>
+        <span class="defense" id="defenseStarboard">
+          <text class="col-xs-12 defense-value">{{data.vehicle.defenseStarboard}}</text>
+          <text class="col-xs-12 defense-label">Starboard</text>
+        </span>
       </span>
-      <span class="defense" id="defensePort">
-      	<text class="col-xs-12 defense-value">{{data.vehicle.defensePort}}</text>
-        <text class="col-xs-12 defense-label">Port</text>
-      </span>
-       <span class="defense" id="defenseAft">
-      	<text class="col-xs-12 defense-value">{{data.vehicle.defenseAft}}</text>
-        <text class="col-xs-12 defense-label">Aft</text>
-      </span>
-       <span class="defense" id="defenseStarboard">
-      	<text class="col-xs-12 defense-value">{{data.vehicle.defenseStarboard}}</text>
-        <text class="col-xs-12 defense-label">Starboard</text>
-      </span>
-       <span id="shipIcon">
-      	<i class="fal fa-starship-freighter"></i>
-      </span>
-     </span>
+      <!--span id="shipIcon">
+        <i class="fal fa-starship-freighter"></i>
+      </span-->
+    </span>
   </div>
   <!-- vehicle weapons-->
   <div class="col-xs-12 weapons-container" ng-init="c.showWeaponQualityInfo = false; c.weaponQuality = ''">
@@ -1152,15 +1141,15 @@ label,.sw-input{
       </span>
     </span>
   </div>
-  
+
   <!-- vehicle weapon quality description -->
   <span ng-if="c.showWeaponQualityInfo" class="gear-quality-info-container">
-      <span class="col-xs-12 close-button" ng-click="c.showWeaponQualityInfo = false"><i class="fas fa-swords-laser"></i></span>
-      <span class="gear-quality-info-header">
-        <h3>{{c.weaponQuality.name}}<br><text class="star-wars-text">{{c.weaponQuality.name}}</text></h3>
-      </span>
-      <span class="gear-quality-description" ng-bind-html="c.weaponQuality.description"></span>
+    <span class="col-xs-12 close-button" ng-click="c.showWeaponQualityInfo = false"><i class="fas fa-swords-laser"></i></span>
+    <span class="gear-quality-info-header">
+      <h3>{{c.weaponQuality.name}}<br><text class="star-wars-text">{{c.weaponQuality.name}}</text></h3>
     </span>
+    <span class="gear-quality-description" ng-bind-html="c.weaponQuality.description"></span>
+  </span>
   <!-- vehicle mods -->
   <div class="col-xs-12 weapons-container mods-container">
     <span class="col-xs-12 weapons-header">Vehicle Mods<br/><text class="star-wars-text">Vehicle Mods</text></span>
@@ -1189,27 +1178,27 @@ label,.sw-input{
 <!-- edit vehicle info sections -->
 <!-- edit vehicle name -->
 <span class="edit-vehicle" id="editVehicleName">
-	<span class="col-xs-12 close-button" ng-click="closeEditContainer('name')"><i class="fas fa-swords-laser"></i></span>
+  <span class="col-xs-12 close-button" ng-click="closeEditContainer('name')"><i class="fas fa-swords-laser"></i></span>
   <span class="col-xs-12 edit-vehicle-info-container">
     <label for="vehicleNameInput">Name/Transponder Code:</label><br/>
     <input class="sw-input" type="text" id="vehicleNameInput" name="vehicleNameInput" value="{{data.vehicle.nickName}}"/>
   </span>
   <span class="col-xs-12 save-edits">
-  	<span class="col-xs-12 save-button-container">
-    	<button class="save-edits-button" ng-click="saveEdits('name')">Save<br><text class="star-wars-text" id="swSaveButton">Save</text></button>
+    <span class="col-xs-12 save-button-container">
+      <button class="save-edits-button" ng-click="saveEdits('name')">Save<br><text class="star-wars-text" id="swSaveButton">Save</text></button>
     </span>
   </span>
 </span>
 <!-- edit vehicle hard points -->
 <span class="edit-vehicle" id="editVehicleHP">
-	<span class="col-xs-12 close-button" ng-click="closeEditContainer('hp')"><i class="fas fa-swords-laser"></i></span>
+  <span class="col-xs-12 close-button" ng-click="closeEditContainer('hp')"><i class="fas fa-swords-laser"></i></span>
   <span class="col-xs-12 edit-vehicle-info-container">
     <label for="vehicleHPInput">Hard Points:</label><br/>
     <input class="sw-input" type="text" id="vehicleHPInput" name="vehicleHPInput" value="{{data.vehicle.hp}}"/>
   </span>
   <span class="col-xs-12 save-edits">
-  	<span class="col-xs-12 save-button-container">
-    	<button class="save-edits-button" ng-click="saveEdits('hp')">Save<br><text class="star-wars-text" id="swSaveButton">Save</text></button>
+    <span class="col-xs-12 save-button-container">
+      <button class="save-edits-button" ng-click="saveEdits('hp')">Save<br><text class="star-wars-text" id="swSaveButton">Save</text></button>
     </span>
   </span>
 </span>
@@ -1223,8 +1212,8 @@ label,.sw-input{
     <input class="sw-input" type="text" id="vehicleInputCurrentSpeed" name="vehicleInputCurrentSpeed" inputmode="numeric" pattern="[0-9]*" value="{{data.vehicle.currentSpeed}}"/>
   </span>
   <span class="col-xs-12 save-edits">
-  	<span class="col-xs-12 save-button-container">
-    	<button class="save-edits-button" ng-click="saveEdits('speed')">Save<br><text class="star-wars-text" id="swSaveButton">Save</text></button>
+    <span class="col-xs-12 save-button-container">
+      <button class="save-edits-button" ng-click="saveEdits('speed')">Save<br><text class="star-wars-text" id="swSaveButton">Save</text></button>
     </span>
   </span>
 </span>
@@ -1236,8 +1225,8 @@ label,.sw-input{
     <input class="sw-input" type="text" id="vehicleInputHandling" name="vehicleInputHandling" inputmode="numeric" pattern="[0-9]*" value="{{data.vehicle.handling}}"/>
   </span>
   <span class="col-xs-12 save-edits">
-  	<span class="col-xs-12 save-button-container">
-    	<button class="save-edits-button" ng-click="saveEdits('handling')">Save<br><text class="star-wars-text" id="swSaveButton">Save</text></button>
+    <span class="col-xs-12 save-button-container">
+      <button class="save-edits-button" ng-click="saveEdits('handling')">Save<br><text class="star-wars-text" id="swSaveButton">Save</text></button>
     </span>
   </span>
 </span>
@@ -1249,8 +1238,8 @@ label,.sw-input{
     <input class="sw-input" type="text" id="vehicleInputArmor" name="vehicleInputArmor" inputmode="numeric" pattern="[0-9]*" value="{{data.vehicle.armor}}"/>
   </span>
   <span class="col-xs-12 save-edits">
-  	<span class="col-xs-12 save-button-container">
-    	<button class="save-edits-button" ng-click="saveEdits('armor')">Save<br><text class="star-wars-text" id="swSaveButton">Save</text></button>
+    <span class="col-xs-12 save-button-container">
+      <button class="save-edits-button" ng-click="saveEdits('armor')">Save<br><text class="star-wars-text" id="swSaveButton">Save</text></button>
     </span>
   </span>
 </span>
@@ -1264,37 +1253,37 @@ label,.sw-input{
     <textarea class="sw-input" type="text" id="vehicleCritDescription" name="vehicleCritDescription" ng-bind-html="data.vehicle.critDescription"></textarea>
   </span>
   <span class="col-xs-12 save-edits">
-  	<span class="col-xs-12 save-button-container">
-    	<button class="save-edits-button" ng-click="saveEdits('crit')">Save<br><text class="star-wars-text" id="swSaveButton">Save</text></button>
+   <span class="col-xs-12 save-button-container">
+     <button class="save-edits-button" ng-click="saveEdits('crit')">Save<br><text class="star-wars-text" id="swSaveButton">Save</text></button>
     </span>
   </span-->
   <span class="col-xs-12">
-        <label for="crits">Critical Hits: {{data.vehicle.criticalHits.length}}</label><br/>
-        <span ng-if="data.vehicle.criticalHits.length == 0">Your ship has no critical hits...good job!</span><br><br>
-        <span ng-if="data.vehicle.criticalHits.length > 0" class="character-crit-table crit-table">
-          <span class="crit-table-headers">
-            <span class="crit-table-header" ng-repeat="critHead in data.charCritHeaders">{{critHead}}</span>
-          </span>
-          <span class="crit-table-rows" ng-repeat="crit in data.vehicle.criticalHits">
-            <span class="crit-detail">{{crit.dice}}</span>
-            <span class="crit-detail">{{crit.severity}}</span>
-            <span class="crit-detail crit-result" ng-bind-html="crit.result"></span>
-            <span class="crit-detail remove-crit-button-container"><button id="removeItemButton" class="remove-crit-button" ng-click="removeCrit(crit.sys_id)" ng-disabled="c.isSubmitting"><i class="fas fa-swords-laser"></i></button></span>
-          </span>
-        </span><br><br>
-        <span class="crit-table-label">Critical Injuries Table:</span><br/>
-      	<span class="crit-table">
-          <span class="crit-table-headers">
-            <span class="crit-table-header" ng-repeat="critHead in data.critHeaders">{{critHead}}</span>
-          </span>
-          <span class="crit-table-rows" ng-repeat="crit in data.critTable">
-            <span class="crit-detail">{{crit.dice}}</span>
-            <span class="crit-detail">{{crit.severity}}</span>
-            <span class="crit-detail crit-result" ng-bind-html="crit.result"></span>
-            <span class="crit-detail add-crit-button-container"><button id="saveEditsButton" class="add-crit-button" ng-click="addCrit(crit.sys_id)" ng-disabled="c.isSubmitting">Add</button></span>
-          </span>
-        </span>
+    <label for="crits">Critical Hits: {{data.vehicle.criticalHits.length}}</label><br/>
+    <span ng-if="data.vehicle.criticalHits.length == 0">Your ship has no critical hits...good job!</span><br><br>
+    <span ng-if="data.vehicle.criticalHits.length > 0" class="character-crit-table crit-table">
+      <span class="crit-table-headers">
+        <span class="crit-table-header" ng-repeat="critHead in data.charCritHeaders">{{critHead}}</span>
       </span>
+      <span class="crit-table-rows" ng-repeat="crit in data.vehicle.criticalHits">
+        <span class="crit-detail">{{crit.dice}}</span>
+        <span class="crit-detail">{{crit.severity}}</span>
+        <span class="crit-detail crit-result" ng-bind-html="crit.result"></span>
+        <span class="crit-detail remove-crit-button-container"><button id="removeItemButton" class="remove-crit-button" ng-click="removeCrit(crit.sys_id)" ng-disabled="c.isSubmitting"><i class="fas fa-swords-laser"></i></button></span>
+      </span>
+    </span><br><br>
+    <span class="crit-table-label">Critical Injuries Table:</span><br/>
+    <span class="crit-table">
+      <span class="crit-table-headers">
+        <span class="crit-table-header" ng-repeat="critHead in data.critHeaders">{{critHead}}</span>
+      </span>
+      <span class="crit-table-rows" ng-repeat="crit in data.critTable">
+        <span class="crit-detail">{{crit.dice}}</span>
+        <span class="crit-detail">{{crit.severity}}</span>
+        <span class="crit-detail crit-result" ng-bind-html="crit.result"></span>
+        <span class="crit-detail add-crit-button-container"><button id="saveEditsButton" class="add-crit-button" ng-click="addCrit(crit.sys_id)" ng-disabled="c.isSubmitting">Add</button></span>
+      </span>
+    </span>
+  </span>
 </span>
 <!-- edit vehicle hull trauma -->
 <span class="edit-vehicle" id="editVehicleHullTrauma">
@@ -1306,8 +1295,8 @@ label,.sw-input{
     <input class="sw-input" type="text" id="vehicleInputHullTraumaCurrent" name="vehicleInputHullTraumaCurrent" inputmode="numeric" pattern="[0-9]*" value="{{data.vehicle.htCurrent}}">
   </span>
   <span class="col-xs-12 save-edits">
-  	<span class="col-xs-12 save-button-container">
-    	<button class="save-edits-button" ng-click="saveEdits('hullTrauma')">Save<br><text class="star-wars-text" id="swSaveButton">Save</text></button>
+    <span class="col-xs-12 save-button-container">
+      <button class="save-edits-button" ng-click="saveEdits('hullTrauma')">Save<br><text class="star-wars-text" id="swSaveButton">Save</text></button>
     </span>
   </span>
 </span>
@@ -1321,8 +1310,8 @@ label,.sw-input{
     <input class="sw-input" type="text" id="vehicleInputSystemStrainCurrent" name="vehicleInputSystemStrainCurrent" inputmode="numeric" pattern="[0-9]*" value="{{data.vehicle.ssCurrent}}">
   </span>
   <span class="col-xs-12 save-edits">
-  	<span class="col-xs-12 save-button-container">
-    	<button class="save-edits-button" ng-click="saveEdits('systemStrain')">Save<br><text class="star-wars-text" id="swSaveButton">Save</text></button>
+    <span class="col-xs-12 save-button-container">
+      <button class="save-edits-button" ng-click="saveEdits('systemStrain')">Save<br><text class="star-wars-text" id="swSaveButton">Save</text></button>
     </span>
   </span>
 </span>
@@ -1340,8 +1329,8 @@ label,.sw-input{
     <input class="sw-input" type="text" id="vehicleInputDefensePort" name="vehicleInputDefensePort" inputmode="numeric" pattern="[0-9]*" value="{{data.vehicle.defensePort}}"/><br>
   </span>
   <span class="col-xs-12 save-edits">
-  	<span class="col-xs-12 save-button-container">
-    	<button class="save-edits-button" ng-click="saveEdits('defense')">Save<br><text class="star-wars-text" id="swSaveButton">Save</text></button>
+    <span class="col-xs-12 save-button-container">
+      <button class="save-edits-button" ng-click="saveEdits('defense')">Save<br><text class="star-wars-text" id="swSaveButton">Save</text></button>
     </span>
   </span>
 </span>
@@ -1356,12 +1345,12 @@ label,.sw-input{
 <span class="edit-vehicle" id="editCargo">
   <span class="col-xs-12 close-button" ng-click="closeEditContainer('cargo')"><i class="fas fa-swords-laser"></i></span>
   <span class="col-xs-12 description-field">
-   <label for="cargo">Cargo Hold:</label><br>
-   <textarea class="sw-input" type="text" id="cargo" name="cargo"></textarea>
+    <label for="cargo">Cargo Hold:</label><br>
+    <textarea class="sw-input" type="text" id="cargo" name="cargo"></textarea>
   </span>
   <span class="col-xs-12 save-edits">
-  	<span class="col-xs-12 save-button-container">
-    	<button class="save-edits-button" ng-click="saveEdits('cargo')">Save<br><text class="star-wars-text" id="swSaveButton">Save</text></button>
+    <span class="col-xs-12 save-button-container">
+      <button class="save-edits-button" ng-click="saveEdits('cargo')">Save<br><text class="star-wars-text" id="swSaveButton">Save</text></button>
     </span>
   </span>
 </span>
