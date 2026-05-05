@@ -36,6 +36,7 @@
             </choice>
         </element>
         <element attributes="edge_encryption_enabled=true" default="javascript:current.getTableName();" dynamic_default_value="b5cb83a85f220100a9ad2572f2b4773c" label="Class" max_length="80" name="sys_class_name" type="sys_class_name" use_dynamic_default="true"/>
+        <element label="Restricted" max_length="255" name="restricted" type="boolean"/>
         <index name="index">
             <element name="skill_used"/>
         </index>

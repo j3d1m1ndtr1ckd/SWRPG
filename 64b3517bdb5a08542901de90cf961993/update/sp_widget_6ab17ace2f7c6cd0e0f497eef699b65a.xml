@@ -671,6 +671,7 @@
 				hp: gearGR.hard_points + '',
 				price: gearGR.price.getDisplayValue(),
 				rarity: gearGR.rarity + '',
+				restricted: (gearGR.restricted.toString() == 'true') ? true : false,
 				description: gearGR.description_html + '',
 				damage: gearGR.base_damage + '',
 				crit: gearGR.critical_rating + '',
@@ -696,7 +697,8 @@
 			data.gear.push(g);
 		}
 		data.displayGear = data.gear;
-
+		console.log(data.displayGear);
+		
 		data.force = [];
 		var forceGR = new GlideRecord('x_176383_star_wars_force_power');
 		forceGR.orderBy('name');
@@ -834,14 +836,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-12-02 04:12:12</sys_created_on>
         <sys_id>6ab17ace2f7c6cd0e0f497eef699b65a</sys_id>
-        <sys_mod_count>229</sys_mod_count>
+        <sys_mod_count>232</sys_mod_count>
         <sys_name>Holocron</sys_name>
         <sys_package display_value="Star Wars RPG" source="x_176383_star_wars">64b3517bdb5a08542901de90cf961993</sys_package>
         <sys_policy/>
         <sys_scope display_value="Star Wars RPG">64b3517bdb5a08542901de90cf961993</sys_scope>
         <sys_update_name>sp_widget_6ab17ace2f7c6cd0e0f497eef699b65a</sys_update_name>
         <sys_updated_by>ben.fisher</sys_updated_by>
-        <sys_updated_on>2024-06-26 19:48:30</sys_updated_on>
+        <sys_updated_on>2026-05-05 14:41:31</sys_updated_on>
         <template><![CDATA[<head>
   <script src="https://kit.fontawesome.com/035f51c999.js" crossorigin="anonymous"></script>
 </head>
@@ -1127,7 +1129,7 @@
   <span class="col-xs-12 info-header text-center">{{data.currentRecord.name}} <i ng-if="data.currentRecord.force == 'true'" class="fab fa-jedi-order"></i><br><text class="star-wars-text">{{data.currentRecord.name}}</text></span>
   <span class="col-xs-12 info-sub-header text-center">Type: {{data.currentRecord.type}}</span>
   <span class="col-xs-12 info-detail-body">
-    <span class="col-xs-4 info-detail">Price:<br><img src="credits.png" height="15px" width="15px"/> {{data.currentRecord.price}}</span>
+    <span class="col-xs-4 info-detail">Price:<br><img src="credits.png" height="15px" width="15px"/> {{data.currentRecord.price}} <span ng-if="data.currentRecord.restricted"><b>(R)</b></span></span>
     <span class="col-xs-4 info-detail">Rarity:<br>{{data.currentRecord.rarity}}</span>
     <span class="col-xs-4 info-detail">Hard Points:<br>{{data.currentRecord.hp}}</span>
     <span class="col-xs-4 info-detail">Encumbrance:<br>{{data.currentRecord.encumbrance}}</span>

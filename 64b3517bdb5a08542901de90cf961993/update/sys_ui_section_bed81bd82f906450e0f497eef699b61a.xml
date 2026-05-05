@@ -4,13 +4,13 @@
             <element>number</element>
             <position>0</position>
             <sys_created_by>ben.fisher</sys_created_by>
-            <sys_created_on>2023-12-29 16:30:41</sys_created_on>
-            <sys_id>7b822b572fdbb110e0f497eef699b697</sys_id>
+            <sys_created_on>2026-05-05 03:47:20</sys_created_on>
+            <sys_id>47e75b97536cc750482950b0a0490ec2</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_176383_star_wars_gear" sys_domain="global" view="Default view">bed81bd82f906450e0f497eef699b61a</sys_ui_section>
             <sys_updated_by>ben.fisher</sys_updated_by>
-            <sys_updated_on>2023-12-29 16:30:41</sys_updated_on>
+            <sys_updated_on>2026-05-05 03:47:20</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
@@ -18,13 +18,13 @@
             <element>name</element>
             <position>1</position>
             <sys_created_by>ben.fisher</sys_created_by>
-            <sys_created_on>2023-12-29 16:30:41</sys_created_on>
-            <sys_id>b3822b572fdbb110e0f497eef699b698</sys_id>
+            <sys_created_on>2026-05-05 03:47:20</sys_created_on>
+            <sys_id>8fe75b97536cc750482950b0a0490ec3</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_176383_star_wars_gear" sys_domain="global" view="Default view">bed81bd82f906450e0f497eef699b61a</sys_ui_section>
             <sys_updated_by>ben.fisher</sys_updated_by>
-            <sys_updated_on>2023-12-29 16:30:41</sys_updated_on>
+            <sys_updated_on>2026-05-05 03:47:20</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
@@ -32,13 +32,13 @@
             <element>.split</element>
             <position>2</position>
             <sys_created_by>ben.fisher</sys_created_by>
-            <sys_created_on>2023-12-29 16:30:41</sys_created_on>
-            <sys_id>b7822b572fdbb110e0f497eef699b698</sys_id>
+            <sys_created_on>2026-05-05 03:47:20</sys_created_on>
+            <sys_id>0fe75b97536cc750482950b0a0490ec4</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_176383_star_wars_gear" sys_domain="global" view="Default view">bed81bd82f906450e0f497eef699b61a</sys_ui_section>
             <sys_updated_by>ben.fisher</sys_updated_by>
-            <sys_updated_on>2023-12-29 16:30:41</sys_updated_on>
+            <sys_updated_on>2026-05-05 03:47:20</sys_updated_on>
             <sys_user/>
             <type>.split</type>
         </sys_ui_element>
@@ -46,125 +46,153 @@
             <element>type</element>
             <position>3</position>
             <sys_created_by>ben.fisher</sys_created_by>
-            <sys_created_on>2023-12-29 16:30:41</sys_created_on>
-            <sys_id>bb822b572fdbb110e0f497eef699b698</sys_id>
+            <sys_created_on>2026-05-05 03:47:20</sys_created_on>
+            <sys_id>9be75b97536cc750482950b0a0490ec5</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_176383_star_wars_gear" sys_domain="global" view="Default view">bed81bd82f906450e0f497eef699b61a</sys_ui_section>
             <sys_updated_by>ben.fisher</sys_updated_by>
-            <sys_updated_on>2023-12-29 16:30:41</sys_updated_on>
-            <sys_user/>
-            <type/>
-        </sys_ui_element>
-        <sys_ui_element action="INSERT_OR_UPDATE">
-            <element>.begin_split</element>
-            <position>4</position>
-            <sys_created_by>ben.fisher</sys_created_by>
-            <sys_created_on>2023-12-29 16:30:41</sys_created_on>
-            <sys_id>bf822b572fdbb110e0f497eef699b698</sys_id>
-            <sys_mod_count>0</sys_mod_count>
-            <sys_ui_formatter/>
-            <sys_ui_section caption="NULL" display_value="" name="x_176383_star_wars_gear" sys_domain="global" view="Default view">bed81bd82f906450e0f497eef699b61a</sys_ui_section>
-            <sys_updated_by>ben.fisher</sys_updated_by>
-            <sys_updated_on>2023-12-29 16:30:41</sys_updated_on>
-            <sys_user/>
-            <type>.begin_split</type>
-        </sys_ui_element>
-        <sys_ui_element action="INSERT_OR_UPDATE">
-            <element>encumbrance</element>
-            <position>5</position>
-            <sys_created_by>ben.fisher</sys_created_by>
-            <sys_created_on>2023-12-29 16:30:41</sys_created_on>
-            <sys_id>b3822b572fdbb110e0f497eef699b699</sys_id>
-            <sys_mod_count>0</sys_mod_count>
-            <sys_ui_formatter/>
-            <sys_ui_section caption="NULL" display_value="" name="x_176383_star_wars_gear" sys_domain="global" view="Default view">bed81bd82f906450e0f497eef699b61a</sys_ui_section>
-            <sys_updated_by>ben.fisher</sys_updated_by>
-            <sys_updated_on>2023-12-29 16:30:41</sys_updated_on>
-            <sys_user/>
-            <type/>
-        </sys_ui_element>
-        <sys_ui_element action="INSERT_OR_UPDATE">
-            <element>hard_points</element>
-            <position>6</position>
-            <sys_created_by>ben.fisher</sys_created_by>
-            <sys_created_on>2023-12-29 16:30:41</sys_created_on>
-            <sys_id>b7822b572fdbb110e0f497eef699b699</sys_id>
-            <sys_mod_count>0</sys_mod_count>
-            <sys_ui_formatter/>
-            <sys_ui_section caption="NULL" display_value="" name="x_176383_star_wars_gear" sys_domain="global" view="Default view">bed81bd82f906450e0f497eef699b61a</sys_ui_section>
-            <sys_updated_by>ben.fisher</sys_updated_by>
-            <sys_updated_on>2023-12-29 16:30:41</sys_updated_on>
-            <sys_user/>
-            <type/>
-        </sys_ui_element>
-        <sys_ui_element action="INSERT_OR_UPDATE">
-            <element>.split</element>
-            <position>7</position>
-            <sys_created_by>ben.fisher</sys_created_by>
-            <sys_created_on>2023-12-29 16:30:41</sys_created_on>
-            <sys_id>bb822b572fdbb110e0f497eef699b699</sys_id>
-            <sys_mod_count>0</sys_mod_count>
-            <sys_ui_formatter/>
-            <sys_ui_section caption="NULL" display_value="" name="x_176383_star_wars_gear" sys_domain="global" view="Default view">bed81bd82f906450e0f497eef699b61a</sys_ui_section>
-            <sys_updated_by>ben.fisher</sys_updated_by>
-            <sys_updated_on>2023-12-29 16:30:41</sys_updated_on>
-            <sys_user/>
-            <type>.split</type>
-        </sys_ui_element>
-        <sys_ui_element action="INSERT_OR_UPDATE">
-            <element>price</element>
-            <position>8</position>
-            <sys_created_by>ben.fisher</sys_created_by>
-            <sys_created_on>2023-12-29 16:30:41</sys_created_on>
-            <sys_id>bf822b572fdbb110e0f497eef699b699</sys_id>
-            <sys_mod_count>0</sys_mod_count>
-            <sys_ui_formatter/>
-            <sys_ui_section caption="NULL" display_value="" name="x_176383_star_wars_gear" sys_domain="global" view="Default view">bed81bd82f906450e0f497eef699b61a</sys_ui_section>
-            <sys_updated_by>ben.fisher</sys_updated_by>
-            <sys_updated_on>2023-12-29 16:30:41</sys_updated_on>
-            <sys_user/>
-            <type/>
-        </sys_ui_element>
-        <sys_ui_element action="INSERT_OR_UPDATE">
-            <element>rarity</element>
-            <position>9</position>
-            <sys_created_by>ben.fisher</sys_created_by>
-            <sys_created_on>2023-12-29 16:30:41</sys_created_on>
-            <sys_id>b3822b572fdbb110e0f497eef699b69a</sys_id>
-            <sys_mod_count>0</sys_mod_count>
-            <sys_ui_formatter/>
-            <sys_ui_section caption="NULL" display_value="" name="x_176383_star_wars_gear" sys_domain="global" view="Default view">bed81bd82f906450e0f497eef699b61a</sys_ui_section>
-            <sys_updated_by>ben.fisher</sys_updated_by>
-            <sys_updated_on>2023-12-29 16:30:41</sys_updated_on>
+            <sys_updated_on>2026-05-05 03:47:20</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
         <sys_ui_element action="INSERT_OR_UPDATE">
             <element>.end_split</element>
-            <position>10</position>
+            <position>4</position>
             <sys_created_by>ben.fisher</sys_created_by>
-            <sys_created_on>2023-12-29 16:30:41</sys_created_on>
-            <sys_id>b7822b572fdbb110e0f497eef699b69a</sys_id>
+            <sys_created_on>2026-05-05 03:47:20</sys_created_on>
+            <sys_id>1be75b97536cc750482950b0a0490ec6</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_176383_star_wars_gear" sys_domain="global" view="Default view">bed81bd82f906450e0f497eef699b61a</sys_ui_section>
             <sys_updated_by>ben.fisher</sys_updated_by>
-            <sys_updated_on>2023-12-29 16:30:41</sys_updated_on>
+            <sys_updated_on>2026-05-05 03:47:20</sys_updated_on>
+            <sys_user/>
+            <type>.end_split</type>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>.begin_split</element>
+            <position>5</position>
+            <sys_created_by>ben.fisher</sys_created_by>
+            <sys_created_on>2026-05-05 03:47:20</sys_created_on>
+            <sys_id>97e75b97536cc750482950b0a0490ec7</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_176383_star_wars_gear" sys_domain="global" view="Default view">bed81bd82f906450e0f497eef699b61a</sys_ui_section>
+            <sys_updated_by>ben.fisher</sys_updated_by>
+            <sys_updated_on>2026-05-05 03:47:20</sys_updated_on>
+            <sys_user/>
+            <type>.begin_split</type>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>encumbrance</element>
+            <position>6</position>
+            <sys_created_by>ben.fisher</sys_created_by>
+            <sys_created_on>2026-05-05 03:47:20</sys_created_on>
+            <sys_id>17e75b97536cc750482950b0a0490ec8</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_176383_star_wars_gear" sys_domain="global" view="Default view">bed81bd82f906450e0f497eef699b61a</sys_ui_section>
+            <sys_updated_by>ben.fisher</sys_updated_by>
+            <sys_updated_on>2026-05-05 03:47:20</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>hard_points</element>
+            <position>7</position>
+            <sys_created_by>ben.fisher</sys_created_by>
+            <sys_created_on>2026-05-05 03:47:20</sys_created_on>
+            <sys_id>93e75b97536cc750482950b0a0490ec9</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_176383_star_wars_gear" sys_domain="global" view="Default view">bed81bd82f906450e0f497eef699b61a</sys_ui_section>
+            <sys_updated_by>ben.fisher</sys_updated_by>
+            <sys_updated_on>2026-05-05 03:47:20</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>.split</element>
+            <position>8</position>
+            <sys_created_by>ben.fisher</sys_created_by>
+            <sys_created_on>2026-05-05 03:47:20</sys_created_on>
+            <sys_id>13e75b97536cc750482950b0a0490eca</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_176383_star_wars_gear" sys_domain="global" view="Default view">bed81bd82f906450e0f497eef699b61a</sys_ui_section>
+            <sys_updated_by>ben.fisher</sys_updated_by>
+            <sys_updated_on>2026-05-05 03:47:20</sys_updated_on>
+            <sys_user/>
+            <type>.split</type>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>price</element>
+            <position>9</position>
+            <sys_created_by>ben.fisher</sys_created_by>
+            <sys_created_on>2026-05-05 03:47:20</sys_created_on>
+            <sys_id>9fe75b97536cc750482950b0a0490eca</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_176383_star_wars_gear" sys_domain="global" view="Default view">bed81bd82f906450e0f497eef699b61a</sys_ui_section>
+            <sys_updated_by>ben.fisher</sys_updated_by>
+            <sys_updated_on>2026-05-05 03:47:20</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>rarity</element>
+            <position>10</position>
+            <sys_created_by>ben.fisher</sys_created_by>
+            <sys_created_on>2026-05-05 03:47:20</sys_created_on>
+            <sys_id>1fe75b97536cc750482950b0a0490ecb</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_176383_star_wars_gear" sys_domain="global" view="Default view">bed81bd82f906450e0f497eef699b61a</sys_ui_section>
+            <sys_updated_by>ben.fisher</sys_updated_by>
+            <sys_updated_on>2026-05-05 03:47:20</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>restricted</element>
+            <position>11</position>
+            <sys_created_by>ben.fisher</sys_created_by>
+            <sys_created_on>2026-05-05 03:47:20</sys_created_on>
+            <sys_id>9be75b97536cc750482950b0a0490ecc</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_176383_star_wars_gear" sys_domain="global" view="Default view">bed81bd82f906450e0f497eef699b61a</sys_ui_section>
+            <sys_updated_by>ben.fisher</sys_updated_by>
+            <sys_updated_on>2026-05-05 03:47:20</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>.end_split</element>
+            <position>12</position>
+            <sys_created_by>ben.fisher</sys_created_by>
+            <sys_created_on>2026-05-05 03:47:20</sys_created_on>
+            <sys_id>1be75b97536cc750482950b0a0490ecd</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_176383_star_wars_gear" sys_domain="global" view="Default view">bed81bd82f906450e0f497eef699b61a</sys_ui_section>
+            <sys_updated_by>ben.fisher</sys_updated_by>
+            <sys_updated_on>2026-05-05 03:47:20</sys_updated_on>
             <sys_user/>
             <type>.end_split</type>
         </sys_ui_element>
         <sys_ui_element action="INSERT_OR_UPDATE">
             <element>description_html</element>
-            <position>11</position>
+            <position>13</position>
             <sys_created_by>ben.fisher</sys_created_by>
-            <sys_created_on>2023-12-29 16:30:41</sys_created_on>
-            <sys_id>bb822b572fdbb110e0f497eef699b69a</sys_id>
+            <sys_created_on>2026-05-05 03:47:20</sys_created_on>
+            <sys_id>97e75b97536cc750482950b0a0490ece</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_176383_star_wars_gear" sys_domain="global" view="Default view">bed81bd82f906450e0f497eef699b61a</sys_ui_section>
             <sys_updated_by>ben.fisher</sys_updated_by>
-            <sys_updated_on>2023-12-29 16:30:41</sys_updated_on>
+            <sys_updated_on>2026-05-05 03:47:20</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>

@@ -17,6 +17,7 @@
         <menu/>
         <name>Star Wars RPG</name>
         <package_json/>
+        <package_resolver_version>1.0.0</package_resolver_version>
         <private>false</private>
         <restrict_table_access>false</restrict_table_access>
         <runtime_access_tracking>permissive</runtime_access_tracking>
@@ -32,16 +33,16 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-01-19 05:02:37</sys_created_on>
         <sys_id>64b3517bdb5a08542901de90cf961993</sys_id>
-        <sys_mod_count>71</sys_mod_count>
+        <sys_mod_count>72</sys_mod_count>
         <sys_updated_by>ben.fisher</sys_updated_by>
-        <sys_updated_on>2026-04-14 18:59:23</sys_updated_on>
+        <sys_updated_on>2026-05-05 19:29:41</sys_updated_on>
         <template/>
         <trackable>true</trackable>
         <uninstall_blocked>false</uninstall_blocked>
         <user_role/>
         <vendor/>
         <vendor_prefix/>
-        <version>1.6.5</version>
+        <version>1.6.6</version>
     </sys_app>
     <sys_translated_text action="delete_multiple" query="documentkey=64b3517bdb5a08542901de90cf961993"/>
 </record_update>
