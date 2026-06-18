@@ -5,8 +5,10 @@
         <payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update sys_domain="global" table="kb_knowledge"&gt;
     &lt;kb_knowledge action="INSERT_OR_UPDATE"&gt;
         &lt;active&gt;true&lt;/active&gt;
+        &lt;article_id/&gt;
         &lt;article_type&gt;text&lt;/article_type&gt;
         &lt;author display_value="Ben Fisher"&gt;bf532351db8303002901de90cf96196d&lt;/author&gt;
+        &lt;base_version/&gt;
         &lt;can_read_user_criteria/&gt;
         &lt;cannot_read_user_criteria/&gt;
         &lt;category/&gt;
@@ -16,32 +18,40 @@
         &lt;disable_commenting&gt;false&lt;/disable_commenting&gt;
         &lt;disable_suggesting&gt;false&lt;/disable_suggesting&gt;
         &lt;display_attachments&gt;false&lt;/display_attachments&gt;
+        &lt;display_number&gt;KB0010084&lt;/display_number&gt;
+        &lt;editor_type/&gt;
         &lt;flagged&gt;false&lt;/flagged&gt;
+        &lt;generated_with_now_assist&gt;false&lt;/generated_with_now_assist&gt;
         &lt;helpful_count&gt;0&lt;/helpful_count&gt;
         &lt;image/&gt;
+        &lt;instrumentation_metadata/&gt;
         &lt;kb_category display_value="Starships and Vehicles"&gt;211d2f412f94b010e0f497eef699b699&lt;/kb_category&gt;
-        &lt;kb_knowledge_base display_value="Star Wars RPG"&gt;4a4a278d2f54b010e0f497eef699b694&lt;/kb_knowledge_base&gt;
-        &lt;language&gt;en&lt;/language&gt;
+        &lt;kb_knowledge_base display_value="SWRPG"&gt;1e9dc5f183e54390cd40c765eeaad3b8&lt;/kb_knowledge_base&gt;
+        &lt;latest&gt;false&lt;/latest&gt;
+        &lt;latest_aqi/&gt;
         &lt;meta/&gt;
         &lt;meta_description&gt;As is the case with Player Characters in personal combat, there are two types of damage ships and vehicles&lt;/meta_description&gt;
         &lt;number&gt;KB0010084&lt;/number&gt;
-        &lt;parent/&gt;
+        &lt;ownership_group/&gt;
         &lt;published&gt;2023-06-13&lt;/published&gt;
         &lt;rating/&gt;
         &lt;replacement_article/&gt;
         &lt;retired/&gt;
+        &lt;revised_by/&gt;
         &lt;roles/&gt;
+        &lt;scheduled_publish_date/&gt;
         &lt;short_description&gt;Taking Damage&lt;/short_description&gt;
         &lt;source/&gt;
+        &lt;summary/&gt;
         &lt;sys_class_name&gt;kb_knowledge&lt;/sys_class_name&gt;
         &lt;sys_created_by&gt;ben.fisher&lt;/sys_created_by&gt;
         &lt;sys_created_on&gt;2023-06-13 16:20:18&lt;/sys_created_on&gt;
         &lt;sys_domain&gt;global&lt;/sys_domain&gt;
         &lt;sys_domain_path&gt;/&lt;/sys_domain_path&gt;
         &lt;sys_id&gt;18cae2d32fdb2950e0f497eef699b61a&lt;/sys_id&gt;
-        &lt;sys_mod_count&gt;5&lt;/sys_mod_count&gt;
+        &lt;sys_mod_count&gt;6&lt;/sys_mod_count&gt;
         &lt;sys_updated_by&gt;ben.fisher&lt;/sys_updated_by&gt;
-        &lt;sys_updated_on&gt;2023-06-13 17:01:49&lt;/sys_updated_on&gt;
+        &lt;sys_updated_on&gt;2026-06-18 19:00:12&lt;/sys_updated_on&gt;
         &lt;sys_view_count&gt;0&lt;/sys_view_count&gt;
         &lt;taxonomy_topic/&gt;
         &lt;text&gt;&lt;![CDATA[&lt;p&gt;As is the case with Player Characters in personal combat, there are two types of damage ships and vehicles suffer: system strain and hull trauma. System strain is similar to the strain suf­fered by Player Characters and reflects light, tempo­rary damage caused by glancing blows or pushing a vessel to the limits of its capabilities. Hull trauma is more serious and, consequently, more life-threaten­ing. This is actual, physical damage that makes its way past the ship’s defenses and becomes hull trauma. Hull trauma is permanent until repaired.&lt;/p&gt;
@@ -75,6 +85,7 @@
         &lt;topic&gt;General&lt;/topic&gt;
         &lt;use_count&gt;0&lt;/use_count&gt;
         &lt;valid_to&gt;2100-01-01&lt;/valid_to&gt;
+        &lt;version/&gt;
         &lt;view_as_allowed&gt;true&lt;/view_as_allowed&gt;
         &lt;wiki/&gt;
         &lt;workflow_state&gt;published&lt;/workflow_state&gt;
@@ -203,14 +214,14 @@
         <sys_created_by>ben.fisher</sys_created_by>
         <sys_created_on>2023-06-13 17:02:37</sys_created_on>
         <sys_id>0b75b2d72f1f2950e0f497eef699b65c</sys_id>
-        <sys_mod_count>0</sys_mod_count>
+        <sys_mod_count>1</sys_mod_count>
         <sys_name>KB0010084</sys_name>
         <sys_package display_value="Star Wars RPG" source="x_176383_star_wars">64b3517bdb5a08542901de90cf961993</sys_package>
         <sys_policy/>
         <sys_scope display_value="Star Wars RPG">64b3517bdb5a08542901de90cf961993</sys_scope>
         <sys_update_name>sys_metadata_link_0b75b2d72f1f2950e0f497eef699b65c</sys_update_name>
         <sys_updated_by>ben.fisher</sys_updated_by>
-        <sys_updated_on>2023-06-13 17:02:37</sys_updated_on>
+        <sys_updated_on>2026-06-18 19:54:57</sys_updated_on>
         <tablename>kb_knowledge</tablename>
     </sys_metadata_link>
 </record_update>

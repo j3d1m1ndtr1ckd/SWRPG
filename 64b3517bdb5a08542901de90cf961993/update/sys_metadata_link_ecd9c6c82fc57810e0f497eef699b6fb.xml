@@ -5,8 +5,10 @@
         <payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update sys_domain="global" table="kb_knowledge"&gt;
     &lt;kb_knowledge action="INSERT_OR_UPDATE"&gt;
         &lt;active&gt;true&lt;/active&gt;
+        &lt;article_id/&gt;
         &lt;article_type&gt;text&lt;/article_type&gt;
         &lt;author display_value="Ben Fisher"&gt;bf532351db8303002901de90cf96196d&lt;/author&gt;
+        &lt;base_version/&gt;
         &lt;can_read_user_criteria/&gt;
         &lt;cannot_read_user_criteria/&gt;
         &lt;category/&gt;
@@ -16,32 +18,40 @@
         &lt;disable_commenting&gt;false&lt;/disable_commenting&gt;
         &lt;disable_suggesting&gt;false&lt;/disable_suggesting&gt;
         &lt;display_attachments&gt;false&lt;/display_attachments&gt;
+        &lt;display_number&gt;KB0010017&lt;/display_number&gt;
+        &lt;editor_type/&gt;
         &lt;flagged&gt;false&lt;/flagged&gt;
+        &lt;generated_with_now_assist&gt;false&lt;/generated_with_now_assist&gt;
         &lt;helpful_count&gt;0&lt;/helpful_count&gt;
         &lt;image/&gt;
+        &lt;instrumentation_metadata/&gt;
         &lt;kb_category display_value="Playing the Game"&gt;8a5cab012f94b010e0f497eef699b62e&lt;/kb_category&gt;
-        &lt;kb_knowledge_base display_value="Star Wars RPG"&gt;4a4a278d2f54b010e0f497eef699b694&lt;/kb_knowledge_base&gt;
-        &lt;language&gt;en&lt;/language&gt;
+        &lt;kb_knowledge_base display_value="SWRPG"&gt;1e9dc5f183e54390cd40c765eeaad3b8&lt;/kb_knowledge_base&gt;
+        &lt;latest&gt;false&lt;/latest&gt;
+        &lt;latest_aqi/&gt;
         &lt;meta/&gt;
         &lt;meta_description&gt;This article takes a closer look at the special dice and their symbols. By understanding these dice and&lt;/meta_description&gt;
         &lt;number&gt;KB0010017&lt;/number&gt;
-        &lt;parent/&gt;
+        &lt;ownership_group/&gt;
         &lt;published&gt;2021-05-24&lt;/published&gt;
         &lt;rating/&gt;
         &lt;replacement_article/&gt;
         &lt;retired/&gt;
+        &lt;revised_by/&gt;
         &lt;roles/&gt;
+        &lt;scheduled_publish_date/&gt;
         &lt;short_description&gt;The Dice&lt;/short_description&gt;
         &lt;source/&gt;
+        &lt;summary/&gt;
         &lt;sys_class_name&gt;kb_knowledge&lt;/sys_class_name&gt;
         &lt;sys_created_by&gt;ben.fisher&lt;/sys_created_by&gt;
         &lt;sys_created_on&gt;2021-05-24 05:15:15&lt;/sys_created_on&gt;
         &lt;sys_domain&gt;global&lt;/sys_domain&gt;
         &lt;sys_domain_path&gt;/&lt;/sys_domain_path&gt;
         &lt;sys_id&gt;08da79312f147410e0f497eef699b6df&lt;/sys_id&gt;
-        &lt;sys_mod_count&gt;15&lt;/sys_mod_count&gt;
+        &lt;sys_mod_count&gt;16&lt;/sys_mod_count&gt;
         &lt;sys_updated_by&gt;ben.fisher&lt;/sys_updated_by&gt;
-        &lt;sys_updated_on&gt;2022-08-23 23:57:24&lt;/sys_updated_on&gt;
+        &lt;sys_updated_on&gt;2026-06-18 19:00:12&lt;/sys_updated_on&gt;
         &lt;sys_view_count&gt;0&lt;/sys_view_count&gt;
         &lt;taxonomy_topic/&gt;
         &lt;text&gt;&lt;![CDATA[&lt;p&gt;&lt;span style="font-size: 12pt;"&gt;This article takes a closer look at the special dice and their symbols. By understanding these dice and symbols, players will have a better understanding of the core mechanic. This section also discusses how to assemble a dice pool, and when to introduce extra dice based on the circumstances. Remember, these dice may be purchased separately, or players may use the Star Wars Dice app or the active sessions page to roll them electronically.&lt;/span&gt;&lt;/p&gt;
@@ -74,6 +84,7 @@
         &lt;topic&gt;General&lt;/topic&gt;
         &lt;use_count&gt;0&lt;/use_count&gt;
         &lt;valid_to&gt;2100-01-01&lt;/valid_to&gt;
+        &lt;version/&gt;
         &lt;view_as_allowed&gt;true&lt;/view_as_allowed&gt;
         &lt;wiki/&gt;
         &lt;workflow_state&gt;published&lt;/workflow_state&gt;
@@ -436,14 +447,14 @@
         <sys_created_by>ben.fisher</sys_created_by>
         <sys_created_on>2021-06-25 02:36:51</sys_created_on>
         <sys_id>ecd9c6c82fc57810e0f497eef699b6fb</sys_id>
-        <sys_mod_count>2</sys_mod_count>
+        <sys_mod_count>3</sys_mod_count>
         <sys_name>KB0010017</sys_name>
         <sys_package display_value="Star Wars RPG" source="x_176383_star_wars">64b3517bdb5a08542901de90cf961993</sys_package>
         <sys_policy/>
         <sys_scope display_value="Star Wars RPG">64b3517bdb5a08542901de90cf961993</sys_scope>
         <sys_update_name>sys_metadata_link_ecd9c6c82fc57810e0f497eef699b6fb</sys_update_name>
         <sys_updated_by>ben.fisher</sys_updated_by>
-        <sys_updated_on>2022-08-23 23:57:47</sys_updated_on>
+        <sys_updated_on>2026-06-18 19:54:50</sys_updated_on>
         <tablename>kb_knowledge</tablename>
     </sys_metadata_link>
 </record_update>
