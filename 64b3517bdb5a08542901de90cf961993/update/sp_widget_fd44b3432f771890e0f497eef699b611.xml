@@ -5,6 +5,16 @@
 	/* widget controller */
 	var c = this;
 
+	if($scope.data.step == 1){
+		c.bladeWidth = 0;
+	} else if($scope.data.step == 2){
+		c.bladeWidth = 25;
+	} else if($scope.data.step == 3){
+		c.bladeWidth = 50;
+	} else{
+		c.bladeWidth = 75;
+	}
+
 	$scope.stashName = function(){
 		$location.search('character_name', document.getElementById('characterName').value);
 		$location.search('spa', 1);
@@ -109,18 +119,21 @@
 			$location.search('species', objID);
 			$location.search('spa', 1);
 			$scope.closeInfo('species');
+			c.bladeWidth = 25;
 			$scope.serverRefresh();
 			document.getElementById('characterCreatorHeader').scrollIntoView();
 		} else if($scope.data.step == 2){
 			$location.search('career', objID);
 			$location.search('step', 3);
 			$scope.closeInfo('career');
+			c.bladeWidth = 50;
 			$scope.serverRefresh();
 			document.getElementById('characterCreatorHeader').scrollIntoView();
 		} else if($scope.data.step == 3){
 			$location.search('specialization', objID);
 			$location.search('step', 4);
 			$scope.closeInfo('specialization');
+			c.bladeWidth = 75;
 			$scope.serverRefresh();
 			document.getElementById('characterCreatorHeader').scrollIntoView();
 		}
@@ -130,16 +143,19 @@
 		if(step == 2){
 			$location.search('species', null);
 			$location.search('step', 1);
+			c.bladeWidth = 0;
 			$scope.serverRefresh();
 			document.getElementById('characterCreatorHeader').scrollIntoView();
 		} else if(step == 3){
 			$location.search('career', null);
 			$location.search('step', 2);
+			c.bladeWidth = 25;
 			$scope.serverRefresh();
 			document.getElementById('characterCreatorHeader').scrollIntoView();
 		} else if(step == 4){
 			$location.search('specialization', null);
 			$location.search('step', 3);
+			c.bladeWidth = 50;
 			$scope.serverRefresh();
 			document.getElementById('characterCreatorHeader').scrollIntoView();
 		}
@@ -558,6 +574,7 @@
 				}
 			}
 		}
+		c.bladeWidth = 90;
 		$scope.data.freeSkillRanksSelected = true;
 	}
 
@@ -615,6 +632,40 @@
 .header-container{
   text-align:center;
   margin-bottom:50px;
+}
+
+.creation-progress-tracker{
+  #progressTitle{
+    text-align: center;
+  }
+
+  .progress-bar-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+
+    .hilt{
+      width: 15%;
+
+      #saberHilt{
+        width: 100%;
+        transform: rotate(17deg);
+      }
+    }
+
+    .progress-bar-bg{
+      width: 100%;
+      margin-left: -1rem;
+
+      .saber-blade{
+        text-align: center;
+        border-radius: 0 1rem 1rem 0;
+        box-shadow: 5px 0 2rem white;
+      }
+    }
+  }
 }
 
 input{
@@ -1084,9 +1135,9 @@ input{
     padding-top:5px;
     padding-bottom:5px;
   }
-  
+
   .info-container{
-  	max-height: 50rem;
+    max-height: 50rem;
   }
 }
 
@@ -1178,9 +1229,9 @@ input{
   .characteristic{
     margin-right:0;
   }
-  
+
   .info-container{
-  	max-height: 70rem;
+    max-height: 70rem;
   }
 }
 </css>
@@ -1202,6 +1253,7 @@ input{
 	/* e.g., data.table = $sp.getValue('table'); */
 	data.step = $sp.getParameter('step') || 1;
 	data.characterName = $sp.getParameter('character_name') || '';
+	data.progressSaberBladeColor = gs.getUser().getPreference('character_creator_blade_color') || '#54f403';
 
 	if(data.step == 1){
 		data.species = [];
@@ -1657,30 +1709,42 @@ input{
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-10-16 18:34:06</sys_created_on>
         <sys_id>fd44b3432f771890e0f497eef699b611</sys_id>
-        <sys_mod_count>770</sys_mod_count>
+        <sys_mod_count>789</sys_mod_count>
         <sys_name>Star Wars Character Creator</sys_name>
         <sys_package display_value="Star Wars RPG" source="x_176383_star_wars">64b3517bdb5a08542901de90cf961993</sys_package>
         <sys_policy/>
         <sys_scope display_value="Star Wars RPG">64b3517bdb5a08542901de90cf961993</sys_scope>
         <sys_update_name>sp_widget_fd44b3432f771890e0f497eef699b611</sys_update_name>
         <sys_updated_by>ben.fisher</sys_updated_by>
-        <sys_updated_on>2026-03-20 18:40:42</sys_updated_on>
+        <sys_updated_on>2026-09-01 20:46:05</sys_updated_on>
         <template><![CDATA[<head>
   <script src="https://kit.fontawesome.com/035f51c999.js" crossorigin="anonymous"></script>
 </head>
 
 <div class="col-xs-12 character-creator-container">
-	<div class="col-xs-12 header-container">
+  <div class="col-xs-12 header-container">
     <h1 id="characterCreatorHeader">Character Creation</h1>
     <h4 id="characterCreatorHeaderAurebesh" class="star-wars-text">Character Creation</h4>
   </div>
-  
+
+  <div class="col-xs-12 creation-progress-tracker">
+    <h4 class="col-xs-12" id="progressTitle">Progress<br><text class="star-wars-text">Progress</text></h4>
+    <span class="progress-bar-container">
+      <span class="hilt">
+        <img id="saberHilt" src="x_176383_star_wars.qui-gon-lightsaber.jpg"/>
+      </span>
+      <span class="progress-bar-bg">
+          <div class="saber-blade" style="width:{{c.bladeWidth}}%; background-color: {{data.progressSaberBladeColor}}">{{c.bladeWidth}}%</div>
+      </span>
+    </span>
+  </div>
+
   <!-- choosing species -->
   <div ng-if="data.step == 1" class="col-xs-12 species-selection-container">
     <div class="col-xs-12 character-name-container">
       <span class="col-xs-12 col-md-6">
-    		<label id="characterNameLabel" for="characterName">Character Name:</label><br>
-    		<input type="text" ng-blur="stashName()" id="characterName" name="characterName" value="{{data.characterName}}"><br><br>
+        <label id="characterNameLabel" for="characterName">Character Name:</label><br>
+        <input type="text" ng-blur="stashName()" id="characterName" name="characterName" value="{{data.characterName}}"><br><br>
       </span>
       <span class="col-xs-12 col-md-6">
         <input id="searchBox" class="sw-input" type="text" ng-model="speciesSearch" placeholder="Search"/>
@@ -1704,12 +1768,12 @@ input{
       </div>
     </div>
   </div>
-  
+
   <div class="large-image-container" id="largeImgContainer">
     <span class="pull-right close-button" ng-click="closeLargerImage()"><i class="fas fa-times fa-2x"></i></span>
     <img height="425px" width="250px" src="{{data.currentImage}}">
   </div>
-  
+
   <div class="info-container" id="speciesInfoContainer">
     <span class="pull-right close-button" ng-click="closeInfo('species')"><i class="fas fa-times fa-2x"></i></span>
     <div class="col-xs-12 species-info">
@@ -1734,7 +1798,7 @@ input{
     </div>
   </div>
   <!-- end species selection -->
-  
+
   <!-- choosing career -->
   <div ng-if="data.step == 2" class="col-xs-12 careers-container">
     <div class="col-xs-12 back-button" ng-click="goBack(data.step)">
@@ -1754,7 +1818,7 @@ input{
       </span>
     </div>
   </div>
-  
+
   <div class="info-container" id="careerInfoContainer">
     <span class="pull-right close-button" ng-click="closeInfo('career')"><i class="fas fa-times fa-2x"></i></span>
     <div class="col-xs-12">
@@ -1763,11 +1827,11 @@ input{
       <span class="col-xs-12 description" ng-bind-html="data.currentCareer.description"></span>
     </div>
     <span class="col-xs-12 select-career-button">
-        <button class="select-button-details-container" ng-click="makeSelection(data.currentCareer.sysID)">Select</button>
-      </span>
+      <button class="select-button-details-container" ng-click="makeSelection(data.currentCareer.sysID)">Select</button>
+    </span>
   </div>
   <!-- end career selection -->
-  
+
   <!-- choosing career specialization -->
   <div ng-if="data.step == 3" class="col-xs-12 careers-specialization-container">
     <div class="col-xs-12 back-button" ng-click="goBack(data.step)">
@@ -1781,13 +1845,13 @@ input{
       <span class="col-xs-12 specialization-item" ng-repeat="spec in data.specializations">
         <span class="col-xs-8 spec-name">{{spec.name}}</span>
         <span class="col-xs-4 spec-buttons">
-         <button class="career-info-button" ng-click="showInfo('specialization', spec)">Info</button>
-         <button class="career-select-button" ng-click="makeSelection(spec.sysID)">Select</button>
+          <button class="career-info-button" ng-click="showInfo('specialization', spec)">Info</button>
+          <button class="career-select-button" ng-click="makeSelection(spec.sysID)">Select</button>
         </span>
       </span>
     </div>
   </div>
-  
+
   <div class="info-container" id="specializationInfoContainer">
     <span class="pull-right close-button" ng-click="closeInfo('specialization')"><i class="fas fa-times fa-2x"></i></span>
     <div class="col-xs-12">
@@ -1796,11 +1860,11 @@ input{
       <span class="col-xs-12 description" ng-bind-html="data.currentSpecialization.desc"></span>
     </div>
     <span class="col-xs-12 select-spec-button">
-        <button class="select-button-details-container" ng-click="makeSelection(data.currentSpecialization.sysID)">Select</button>
-      </span>
+      <button class="select-button-details-container" ng-click="makeSelection(data.currentSpecialization.sysID)">Select</button>
+    </span>
   </div>
   <!-- end specialization selection -->
-  
+
   <!-- Invest XP section -->
   <div ng-if="data.step == 4 && data.freeSkillRanksSelected" class="col-xs-12 invest-xp-container">
     <div class="col-xs-12 back-button" ng-click="goBack(data.step)">
@@ -1856,11 +1920,11 @@ input{
       <div class="col-xs-12 investment-tabs-container">
         <span ng-if="data.isJedi" class="col-xs-3 investment-tab-header" id="skillInvestHeader" ng-click="switchInvestmentTabs('skills')">
           <span class="col-xs-12">Skills</span>
-        	<span class="col-xs-12 mobile-sw-text star-wars-text" id="skillsInvestHeaderSW">Skills</span>
+          <span class="col-xs-12 mobile-sw-text star-wars-text" id="skillsInvestHeaderSW">Skills</span>
         </span>
         <span ng-if="!data.isJedi" class="col-xs-4 investment-tab-header" id="skillInvestHeader" ng-click="switchInvestmentTabs('skills')">
           <span class="col-xs-12">Skills</span>
-        	<span class="col-xs-12 mobile-sw-text star-wars-text" id="skillsInvestHeaderSW">Skills</span>
+          <span class="col-xs-12 mobile-sw-text star-wars-text" id="skillsInvestHeaderSW">Skills</span>
         </span>
         <span ng-if="data.isJedi" class="col-xs-3 investment-tab-header" id="talentInvestHeader" ng-click="switchInvestmentTabs('talents')">
           <span class="col-xs-12">Talents</span>
@@ -1909,19 +1973,19 @@ input{
           </span>
         </span>
       </div>
-      
-     <div class="info-container" id="talentInfoContainer">
-    	<span class="pull-right close-button"><i class="fas fa-times fa-2x" ng-click="closeInfo('talent')"></i></span>
-    	<div class="col-xs-12">
-        <span class="col-xs-12 center-text spec-name">{{data.currentTalent.name}} <i ng-if="data.currentTalent.forceTalent == 'true'" class="fab fa-jedi-order"></i></span>
-      	<span class="col-xs-12 center-text star-wars-text">{{data.currentTalent.name}}</span>
-        <span class="col-xs-12 center-text active-passive">{{data.currentTalent.activeOrPassive}}</span>
-      	<span class="col-xs-12 description" ng-bind-html="data.currentTalent.description"></span>
-    	</div>
-    	<span class="col-xs-12 select-spec-button">
-       <button ng-if="!data.currentTalent.isPurchased" class="select-button-details-container" ng-click="investXP('talent', data.currentTalent)">Purchase</button>
-      </span>
-  	</div>
+
+      <div class="info-container" id="talentInfoContainer">
+        <span class="pull-right close-button"><i class="fas fa-times fa-2x" ng-click="closeInfo('talent')"></i></span>
+        <div class="col-xs-12">
+          <span class="col-xs-12 center-text spec-name">{{data.currentTalent.name}} <i ng-if="data.currentTalent.forceTalent == 'true'" class="fab fa-jedi-order"></i></span>
+          <span class="col-xs-12 center-text star-wars-text">{{data.currentTalent.name}}</span>
+          <span class="col-xs-12 center-text active-passive">{{data.currentTalent.activeOrPassive}}</span>
+          <span class="col-xs-12 description" ng-bind-html="data.currentTalent.description"></span>
+        </div>
+        <span class="col-xs-12 select-spec-button">
+          <button ng-if="!data.currentTalent.isPurchased" class="select-button-details-container" ng-click="investXP('talent', data.currentTalent)">Purchase</button>
+        </span>
+      </div>
       <!-- buying specializations sections -->
       <div ng-if="data.investingXPCategory == 'specializations'" class="col-xs-12 specialization-investment-container">
         <span class="col-xs-8 spec-name-header">Specialization</span>
@@ -1933,13 +1997,13 @@ input{
           </span>
         </span>
       </div>
-      
+
       <div class="info-container" id="investSpecInfoContainer">
         <span class="pull-right close-button"><i class="fas fa-times fa-2x" ng-click="closeInfo('investSpec')"></i></span>
         <div class="col-xs-12">
           <span class="col-xs-12 center-text spec-name">{{data.currentSpecialization.name}}</span>
           <span class="col-xs-12 center-text star-wars-text">{{data.currentSpecialization.name}}</span>
-      		<span class="col-xs-12 description" ng-bind-html="data.currentSpecialization.description"></span>
+          <span class="col-xs-12 description" ng-bind-html="data.currentSpecialization.description"></span>
         </div>
         <span class="col-xs-12 select-spec-button">
           <button ng-if="!data.currentSpecialization.isPurchased" class="skill-increase-button" ng-click="investXP('investSpec', data.currentSpecialization)">Purchase</button>
@@ -1951,27 +2015,27 @@ input{
         <span class="col-xs-6 force-power-header" ng-click="showForce('powers')" id="powerHeader">Power</span>
         <span class="col-xs-6 force-power-header" ng-click="showForce('enhancements')" id="enhancementHeader">Enhancements</span>
         <span class="col-xs-12" id="forcePowersContainer">
-        <span class="col-xs-12 force-power" ng-if="fp.canPurchase" ng-repeat="fp in data.forcePowers">
-          <span class="col-xs-8 spec-name">{{fp.name}} <i class="far fa-info-circle" ng-click="showInfo('investForce', fp)"></i></span>
-          <span class="col-xs-4 invest-buttons-container">
-            <span ng-if="!fp.isPurchased && fp.costToPurchase <= data.investXPSpecies.startingXPInt" class="col-xs-12 increase-skill-button"><button class="skill-increase-button" ng-click="investXP('investForce', fp)">Purchase</button></span>
-            <span ng-if="fp.isPurchased" class="col-xs-12 decrease-skill-button"><button class="skill-decrease-button" ng-click="divestXP('investForce', fp)">Refund</button></span>
+          <span class="col-xs-12 force-power" ng-if="fp.canPurchase" ng-repeat="fp in data.forcePowers">
+            <span class="col-xs-8 spec-name">{{fp.name}} <i class="far fa-info-circle" ng-click="showInfo('investForce', fp)"></i></span>
+            <span class="col-xs-4 invest-buttons-container">
+              <span ng-if="!fp.isPurchased && fp.costToPurchase <= data.investXPSpecies.startingXPInt" class="col-xs-12 increase-skill-button"><button class="skill-increase-button" ng-click="investXP('investForce', fp)">Purchase</button></span>
+              <span ng-if="fp.isPurchased" class="col-xs-12 decrease-skill-button"><button class="skill-decrease-button" ng-click="divestXP('investForce', fp)">Refund</button></span>
+            </span>
           </span>
-        </span>
         </span>
         <span class="col-xs-12" id="forcePowerEnhancements">
-        <span class="col-xs-12 force-enhancement force-power" ng-if="fe.canPurchase" ng-repeat="fe in data.forceEnhancements">
-          <span class="col-xs-8 enhancement-detail spec-name">{{fe.forcePower}} - {{fe.type}} <i class="far fa-info-circle" ng-click="showInfo('investForceEnhancement', fe)"></i></span>
-          <span class="col-xs-4 invest-buttons-container">
-            <span ng-if="!fe.isPurchased && fe.costToPurchase <= data.investXPSpecies.startingXPInt" class="col-xs-12 increase-skill-button"><button class="skill-increase-button" ng-click="investXP('investForceEnhancement', fe)">Purchase</button></span>
-            <span ng-if="fe.isPurchased" class="col-xs-12 decrease-skill-button"><button class="skill-decrease-button" ng-click="divestXP('investForceEnhancement', fe)">Refund</button></span>
+          <span class="col-xs-12 force-enhancement force-power" ng-if="fe.canPurchase" ng-repeat="fe in data.forceEnhancements">
+            <span class="col-xs-8 enhancement-detail spec-name">{{fe.forcePower}} - {{fe.type}} <i class="far fa-info-circle" ng-click="showInfo('investForceEnhancement', fe)"></i></span>
+            <span class="col-xs-4 invest-buttons-container">
+              <span ng-if="!fe.isPurchased && fe.costToPurchase <= data.investXPSpecies.startingXPInt" class="col-xs-12 increase-skill-button"><button class="skill-increase-button" ng-click="investXP('investForceEnhancement', fe)">Purchase</button></span>
+              <span ng-if="fe.isPurchased" class="col-xs-12 decrease-skill-button"><button class="skill-decrease-button" ng-click="divestXP('investForceEnhancement', fe)">Refund</button></span>
+            </span>
           </span>
-        </span>
         </span>
       </div>
       <!-- force power info -->
       <div class="info-container" id="investForceInfo">
-      	<span class="pull-right close-button"><i class="fas fa-times fa-2x" ng-click="closeInfo('investForce')"></i></span>  
+        <span class="pull-right close-button"><i class="fas fa-times fa-2x" ng-click="closeInfo('investForce')"></i></span>  
         <div class="col-xs-12">
           <span class="col-xs-12 center-text spec-name">{{data.currentForcePower.name}}</span>
           <span class="col-xs-12 center-text star-wars-text">{{data.currentForcePower.name}}</span>
@@ -1979,12 +2043,12 @@ input{
         </div>
         <span class="col-xs-12 select-spec-button">
           <button ng-if="!data.currentForcePower.isPurchased" class="skill-increase-button" ng-click="investXP('investForce', data.currentForcePower)">Purchase</button>
-        	<button ng-if="data.currentForcePower.isPurchased" class="skill-decrease-button" ng-click="divestXP('investForce', data.currentForcePower)">Refund</button>
+          <button ng-if="data.currentForcePower.isPurchased" class="skill-decrease-button" ng-click="divestXP('investForce', data.currentForcePower)">Refund</button>
         </span>
       </div>
       <!--force enhancement info -->
       <div class="info-container" id="investForceEnhancementInfo">
-      	<span class="pull-right close-button"><i class="fas fa-times fa-2x" ng-click="closeInfo('investForceEnhancement')"></i></span>  
+        <span class="pull-right close-button"><i class="fas fa-times fa-2x" ng-click="closeInfo('investForceEnhancement')"></i></span>  
         <div class="col-xs-12">
           <span class="col-xs-12 center-text spec-name">{{data.currentForceEnhancement.forcePower}} - {{data.currentForceEnhancement.type}}</span>
           <span class="col-xs-12 center-text star-wars-text">{{data.currentForceEnhancement.forcePower}} - {{data.currentForceEnhancement.type}}</span>
@@ -1992,12 +2056,12 @@ input{
         </div>
         <span class="col-xs-12 select-spec-button">
           <button ng-if="!data.currentForceEnhancement.isPurchased" class="skill-increase-button" ng-click="investXP('investForceEnhancement', data.currentForceEnhancement)">Purchase</button>
-        	<button ng-if="data.currentForceEnhancement.isPurchased" class="skill-decrease-button" ng-click="divestXP('investForceEnhancement', data.currentForceEnhancement)">Refund</button>
+          <button ng-if="data.currentForceEnhancement.isPurchased" class="skill-decrease-button" ng-click="divestXP('investForceEnhancement', data.currentForceEnhancement)">Refund</button>
         </span>
       </div>
     </div>
   </div>
-  
+
   <!-- select career and specialization skills -->
   <div ng-if="!data.freeSkillRanksSelected && data.step == 4" class="col-xs-12 career-specialization-skills-selection-container">
     <div class="col-xs-12 back-button" ng-click="goBack(data.step)">
