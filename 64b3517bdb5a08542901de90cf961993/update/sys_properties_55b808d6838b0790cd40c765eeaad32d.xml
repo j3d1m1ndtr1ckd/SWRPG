@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_properties">
+    <sys_properties action="INSERT_OR_UPDATE">
+        <choices/>
+        <description>JSON object to determine the rotation degree needed to make saber hilts align with blade on character creator progress tracker</description>
+        <ignore_cache>true</ignore_cache>
+        <is_private>false</is_private>
+        <name>x_176383_star_wars.swrpg.saber_hilt_rotations</name>
+        <read_roles/>
+        <suffix>swrpg.saber_hilt_rotations</suffix>
+        <sys_class_name>sys_properties</sys_class_name>
+        <sys_created_by>ben.fisher</sys_created_by>
+        <sys_created_on>2026-09-02 16:47:06</sys_created_on>
+        <sys_id>55b808d6838b0790cd40c765eeaad32d</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>x_176383_star_wars.swrpg.saber_hilt_rotations</sys_name>
+        <sys_package display_value="Star Wars RPG" source="x_176383_star_wars">64b3517bdb5a08542901de90cf961993</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Star Wars RPG">64b3517bdb5a08542901de90cf961993</sys_scope>
+        <sys_update_name>sys_properties_55b808d6838b0790cd40c765eeaad32d</sys_update_name>
+        <sys_updated_by>ben.fisher</sys_updated_by>
+        <sys_updated_on>2026-09-02 17:17:54</sys_updated_on>
+        <type>string</type>
+        <value>[{"jedi": "mace_windu", "src": "x_176383_star_wars.mace_windu_saber_hilt.png", "rotation": "45deg", "preference_display_width": "15rem"}, {"jedi": "qui_gon", "src": "x_176383_star_wars.qui-gon-lightsaber.jpg", "rotation": "17deg", "preference_display_width": "25rem"}]</value>
+        <write_roles/>
+    </sys_properties>
+    <sys_translated_text action="delete_multiple" query="documentkey=55b808d6838b0790cd40c765eeaad32d"/>
+</record_update>

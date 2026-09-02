@@ -1141,7 +1141,15 @@ input{
   }
 }
 
-@media only screen and (max-width:762px){  
+@media only screen and (max-width:762px){
+  .creation-progress-tracker{
+    .progress-bar-container{
+      .hilt{
+        width: 60%;
+      }
+    }
+  }
+
   #searchBox{
     margin-left: 0; 
   }
@@ -1253,7 +1261,15 @@ input{
 	/* e.g., data.table = $sp.getValue('table'); */
 	data.step = $sp.getParameter('step') || 1;
 	data.characterName = $sp.getParameter('character_name') || '';
-	data.progressSaberBladeColor = gs.getUser().getPreference('character_creator_blade_color') || '#54f403';
+	var user = gs.getUser();
+	data.progressSaberBladeColor = user.getPreference('character_creator_blade_color') || '#54f403';
+	var hiltProperty = JSON.parse(gs.getProperty('x_176383_star_wars.swrpg.saber_hilt_rotations'));
+	var jediPreference = user.getPreference('character_creator_hilt') || "qui_gon";
+	hiltProperty.forEach(function(h){
+		if(h.jedi == jediPreference){
+			data.hilt = h;
+		}
+	});
 
 	if(data.step == 1){
 		data.species = [];
@@ -1709,14 +1725,14 @@ input{
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2020-10-16 18:34:06</sys_created_on>
         <sys_id>fd44b3432f771890e0f497eef699b611</sys_id>
-        <sys_mod_count>789</sys_mod_count>
+        <sys_mod_count>797</sys_mod_count>
         <sys_name>Star Wars Character Creator</sys_name>
         <sys_package display_value="Star Wars RPG" source="x_176383_star_wars">64b3517bdb5a08542901de90cf961993</sys_package>
         <sys_policy/>
         <sys_scope display_value="Star Wars RPG">64b3517bdb5a08542901de90cf961993</sys_scope>
         <sys_update_name>sp_widget_fd44b3432f771890e0f497eef699b611</sys_update_name>
         <sys_updated_by>ben.fisher</sys_updated_by>
-        <sys_updated_on>2026-09-01 20:46:05</sys_updated_on>
+        <sys_updated_on>2026-09-02 17:00:05</sys_updated_on>
         <template><![CDATA[<head>
   <script src="https://kit.fontawesome.com/035f51c999.js" crossorigin="anonymous"></script>
 </head>
@@ -1731,7 +1747,7 @@ input{
     <h4 class="col-xs-12" id="progressTitle">Progress<br><text class="star-wars-text">Progress</text></h4>
     <span class="progress-bar-container">
       <span class="hilt">
-        <img id="saberHilt" src="x_176383_star_wars.qui-gon-lightsaber.jpg"/>
+        <img id="saberHilt" src="{{data.hilt.src}}" style="transform: rotate({{data.hilt.rotation}})"/>
       </span>
       <span class="progress-bar-bg">
           <div class="saber-blade" style="width:{{c.bladeWidth}}%; background-color: {{data.progressSaberBladeColor}}">{{c.bladeWidth}}%</div>

@@ -9,7 +9,7 @@
 		for(var i = 0; i < $scope.data.preferences.length; i++){
 			if($scope.data.preferences[i].type == 'boolean'){
 				$scope.data.preferences[i].value = document.querySelector('#' + $scope.data.preferences[i].name).checked;
-			} else{
+			} else if($scope.data.preferences[i].type != 'img'){
 				$scope.data.preferences[i].value = document.querySelector('#' + $scope.data.preferences[i].name).value;		
 			}
 		}
@@ -33,13 +33,14 @@
     align-self:flex-start;
     display:flex;
     flex-flow:column wrap;
+    width: 100%;
 
     .preference{
       display:flex;
       flex-flow:column wrap;
       justify-content:center;
       align-items:flex-start;
-      
+
       .pref-title{
         order:0;
         flex:1 0 auto;
@@ -48,6 +49,20 @@
       .pref-boolean,.pref-string{
         order:1;
         flex:0 0 auto;
+      }
+
+      .pref-hilts{
+        display: flex;
+        width: 100%;
+        align-items: center;
+        justify-content: space-around;
+
+        .fa-sword-laser-alt{
+          font-size: 3rem;
+          color: #48e504;
+          z-index: 5;
+          position: relative;
+        }
       }
     }
   }
@@ -69,6 +84,18 @@
       font-size: 18px;
       margin-top: 20px;
     }
+  }
+}
+
+@media only screen and (max-width: 762px){
+  .preferences-container{
+    .preferences-body{
+      .pref-hilts{
+      	flex-direction: column;
+        justify-content: center;
+        width: 100%;
+      }
+    }	
   }
 }</css>
         <data_table>sp_instance</data_table>
@@ -92,11 +119,12 @@
 	for(var i = 0; i < data.preferences.length; i++){
 		data.preferences[i].value = user.getPreference(data.preferences[i].name) || '';
 	}
-
+	
+	data.hilts = JSON.parse(gs.getProperty('x_176383_star_wars.swrpg.saber_hilt_rotations'));
 	if(input){
 		if(input.action == 'savePreferences'){
 			try{
-			var user = gs.getUser();
+			user = gs.getUser();
 			for(var i = 0; i < input.preferences.length; i++){
 				user.savePreference(input.preferences[i].name, input.preferences[i].value);
 			}
@@ -112,15 +140,19 @@
         <sys_created_by>ben.fisher</sys_created_by>
         <sys_created_on>2022-02-14 17:54:26</sys_created_on>
         <sys_id>47df52632f690190e0f497eef699b644</sys_id>
-        <sys_mod_count>23</sys_mod_count>
+        <sys_mod_count>45</sys_mod_count>
         <sys_name>Star Wars User Preferences</sys_name>
         <sys_package display_value="Star Wars RPG" source="x_176383_star_wars">64b3517bdb5a08542901de90cf961993</sys_package>
         <sys_policy/>
         <sys_scope display_value="Star Wars RPG">64b3517bdb5a08542901de90cf961993</sys_scope>
         <sys_update_name>sp_widget_47df52632f690190e0f497eef699b644</sys_update_name>
         <sys_updated_by>ben.fisher</sys_updated_by>
-        <sys_updated_on>2022-02-14 20:12:38</sys_updated_on>
-        <template><![CDATA[<div class="preferences-container">
+        <sys_updated_on>2026-09-02 17:56:37</sys_updated_on>
+        <template><![CDATA[<head>
+  <script src="https://kit.fontawesome.com/035f51c999.js" crossorigin="anonymous"></script>
+</head>
+
+<div class="preferences-container">
   <div class="preferences-header">
     <span class="english-text"><h2>Mos Espa Modder Shop</h2></span>
     <span class="star-wars-text"><h4 class="star-wars-text">Mos Espa Modder Shop</h4></span>
@@ -136,6 +168,12 @@
       </span>
       <span class="pref-detail pref-string" ng-switch-when="number">
         <input class="sw-input" type="text" id="{{pref.name}}" value="{{pref.value}}" pattern="[0-9]*" inputmode="numeric">
+      </span>
+      <span class="pref-detail pref-string pref-hilts" ng-switch-when="img">
+        <span class="img-container" ng-repeat="hilt in data.hilts" ng-click="pref.value = hilt.jedi">
+          <i ng-show="hilt.jedi == pref.value || (pref.value == '' && hilt.jedi == 'qui_gon')" class="fas fa-sword-laser-alt"></i>
+          <img src="{{hilt.src}}" style="transform: rotate({{hilt.rotation}}); width: {{hilt.preference_display_width}};"/>
+        </span>
       </span>
     </span>
     <hr ng-repeat-end>
