@@ -3,7 +3,7 @@
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>character_force_enhcancement</element>
-            <list_id display_value="x_176383_star_wars_character_force_enhancements" element="NULL" name="x_176383_star_wars_character_force_enhancements" parent="NULL" relationship="NULL" sys_domain="global" view="bb2c733e53323650482950b0a0490e2a">bb2c733e53323650482950b0a0490e2c</list_id>
+            <list_id display_value="x_176383_star_wars_character_force_enhancements" element="NULL" name="x_176383_star_wars_character_force_enhancements" parent="NULL" relationship="NULL" sys_domain="global" view="3749aaa983990310cd40c765eeaad357">bb2c733e53323650482950b0a0490e2c</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>0</position>
@@ -18,7 +18,7 @@
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>character_force_power</element>
-            <list_id display_value="x_176383_star_wars_character_force_enhancements" element="NULL" name="x_176383_star_wars_character_force_enhancements" parent="NULL" relationship="NULL" sys_domain="global" view="bb2c733e53323650482950b0a0490e2a">bb2c733e53323650482950b0a0490e2c</list_id>
+            <list_id display_value="x_176383_star_wars_character_force_enhancements" element="NULL" name="x_176383_star_wars_character_force_enhancements" parent="NULL" relationship="NULL" sys_domain="global" view="3749aaa983990310cd40c765eeaad357">bb2c733e53323650482950b0a0490e2c</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>1</position>
@@ -33,7 +33,7 @@
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>character</element>
-            <list_id display_value="x_176383_star_wars_character_force_enhancements" element="NULL" name="x_176383_star_wars_character_force_enhancements" parent="NULL" relationship="NULL" sys_domain="global" view="bb2c733e53323650482950b0a0490e2a">bb2c733e53323650482950b0a0490e2c</list_id>
+            <list_id display_value="x_176383_star_wars_character_force_enhancements" element="NULL" name="x_176383_star_wars_character_force_enhancements" parent="NULL" relationship="NULL" sys_domain="global" view="3749aaa983990310cd40c765eeaad357">bb2c733e53323650482950b0a0490e2c</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>2</position>
@@ -48,7 +48,7 @@
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>sys_created_on</element>
-            <list_id display_value="x_176383_star_wars_character_force_enhancements" element="NULL" name="x_176383_star_wars_character_force_enhancements" parent="NULL" relationship="NULL" sys_domain="global" view="bb2c733e53323650482950b0a0490e2a">bb2c733e53323650482950b0a0490e2c</list_id>
+            <list_id display_value="x_176383_star_wars_character_force_enhancements" element="NULL" name="x_176383_star_wars_character_force_enhancements" parent="NULL" relationship="NULL" sys_domain="global" view="3749aaa983990310cd40c765eeaad357">bb2c733e53323650482950b0a0490e2c</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>3</position>
@@ -63,7 +63,7 @@
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>sys_created_by</element>
-            <list_id display_value="x_176383_star_wars_character_force_enhancements" element="NULL" name="x_176383_star_wars_character_force_enhancements" parent="NULL" relationship="NULL" sys_domain="global" view="bb2c733e53323650482950b0a0490e2a">bb2c733e53323650482950b0a0490e2c</list_id>
+            <list_id display_value="x_176383_star_wars_character_force_enhancements" element="NULL" name="x_176383_star_wars_character_force_enhancements" parent="NULL" relationship="NULL" sys_domain="global" view="3749aaa983990310cd40c765eeaad357">bb2c733e53323650482950b0a0490e2c</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>4</position>
@@ -78,7 +78,7 @@
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>sys_tags</element>
-            <list_id display_value="x_176383_star_wars_character_force_enhancements" element="NULL" name="x_176383_star_wars_character_force_enhancements" parent="NULL" relationship="NULL" sys_domain="global" view="bb2c733e53323650482950b0a0490e2a">bb2c733e53323650482950b0a0490e2c</list_id>
+            <list_id display_value="x_176383_star_wars_character_force_enhancements" element="NULL" name="x_176383_star_wars_character_force_enhancements" parent="NULL" relationship="NULL" sys_domain="global" view="3749aaa983990310cd40c765eeaad357">bb2c733e53323650482950b0a0490e2c</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>5</position>
@@ -93,7 +93,7 @@
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>sys_updated_on</element>
-            <list_id display_value="x_176383_star_wars_character_force_enhancements" element="NULL" name="x_176383_star_wars_character_force_enhancements" parent="NULL" relationship="NULL" sys_domain="global" view="bb2c733e53323650482950b0a0490e2a">bb2c733e53323650482950b0a0490e2c</list_id>
+            <list_id display_value="x_176383_star_wars_character_force_enhancements" element="NULL" name="x_176383_star_wars_character_force_enhancements" parent="NULL" relationship="NULL" sys_domain="global" view="3749aaa983990310cd40c765eeaad357">bb2c733e53323650482950b0a0490e2c</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>6</position>
@@ -108,7 +108,7 @@
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>sys_updated_by</element>
-            <list_id display_value="x_176383_star_wars_character_force_enhancements" element="NULL" name="x_176383_star_wars_character_force_enhancements" parent="NULL" relationship="NULL" sys_domain="global" view="bb2c733e53323650482950b0a0490e2a">bb2c733e53323650482950b0a0490e2c</list_id>
+            <list_id display_value="x_176383_star_wars_character_force_enhancements" element="NULL" name="x_176383_star_wars_character_force_enhancements" parent="NULL" relationship="NULL" sys_domain="global" view="3749aaa983990310cd40c765eeaad357">bb2c733e53323650482950b0a0490e2c</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>7</position>
@@ -123,7 +123,7 @@
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>sys_mod_count</element>
-            <list_id display_value="x_176383_star_wars_character_force_enhancements" element="NULL" name="x_176383_star_wars_character_force_enhancements" parent="NULL" relationship="NULL" sys_domain="global" view="bb2c733e53323650482950b0a0490e2a">bb2c733e53323650482950b0a0490e2c</list_id>
+            <list_id display_value="x_176383_star_wars_character_force_enhancements" element="NULL" name="x_176383_star_wars_character_force_enhancements" parent="NULL" relationship="NULL" sys_domain="global" view="3749aaa983990310cd40c765eeaad357">bb2c733e53323650482950b0a0490e2c</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>8</position>
@@ -160,7 +160,7 @@
             <sys_updated_by>ben.fisher</sys_updated_by>
             <sys_updated_on>2026-02-05 17:18:55</sys_updated_on>
             <sys_user/>
-            <view display_value="Rpt7b2c7ffa53323650482950b0a0490eea" name="RPT7b2c7ffa53323650482950b0a0490eea">bb2c733e53323650482950b0a0490e2a</view>
+            <view display_value="Rpt7b2c7ffa53323650482950b0a0490eea" name="RPT7b2c7ffa53323650482950b0a0490eea">3749aaa983990310cd40c765eeaad357</view>
             <view_name/>
         </sys_ui_list>
     </sys_ui_list>

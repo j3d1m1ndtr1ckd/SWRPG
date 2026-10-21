@@ -3,7 +3,7 @@
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>character</element>
-            <list_id display_value="x_176383_star_wars_character_critical_injuries" element="NULL" name="x_176383_star_wars_character_critical_injuries" parent="NULL" relationship="NULL" sys_domain="global" view="470c3ffa53323650482950b0a0490e36">4b0c3ffa53323650482950b0a0490e38</list_id>
+            <list_id display_value="x_176383_star_wars_character_critical_injuries" element="NULL" name="x_176383_star_wars_character_critical_injuries" parent="NULL" relationship="NULL" sys_domain="global" view="bb49aaa983990310cd40c765eeaad321">4b0c3ffa53323650482950b0a0490e38</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>0</position>
@@ -18,7 +18,7 @@
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>character_vehicle</element>
-            <list_id display_value="x_176383_star_wars_character_critical_injuries" element="NULL" name="x_176383_star_wars_character_critical_injuries" parent="NULL" relationship="NULL" sys_domain="global" view="470c3ffa53323650482950b0a0490e36">4b0c3ffa53323650482950b0a0490e38</list_id>
+            <list_id display_value="x_176383_star_wars_character_critical_injuries" element="NULL" name="x_176383_star_wars_character_critical_injuries" parent="NULL" relationship="NULL" sys_domain="global" view="bb49aaa983990310cd40c765eeaad321">4b0c3ffa53323650482950b0a0490e38</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>1</position>
@@ -33,7 +33,7 @@
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>critical_injury</element>
-            <list_id display_value="x_176383_star_wars_character_critical_injuries" element="NULL" name="x_176383_star_wars_character_critical_injuries" parent="NULL" relationship="NULL" sys_domain="global" view="470c3ffa53323650482950b0a0490e36">4b0c3ffa53323650482950b0a0490e38</list_id>
+            <list_id display_value="x_176383_star_wars_character_critical_injuries" element="NULL" name="x_176383_star_wars_character_critical_injuries" parent="NULL" relationship="NULL" sys_domain="global" view="bb49aaa983990310cd40c765eeaad321">4b0c3ffa53323650482950b0a0490e38</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>2</position>
@@ -48,7 +48,7 @@
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>sys_class_name</element>
-            <list_id display_value="x_176383_star_wars_character_critical_injuries" element="NULL" name="x_176383_star_wars_character_critical_injuries" parent="NULL" relationship="NULL" sys_domain="global" view="470c3ffa53323650482950b0a0490e36">4b0c3ffa53323650482950b0a0490e38</list_id>
+            <list_id display_value="x_176383_star_wars_character_critical_injuries" element="NULL" name="x_176383_star_wars_character_critical_injuries" parent="NULL" relationship="NULL" sys_domain="global" view="bb49aaa983990310cd40c765eeaad321">4b0c3ffa53323650482950b0a0490e38</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>3</position>
@@ -63,7 +63,7 @@
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>sys_created_on</element>
-            <list_id display_value="x_176383_star_wars_character_critical_injuries" element="NULL" name="x_176383_star_wars_character_critical_injuries" parent="NULL" relationship="NULL" sys_domain="global" view="470c3ffa53323650482950b0a0490e36">4b0c3ffa53323650482950b0a0490e38</list_id>
+            <list_id display_value="x_176383_star_wars_character_critical_injuries" element="NULL" name="x_176383_star_wars_character_critical_injuries" parent="NULL" relationship="NULL" sys_domain="global" view="bb49aaa983990310cd40c765eeaad321">4b0c3ffa53323650482950b0a0490e38</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>4</position>
@@ -78,7 +78,7 @@
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>sys_created_by</element>
-            <list_id display_value="x_176383_star_wars_character_critical_injuries" element="NULL" name="x_176383_star_wars_character_critical_injuries" parent="NULL" relationship="NULL" sys_domain="global" view="470c3ffa53323650482950b0a0490e36">4b0c3ffa53323650482950b0a0490e38</list_id>
+            <list_id display_value="x_176383_star_wars_character_critical_injuries" element="NULL" name="x_176383_star_wars_character_critical_injuries" parent="NULL" relationship="NULL" sys_domain="global" view="bb49aaa983990310cd40c765eeaad321">4b0c3ffa53323650482950b0a0490e38</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>5</position>
@@ -93,7 +93,7 @@
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>d100</element>
-            <list_id display_value="x_176383_star_wars_character_critical_injuries" element="NULL" name="x_176383_star_wars_character_critical_injuries" parent="NULL" relationship="NULL" sys_domain="global" view="470c3ffa53323650482950b0a0490e36">4b0c3ffa53323650482950b0a0490e38</list_id>
+            <list_id display_value="x_176383_star_wars_character_critical_injuries" element="NULL" name="x_176383_star_wars_character_critical_injuries" parent="NULL" relationship="NULL" sys_domain="global" view="bb49aaa983990310cd40c765eeaad321">4b0c3ffa53323650482950b0a0490e38</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>6</position>
@@ -108,7 +108,7 @@
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>order</element>
-            <list_id display_value="x_176383_star_wars_character_critical_injuries" element="NULL" name="x_176383_star_wars_character_critical_injuries" parent="NULL" relationship="NULL" sys_domain="global" view="470c3ffa53323650482950b0a0490e36">4b0c3ffa53323650482950b0a0490e38</list_id>
+            <list_id display_value="x_176383_star_wars_character_critical_injuries" element="NULL" name="x_176383_star_wars_character_critical_injuries" parent="NULL" relationship="NULL" sys_domain="global" view="bb49aaa983990310cd40c765eeaad321">4b0c3ffa53323650482950b0a0490e38</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>7</position>
@@ -123,7 +123,7 @@
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>result</element>
-            <list_id display_value="x_176383_star_wars_character_critical_injuries" element="NULL" name="x_176383_star_wars_character_critical_injuries" parent="NULL" relationship="NULL" sys_domain="global" view="470c3ffa53323650482950b0a0490e36">4b0c3ffa53323650482950b0a0490e38</list_id>
+            <list_id display_value="x_176383_star_wars_character_critical_injuries" element="NULL" name="x_176383_star_wars_character_critical_injuries" parent="NULL" relationship="NULL" sys_domain="global" view="bb49aaa983990310cd40c765eeaad321">4b0c3ffa53323650482950b0a0490e38</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>8</position>
@@ -138,7 +138,7 @@
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>severity</element>
-            <list_id display_value="x_176383_star_wars_character_critical_injuries" element="NULL" name="x_176383_star_wars_character_critical_injuries" parent="NULL" relationship="NULL" sys_domain="global" view="470c3ffa53323650482950b0a0490e36">4b0c3ffa53323650482950b0a0490e38</list_id>
+            <list_id display_value="x_176383_star_wars_character_critical_injuries" element="NULL" name="x_176383_star_wars_character_critical_injuries" parent="NULL" relationship="NULL" sys_domain="global" view="bb49aaa983990310cd40c765eeaad321">4b0c3ffa53323650482950b0a0490e38</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>9</position>
@@ -153,7 +153,7 @@
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>sys_tags</element>
-            <list_id display_value="x_176383_star_wars_character_critical_injuries" element="NULL" name="x_176383_star_wars_character_critical_injuries" parent="NULL" relationship="NULL" sys_domain="global" view="470c3ffa53323650482950b0a0490e36">4b0c3ffa53323650482950b0a0490e38</list_id>
+            <list_id display_value="x_176383_star_wars_character_critical_injuries" element="NULL" name="x_176383_star_wars_character_critical_injuries" parent="NULL" relationship="NULL" sys_domain="global" view="bb49aaa983990310cd40c765eeaad321">4b0c3ffa53323650482950b0a0490e38</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>10</position>
@@ -168,7 +168,7 @@
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>type</element>
-            <list_id display_value="x_176383_star_wars_character_critical_injuries" element="NULL" name="x_176383_star_wars_character_critical_injuries" parent="NULL" relationship="NULL" sys_domain="global" view="470c3ffa53323650482950b0a0490e36">4b0c3ffa53323650482950b0a0490e38</list_id>
+            <list_id display_value="x_176383_star_wars_character_critical_injuries" element="NULL" name="x_176383_star_wars_character_critical_injuries" parent="NULL" relationship="NULL" sys_domain="global" view="bb49aaa983990310cd40c765eeaad321">4b0c3ffa53323650482950b0a0490e38</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>11</position>
@@ -183,7 +183,7 @@
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>sys_updated_on</element>
-            <list_id display_value="x_176383_star_wars_character_critical_injuries" element="NULL" name="x_176383_star_wars_character_critical_injuries" parent="NULL" relationship="NULL" sys_domain="global" view="470c3ffa53323650482950b0a0490e36">4b0c3ffa53323650482950b0a0490e38</list_id>
+            <list_id display_value="x_176383_star_wars_character_critical_injuries" element="NULL" name="x_176383_star_wars_character_critical_injuries" parent="NULL" relationship="NULL" sys_domain="global" view="bb49aaa983990310cd40c765eeaad321">4b0c3ffa53323650482950b0a0490e38</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>12</position>
@@ -198,7 +198,7 @@
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>sys_updated_by</element>
-            <list_id display_value="x_176383_star_wars_character_critical_injuries" element="NULL" name="x_176383_star_wars_character_critical_injuries" parent="NULL" relationship="NULL" sys_domain="global" view="470c3ffa53323650482950b0a0490e36">4b0c3ffa53323650482950b0a0490e38</list_id>
+            <list_id display_value="x_176383_star_wars_character_critical_injuries" element="NULL" name="x_176383_star_wars_character_critical_injuries" parent="NULL" relationship="NULL" sys_domain="global" view="bb49aaa983990310cd40c765eeaad321">4b0c3ffa53323650482950b0a0490e38</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>13</position>
@@ -213,7 +213,7 @@
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>sys_mod_count</element>
-            <list_id display_value="x_176383_star_wars_character_critical_injuries" element="NULL" name="x_176383_star_wars_character_critical_injuries" parent="NULL" relationship="NULL" sys_domain="global" view="470c3ffa53323650482950b0a0490e36">4b0c3ffa53323650482950b0a0490e38</list_id>
+            <list_id display_value="x_176383_star_wars_character_critical_injuries" element="NULL" name="x_176383_star_wars_character_critical_injuries" parent="NULL" relationship="NULL" sys_domain="global" view="bb49aaa983990310cd40c765eeaad321">4b0c3ffa53323650482950b0a0490e38</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>14</position>
@@ -250,7 +250,7 @@
             <sys_updated_by>ben.fisher</sys_updated_by>
             <sys_updated_on>2026-02-05 17:18:18</sys_updated_on>
             <sys_user/>
-            <view display_value="Rpt4b0cbbfa53323650482950b0a0490ea9" name="RPT4b0cbbfa53323650482950b0a0490ea9">470c3ffa53323650482950b0a0490e36</view>
+            <view display_value="Rpt4b0cbbfa53323650482950b0a0490ea9" name="RPT4b0cbbfa53323650482950b0a0490ea9">bb49aaa983990310cd40c765eeaad321</view>
             <view_name/>
         </sys_ui_list>
     </sys_ui_list>

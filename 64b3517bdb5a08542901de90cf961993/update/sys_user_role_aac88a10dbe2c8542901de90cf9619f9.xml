@@ -4,6 +4,7 @@
         <can_delegate>true</can_delegate>
         <description/>
         <elevated_privilege>false</elevated_privilege>
+        <federated_id>7Hw8N3pTTABirv6b9N6APTpmRhBr8NGZ5DlhPt+rZlo=</federated_id>
         <grantable>true</grantable>
         <includes_roles/>
         <name>x_176383_star_wars.career_specialization_talent_tree_m2m_user</name>

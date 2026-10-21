@@ -3,7 +3,7 @@
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>species</element>
-            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="1b2a733a53323650482950b0a0490ec2">972a733a53323650482950b0a0490ec4</list_id>
+            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="c459eaa983990310cd40c765eeaad30b">972a733a53323650482950b0a0490ec4</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>0</position>
@@ -18,7 +18,7 @@
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>sys_updated_by</element>
-            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="1b2a733a53323650482950b0a0490ec2">972a733a53323650482950b0a0490ec4</list_id>
+            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="c459eaa983990310cd40c765eeaad30b">972a733a53323650482950b0a0490ec4</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>1</position>
@@ -33,7 +33,7 @@
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>sys_updated_on</element>
-            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="1b2a733a53323650482950b0a0490ec2">972a733a53323650482950b0a0490ec4</list_id>
+            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="c459eaa983990310cd40c765eeaad30b">972a733a53323650482950b0a0490ec4</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>2</position>
@@ -48,7 +48,7 @@
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>total_xp</element>
-            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="1b2a733a53323650482950b0a0490ec2">972a733a53323650482950b0a0490ec4</list_id>
+            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="c459eaa983990310cd40c765eeaad30b">972a733a53323650482950b0a0490ec4</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>3</position>
@@ -63,7 +63,7 @@
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>available_xp</element>
-            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="1b2a733a53323650482950b0a0490ec2">972a733a53323650482950b0a0490ec4</list_id>
+            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="c459eaa983990310cd40c765eeaad30b">972a733a53323650482950b0a0490ec4</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>4</position>
@@ -78,7 +78,7 @@
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>critical_injuries</element>
-            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="1b2a733a53323650482950b0a0490ec2">972a733a53323650482950b0a0490ec4</list_id>
+            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="c459eaa983990310cd40c765eeaad30b">972a733a53323650482950b0a0490ec4</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>5</position>
@@ -93,7 +93,7 @@
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>age</element>
-            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="1b2a733a53323650482950b0a0490ec2">972a733a53323650482950b0a0490ec4</list_id>
+            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="c459eaa983990310cd40c765eeaad30b">972a733a53323650482950b0a0490ec4</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>6</position>
@@ -108,7 +108,7 @@
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>agility</element>
-            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="1b2a733a53323650482950b0a0490ec2">972a733a53323650482950b0a0490ec4</list_id>
+            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="c459eaa983990310cd40c765eeaad30b">972a733a53323650482950b0a0490ec4</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>7</position>
@@ -123,7 +123,7 @@
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>notable_features</element>
-            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="1b2a733a53323650482950b0a0490ec2">972a733a53323650482950b0a0490ec4</list_id>
+            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="c459eaa983990310cd40c765eeaad30b">972a733a53323650482950b0a0490ec4</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>8</position>
@@ -138,7 +138,7 @@
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>background</element>
-            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="1b2a733a53323650482950b0a0490ec2">972a733a53323650482950b0a0490ec4</list_id>
+            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="c459eaa983990310cd40c765eeaad30b">972a733a53323650482950b0a0490ec4</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>9</position>
@@ -153,7 +153,7 @@
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>brawn</element>
-            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="1b2a733a53323650482950b0a0490ec2">972a733a53323650482950b0a0490ec4</list_id>
+            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="c459eaa983990310cd40c765eeaad30b">972a733a53323650482950b0a0490ec4</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>10</position>
@@ -168,7 +168,7 @@
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>build</element>
-            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="1b2a733a53323650482950b0a0490ec2">972a733a53323650482950b0a0490ec4</list_id>
+            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="c459eaa983990310cd40c765eeaad30b">972a733a53323650482950b0a0490ec4</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>11</position>
@@ -183,7 +183,7 @@
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>career_specializations</element>
-            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="1b2a733a53323650482950b0a0490ec2">972a733a53323650482950b0a0490ec4</list_id>
+            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="c459eaa983990310cd40c765eeaad30b">972a733a53323650482950b0a0490ec4</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>12</position>
@@ -198,7 +198,7 @@
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>sys_class_name</element>
-            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="1b2a733a53323650482950b0a0490ec2">972a733a53323650482950b0a0490ec4</list_id>
+            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="c459eaa983990310cd40c765eeaad30b">972a733a53323650482950b0a0490ec4</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>13</position>
@@ -213,7 +213,7 @@
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>sys_created_on</element>
-            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="1b2a733a53323650482950b0a0490ec2">972a733a53323650482950b0a0490ec4</list_id>
+            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="c459eaa983990310cd40c765eeaad30b">972a733a53323650482950b0a0490ec4</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>14</position>
@@ -228,7 +228,7 @@
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>sys_created_by</element>
-            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="1b2a733a53323650482950b0a0490ec2">972a733a53323650482950b0a0490ec4</list_id>
+            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="c459eaa983990310cd40c765eeaad30b">972a733a53323650482950b0a0490ec4</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>15</position>
@@ -243,7 +243,7 @@
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>credits</element>
-            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="1b2a733a53323650482950b0a0490ec2">972a733a53323650482950b0a0490ec4</list_id>
+            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="c459eaa983990310cd40c765eeaad30b">972a733a53323650482950b0a0490ec4</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>16</position>
@@ -258,7 +258,7 @@
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>critical_injury_description</element>
-            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="1b2a733a53323650482950b0a0490ec2">972a733a53323650482950b0a0490ec4</list_id>
+            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="c459eaa983990310cd40c765eeaad30b">972a733a53323650482950b0a0490ec4</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>17</position>
@@ -273,7 +273,7 @@
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>cunning</element>
-            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="1b2a733a53323650482950b0a0490ec2">972a733a53323650482950b0a0490ec4</list_id>
+            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="c459eaa983990310cd40c765eeaad30b">972a733a53323650482950b0a0490ec4</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>18</position>
@@ -288,7 +288,7 @@
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>defense_melee</element>
-            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="1b2a733a53323650482950b0a0490ec2">972a733a53323650482950b0a0490ec4</list_id>
+            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="c459eaa983990310cd40c765eeaad30b">972a733a53323650482950b0a0490ec4</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>19</position>
@@ -303,7 +303,7 @@
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>defense_ranged</element>
-            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="1b2a733a53323650482950b0a0490ec2">972a733a53323650482950b0a0490ec4</list_id>
+            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="c459eaa983990310cd40c765eeaad30b">972a733a53323650482950b0a0490ec4</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>20</position>
@@ -318,7 +318,7 @@
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>description_html</element>
-            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="1b2a733a53323650482950b0a0490ec2">972a733a53323650482950b0a0490ec4</list_id>
+            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="c459eaa983990310cd40c765eeaad30b">972a733a53323650482950b0a0490ec4</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>21</position>
@@ -333,7 +333,7 @@
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>eyes</element>
-            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="1b2a733a53323650482950b0a0490ec2">972a733a53323650482950b0a0490ec4</list_id>
+            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="c459eaa983990310cd40c765eeaad30b">972a733a53323650482950b0a0490ec4</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>22</position>
@@ -348,7 +348,7 @@
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>force_committed</element>
-            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="1b2a733a53323650482950b0a0490ec2">972a733a53323650482950b0a0490ec4</list_id>
+            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="c459eaa983990310cd40c765eeaad30b">972a733a53323650482950b0a0490ec4</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>23</position>
@@ -363,7 +363,7 @@
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>force_rating</element>
-            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="1b2a733a53323650482950b0a0490ec2">972a733a53323650482950b0a0490ec4</list_id>
+            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="c459eaa983990310cd40c765eeaad30b">972a733a53323650482950b0a0490ec4</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>24</position>
@@ -378,7 +378,7 @@
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>gender</element>
-            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="1b2a733a53323650482950b0a0490ec2">972a733a53323650482950b0a0490ec4</list_id>
+            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="c459eaa983990310cd40c765eeaad30b">972a733a53323650482950b0a0490ec4</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>25</position>
@@ -393,7 +393,7 @@
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>hair</element>
-            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="1b2a733a53323650482950b0a0490ec2">972a733a53323650482950b0a0490ec4</list_id>
+            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="c459eaa983990310cd40c765eeaad30b">972a733a53323650482950b0a0490ec4</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>26</position>
@@ -408,7 +408,7 @@
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>height</element>
-            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="1b2a733a53323650482950b0a0490ec2">972a733a53323650482950b0a0490ec4</list_id>
+            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="c459eaa983990310cd40c765eeaad30b">972a733a53323650482950b0a0490ec4</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>27</position>
@@ -423,7 +423,7 @@
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>intellect</element>
-            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="1b2a733a53323650482950b0a0490ec2">972a733a53323650482950b0a0490ec4</list_id>
+            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="c459eaa983990310cd40c765eeaad30b">972a733a53323650482950b0a0490ec4</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>28</position>
@@ -438,7 +438,7 @@
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>notes</element>
-            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="1b2a733a53323650482950b0a0490ec2">972a733a53323650482950b0a0490ec4</list_id>
+            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="c459eaa983990310cd40c765eeaad30b">972a733a53323650482950b0a0490ec4</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>29</position>
@@ -453,7 +453,7 @@
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>other_gear</element>
-            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="1b2a733a53323650482950b0a0490ec2">972a733a53323650482950b0a0490ec4</list_id>
+            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="c459eaa983990310cd40c765eeaad30b">972a733a53323650482950b0a0490ec4</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>30</position>
@@ -468,7 +468,7 @@
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>portrait</element>
-            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="1b2a733a53323650482950b0a0490ec2">972a733a53323650482950b0a0490ec4</list_id>
+            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="c459eaa983990310cd40c765eeaad30b">972a733a53323650482950b0a0490ec4</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>31</position>
@@ -483,7 +483,7 @@
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>presence</element>
-            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="1b2a733a53323650482950b0a0490ec2">972a733a53323650482950b0a0490ec4</list_id>
+            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="c459eaa983990310cd40c765eeaad30b">972a733a53323650482950b0a0490ec4</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>32</position>
@@ -498,7 +498,7 @@
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>signature_abilities_unlocked</element>
-            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="1b2a733a53323650482950b0a0490ec2">972a733a53323650482950b0a0490ec4</list_id>
+            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="c459eaa983990310cd40c765eeaad30b">972a733a53323650482950b0a0490ec4</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>33</position>
@@ -513,7 +513,7 @@
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>soak_value</element>
-            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="1b2a733a53323650482950b0a0490ec2">972a733a53323650482950b0a0490ec4</list_id>
+            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="c459eaa983990310cd40c765eeaad30b">972a733a53323650482950b0a0490ec4</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>34</position>
@@ -528,7 +528,7 @@
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>status_effects</element>
-            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="1b2a733a53323650482950b0a0490ec2">972a733a53323650482950b0a0490ec4</list_id>
+            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="c459eaa983990310cd40c765eeaad30b">972a733a53323650482950b0a0490ec4</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>35</position>
@@ -543,7 +543,7 @@
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>strain_current</element>
-            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="1b2a733a53323650482950b0a0490ec2">972a733a53323650482950b0a0490ec4</list_id>
+            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="c459eaa983990310cd40c765eeaad30b">972a733a53323650482950b0a0490ec4</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>36</position>
@@ -558,7 +558,7 @@
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>strain_threshold</element>
-            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="1b2a733a53323650482950b0a0490ec2">972a733a53323650482950b0a0490ec4</list_id>
+            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="c459eaa983990310cd40c765eeaad30b">972a733a53323650482950b0a0490ec4</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>37</position>
@@ -573,7 +573,7 @@
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>sys_tags</element>
-            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="1b2a733a53323650482950b0a0490ec2">972a733a53323650482950b0a0490ec4</list_id>
+            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="c459eaa983990310cd40c765eeaad30b">972a733a53323650482950b0a0490ec4</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>38</position>
@@ -588,7 +588,7 @@
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>sys_mod_count</element>
-            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="1b2a733a53323650482950b0a0490ec2">972a733a53323650482950b0a0490ec4</list_id>
+            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="c459eaa983990310cd40c765eeaad30b">972a733a53323650482950b0a0490ec4</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>39</position>
@@ -603,7 +603,7 @@
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>visible_to_players</element>
-            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="1b2a733a53323650482950b0a0490ec2">972a733a53323650482950b0a0490ec4</list_id>
+            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="c459eaa983990310cd40c765eeaad30b">972a733a53323650482950b0a0490ec4</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>40</position>
@@ -618,7 +618,7 @@
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>weight</element>
-            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="1b2a733a53323650482950b0a0490ec2">972a733a53323650482950b0a0490ec4</list_id>
+            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="c459eaa983990310cd40c765eeaad30b">972a733a53323650482950b0a0490ec4</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>41</position>
@@ -633,7 +633,7 @@
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>willpower</element>
-            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="1b2a733a53323650482950b0a0490ec2">972a733a53323650482950b0a0490ec4</list_id>
+            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="c459eaa983990310cd40c765eeaad30b">972a733a53323650482950b0a0490ec4</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>42</position>
@@ -648,7 +648,7 @@
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>wounds_current</element>
-            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="1b2a733a53323650482950b0a0490ec2">972a733a53323650482950b0a0490ec4</list_id>
+            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="c459eaa983990310cd40c765eeaad30b">972a733a53323650482950b0a0490ec4</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>43</position>
@@ -663,7 +663,7 @@
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>wounds_threshold</element>
-            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="1b2a733a53323650482950b0a0490ec2">972a733a53323650482950b0a0490ec4</list_id>
+            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="c459eaa983990310cd40c765eeaad30b">972a733a53323650482950b0a0490ec4</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>44</position>
@@ -678,7 +678,7 @@
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>name</element>
-            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="1b2a733a53323650482950b0a0490ec2">972a733a53323650482950b0a0490ec4</list_id>
+            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="c459eaa983990310cd40c765eeaad30b">972a733a53323650482950b0a0490ec4</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>45</position>
@@ -693,7 +693,7 @@
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>number</element>
-            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="1b2a733a53323650482950b0a0490ec2">972a733a53323650482950b0a0490ec4</list_id>
+            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="c459eaa983990310cd40c765eeaad30b">972a733a53323650482950b0a0490ec4</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>46</position>
@@ -708,7 +708,7 @@
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>career</element>
-            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="1b2a733a53323650482950b0a0490ec2">972a733a53323650482950b0a0490ec4</list_id>
+            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="c459eaa983990310cd40c765eeaad30b">972a733a53323650482950b0a0490ec4</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>47</position>
@@ -723,7 +723,7 @@
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>campaign</element>
-            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="1b2a733a53323650482950b0a0490ec2">972a733a53323650482950b0a0490ec4</list_id>
+            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="c459eaa983990310cd40c765eeaad30b">972a733a53323650482950b0a0490ec4</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>48</position>
@@ -738,7 +738,7 @@
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>player</element>
-            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="1b2a733a53323650482950b0a0490ec2">972a733a53323650482950b0a0490ec4</list_id>
+            <list_id display_value="x_176383_star_wars_character" element="NULL" name="x_176383_star_wars_character" parent="NULL" relationship="NULL" sys_domain="global" view="c459eaa983990310cd40c765eeaad30b">972a733a53323650482950b0a0490ec4</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>49</position>
@@ -775,7 +775,7 @@
             <sys_updated_by>ben.fisher</sys_updated_by>
             <sys_updated_on>2026-02-05 17:10:08</sys_updated_on>
             <sys_user/>
-            <view display_value="Rptdf2ab736533ab250482950b0a0490ec9" name="RPTdf2ab736533ab250482950b0a0490ec9">1b2a733a53323650482950b0a0490ec2</view>
+            <view display_value="Rptdf2ab736533ab250482950b0a0490ec9" name="RPTdf2ab736533ab250482950b0a0490ec9">c459eaa983990310cd40c765eeaad30b</view>
             <view_name/>
         </sys_ui_list>
     </sys_ui_list>

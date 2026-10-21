@@ -39,6 +39,7 @@
         <next_element/>
         <primary>false</primary>
         <read_only>false</read_only>
+        <read_only_option/>
         <read_roles/>
         <reference display_value="" name="x_176383_star_wars_force_power">x_176383_star_wars_force_power</reference>
         <reference_cascade_rule/>

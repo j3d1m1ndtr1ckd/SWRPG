@@ -2,6 +2,7 @@
     <sys_ui_related sys_domain="global" table="x_176383_star_wars_character_force_power" version="2" view="">
         <sys_ui_related_list_entry action="INSERT_OR_UPDATE">
             <filter/>
+            <group_by_field/>
             <list_id display_value="Character Force Power - Default view" name="x_176383_star_wars_character_force_power" related_list="NULL" sys_domain="global" view="Default view">cf8c63682fd27010e0f497eef699b63f</list_id>
             <order_by/>
             <position>0</position>

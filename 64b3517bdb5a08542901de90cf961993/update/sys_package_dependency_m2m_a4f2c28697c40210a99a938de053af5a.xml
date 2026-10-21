@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="sys_package_dependency_m2m">
     <sys_package_dependency_m2m action="INSERT_OR_UPDATE">
-        <dependency display_value="Knowledge Management Core" source="com.glideapp.knowledge">b56e80e8d9b13110cedf7dffddb48f9b</dependency>
+        <dependency display_value="Knowledge Management Core" source="com.glideapp.knowledge">354f6246187632108bb255f46a373a2f</dependency>
         <min_version>1.0.0</min_version>
         <sys_created_by>ben.fisher</sys_created_by>
         <sys_created_on>2024-01-31 19:07:39</sys_created_on>

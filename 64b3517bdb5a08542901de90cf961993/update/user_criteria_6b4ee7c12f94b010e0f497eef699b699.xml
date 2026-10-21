@@ -8,7 +8,8 @@
         <location/>
         <match_all>false</match_all>
         <name>Star Wars RPG Players</name>
-        <role name="x_176383_star_wars.star_wars_player">16e31133db1a08542901de90cf9619e1</role>
+        <role name="x_176383_star_wars.star_wars_player">16e31133db1a08542901de90cf9619e1<sys_user_role name="x_176383_star_wars.star_wars_player">16e31133db1a08542901de90cf9619e1</sys_user_role>
+        </role>
         <script/>
         <short_description/>
         <sys_class_name>user_criteria</sys_class_name>

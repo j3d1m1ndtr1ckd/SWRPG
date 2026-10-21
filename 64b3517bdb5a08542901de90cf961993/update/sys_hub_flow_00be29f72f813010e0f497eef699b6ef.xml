@@ -3,6 +3,7 @@
         <access>public</access>
         <acls/>
         <active>false</active>
+        <allow_high_security_roles>false</allow_high_security_roles>
         <annotation/>
         <attributes/>
         <authored_on_release_version/>
@@ -77,6 +78,7 @@
     <sys_hub_sub_flow_instance action="delete_multiple" query="flow=00be29f72f813010e0f497eef699b6ef"/>
     <sys_hub_pill_compound action="delete_multiple" query="attached_to=00be29f72f813010e0f497eef699b6ef"/>
     <sys_hub_flow_variable action="delete_multiple" query="model=00be29f72f813010e0f497eef699b6ef"/>
+    <sys_choice action="delete_multiple" query="name=var__m_sys_hub_flow_variable_00be29f72f813010e0f497eef699b6ef"/>
     <sys_choice action="delete_multiple" query="name=var__m_sys_hub_flow_input_00be29f72f813010e0f497eef699b6ef"/>
     <sys_choice action="delete_multiple" query="name=var__m_sys_hub_flow_output_00be29f72f813010e0f497eef699b6ef"/>
     <sys_flow_trigger_plan action="delete_multiple" query="plan_id=00be29f72f813010e0f497eef699b6ef"/>

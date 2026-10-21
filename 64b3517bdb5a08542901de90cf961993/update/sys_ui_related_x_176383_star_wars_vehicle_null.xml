@@ -3,6 +3,7 @@
         <sys_ui_related_list_entry action="INSERT_OR_UPDATE">
             <filter table="x_176383_star_wars_vehicle_gear.vehicle">sys_class_name=x_176383_star_wars_vehicle_gear^EQ<item endquery="true" field="" goto="false" newquery="false" operator="=" or="false" value=""/>
             </filter>
+            <group_by_field/>
             <list_id display_value="Vehicle - Default view" name="x_176383_star_wars_vehicle" related_list="NULL" sys_domain="global" view="Default view">781779432f542090e0f497eef699b6e3</list_id>
             <order_by/>
             <position>0</position>

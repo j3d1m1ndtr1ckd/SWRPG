@@ -4,6 +4,7 @@
         <can_delegate>true</can_delegate>
         <description/>
         <elevated_privilege>false</elevated_privilege>
+        <federated_id>jAJ0QHwgw/Tzakg9UBKJQzWt8jW3R0KTibRMJyPrHd4=</federated_id>
         <grantable>true</grantable>
         <includes_roles/>
         <name>x_176383_star_wars.character_user</name>

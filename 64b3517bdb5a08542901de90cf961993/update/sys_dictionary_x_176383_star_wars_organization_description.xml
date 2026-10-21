@@ -2,7 +2,7 @@
     <sys_dictionary action="INSERT_OR_UPDATE" element="description" table="x_176383_star_wars_organization">
         <active>true</active>
         <array>false</array>
-        <attributes>edge_encryption_enabled=true, editor.toolbar.line1=undo redo | formatselect fontselect fontsizeselect forecolor backcolor | bold italic underline strikethrough | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link unlink table image | code </attributes>
+        <attributes>edge_encryption_enabled=true, editor.toolbar.line1=undo redo | formatselect fontselect fontsizeselect forecolor backcolor | bold italic underline strikethrough | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link unlink table image | code</attributes>
         <audit>false</audit>
         <calculation><![CDATA[(function calculatedFieldValue(current) {
 
@@ -39,6 +39,7 @@
         <next_element/>
         <primary>false</primary>
         <read_only>false</read_only>
+        <read_only_option/>
         <read_roles/>
         <reference/>
         <reference_cascade_rule/>

@@ -4,6 +4,7 @@
         <can_delegate>true</can_delegate>
         <description/>
         <elevated_privilege>false</elevated_privilege>
+        <federated_id>Ai/TlSnxuvDBDIA0BAXl2EmhgXqVIE8e4EC22NZ8aXE=</federated_id>
         <grantable>true</grantable>
         <includes_roles/>
         <name>x_176383_star_wars.species_user</name>

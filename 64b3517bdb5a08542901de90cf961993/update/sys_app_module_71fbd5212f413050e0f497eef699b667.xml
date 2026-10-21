@@ -19,6 +19,8 @@
         <report/>
         <require_confirmation>true</require_confirmation>
         <roles>admin</roles>
+        <route/>
+        <screen/>
         <sys_class_name>sys_app_module</sys_class_name>
         <sys_created_by>ben.fisher</sys_created_by>
         <sys_created_on>2021-06-29 15:07:23</sys_created_on>
@@ -37,6 +39,7 @@
         <timeline_page/>
         <title>Status Effects</title>
         <uncancelable>false</uncancelable>
+        <ux_list/>
         <view_name/>
         <window_name/>
     </sys_app_module>

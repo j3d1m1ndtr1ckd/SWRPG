@@ -37,8 +37,8 @@
         <sys_policy/>
         <sys_scope display_value="Star Wars RPG">64b3517bdb5a08542901de90cf961993</sys_scope>
         <sys_update_name>sys_hub_action_type_definition_c70bf34a2fc28d10e0f497eef699b68a</sys_update_name>
-        <sys_updated_by>ben.fisher</sys_updated_by>
-        <sys_updated_on>2024-01-31 19:09:22</sys_updated_on>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-06-05 20:40:16</sys_updated_on>
         <system_level>false</system_level>
         <type/>
     </sys_hub_action_type_definition>
@@ -140,6 +140,7 @@
         <order>2</order>
         <primary>false</primary>
         <read_only>false</read_only>
+        <read_only_option/>
         <read_roles/>
         <reference/>
         <reference_cascade_rule/>
@@ -227,6 +228,7 @@
         <order>3</order>
         <primary>false</primary>
         <read_only>false</read_only>
+        <read_only_option/>
         <read_roles/>
         <reference/>
         <reference_cascade_rule/>
@@ -290,12 +292,12 @@
         <sys_domain_path>/</sys_domain_path>
         <sys_id>ea8df38e2fc28d10e0f497eef699b6c4</sys_id>
         <sys_mod_count>1</sys_mod_count>
-        <sys_name>FD2a8df38e6ec28d10a881b64c84c944c4</sys_name>
+        <sys_name/>
         <sys_overrides/>
         <sys_package display_value="Star Wars RPG" source="x_176383_star_wars">64b3517bdb5a08542901de90cf961993</sys_package>
         <sys_policy/>
         <sys_scope display_value="Star Wars RPG">64b3517bdb5a08542901de90cf961993</sys_scope>
-        <sys_update_name>sys_complex_object_ea8df38e2fc28d10e0f497eef699b6c4</sys_update_name>
+        <sys_update_name/>
         <sys_updated_by>ben.fisher</sys_updated_by>
         <sys_updated_on>2022-03-07 05:25:22</sys_updated_on>
         <type>complex_object_schema</type>
@@ -350,6 +352,7 @@
         <order>1</order>
         <primary>false</primary>
         <read_only>false</read_only>
+        <read_only_option/>
         <read_roles/>
         <reference/>
         <reference_cascade_rule/>
@@ -401,29 +404,6 @@
     <sys_hub_status_condition action="delete_multiple" query="action_status_metadata_id=6c1c7bca2fc28d10e0f497eef699b61c"/>
     <sys_choice action="delete_multiple" query="name=var__m_sys_hub_action_input_c70bf34a2fc28d10e0f497eef699b68a"/>
     <sys_documentation action="INSERT_OR_UPDATE">
-        <element>talent_count</element>
-        <help/>
-        <hint/>
-        <label>Talent Count</label>
-        <language>en</language>
-        <name>var__m_sys_hub_action_output_c70bf34a2fc28d10e0f497eef699b68a</name>
-        <plural/>
-        <sys_class_name>sys_documentation</sys_class_name>
-        <sys_created_by>ben.fisher</sys_created_by>
-        <sys_created_on>2022-03-07 05:25:22</sys_created_on>
-        <sys_id>1fcdfb8e2fc28d10e0f497eef699b603</sys_id>
-        <sys_mod_count>0</sys_mod_count>
-        <sys_name>Talent Count</sys_name>
-        <sys_package display_value="Star Wars RPG" source="x_176383_star_wars">64b3517bdb5a08542901de90cf961993</sys_package>
-        <sys_policy/>
-        <sys_scope display_value="Star Wars RPG">64b3517bdb5a08542901de90cf961993</sys_scope>
-        <sys_update_name>sys_documentation_var__m_sys_hub_action_output_c70bf34a2fc28d10e0f497eef699b68a_talent_count_en</sys_update_name>
-        <sys_updated_by>ben.fisher</sys_updated_by>
-        <sys_updated_on>2022-03-07 05:25:22</sys_updated_on>
-        <url/>
-        <url_target/>
-    </sys_documentation>
-    <sys_documentation action="INSERT_OR_UPDATE">
         <element>__action_status__</element>
         <help/>
         <hint/>
@@ -434,7 +414,7 @@
         <sys_class_name>sys_documentation</sys_class_name>
         <sys_created_by>ben.fisher</sys_created_by>
         <sys_created_on>2022-03-07 05:24:14</sys_created_on>
-        <sys_id>328df38e2fc28d10e0f497eef699b6d0</sys_id>
+        <sys_id>959822e183590310cd40c765eeaad3fa</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_name>Action Status</sys_name>
         <sys_package display_value="Star Wars RPG" source="x_176383_star_wars">64b3517bdb5a08542901de90cf961993</sys_package>
@@ -457,7 +437,7 @@
         <sys_class_name>sys_documentation</sys_class_name>
         <sys_created_by>ben.fisher</sys_created_by>
         <sys_created_on>2022-03-07 05:24:14</sys_created_on>
-        <sys_id>fe8df38e2fc28d10e0f497eef699b6db</sys_id>
+        <sys_id>959862e183590310cd40c765eeaad300</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_name>Don't Treat as Error</sys_name>
         <sys_package display_value="Star Wars RPG" source="x_176383_star_wars">64b3517bdb5a08542901de90cf961993</sys_package>
@@ -466,6 +446,29 @@
         <sys_update_name>sys_documentation_var__m_sys_hub_action_output_c70bf34a2fc28d10e0f497eef699b68a___dont_treat_as_error___en</sys_update_name>
         <sys_updated_by>ben.fisher</sys_updated_by>
         <sys_updated_on>2022-03-07 05:24:14</sys_updated_on>
+        <url/>
+        <url_target/>
+    </sys_documentation>
+    <sys_documentation action="INSERT_OR_UPDATE">
+        <element>talent_count</element>
+        <help/>
+        <hint/>
+        <label>Talent Count</label>
+        <language>en</language>
+        <name>var__m_sys_hub_action_output_c70bf34a2fc28d10e0f497eef699b68a</name>
+        <plural/>
+        <sys_class_name>sys_documentation</sys_class_name>
+        <sys_created_by>ben.fisher</sys_created_by>
+        <sys_created_on>2022-03-07 05:25:22</sys_created_on>
+        <sys_id>d59862e183590310cd40c765eeaad32b</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Talent Count</sys_name>
+        <sys_package display_value="Star Wars RPG" source="x_176383_star_wars">64b3517bdb5a08542901de90cf961993</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Star Wars RPG">64b3517bdb5a08542901de90cf961993</sys_scope>
+        <sys_update_name>sys_documentation_var__m_sys_hub_action_output_c70bf34a2fc28d10e0f497eef699b68a_talent_count_en</sys_update_name>
+        <sys_updated_by>ben.fisher</sys_updated_by>
+        <sys_updated_on>2022-03-07 05:25:22</sys_updated_on>
         <url/>
         <url_target/>
     </sys_documentation>
@@ -608,6 +611,7 @@
         <order>3</order>
         <primary>false</primary>
         <read_only>false</read_only>
+        <read_only_option/>
         <read_roles/>
         <reference/>
         <reference_cascade_rule/>
@@ -708,6 +712,7 @@
         <order>2</order>
         <primary>false</primary>
         <read_only>false</read_only>
+        <read_only_option/>
         <read_roles/>
         <reference/>
         <reference_cascade_rule/>
@@ -758,12 +763,12 @@
         <sys_domain_path>/</sys_domain_path>
         <sys_id>b84fb7422f068d10e0f497eef699b683</sys_id>
         <sys_mod_count>0</sys_mod_count>
-        <sys_name>FDf44fb742c5068d10ae12a6a35ee1fd83</sys_name>
+        <sys_name/>
         <sys_overrides/>
         <sys_package display_value="Star Wars RPG" source="x_176383_star_wars">64b3517bdb5a08542901de90cf961993</sys_package>
         <sys_policy/>
         <sys_scope display_value="Star Wars RPG">64b3517bdb5a08542901de90cf961993</sys_scope>
-        <sys_update_name>sys_complex_object_b84fb7422f068d10e0f497eef699b683</sys_update_name>
+        <sys_update_name/>
         <sys_updated_by>ben.fisher</sys_updated_by>
         <sys_updated_on>2022-03-07 05:31:45</sys_updated_on>
         <type>complex_object_schema</type>
@@ -818,6 +823,7 @@
         <order>1</order>
         <primary>false</primary>
         <read_only>false</read_only>
+        <read_only_option/>
         <read_roles/>
         <reference/>
         <reference_cascade_rule/>
@@ -879,7 +885,7 @@
         <sys_class_name>sys_documentation</sys_class_name>
         <sys_created_by>ben.fisher</sys_created_by>
         <sys_created_on>2022-03-07 05:31:45</sys_created_on>
-        <sys_id>494fb7422f068d10e0f497eef699b69c</sys_id>
+        <sys_id>119822e183590310cd40c765eeaad3d6</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_name>Don't Treat as Error</sys_name>
         <sys_package display_value="Star Wars RPG" source="x_176383_star_wars">64b3517bdb5a08542901de90cf961993</sys_package>
@@ -902,7 +908,7 @@
         <sys_class_name>sys_documentation</sys_class_name>
         <sys_created_by>ben.fisher</sys_created_by>
         <sys_created_on>2022-03-07 05:31:45</sys_created_on>
-        <sys_id>c54fb7422f068d10e0f497eef699b6a3</sys_id>
+        <sys_id>1d9822e183590310cd40c765eeaad3db</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_name>Talent Count</sys_name>
         <sys_package display_value="Star Wars RPG" source="x_176383_star_wars">64b3517bdb5a08542901de90cf961993</sys_package>
@@ -925,7 +931,7 @@
         <sys_class_name>sys_documentation</sys_class_name>
         <sys_created_by>ben.fisher</sys_created_by>
         <sys_created_on>2022-03-07 05:31:45</sys_created_on>
-        <sys_id>f04fb7422f068d10e0f497eef699b690</sys_id>
+        <sys_id>d998aea183590310cd40c765eeaad3b3</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_name>Action Status</sys_name>
         <sys_package display_value="Star Wars RPG" source="x_176383_star_wars">64b3517bdb5a08542901de90cf961993</sys_package>
