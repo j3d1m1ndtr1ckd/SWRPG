@@ -8,7 +8,7 @@
             <sys_id>c3f49abc2fa26410e0f497eef699b6b2</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
-            <sys_ui_section caption="NULL" display_value="" name="x_176383_star_wars_campaign" sys_domain="global" view="884be242183232108bb255f46a373a95">0bf49abc2fa26410e0f497eef699b6b0</sys_ui_section>
+            <sys_ui_section caption="NULL" display_value="" name="x_176383_star_wars_campaign" sys_domain="global" view="d51036738c1103100a22deb6dd2b4e78">0bf49abc2fa26410e0f497eef699b6b0</sys_ui_section>
             <sys_updated_by>ben.fisher</sys_updated_by>
             <sys_updated_on>2021-02-23 04:44:06</sys_updated_on>
             <sys_user/>
@@ -36,7 +36,7 @@
             <sys_updated_on>2021-02-23 04:44:06</sys_updated_on>
             <sys_user/>
             <title>false</title>
-            <view display_value="Portal" name="portal">884be242183232108bb255f46a373a95</view>
+            <view display_value="Portal" name="portal">d51036738c1103100a22deb6dd2b4e78</view>
             <view_name/>
         </sys_ui_section>
     </sys_ui_section>

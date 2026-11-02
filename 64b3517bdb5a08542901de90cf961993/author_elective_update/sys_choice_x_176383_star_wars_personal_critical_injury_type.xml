@@ -6,6 +6,7 @@
             <sys_class_name>sys_choice_set</sys_class_name>
             <sys_created_by>ben.fisher</sys_created_by>
             <sys_created_on>2024-09-04 21:24:09</sys_created_on>
+            <sys_id>780b76bd4754d71015f09dbe316d431d</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_name>type</sys_name>
             <sys_package display_value="Star Wars RPG" source="x_176383_star_wars">64b3517bdb5a08542901de90cf961993</sys_package>
@@ -29,6 +30,7 @@
             <sys_created_on>2024-09-04 21:24:09</sys_created_on>
             <sys_domain>global</sys_domain>
             <sys_domain_path>/</sys_domain_path>
+            <sys_id>05eb7a3947d4d71015f09dbe316d43d3</sys_id>
             <sys_mod_count>2</sys_mod_count>
             <sys_updated_by>ben.fisher</sys_updated_by>
             <sys_updated_on>2024-09-04 21:24:14</sys_updated_on>
@@ -48,6 +50,7 @@
             <sys_created_on>2024-09-04 21:24:15</sys_created_on>
             <sys_domain>global</sys_domain>
             <sys_domain_path>/</sys_domain_path>
+            <sys_id>8deb7a3947d4d71015f09dbe316d43d4</sys_id>
             <sys_mod_count>2</sys_mod_count>
             <sys_updated_by>ben.fisher</sys_updated_by>
             <sys_updated_on>2024-09-04 21:24:17</sys_updated_on>

@@ -299,29 +299,6 @@
     <sys_hub_flow_variable action="delete_multiple" query="model=68a97f862fc28d10e0f497eef699b62d"/>
     <sys_choice action="delete_multiple" query="name=var__m_sys_hub_flow_variable_68a97f862fc28d10e0f497eef699b62d"/>
     <sys_documentation action="INSERT_OR_UPDATE">
-        <element>table_name</element>
-        <help/>
-        <hint/>
-        <label>Table Name</label>
-        <language>en</language>
-        <name>var__m_sys_hub_flow_input_68a97f862fc28d10e0f497eef699b62d</name>
-        <plural/>
-        <sys_class_name>sys_documentation</sys_class_name>
-        <sys_created_by>ben.fisher</sys_created_by>
-        <sys_created_on>2022-03-07 05:26:56</sys_created_on>
-        <sys_id>619862e183590310cd40c765eeaad350</sys_id>
-        <sys_mod_count>0</sys_mod_count>
-        <sys_name>Table Name</sys_name>
-        <sys_package display_value="Star Wars RPG" source="x_176383_star_wars">64b3517bdb5a08542901de90cf961993</sys_package>
-        <sys_policy/>
-        <sys_scope display_value="Star Wars RPG">64b3517bdb5a08542901de90cf961993</sys_scope>
-        <sys_update_name>sys_documentation_var__m_sys_hub_flow_input_68a97f862fc28d10e0f497eef699b62d_table_name_en</sys_update_name>
-        <sys_updated_by>ben.fisher</sys_updated_by>
-        <sys_updated_on>2022-03-07 05:26:56</sys_updated_on>
-        <url/>
-        <url_target/>
-    </sys_documentation>
-    <sys_documentation action="INSERT_OR_UPDATE">
         <element>current</element>
         <help/>
         <hint/>
@@ -332,13 +309,36 @@
         <sys_class_name>sys_documentation</sys_class_name>
         <sys_created_by>ben.fisher</sys_created_by>
         <sys_created_on>2022-03-07 05:26:56</sys_created_on>
-        <sys_id>d19862e183590310cd40c765eeaad331</sys_id>
+        <sys_id>3b1bbafd4754d71015f09dbe316d4375</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_name>Record</sys_name>
         <sys_package display_value="Star Wars RPG" source="x_176383_star_wars">64b3517bdb5a08542901de90cf961993</sys_package>
         <sys_policy/>
         <sys_scope display_value="Star Wars RPG">64b3517bdb5a08542901de90cf961993</sys_scope>
         <sys_update_name>sys_documentation_var__m_sys_hub_flow_input_68a97f862fc28d10e0f497eef699b62d_current_en</sys_update_name>
+        <sys_updated_by>ben.fisher</sys_updated_by>
+        <sys_updated_on>2022-03-07 05:26:56</sys_updated_on>
+        <url/>
+        <url_target/>
+    </sys_documentation>
+    <sys_documentation action="INSERT_OR_UPDATE">
+        <element>table_name</element>
+        <help/>
+        <hint/>
+        <label>Table Name</label>
+        <language>en</language>
+        <name>var__m_sys_hub_flow_input_68a97f862fc28d10e0f497eef699b62d</name>
+        <plural/>
+        <sys_class_name>sys_documentation</sys_class_name>
+        <sys_created_by>ben.fisher</sys_created_by>
+        <sys_created_on>2022-03-07 05:26:56</sys_created_on>
+        <sys_id>731bbafd4754d71015f09dbe316d4388</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Table Name</sys_name>
+        <sys_package display_value="Star Wars RPG" source="x_176383_star_wars">64b3517bdb5a08542901de90cf961993</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Star Wars RPG">64b3517bdb5a08542901de90cf961993</sys_scope>
+        <sys_update_name>sys_documentation_var__m_sys_hub_flow_input_68a97f862fc28d10e0f497eef699b62d_table_name_en</sys_update_name>
         <sys_updated_by>ben.fisher</sys_updated_by>
         <sys_updated_on>2022-03-07 05:26:56</sys_updated_on>
         <url/>

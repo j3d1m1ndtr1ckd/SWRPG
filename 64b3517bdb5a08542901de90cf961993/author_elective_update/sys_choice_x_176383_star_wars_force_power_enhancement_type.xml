@@ -6,6 +6,7 @@
             <sys_class_name>sys_choice_set</sys_class_name>
             <sys_created_by>admin</sys_created_by>
             <sys_created_on>2020-11-15 14:36:44</sys_created_on>
+            <sys_id>ba0bfabd4754d71015f09dbe316d4361</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_name>type</sys_name>
             <sys_package display_value="Star Wars RPG" source="x_176383_star_wars">64b3517bdb5a08542901de90cf961993</sys_package>
@@ -29,6 +30,7 @@
             <sys_created_on>2020-11-15 14:36:44</sys_created_on>
             <sys_domain>global</sys_domain>
             <sys_domain_path>/</sys_domain_path>
+            <sys_id>cdeb3a3947d4d71015f09dbe316d4383</sys_id>
             <sys_mod_count>2</sys_mod_count>
             <sys_updated_by>admin</sys_updated_by>
             <sys_updated_on>2020-11-15 14:36:48</sys_updated_on>
@@ -48,6 +50,7 @@
             <sys_created_on>2020-11-15 14:36:55</sys_created_on>
             <sys_domain>global</sys_domain>
             <sys_domain_path>/</sys_domain_path>
+            <sys_id>85eb3a3947d4d71015f09dbe316d4385</sys_id>
             <sys_mod_count>2</sys_mod_count>
             <sys_updated_by>admin</sys_updated_by>
             <sys_updated_on>2020-11-15 14:36:59</sys_updated_on>
@@ -67,6 +70,7 @@
             <sys_created_on>2020-11-15 14:37:03</sys_created_on>
             <sys_domain>global</sys_domain>
             <sys_domain_path>/</sys_domain_path>
+            <sys_id>49eb3a3947d4d71015f09dbe316d43b8</sys_id>
             <sys_mod_count>2</sys_mod_count>
             <sys_updated_by>admin</sys_updated_by>
             <sys_updated_on>2020-11-15 14:37:07</sys_updated_on>
@@ -86,6 +90,7 @@
             <sys_created_on>2020-11-15 14:37:11</sys_created_on>
             <sys_domain>global</sys_domain>
             <sys_domain_path>/</sys_domain_path>
+            <sys_id>01eb3a3947d4d71015f09dbe316d43ba</sys_id>
             <sys_mod_count>2</sys_mod_count>
             <sys_updated_by>admin</sys_updated_by>
             <sys_updated_on>2020-11-15 14:37:14</sys_updated_on>
@@ -105,6 +110,7 @@
             <sys_created_on>2020-11-15 14:37:18</sys_created_on>
             <sys_domain>global</sys_domain>
             <sys_domain_path>/</sys_domain_path>
+            <sys_id>c5eb3a3947d4d71015f09dbe316d43bb</sys_id>
             <sys_mod_count>2</sys_mod_count>
             <sys_updated_by>admin</sys_updated_by>
             <sys_updated_on>2020-11-15 14:37:21</sys_updated_on>
@@ -124,6 +130,7 @@
             <sys_created_on>2020-11-15 14:37:22</sys_created_on>
             <sys_domain>global</sys_domain>
             <sys_domain_path>/</sys_domain_path>
+            <sys_id>8deb3a3947d4d71015f09dbe316d43bc</sys_id>
             <sys_mod_count>3</sys_mod_count>
             <sys_updated_by>admin</sys_updated_by>
             <sys_updated_on>2020-11-15 14:37:28</sys_updated_on>

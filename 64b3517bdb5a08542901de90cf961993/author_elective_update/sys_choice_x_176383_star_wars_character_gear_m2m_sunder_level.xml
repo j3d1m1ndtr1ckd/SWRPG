@@ -6,6 +6,7 @@
             <sys_class_name>sys_choice_set</sys_class_name>
             <sys_created_by>ben.fisher</sys_created_by>
             <sys_created_on>2025-03-18 19:40:22</sys_created_on>
+            <sys_id>34ebf63947d4d71015f09dbe316d43ce</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_name>sunder_level</sys_name>
             <sys_package display_value="Star Wars RPG" source="x_176383_star_wars">64b3517bdb5a08542901de90cf961993</sys_package>
@@ -29,6 +30,7 @@
             <sys_created_on>2025-03-18 19:40:22</sys_created_on>
             <sys_domain>global</sys_domain>
             <sys_domain_path>/</sys_domain_path>
+            <sys_id>b8ebf63947d4d71015f09dbe316d43cf</sys_id>
             <sys_mod_count>3</sys_mod_count>
             <sys_updated_by>ben.fisher</sys_updated_by>
             <sys_updated_on>2025-03-18 19:40:58</sys_updated_on>
@@ -48,6 +50,7 @@
             <sys_created_on>2025-03-18 19:40:34</sys_created_on>
             <sys_domain>global</sys_domain>
             <sys_domain_path>/</sys_domain_path>
+            <sys_id>70ebf63947d4d71015f09dbe316d43d1</sys_id>
             <sys_mod_count>2</sys_mod_count>
             <sys_updated_by>ben.fisher</sys_updated_by>
             <sys_updated_on>2025-03-18 19:40:39</sys_updated_on>
@@ -67,6 +70,7 @@
             <sys_created_on>2025-03-18 19:40:41</sys_created_on>
             <sys_domain>global</sys_domain>
             <sys_domain_path>/</sys_domain_path>
+            <sys_id>38ebf63947d4d71015f09dbe316d43d2</sys_id>
             <sys_mod_count>2</sys_mod_count>
             <sys_updated_by>ben.fisher</sys_updated_by>
             <sys_updated_on>2025-03-18 19:40:45</sys_updated_on>
@@ -86,6 +90,7 @@
             <sys_created_on>2025-03-18 19:40:49</sys_created_on>
             <sys_domain>global</sys_domain>
             <sys_domain_path>/</sys_domain_path>
+            <sys_id>fcebf63947d4d71015f09dbe316d43d3</sys_id>
             <sys_mod_count>2</sys_mod_count>
             <sys_updated_by>ben.fisher</sys_updated_by>
             <sys_updated_on>2025-03-18 19:40:52</sys_updated_on>

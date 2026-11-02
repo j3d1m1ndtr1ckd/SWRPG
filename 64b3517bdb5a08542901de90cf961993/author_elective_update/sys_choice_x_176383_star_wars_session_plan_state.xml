@@ -6,6 +6,7 @@
             <sys_class_name>sys_choice_set</sys_class_name>
             <sys_created_by>ben.fisher</sys_created_by>
             <sys_created_on>2026-10-28 18:43:05</sys_created_on>
+            <sys_id>8c0bf2bd4754d71015f09dbe316d433d</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_name>state</sys_name>
             <sys_package display_value="Star Wars RPG" source="x_176383_star_wars">64b3517bdb5a08542901de90cf961993</sys_package>
@@ -29,6 +30,7 @@
             <sys_created_on>2026-10-28 18:43:05</sys_created_on>
             <sys_domain>global</sys_domain>
             <sys_domain_path>/</sys_domain_path>
+            <sys_id>09ebba3947d4d71015f09dbe316d4306</sys_id>
             <sys_mod_count>2</sys_mod_count>
             <sys_updated_by>ben.fisher</sys_updated_by>
             <sys_updated_on>2026-10-28 18:43:10</sys_updated_on>
@@ -48,6 +50,7 @@
             <sys_created_on>2026-10-28 18:43:15</sys_created_on>
             <sys_domain>global</sys_domain>
             <sys_domain_path>/</sys_domain_path>
+            <sys_id>cdebba3947d4d71015f09dbe316d4307</sys_id>
             <sys_mod_count>2</sys_mod_count>
             <sys_updated_by>ben.fisher</sys_updated_by>
             <sys_updated_on>2026-10-28 18:43:20</sys_updated_on>
@@ -67,6 +70,7 @@
             <sys_created_on>2026-10-28 18:43:23</sys_created_on>
             <sys_domain>global</sys_domain>
             <sys_domain_path>/</sys_domain_path>
+            <sys_id>05ebba3947d4d71015f09dbe316d4322</sys_id>
             <sys_mod_count>2</sys_mod_count>
             <sys_updated_by>ben.fisher</sys_updated_by>
             <sys_updated_on>2026-10-28 18:43:26</sys_updated_on>
@@ -86,6 +90,7 @@
             <sys_created_on>2026-10-28 18:43:30</sys_created_on>
             <sys_domain>global</sys_domain>
             <sys_domain_path>/</sys_domain_path>
+            <sys_id>c9ebba3947d4d71015f09dbe316d4323</sys_id>
             <sys_mod_count>2</sys_mod_count>
             <sys_updated_by>ben.fisher</sys_updated_by>
             <sys_updated_on>2026-10-28 18:43:34</sys_updated_on>

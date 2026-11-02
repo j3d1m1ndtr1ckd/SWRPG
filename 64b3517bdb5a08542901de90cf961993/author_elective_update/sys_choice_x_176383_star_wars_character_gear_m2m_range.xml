@@ -6,6 +6,7 @@
             <sys_class_name>sys_choice_set</sys_class_name>
             <sys_created_by>ben.fisher</sys_created_by>
             <sys_created_on>2022-06-16 14:54:47</sys_created_on>
+            <sys_id>5a0b7abd4754d71015f09dbe316d439b</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_name>range</sys_name>
             <sys_package display_value="Star Wars RPG" source="x_176383_star_wars">64b3517bdb5a08542901de90cf961993</sys_package>
@@ -29,6 +30,7 @@
             <sys_created_on>2022-06-16 14:54:47</sys_created_on>
             <sys_domain>global</sys_domain>
             <sys_domain_path>/</sys_domain_path>
+            <sys_id>30ebf63947d4d71015f09dbe316d43ab</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_updated_by>ben.fisher</sys_updated_by>
             <sys_updated_on>2022-06-16 14:54:47</sys_updated_on>
@@ -48,6 +50,7 @@
             <sys_created_on>2022-06-16 14:54:48</sys_created_on>
             <sys_domain>global</sys_domain>
             <sys_domain_path>/</sys_domain_path>
+            <sys_id>f4ebf63947d4d71015f09dbe316d43ac</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_updated_by>ben.fisher</sys_updated_by>
             <sys_updated_on>2022-06-16 14:54:48</sys_updated_on>
@@ -67,6 +70,7 @@
             <sys_created_on>2022-06-16 14:54:48</sys_created_on>
             <sys_domain>global</sys_domain>
             <sys_domain_path>/</sys_domain_path>
+            <sys_id>bcebf63947d4d71015f09dbe316d43ad</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_updated_by>ben.fisher</sys_updated_by>
             <sys_updated_on>2022-06-16 14:54:48</sys_updated_on>
@@ -86,6 +90,7 @@
             <sys_created_on>2022-06-16 14:54:48</sys_created_on>
             <sys_domain>global</sys_domain>
             <sys_domain_path>/</sys_domain_path>
+            <sys_id>74ebf63947d4d71015f09dbe316d43af</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_updated_by>ben.fisher</sys_updated_by>
             <sys_updated_on>2022-06-16 14:54:48</sys_updated_on>
@@ -105,6 +110,7 @@
             <sys_created_on>2022-06-16 14:54:48</sys_created_on>
             <sys_domain>global</sys_domain>
             <sys_domain_path>/</sys_domain_path>
+            <sys_id>3cebf63947d4d71015f09dbe316d43b0</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_updated_by>ben.fisher</sys_updated_by>
             <sys_updated_on>2022-06-16 14:54:48</sys_updated_on>

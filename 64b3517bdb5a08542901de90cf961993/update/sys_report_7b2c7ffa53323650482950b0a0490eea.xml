@@ -34,7 +34,7 @@
         <column/>
         <compute_percent>aggregate</compute_percent>
         <content/>
-        <created_by_user display_value="Ben Fisher">bf532351db8303002901de90cf96196d</created_by_user>
+        <created_by_user display_value="">bf532351db8303002901de90cf96196d</created_by_user>
         <custom_chart_size>false</custom_chart_size>
         <custom_chart_title_position>false</custom_chart_title_position>
         <custom_config>{"transforms":[{"transform":{"transform":"Reference","name":"chart-subjects"}}]}</custom_config>
@@ -114,7 +114,7 @@
         <sys_created_by>ben.fisher</sys_created_by>
         <sys_created_on>2026-02-05 17:18:54</sys_created_on>
         <sys_domain>global</sys_domain>
-        <sys_domain_path/>
+        <sys_domain_path>global</sys_domain_path>
         <sys_id>7b2c7ffa53323650482950b0a0490eea</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_name>characters force enhancement backup</sys_name>
