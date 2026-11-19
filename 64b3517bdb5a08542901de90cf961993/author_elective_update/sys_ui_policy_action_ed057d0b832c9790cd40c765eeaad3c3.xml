@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_policy_action">
+    <sys_ui_policy_action action="DELETE">
+        <cleared>false</cleared>
+        <disabled>ignore</disabled>
+        <field>current_strain</field>
+        <field_message/>
+        <field_message_type>none</field_message_type>
+        <mandatory>ignore</mandatory>
+        <sys_class_name>sys_ui_policy_action</sys_class_name>
+        <sys_created_by>ben.fisher</sys_created_by>
+        <sys_created_on>2026-11-18 22:07:54</sys_created_on>
+        <sys_id>ed057d0b832c9790cd40c765eeaad3c3</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>current_strain</sys_name>
+        <sys_package display_value="Star Wars RPG" source="x_176383_star_wars">64b3517bdb5a08542901de90cf961993</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Star Wars RPG">64b3517bdb5a08542901de90cf961993</sys_scope>
+        <sys_update_name>sys_ui_policy_action_ed057d0b832c9790cd40c765eeaad3c3</sys_update_name>
+        <sys_updated_by>ben.fisher</sys_updated_by>
+        <sys_updated_on>2026-11-18 22:07:54</sys_updated_on>
+        <table>x_176383_star_wars_encounter_adversary</table>
+        <ui_policy display_value="show/hide current strain">ed057d0b832c9790cd40c765eeaad3be</ui_policy>
+        <value/>
+        <value_action>ignore</value_action>
+        <visible>true</visible>
+    </sys_ui_policy_action>
+    <sys_translated_text action="DELETE" query="documentkey=ed057d0b832c9790cd40c765eeaad3c3"/>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Star Wars RPG">64b3517bdb5a08542901de90cf961993</application>
+        <file_path/>
+        <instance_id>a8ddc2a9fb5d87101feef633beefdc2d</instance_id>
+        <instance_name>dev399379</instance_name>
+        <merge_base/>
+        <name>sys_ui_policy_action_ed057d0b832c9790cd40c765eeaad3c3</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_policy_action"><sys_ui_policy_action action="INSERT_OR_UPDATE"><cleared>false</cleared><disabled>ignore</disabled><field>current_strain</field><field_message/><field_message_type>none</field_message_type><mandatory>ignore</mandatory><sys_class_name>sys_ui_policy_action</sys_class_name><sys_created_by>ben.fisher</sys_created_by><sys_created_on>2026-11-18 22:07:54</sys_created_on><sys_id>ed057d0b832c9790cd40c765eeaad3c3</sys_id><sys_mod_count>0</sys_mod_count><sys_name>current_strain</sys_name><sys_package display_value="Star Wars RPG" source="x_176383_star_wars">64b3517bdb5a08542901de90cf961993</sys_package><sys_policy/><sys_scope display_value="Star Wars RPG">64b3517bdb5a08542901de90cf961993</sys_scope><sys_update_name>sys_ui_policy_action_ed057d0b832c9790cd40c765eeaad3c3</sys_update_name><sys_updated_by>ben.fisher</sys_updated_by><sys_updated_on>2026-11-18 22:07:54</sys_updated_on><table>x_176383_star_wars_encounter_adversary</table><ui_policy display_value="show/hide current strain">ed057d0b832c9790cd40c765eeaad3be</ui_policy><value/><value_action>ignore</value_action><visible>true</visible></sys_ui_policy_action><sys_translated_text action="delete_multiple" query="documentkey=ed057d0b832c9790cd40c765eeaad3c3"/></record_update>]]></payload>
+        <payload_hash>631387184</payload_hash>
+        <record_name>current_strain</record_name>
+        <reverted_from/>
+        <source>ec79497983a54390cd40c765eeaad326</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>ben.fisher</sys_created_by>
+        <sys_created_on>2026-11-18 22:07:54</sys_created_on>
+        <sys_id>65057d0b832c9790cd40c765eeaad3c8</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>1a1f0b3c16d0000001</sys_recorded_at>
+        <sys_updated_by>ben.fisher</sys_updated_by>
+        <sys_updated_on>2026-11-18 22:07:54</sys_updated_on>
+        <type>UI Policy Action</type>
+        <update_guid>e1057d0b982c9790cf1ab83e1f1999c7</update_guid>
+        <update_guid_history>e1057d0b982c9790cf1ab83e1f1999c7:631387184</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>ben.fisher</sys_created_by>
+        <sys_created_on>2026-11-19 04:35:46</sys_created_on>
+        <sys_db_object display_value="" name="sys_ui_policy_action">sys_ui_policy_action</sys_db_object>
+        <sys_id>24b26bdb43ee41109ad3cdfdfac4c210</sys_id>
+        <sys_metadata>ed057d0b832c9790cd40c765eeaad3c3</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>current_strain</sys_name>
+        <sys_package display_value="Star Wars RPG" source="x_176383_star_wars">64b3517bdb5a08542901de90cf961993</sys_package>
+        <sys_parent display_value="">ed057d0b832c9790cd40c765eeaad3be</sys_parent>
+        <sys_policy/>
+        <sys_scope display_value="Star Wars RPG">64b3517bdb5a08542901de90cf961993</sys_scope>
+        <sys_scope_delete display_value="">3170e763c12947a0975ba681f317c400</sys_scope_delete>
+        <sys_update_name>sys_ui_policy_action_ed057d0b832c9790cd40c765eeaad3c3</sys_update_name>
+        <sys_update_version display_value="sys_ui_policy_action_ed057d0b832c9790cd40c765eeaad3c3">65057d0b832c9790cd40c765eeaad3c8</sys_update_version>
+        <sys_updated_by>ben.fisher</sys_updated_by>
+        <sys_updated_on>2026-11-19 04:35:46</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

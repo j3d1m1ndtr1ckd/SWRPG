@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element attributes="enforce_dot_walk_cross_scope_access=true" db_object_id="3f5d290783e89790cd40c765eeaad3ee" label="Adversary Skill" max_length="40" name="x_176383_star_wars_adversary_skill" type="collection">
+        <element label="Skill" mandatory="true" max_length="32" name="skill" reference="x_176383_star_wars_skills" type="reference"/>
+        <element label="Adversary" mandatory="true" max_length="32" name="adversary" reference="x_176383_star_wars_adversary" type="reference"/>
+        <element default="0" label="Ranks" max_length="32" name="ranks" type="integer"/>
+        <index name="index">
+            <element name="adversary"/>
+        </index>
+        <index name="index2">
+            <element name="skill"/>
+        </index>
+    </element>
+</database>

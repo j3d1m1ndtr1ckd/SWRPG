@@ -13,7 +13,7 @@
         <mobile_title>Campaigns</mobile_title>
         <mobile_view_name>Mobile</mobile_view_name>
         <name>x_176383_star_wars_campaign</name>
-        <order/>
+        <order>1100</order>
         <override_menu_roles>false</override_menu_roles>
         <query/>
         <report/>
@@ -27,7 +27,7 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>fbe0426c2fa8a490e0f497eef699b6ff</sys_id>
-        <sys_mod_count>0</sys_mod_count>
+        <sys_mod_count>2</sys_mod_count>
         <sys_name>Campaigns</sys_name>
         <sys_overrides/>
         <sys_package display_value="Star Wars RPG" source="x_176383_star_wars">64b3517bdb5a08542901de90cf961993</sys_package>
@@ -35,7 +35,7 @@
         <sys_scope display_value="Star Wars RPG">64b3517bdb5a08542901de90cf961993</sys_scope>
         <sys_update_name>sys_app_module_fbe0426c2fa8a490e0f497eef699b6ff</sys_update_name>
         <sys_updated_by>ben.fisher</sys_updated_by>
-        <sys_updated_on>2020-11-14 22:32:26</sys_updated_on>
+        <sys_updated_on>2026-11-18 21:32:00</sys_updated_on>
         <timeline_page/>
         <title>Campaigns</title>
         <uncancelable>false</uncancelable>

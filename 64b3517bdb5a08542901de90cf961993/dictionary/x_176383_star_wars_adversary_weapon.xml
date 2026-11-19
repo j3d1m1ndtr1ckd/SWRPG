@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element attributes="enforce_dot_walk_cross_scope_access=true" db_object_id="659fe58b83e89790cd40c765eeaad301" label="Adversary Weapon" max_length="40" name="x_176383_star_wars_adversary_weapon" type="collection">
+        <element label="Weapon" mandatory="true" max_length="32" name="weapon" reference="x_176383_star_wars_gear" reference_qual="type=weapon^EQ" reference_qual_condition="type=weapon^EQ" type="reference"/>
+        <element label="Adversary" mandatory="true" max_length="32" name="adversary" reference="x_176383_star_wars_adversary" type="reference"/>
+        <index name="index">
+            <element name="adversary"/>
+        </index>
+        <index name="index2">
+            <element name="weapon"/>
+        </index>
+    </element>
+</database>

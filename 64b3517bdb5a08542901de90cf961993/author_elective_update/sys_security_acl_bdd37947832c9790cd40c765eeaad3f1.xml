@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_security_acl">
+    <sys_security_acl action="DELETE">
+        <active>true</active>
+        <admin_overrides>true</admin_overrides>
+        <advanced>false</advanced>
+        <applies_to/>
+        <condition/>
+        <controlled_by_refs/>
+        <decision_type>allow</decision_type>
+        <description>Default access control on x_176383_star_wars_encounter_adversary</description>
+        <local_or_existing>Existing</local_or_existing>
+        <name>x_176383_star_wars_encounter_adversary</name>
+        <operation display_value="write">write</operation>
+        <script/>
+        <security_attribute/>
+        <sys_class_name>sys_security_acl</sys_class_name>
+        <sys_created_by>ben.fisher</sys_created_by>
+        <sys_created_on>2026-11-18 22:02:44</sys_created_on>
+        <sys_id>bdd37947832c9790cd40c765eeaad3f1</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>x_176383_star_wars_encounter_adversary</sys_name>
+        <sys_package display_value="Star Wars RPG" source="x_176383_star_wars">64b3517bdb5a08542901de90cf961993</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Star Wars RPG">64b3517bdb5a08542901de90cf961993</sys_scope>
+        <sys_update_name>sys_security_acl_bdd37947832c9790cd40c765eeaad3f1</sys_update_name>
+        <sys_updated_by>ben.fisher</sys_updated_by>
+        <sys_updated_on>2026-11-18 22:02:44</sys_updated_on>
+        <type display_value="record">record</type>
+    </sys_security_acl>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Star Wars RPG">64b3517bdb5a08542901de90cf961993</application>
+        <file_path/>
+        <instance_id>a8ddc2a9fb5d87101feef633beefdc2d</instance_id>
+        <instance_name>dev399379</instance_name>
+        <merge_base/>
+        <name>sys_security_acl_bdd37947832c9790cd40c765eeaad3f1</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_security_acl"><sys_security_acl action="INSERT_OR_UPDATE"><active>true</active><admin_overrides>true</admin_overrides><advanced>false</advanced><applies_to/><condition/><controlled_by_refs/><decision_type>allow</decision_type><description>Default access control on x_176383_star_wars_encounter_adversary</description><local_or_existing>Existing</local_or_existing><name>x_176383_star_wars_encounter_adversary</name><operation display_value="write">write</operation><script/><security_attribute/><sys_class_name>sys_security_acl</sys_class_name><sys_created_by>ben.fisher</sys_created_by><sys_created_on>2026-11-18 22:02:44</sys_created_on><sys_id>bdd37947832c9790cd40c765eeaad3f1</sys_id><sys_mod_count>0</sys_mod_count><sys_name>x_176383_star_wars_encounter_adversary</sys_name><sys_package display_value="Star Wars RPG" source="x_176383_star_wars">64b3517bdb5a08542901de90cf961993</sys_package><sys_policy/><sys_scope display_value="Star Wars RPG">64b3517bdb5a08542901de90cf961993</sys_scope><sys_update_name>sys_security_acl_bdd37947832c9790cd40c765eeaad3f1</sys_update_name><sys_updated_by>ben.fisher</sys_updated_by><sys_updated_on>2026-11-18 22:02:44</sys_updated_on><type display_value="record">record</type></sys_security_acl></record_update>]]></payload>
+        <payload_hash>555564562</payload_hash>
+        <record_name>x_176383_star_wars_encounter_adversary</record_name>
+        <reverted_from/>
+        <source>ec79497983a54390cd40c765eeaad326</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>ben.fisher</sys_created_by>
+        <sys_created_on>2026-11-18 22:02:44</sys_created_on>
+        <sys_id>79d37947832c9790cd40c765eeaad3f9</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>1a1f0af068a0000001</sys_recorded_at>
+        <sys_updated_by>ben.fisher</sys_updated_by>
+        <sys_updated_on>2026-11-18 22:02:44</sys_updated_on>
+        <type>Access Control</type>
+        <update_guid>39d379478d2c9790ba28acbd8cd55df8</update_guid>
+        <update_guid_history>39d379478d2c9790ba28acbd8cd55df8:555564562</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>ben.fisher</sys_created_by>
+        <sys_created_on>2026-11-19 04:35:57</sys_created_on>
+        <sys_db_object display_value="" name="sys_security_acl">sys_security_acl</sys_db_object>
+        <sys_id>c0099b2c332a4d809dedcdd3a5217321</sys_id>
+        <sys_metadata>bdd37947832c9790cd40c765eeaad3f1</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>x_176383_star_wars_encounter_adversary</sys_name>
+        <sys_package display_value="Star Wars RPG" source="x_176383_star_wars">64b3517bdb5a08542901de90cf961993</sys_package>
+        <sys_parent display_value="">42d3b947832c9790cd40c765eeaad318</sys_parent>
+        <sys_policy/>
+        <sys_scope display_value="Star Wars RPG">64b3517bdb5a08542901de90cf961993</sys_scope>
+        <sys_scope_delete display_value="">3170e763c12947a0975ba681f317c400</sys_scope_delete>
+        <sys_update_name>sys_security_acl_bdd37947832c9790cd40c765eeaad3f1</sys_update_name>
+        <sys_update_version display_value="sys_security_acl_bdd37947832c9790cd40c765eeaad3f1">79d37947832c9790cd40c765eeaad3f9</sys_update_version>
+        <sys_updated_by>ben.fisher</sys_updated_by>
+        <sys_updated_on>2026-11-19 04:35:57</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>
