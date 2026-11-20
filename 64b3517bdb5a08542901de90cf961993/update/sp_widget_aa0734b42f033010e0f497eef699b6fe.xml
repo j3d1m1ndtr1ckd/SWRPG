@@ -2,48 +2,43 @@
     <sp_widget action="INSERT_OR_UPDATE">
         <category>custom</category>
         <client_script><![CDATA[api.controller=function($scope) {
-  /* widget controller */
-  var c = this;
+	/* widget controller */
+	var c = this;
 	
-	$scope.selectTab = function(tab){
-		try{
-		if(tab == 'history'){
-			document.getElementById('journalHeader').style.borderBottom = "2px solid white";
-			document.getElementById('campaignArtifactsHeader').style.borderBottom = "none";
-			document.getElementById('historyWidget').style.display = 'inline';
-			document.getElementById('artifactsWidget').style.display = 'none';
-		} else{
-			document.getElementById('campaignArtifactsHeader').style.borderBottom = "2px solid white";
-			document.getElementById('journalHeader').style.borderBottom = "none";
-			document.getElementById('historyWidget').style.display = 'none';
-			document.getElementById('artifactsWidget').style.display = 'inline';
-		}
-		} catch(e){
-			alert(e.message);
-		}
-	}
+	c.activeTab = 'history';
 };]]></client_script>
         <controller_as>c</controller_as>
-        <css>#journalHeader{
-	border-bottom:2px solid white;
-}
+        <css>.headers-container{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
 
-#artifactsWidget{
-	display:none;
+  .active-header{
+    border-bottom: .2rem solid #fff;
+  }
 }
 
 .details-container{
-	margin-top:20px;
+  margin-top:20px;
   padding:0;
 }
 
 .tabs-container{
-	padding:0;
+  padding:0;
 }
 
 .english{
-	font-size:18px;
+  font-size:18px;
   font-weight:bold;
+}
+
+@media only screen and (max-width: 762px){
+  .headers-container{
+  	flex-direction: column;
+    row-gap: 1.5rem;
+  }
 }</css>
         <data_table>sp_instance</data_table>
         <demo_data/>
@@ -63,39 +58,54 @@
   /* e.g., data.table = $sp.getValue('table'); */
 data.ticketConversationWidget = $sp.getWidget('sw-ticket-conversations');
 data.campaignArtifactsWidget = $sp.getWidget('star_wars_campaigns');
+data.encountersWidget = $sp.getWidget('star_wars_encounter_builder');
+data.isGM = checkGM();
 data.rollHistoryLabel = 'Datapad';
 data.campaignArtifactLabel = 'Campaign Artifacts';
+	
+	function checkGM(){
+		var campaign = new GlideRecord('x_176383_star_wars_campaign');
+		campaign.get($sp.getParameter('campaign'));
+		return campaign.game_master == gs.getUserID() ? true : false;
+	}
 })();]]></script>
         <servicenow>false</servicenow>
         <sys_class_name>sp_widget</sys_class_name>
         <sys_created_by>ben.fisher</sys_created_by>
         <sys_created_on>2021-10-04 14:36:12</sys_created_on>
         <sys_id>aa0734b42f033010e0f497eef699b6fe</sys_id>
-        <sys_mod_count>24</sys_mod_count>
+        <sys_mod_count>35</sys_mod_count>
         <sys_name>Star Wars Active Session Tabs</sys_name>
         <sys_package display_value="Star Wars RPG" source="x_176383_star_wars">64b3517bdb5a08542901de90cf961993</sys_package>
         <sys_policy/>
         <sys_scope display_value="Star Wars RPG">64b3517bdb5a08542901de90cf961993</sys_scope>
         <sys_update_name>sp_widget_aa0734b42f033010e0f497eef699b6fe</sys_update_name>
         <sys_updated_by>ben.fisher</sys_updated_by>
-        <sys_updated_on>2021-10-04 16:48:18</sys_updated_on>
+        <sys_updated_on>2026-11-20 17:24:53</sys_updated_on>
         <template><![CDATA[<div class="col-xs-12 tabs-container">
-	<div class="col-xs-12 headers-container">
-    <div class="col-xs-6 header" id="journalHeader" align="center" ng-click="selectTab('history')">
+	<div class="headers-container">
+    <div class="header" ng-class="{'active-header' : c.activeTab == 'history'}" id="journalHeader" align="center" ng-click="c.activeTab = 'history'">
       <span class="col-xs-12 english">{{data.rollHistoryLabel}}</span>
       <span class="col-xs-12 aurebesh star-wars-text">{{data.rollHistoryLabel}}</span>
     </div>
-    <div class="col-xs-6 header" id="campaignArtifactsHeader" align="center" ng-click="selectTab('artifacts')">
+    <div class="header" ng-class="{'active-header' : c.activeTab == 'artifacts'}" id="campaignArtifactsHeader" align="center" ng-click="c.activeTab = 'artifacts'">
       <span class="col-xs-12 english">{{data.campaignArtifactLabel}}</span>
       <span class="col-xs-12 aurebesh star-wars-text">{{data.campaignArtifactLabel}}</span>
     </div>
+    <div class="header" ng-if="data.isGM" ng-class="{'active-header' : c.activeTab == 'encounters'}" id="campaignEncountersHeader" align="center" ng-click="c.activeTab = 'encounters'">
+      <span class="col-xs-12 english">Encounters</span>
+      <span class="col-xs-12 aurebesh star-wars-text">Encounters</span>
+    </div>
   </div>
   <div class="col-xs-12 details-container">
-    <div id="historyWidget">
+    <div ng-show="c.activeTab == 'history'" id="historyWidget">
     	<sp-widget widget="data.ticketConversationWidget"/>
     </div>
-    <div id="artifactsWidget">
+    <div ng-show="c.activeTab == 'artifacts'" id="artifactsWidget">
     	<sp-widget widget="data.campaignArtifactsWidget"/>
+    </div>
+    <div ng-show="c.activeTab == 'encounters'" id="encountersWidget">
+      <sp-widget widget="data.encountersWidget"/>
     </div>
   </div>
 </div>]]></template>
