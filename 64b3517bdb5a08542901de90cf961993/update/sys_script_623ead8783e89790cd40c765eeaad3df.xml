@@ -15,7 +15,9 @@
         <condition/>
         <description/>
         <execute_function>false</execute_function>
-        <filter_condition/>
+        <filter_condition table="x_176383_star_wars_adversary">sys_class_name!=x_176383_star_wars_encounter_adversary^EQ<item endquery="false" field="sys_class_name" goto="false" newquery="false" operator="!=" or="false" value="x_176383_star_wars_encounter_adversary"/>
+            <item endquery="true" field="" goto="false" newquery="false" operator="=" or="false" value=""/>
+        </filter_condition>
         <is_rest>false</is_rest>
         <message/>
         <name>Auto-populate adversary skills</name>
@@ -46,7 +48,7 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>623ead8783e89790cd40c765eeaad3df</sys_id>
-        <sys_mod_count>0</sys_mod_count>
+        <sys_mod_count>1</sys_mod_count>
         <sys_name>Auto-populate adversary skills</sys_name>
         <sys_overrides/>
         <sys_package display_value="Star Wars RPG" source="x_176383_star_wars">64b3517bdb5a08542901de90cf961993</sys_package>
@@ -54,7 +56,7 @@
         <sys_scope display_value="Star Wars RPG">64b3517bdb5a08542901de90cf961993</sys_scope>
         <sys_update_name>sys_script_623ead8783e89790cd40c765eeaad3df</sys_update_name>
         <sys_updated_by>ben.fisher</sys_updated_by>
-        <sys_updated_on>2026-11-18 21:40:30</sys_updated_on>
+        <sys_updated_on>2026-11-20 21:42:41</sys_updated_on>
         <template/>
         <when>before</when>
     </sys_script>

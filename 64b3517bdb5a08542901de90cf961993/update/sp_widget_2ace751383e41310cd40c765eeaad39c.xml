@@ -1,7 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
     <sp_widget action="INSERT_OR_UPDATE">
         <category>custom</category>
-        <client_script><![CDATA[api.controller=function() {  /* widget controller */  var c = this;};]]></client_script>
+        <client_script><![CDATA[api.controller=function($scope, spUtil, $rootScope) {
+  /* widget controller */
+  var c = this;
+	
+	c.currentEncounter = '';
+	c.isLoading = false;
+	c.viewAdversariesToAdd = false;
+	
+	$scope.selectEncounter = function(encounter){
+		c.currentEncounter = encounter;
+		c.server.get({action: 'fetchEncounterAdversaries', encounter: encounter}).then(function(response){
+			$scope.data = response.data;
+			c.isLoading = false;
+		});
+	}
+	
+	$scope.openForm = function(adversary){
+		var params = {
+			table: 'x_176383_star_wars_encounter_adversary',
+			sys_id: adversary.sys_id
+		};
+		spUtil.get('widget-form', params).then(function(response){
+			$scope.data.widget = response;
+			c.editAdversary = true;
+		});
+	}
+	
+	$rootScope.$on('sp.form.submitted', function(){
+		$scope.selectEncounter(c.currentEncounter);
+		c.editAdversary = false;
+	});
+};]]></client_script>
         <controller_as>c</controller_as>
         <css>.encounters-list-container{
   display: flex;
@@ -20,7 +51,7 @@
     padding: 2rem;
     border: .1rem solid #e21414;
     border-radius: 2rem;
-    row-gap: .5rem;
+    row-gap: 1rem;
 
     .card-header{
       display: flex;
@@ -34,6 +65,195 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+    }
+
+    .card-buttons-container{
+      .card-button{
+        background: transparent;
+        border-radius: 2rem;
+        padding: .5rem 1rem;
+
+        &amp;:hover{
+          box-shadow: 0 0 .8rem silver;
+        }
+      }
+    }
+  }
+}
+
+//encounter detail styling
+.encounter-detail-container{
+  display: flex;
+  flex-direction: column;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  row-gap: 2rem;
+
+  .encounter-header-buttons-container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .back-button-container{
+      .fa-starfighter{
+        transform: rotate(270deg);
+        font-size: 3rem;
+        color: #e21414;
+      }
+    }
+
+    .add-adversaries-button-container{
+      .fa-user-bounty-hunter{
+        font-size: 3rem;
+        color: #e21414;
+      }
+    }
+  }
+
+  .encounter-adversaries-cards-body-container{
+    display: flex;
+    align-items: stretch;
+    justify-content: space-evenly;
+
+    .encounter-adversary-card{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      row-gap: .5rem;
+      background: black;
+      padding: 1rem;
+      border-radius: 2rem;
+      border: .1rem solid #e21414;
+
+      .encounter-adversary-card-header{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-weight: bold;
+
+        .name{
+          font-size: 1.8rem;
+        }
+      }
+
+      .encounter-adversary-characteristics-container{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-items: center;
+        justify-content: space-evenly;
+        width: 100%;
+        column-gap: 1rem;
+
+        .encounter-adversary-characteristic{
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          border: .1rem solid #e21414;
+          border-radius: .8rem;
+          justify-content: space-between;
+
+          .encounter-adversary-characteristic-value{
+            order: 0;
+            width: 100%;
+            text-align: center;
+            color: black;
+            background-color: #fff;
+            padding: .5rem 0;
+            border-radius: .8rem .8rem 0 0;
+            font-weight: 600;
+          }
+
+          .encounter-adversary-characteristic-label{
+            order: 1;
+            width: 100%;
+            background-color: #e21414;
+            padding: 0.3rem 1rem;
+            border-radius: 0 0 .8rem .8rem;
+          }
+        }
+      }
+
+      .wound-strain-defense-container{
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        width: 100%;
+
+        .combat-detail-tracker-container{
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          background-color: #fff;
+          justify-content: space-between;
+          border-radius: 2rem;
+
+          .combat-detail-tracker-label{
+            background-color: #2f3860;
+            padding: .4rem 1.5rem;
+            border-radius: 2rem;
+          }
+
+          .combat-detail-tracker-values{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            color: #000;
+
+            .combat-detail{
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+
+              .combat-detail-value{
+                font-size: 1.6rem;
+                padding: .5rem;
+              }
+            }
+
+            .combat-detail-label{
+              padding: .5rem 1rem;
+              color: #fff;
+            }
+
+            .threshold-container{
+              border-right: .1rem solid darkgray;
+
+              .threshold-label{
+                background-color: #e21414;
+                border-radius: 0 0 0 2rem;
+              }
+            }
+
+            .current-container{
+              .current-label{
+                background-color: #1933f4;
+                border-radius: 0 0 2rem 0;
+              }
+            }
+          }
+        }
+      }
+
+      .edit-buttons-container{
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-evenly;
+
+        .edit-adversary-button{
+          background: transparent;
+          border-radius: 2rem;
+          padding: .5rem 1rem;
+
+          &amp;:hover{
+            box-shadow: 0 0 .8rem silver;
+          }
+        }
+      }
     }
   }
 }</css>
@@ -60,9 +280,10 @@ try{
 	console.log(data.encounters);
 	
 	if(input){
-		if(input.action == 'getEncounterDetails'){
-			data.encounterDetails = util.getEncounterDetails(input.encounterID);
-		}
+		if(input.action == 'fetchEncounterAdversaries'){
+			data.encounterAdversaries = util.getEncounterAdversaries(input.encounter.sys_id);
+			console.log(data.encounterAdversaries);
+		} 
 	}
 } catch(e){
 	console.log('error in star wars encounter builder widget - server side: ' + e.message);
@@ -73,15 +294,19 @@ try{
         <sys_created_by>ben.fisher</sys_created_by>
         <sys_created_on>2026-11-19 17:29:03</sys_created_on>
         <sys_id>2ace751383e41310cd40c765eeaad39c</sys_id>
-        <sys_mod_count>10</sys_mod_count>
+        <sys_mod_count>61</sys_mod_count>
         <sys_name>Star Wars Encounter Builder</sys_name>
         <sys_package display_value="Star Wars RPG" source="x_176383_star_wars">64b3517bdb5a08542901de90cf961993</sys_package>
         <sys_policy/>
         <sys_scope display_value="Star Wars RPG">64b3517bdb5a08542901de90cf961993</sys_scope>
         <sys_update_name>sp_widget_2ace751383e41310cd40c765eeaad39c</sys_update_name>
         <sys_updated_by>ben.fisher</sys_updated_by>
-        <sys_updated_on>2026-11-20 18:31:37</sys_updated_on>
-        <template><![CDATA[<div class="encounters-list-container">
+        <sys_updated_on>2026-11-23 20:52:36</sys_updated_on>
+        <template><![CDATA[<!--head>
+  <script src="https://kit.fontawesome.com/b6e20c5e73.js" crossorigin="anonymous"></script>
+</head-->
+<!-- encounter list -->
+<div ng-if="c.currentEncounter == ''" class="encounters-list-container">
   <span ng-repeat="encounter in data.encounters" class="encounter-card">
     <span class="card-header">
       <span class="encounter-title">{{encounter.name}}</span>
@@ -91,7 +316,115 @@ try{
       <span class="card-body-detail"><b>Order:</b> {{encounter.order}}</span>
       <span class="card-body-detail"><b>State:</b> {{encounter.state.display}}</span>
     </span>
+    <span class="card-buttons-container">
+      <button class="card-button" ng-click="selectEncounter(encounter)">View Full Details</button>
+    </span>
   </span>
+</div>
+<!-- end encounter list -->
+
+<!-- Encounter detail -->
+<div ng-if="!c.isLoading && c.currentEncounter != ''" class="encounter-detail-container">
+  <span class="encounter-header-buttons-container">
+    <span class="back-button-container" ng-click="c.currentEncounter = ''"><i class="fa-duotone fa-starfighter"></i> Back</span>
+    <span class="add-adversaries-button-container" ng-click="c.viewAdversariesToAdd = true"><i class="fa-solid fa-user-bounty-hunter"></i> - Add Adversaries</span>
+  </span>
+  <span class="encounter-adversaries-cards-body-container">
+    <span ng-repeat="card in data.encounterAdversaries" class="encounter-adversary-card">
+      <span class="encounter-adversary-card-header">
+        <span class="name encounter-adversary-header-detail">{{card.name}}</span>
+        <span class="star-wars-text">{{card.name}}</span>
+      </span>
+      <span class="encounter-adversary-detail">{{card.type.display}}</span>
+      <span class="encounter-adversary-characteristics-container">
+        <span class="encounter-adversary-detail encounter-adversary-characteristic">
+          <span class="encounter-adversary-characteristic-label">Brawn</span>
+          <span class="encounter-adversary-characteristic-value">{{card.characteristics.brawn}}</span>
+        </span>
+        <span class="encounter-adversary-detail encounter-adversary-characteristic">
+          <span class="encounter-adversary-characteristic-label">Agility</span>
+          <span class="encounter-adversary-characteristic-value">{{card.characteristics.agility}}</span>
+        </span>
+        <span class="encounter-adversary-detail encounter-adversary-characteristic">
+          <span class="encounter-adversary-characteristic-label">Intellect</span>
+          <span class="encounter-adversary-characteristic-value">{{card.characteristics.intellect}}</span>
+        </span>
+        <span class="encounter-adversary-detail encounter-adversary-characteristic">
+          <span class="encounter-adversary-characteristic-label">Cunning</span>
+          <span class="encounter-adversary-characteristic-value">{{card.characteristics.cunning}}</span>
+        </span>
+        <span class="encounter-adversary-detail encounter-adversary-characteristic">
+          <span class="encounter-adversary-characteristic-label">Willpower</span>
+          <span class="encounter-adversary-characteristic-value">{{card.characteristics.willpower}}</span>
+        </span>
+        <span class="encounter-adversary-detail encounter-adversary-characteristic">
+          <span class="encounter-adversary-characteristic-label">Presence</span>
+          <span class="encounter-adversary-characteristic-value">{{card.characteristics.presence}}</span>
+        </span>
+      </span>
+      <span class="wound-strain-defense-container">
+        <!-- wounds -->
+        <span class="combat-detail-tracker-container">
+          <span class="combat-detail-tracker-label">Wounds</span>
+          <span class="combat-detail-tracker-values">
+            <span class="combat-detail threshold-container">
+              <span class="threshold-value combat-detail-value">{{card.combat.woundThreshold}}</span>
+              <span class="threshold-label combat-detail-label">Threshold</span>
+            </span>
+            <span class="combat-detail current-container">
+              <span class="current-value combat-detail-value">{{card.combat.woundCurrent}}</span>
+              <span class="current-label combat-detail-label">Current</span>
+            </span>
+          </span>
+        </span>
+        <!-- strain -->
+        <span class="combat-detail-tracker-container">
+          <span class="combat-detail-tracker-label">Strain</span>
+          <span class="combat-detail-tracker-values">
+            <span class="combat-detail threshold-container">
+              <span class="threshold-value combat-detail-value">{{card.combat.strainThreshold}}</span>
+              <span class="threshold-label combat-detail-label">Threshold</span>
+            </span>
+            <span class="combat-detail current-container">
+              <span class="current-value combat-detail-value">{{card.combat.strainCurrent}}</span>
+              <span class="current-label combat-detail-label">Current</span>
+            </span>
+          </span>
+        </span>
+        <!-- defense -->
+        <span class="combat-detail-tracker-container">
+          <span class="combat-detail-tracker-label">Defense</span>
+          <span class="combat-detail-tracker-values">
+            <span class="combat-detail threshold-container">
+              <span class="threshold-value combat-detail-value">{{card.combat.defenseRanged}}</span>
+              <span class="threshold-label combat-detail-label">Ranged</span>
+            </span>
+            <span class="combat-detail current-container">
+              <span class="current-value combat-detail-value">{{card.combat.defenseMelee}}</span>
+              <span class="current-label combat-detail-label">Melee</span>
+            </span>
+          </span>
+        </span>
+      </span>
+      <span class="edit-buttons-container">
+        <button class="edit-adversary-button" ng-click="c.showFullAdversaryDetail = true; c.currentAdversary = card">View Details</button>
+        <button class="edit-adversary-button" ng-click="openForm(card)">Edit Adversary</button>
+      </span>
+    </span>
+  </span>
+</div>
+<!-- end encounter detail -->
+
+<!-- full adversary detail -->
+<div class="full-adversary-detail-container">
+  
+</div>
+<!-- end full adversary detail -->
+
+<!-- edit adversary flyout -->
+<div class="edit-adversary-widget-flyout-container" ng-if="c.editAdversary">
+  <span class="close-button" ng-click="c.editAdversary = false"><i class="fa-solid fa-swords-laser"></i></span>
+  <sp-widget widget="data.widget"/>
 </div>]]></template>
     </sp_widget>
     <sys_es_latest_script action="INSERT_OR_UPDATE">

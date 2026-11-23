@@ -145,7 +145,6 @@ starWarsGMUtil.prototype = {
 
     /*retrieve specific record for full page campaign detail page*/
     getFullPageCampaignDetail: function(table, sysID) {
-        gs.info('ben testing: ' + table + ', ' + sysID);
         var rec = new GlideRecord(table);
         rec.get(sysID);
         var returnObj = {
@@ -223,6 +222,106 @@ starWarsGMUtil.prototype = {
 		return returnArray;
 	},
 
+	getEncounterAdversaries: function(encounterID){
+		var adversariesArray = [];
+		var adversariesGR = new GlideRecord('x_176383_star_wars_encounter_adversary');
+		adversariesGR.addQuery('encounter', encounterID);
+		adversariesGR.orderBy('name');
+		adversariesGR.query();
+		while(adversariesGR.next()){
+			var adversaryObj = {
+				name: adversariesGR.name + '',
+				sys_id: adversariesGR.sys_id.toString(),
+				description: adversariesGR.description + '',
+				skills: this._getEncounterAdversarySkills(adversariesGR.adversary.sys_id.toString()),
+				characteristics: {
+					agility: parseInt(adversariesGR.agility),
+					brawn: parseInt(adversariesGR.brawn),
+					cunning: parseInt(adversariesGR.cunning),
+					intellect: parseInt(adversariesGR.intellect),
+					presence: parseInt(adversariesGR.presence),
+					willpower: parseInt(adversariesGR.willpower)
+				},
+				combat: {
+					woundThreshold: parseInt(adversariesGR.wound_threshold),
+					woundCurrent: parseInt(adversariesGR.current_wound),
+					strainThreshold: parseInt(adversariesGR.strain_threshold),
+					strainCurrent: parseInt(adversariesGR.current_strain),
+					defenseMelee: parseInt(adversariesGR.melee_defense),
+					defenseRanged: parseInt(adversariesGR.ranged_defense),
+					soak: parseInt(adversariesGR.soak),
+					weapons: this._getEncounterAdversaryWeapons(adversariesGR.adversary.sys_id.toString())
+				},
+				type: {
+					display: adversariesGR.type.getDisplayValue(),
+					value: adversariesGR.getValue('type')
+				}
+			};
+			adversariesArray.push(adversaryObj);
+		}
+		return adversariesArray;
+	},
+
+	_getEncounterAdversarySkills: function(adversaryID){
+		var adversarySkillsArray = [];
+		var asGR = new GlideRecord('x_176383_star_wars_adversary_skill');
+		asGR.addQuery('adversary', adversaryID);
+		asGR.orderBy('skill.name');
+		asGR.query();
+		while(asGR.next()){
+			var asObj = {
+				name: asGR.skill.getDisplayValue(),
+				characteristic: asGR.skill.characteristic.getDisplayValue(),
+				type: asGR.skill.type.getDisplayValue(),
+				description: asGR.skill.description + '',
+				ranks: parseInt(asGR.ranks),
+				minionSkill: asGR.is_minion_skill ? true : false,
+				sysID: asGR.skill.sys_id.toString()
+			};
+			adversarySkillsArray.push(asObj);
+		}
+		return adversarySkillsArray;
+	},
+
+	_getEncounterAdversaryWeapons: function(encounterAdversaryID){
+		var weaponsArray = [];
+		var eawGR = new GlideRecord('x_176383_star_wars_adversary_weapon');
+		eawGR.addQuery('adversary', encounterAdversaryID);
+		eawGR.orderBy('weapon.name');
+		eawGR.query();
+		while(eawGR.next()){
+			var eawObj = {
+				name: eawGR.weapon.getDisplayValue(),
+				skill: {
+					display: eawGR.weapon.skill_used.getDisplayValue(),
+					sysID: eawGR.weapon.skill_used.sys_id + ''
+				},
+				range: eawGR.weapon.range.getDisplayValue(),
+				damage: parseInt(eawGR.weapon.base_damage),
+				crit: parseInt(eawGR.weapon.critical_rating),
+				qualities: this._getEncounterAdvesaryWeaponQualities(eawGR.weapon.sys_id.toString())
+			};
+			weaponsArray.push(eawObj);
+		}
+		return weaponsArray;
+	},
+
+	_getEncounterAdvesaryWeaponQualities: function(gearID){
+		var qualitiesArray = [];
+		var eawqGR = new GlideRecord('x_176383_star_wars_gear_special');
+		eawqGR.addQuery('item', gearID);
+		eawqGR.query();
+		while(eawqGR.next()){
+			var qualityObj = {
+				name: eawqGR.weapon_quality.getDisplayValue(),
+				rank: parseInt(eawqGR.rank),
+				description: eawqGR.weapon_quality.description + ''
+			};
+			qualitiesArray.push(qualityObj);
+		}
+		return qualitiesArray;
+	},
+
     _getLocationCount: function(campaign) {
         var locationGR = new GlideRecord('x_176383_star_wars_location');
         locationGR.addQuery('campaign', campaign);
@@ -271,13 +370,13 @@ starWarsGMUtil.prototype = {
         <sys_created_by>ben.fisher</sys_created_by>
         <sys_created_on>2023-01-07 06:09:32</sys_created_on>
         <sys_id>170ebbec2f542550e0f497eef699b6d9</sys_id>
-        <sys_mod_count>28</sys_mod_count>
+        <sys_mod_count>39</sys_mod_count>
         <sys_name>starWarsGMUtil</sys_name>
         <sys_package display_value="Star Wars RPG" source="x_176383_star_wars">64b3517bdb5a08542901de90cf961993</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="Star Wars RPG">64b3517bdb5a08542901de90cf961993</sys_scope>
         <sys_update_name>sys_script_include_170ebbec2f542550e0f497eef699b6d9</sys_update_name>
         <sys_updated_by>ben.fisher</sys_updated_by>
-        <sys_updated_on>2026-11-19 17:58:54</sys_updated_on>
+        <sys_updated_on>2026-11-23 20:38:07</sys_updated_on>
     </sys_script_include>
 </record_update>
