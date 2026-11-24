@@ -4,13 +4,13 @@
             <element>wound_threshold</element>
             <position>0</position>
             <sys_created_by>ben.fisher</sys_created_by>
-            <sys_created_on>2026-11-24 21:24:36</sys_created_on>
-            <sys_id>3da4e485833c1350cd40c765eeaad39b</sys_id>
+            <sys_created_on>2026-11-24 22:43:02</sys_created_on>
+            <sys_id>7a96b0c983fc1350cd40c765eeaad3ec</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="x_176383_star_wars_encounter_adversary" display_value="x_176383_star_wars_encounter_adversary" name="x_176383_star_wars_encounter_adversary" sys_domain="global" view="8b642845833c1350cd40c765eeaad3f4">07646845833c1350cd40c765eeaad317</sys_ui_section>
             <sys_updated_by>ben.fisher</sys_updated_by>
-            <sys_updated_on>2026-11-24 21:24:36</sys_updated_on>
+            <sys_updated_on>2026-11-24 22:43:02</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
@@ -18,13 +18,13 @@
             <element>strain_threshold</element>
             <position>1</position>
             <sys_created_by>ben.fisher</sys_created_by>
-            <sys_created_on>2026-11-24 21:24:36</sys_created_on>
-            <sys_id>b5a4e485833c1350cd40c765eeaad39d</sys_id>
+            <sys_created_on>2026-11-24 22:43:02</sys_created_on>
+            <sys_id>3296b0c983fc1350cd40c765eeaad3ee</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="x_176383_star_wars_encounter_adversary" display_value="x_176383_star_wars_encounter_adversary" name="x_176383_star_wars_encounter_adversary" sys_domain="global" view="8b642845833c1350cd40c765eeaad3f4">07646845833c1350cd40c765eeaad317</sys_ui_section>
             <sys_updated_by>ben.fisher</sys_updated_by>
-            <sys_updated_on>2026-11-24 21:24:36</sys_updated_on>
+            <sys_updated_on>2026-11-24 22:43:02</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
@@ -32,83 +32,111 @@
             <element>ranged_defense</element>
             <position>2</position>
             <sys_created_by>ben.fisher</sys_created_by>
-            <sys_created_on>2026-11-24 21:24:36</sys_created_on>
-            <sys_id>35a4e485833c1350cd40c765eeaad39e</sys_id>
+            <sys_created_on>2026-11-24 22:43:02</sys_created_on>
+            <sys_id>be96b0c983fc1350cd40c765eeaad3ee</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="x_176383_star_wars_encounter_adversary" display_value="x_176383_star_wars_encounter_adversary" name="x_176383_star_wars_encounter_adversary" sys_domain="global" view="8b642845833c1350cd40c765eeaad3f4">07646845833c1350cd40c765eeaad317</sys_ui_section>
             <sys_updated_by>ben.fisher</sys_updated_by>
-            <sys_updated_on>2026-11-24 21:24:36</sys_updated_on>
+            <sys_updated_on>2026-11-24 22:43:02</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>wounds_per_minion</element>
+            <position>3</position>
+            <sys_created_by>ben.fisher</sys_created_by>
+            <sys_created_on>2026-11-24 22:43:02</sys_created_on>
+            <sys_id>3e96b0c983fc1350cd40c765eeaad3ef</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="x_176383_star_wars_encounter_adversary" display_value="x_176383_star_wars_encounter_adversary" name="x_176383_star_wars_encounter_adversary" sys_domain="global" view="8b642845833c1350cd40c765eeaad3f4">07646845833c1350cd40c765eeaad317</sys_ui_section>
+            <sys_updated_by>ben.fisher</sys_updated_by>
+            <sys_updated_on>2026-11-24 22:43:02</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
         <sys_ui_element action="INSERT_OR_UPDATE">
             <element>soak</element>
-            <position>3</position>
+            <position>4</position>
             <sys_created_by>ben.fisher</sys_created_by>
-            <sys_created_on>2026-11-24 21:24:36</sys_created_on>
-            <sys_id>b1a4e485833c1350cd40c765eeaad39f</sys_id>
+            <sys_created_on>2026-11-24 22:43:02</sys_created_on>
+            <sys_id>ba96b0c983fc1350cd40c765eeaad3f0</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="x_176383_star_wars_encounter_adversary" display_value="x_176383_star_wars_encounter_adversary" name="x_176383_star_wars_encounter_adversary" sys_domain="global" view="8b642845833c1350cd40c765eeaad3f4">07646845833c1350cd40c765eeaad317</sys_ui_section>
             <sys_updated_by>ben.fisher</sys_updated_by>
-            <sys_updated_on>2026-11-24 21:24:36</sys_updated_on>
+            <sys_updated_on>2026-11-24 22:43:02</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
         <sys_ui_element action="INSERT_OR_UPDATE">
             <element>.split</element>
-            <position>4</position>
+            <position>5</position>
             <sys_created_by>ben.fisher</sys_created_by>
-            <sys_created_on>2026-11-24 21:24:36</sys_created_on>
-            <sys_id>31a4e485833c1350cd40c765eeaad3a0</sys_id>
+            <sys_created_on>2026-11-24 22:43:02</sys_created_on>
+            <sys_id>3a96b0c983fc1350cd40c765eeaad3f1</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="x_176383_star_wars_encounter_adversary" display_value="x_176383_star_wars_encounter_adversary" name="x_176383_star_wars_encounter_adversary" sys_domain="global" view="8b642845833c1350cd40c765eeaad3f4">07646845833c1350cd40c765eeaad317</sys_ui_section>
             <sys_updated_by>ben.fisher</sys_updated_by>
-            <sys_updated_on>2026-11-24 21:24:36</sys_updated_on>
+            <sys_updated_on>2026-11-24 22:43:02</sys_updated_on>
             <sys_user/>
             <type>.split</type>
         </sys_ui_element>
         <sys_ui_element action="INSERT_OR_UPDATE">
             <element>current_wound</element>
-            <position>5</position>
+            <position>6</position>
             <sys_created_by>ben.fisher</sys_created_by>
-            <sys_created_on>2026-11-24 21:24:36</sys_created_on>
-            <sys_id>bda4e485833c1350cd40c765eeaad3a0</sys_id>
+            <sys_created_on>2026-11-24 22:43:02</sys_created_on>
+            <sys_id>b696b0c983fc1350cd40c765eeaad3f2</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="x_176383_star_wars_encounter_adversary" display_value="x_176383_star_wars_encounter_adversary" name="x_176383_star_wars_encounter_adversary" sys_domain="global" view="8b642845833c1350cd40c765eeaad3f4">07646845833c1350cd40c765eeaad317</sys_ui_section>
             <sys_updated_by>ben.fisher</sys_updated_by>
-            <sys_updated_on>2026-11-24 21:24:36</sys_updated_on>
+            <sys_updated_on>2026-11-24 22:43:02</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
         <sys_ui_element action="INSERT_OR_UPDATE">
             <element>current_strain</element>
-            <position>6</position>
+            <position>7</position>
             <sys_created_by>ben.fisher</sys_created_by>
-            <sys_created_on>2026-11-24 21:24:36</sys_created_on>
-            <sys_id>3da4e485833c1350cd40c765eeaad3a1</sys_id>
+            <sys_created_on>2026-11-24 22:43:02</sys_created_on>
+            <sys_id>3696b0c983fc1350cd40c765eeaad3f3</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="x_176383_star_wars_encounter_adversary" display_value="x_176383_star_wars_encounter_adversary" name="x_176383_star_wars_encounter_adversary" sys_domain="global" view="8b642845833c1350cd40c765eeaad3f4">07646845833c1350cd40c765eeaad317</sys_ui_section>
             <sys_updated_by>ben.fisher</sys_updated_by>
-            <sys_updated_on>2026-11-24 21:24:36</sys_updated_on>
+            <sys_updated_on>2026-11-24 22:43:02</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
         <sys_ui_element action="INSERT_OR_UPDATE">
             <element>melee_defense</element>
-            <position>7</position>
+            <position>8</position>
             <sys_created_by>ben.fisher</sys_created_by>
-            <sys_created_on>2026-11-24 21:24:36</sys_created_on>
-            <sys_id>b9a4e485833c1350cd40c765eeaad3a2</sys_id>
+            <sys_created_on>2026-11-24 22:43:02</sys_created_on>
+            <sys_id>b296b0c983fc1350cd40c765eeaad3f4</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="x_176383_star_wars_encounter_adversary" display_value="x_176383_star_wars_encounter_adversary" name="x_176383_star_wars_encounter_adversary" sys_domain="global" view="8b642845833c1350cd40c765eeaad3f4">07646845833c1350cd40c765eeaad317</sys_ui_section>
             <sys_updated_by>ben.fisher</sys_updated_by>
-            <sys_updated_on>2026-11-24 21:24:36</sys_updated_on>
+            <sys_updated_on>2026-11-24 22:43:02</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>number_of_minions_in_group</element>
+            <position>9</position>
+            <sys_created_by>ben.fisher</sys_created_by>
+            <sys_created_on>2026-11-24 22:43:02</sys_created_on>
+            <sys_id>3296b0c983fc1350cd40c765eeaad3f5</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="x_176383_star_wars_encounter_adversary" display_value="x_176383_star_wars_encounter_adversary" name="x_176383_star_wars_encounter_adversary" sys_domain="global" view="8b642845833c1350cd40c765eeaad3f4">07646845833c1350cd40c765eeaad317</sys_ui_section>
+            <sys_updated_by>ben.fisher</sys_updated_by>
+            <sys_updated_on>2026-11-24 22:43:02</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>

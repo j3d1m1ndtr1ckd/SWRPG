@@ -4,13 +4,13 @@
             <element>wound_threshold</element>
             <position>0</position>
             <sys_created_by>ben.fisher</sys_created_by>
-            <sys_created_on>2026-11-18 21:42:10</sys_created_on>
-            <sys_id>e42f254b83e89790cd40c765eeaad34a</sys_id>
+            <sys_created_on>2026-11-24 22:20:54</sys_created_on>
+            <sys_id>2a81300d83bc1350cd40c765eeaad347</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="Combat" display_value="Combat" name="x_176383_star_wars_adversary" sys_domain="global" view="Default view">9f3aa5cb83a89790cd40c765eeaad363</sys_ui_section>
             <sys_updated_by>ben.fisher</sys_updated_by>
-            <sys_updated_on>2026-11-18 21:42:10</sys_updated_on>
+            <sys_updated_on>2026-11-24 22:20:54</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
@@ -18,13 +18,13 @@
             <element>melee_defense</element>
             <position>1</position>
             <sys_created_by>ben.fisher</sys_created_by>
-            <sys_created_on>2026-11-18 21:42:10</sys_created_on>
-            <sys_id>ac2f254b83e89790cd40c765eeaad34b</sys_id>
+            <sys_created_on>2026-11-24 22:20:54</sys_created_on>
+            <sys_id>a681300d83bc1350cd40c765eeaad348</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="Combat" display_value="Combat" name="x_176383_star_wars_adversary" sys_domain="global" view="Default view">9f3aa5cb83a89790cd40c765eeaad363</sys_ui_section>
             <sys_updated_by>ben.fisher</sys_updated_by>
-            <sys_updated_on>2026-11-18 21:42:10</sys_updated_on>
+            <sys_updated_on>2026-11-24 22:20:54</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
@@ -32,13 +32,13 @@
             <element>soak</element>
             <position>2</position>
             <sys_created_by>ben.fisher</sys_created_by>
-            <sys_created_on>2026-11-18 21:42:10</sys_created_on>
-            <sys_id>2c2f254b83e89790cd40c765eeaad34c</sys_id>
+            <sys_created_on>2026-11-24 22:20:54</sys_created_on>
+            <sys_id>2681300d83bc1350cd40c765eeaad349</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="Combat" display_value="Combat" name="x_176383_star_wars_adversary" sys_domain="global" view="Default view">9f3aa5cb83a89790cd40c765eeaad363</sys_ui_section>
             <sys_updated_by>ben.fisher</sys_updated_by>
-            <sys_updated_on>2026-11-18 21:42:10</sys_updated_on>
+            <sys_updated_on>2026-11-24 22:20:54</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
@@ -46,13 +46,13 @@
             <element>.split</element>
             <position>3</position>
             <sys_created_by>ben.fisher</sys_created_by>
-            <sys_created_on>2026-11-18 21:42:10</sys_created_on>
-            <sys_id>a82f254b83e89790cd40c765eeaad34d</sys_id>
+            <sys_created_on>2026-11-24 22:20:54</sys_created_on>
+            <sys_id>a281300d83bc1350cd40c765eeaad34a</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="Combat" display_value="Combat" name="x_176383_star_wars_adversary" sys_domain="global" view="Default view">9f3aa5cb83a89790cd40c765eeaad363</sys_ui_section>
             <sys_updated_by>ben.fisher</sys_updated_by>
-            <sys_updated_on>2026-11-18 21:42:10</sys_updated_on>
+            <sys_updated_on>2026-11-24 22:20:54</sys_updated_on>
             <sys_user/>
             <type>.split</type>
         </sys_ui_element>
@@ -60,13 +60,13 @@
             <element>strain_threshold</element>
             <position>4</position>
             <sys_created_by>ben.fisher</sys_created_by>
-            <sys_created_on>2026-11-18 21:42:10</sys_created_on>
-            <sys_id>282f254b83e89790cd40c765eeaad34e</sys_id>
+            <sys_created_on>2026-11-24 22:20:54</sys_created_on>
+            <sys_id>2281300d83bc1350cd40c765eeaad34b</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="Combat" display_value="Combat" name="x_176383_star_wars_adversary" sys_domain="global" view="Default view">9f3aa5cb83a89790cd40c765eeaad363</sys_ui_section>
             <sys_updated_by>ben.fisher</sys_updated_by>
-            <sys_updated_on>2026-11-18 21:42:10</sys_updated_on>
+            <sys_updated_on>2026-11-24 22:20:54</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
@@ -74,13 +74,27 @@
             <element>ranged_defense</element>
             <position>5</position>
             <sys_created_by>ben.fisher</sys_created_by>
-            <sys_created_on>2026-11-18 21:42:10</sys_created_on>
-            <sys_id>a42f254b83e89790cd40c765eeaad34f</sys_id>
+            <sys_created_on>2026-11-24 22:20:54</sys_created_on>
+            <sys_id>ae81300d83bc1350cd40c765eeaad34b</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="Combat" display_value="Combat" name="x_176383_star_wars_adversary" sys_domain="global" view="Default view">9f3aa5cb83a89790cd40c765eeaad363</sys_ui_section>
             <sys_updated_by>ben.fisher</sys_updated_by>
-            <sys_updated_on>2026-11-18 21:42:10</sys_updated_on>
+            <sys_updated_on>2026-11-24 22:20:54</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>wounds_per_minion</element>
+            <position>6</position>
+            <sys_created_by>ben.fisher</sys_created_by>
+            <sys_created_on>2026-11-24 22:20:54</sys_created_on>
+            <sys_id>2e81300d83bc1350cd40c765eeaad34c</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Combat" display_value="Combat" name="x_176383_star_wars_adversary" sys_domain="global" view="Default view">9f3aa5cb83a89790cd40c765eeaad363</sys_ui_section>
+            <sys_updated_by>ben.fisher</sys_updated_by>
+            <sys_updated_on>2026-11-24 22:20:54</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>

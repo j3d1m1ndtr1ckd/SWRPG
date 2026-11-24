@@ -31,6 +31,13 @@
 				c.editAdversary = true;
 			});
 		}
+		
+		$scope.fetchAdversaries = function(){
+			c.server.get({action: 'fetchAdversaries'}).then(function(response){
+				$scope.data.adversariesList = response.data.adversariesList;
+				console.log($scope.data.adversariesList);
+			});
+		}
 
 		$rootScope.$on('sp.form.submitted', function(){
 			$scope.selectEncounter(c.currentEncounter);
@@ -396,7 +403,7 @@
 }
 
 //edit adversary flyout
-.edit-adversary-widget-flyout-container{
+.encounter-flyout-container{
   position: fixed;
   top: 10%;
   width: 90%;
@@ -444,8 +451,9 @@ try{
 	if(input){
 		if(input.action == 'fetchEncounterAdversaries'){
 			data.encounterAdversaries = util.getEncounterAdversaries(input.encounter.sys_id);
-			console.log(data.encounterAdversaries);
-		} 
+		} else if(input.action == 'fetchAdversaries'){
+			data.adversariesList = util.fetchAdversaries();
+		}
 	}
 } catch(e){
 	console.log('error in star wars encounter builder widget - server side: ' + e.message);
@@ -456,14 +464,14 @@ try{
         <sys_created_by>ben.fisher</sys_created_by>
         <sys_created_on>2026-11-19 17:29:03</sys_created_on>
         <sys_id>2ace751383e41310cd40c765eeaad39c</sys_id>
-        <sys_mod_count>114</sys_mod_count>
+        <sys_mod_count>118</sys_mod_count>
         <sys_name>Star Wars Encounter Builder</sys_name>
         <sys_package display_value="Star Wars RPG" source="x_176383_star_wars">64b3517bdb5a08542901de90cf961993</sys_package>
         <sys_policy/>
         <sys_scope display_value="Star Wars RPG">64b3517bdb5a08542901de90cf961993</sys_scope>
         <sys_update_name>sp_widget_2ace751383e41310cd40c765eeaad39c</sys_update_name>
         <sys_updated_by>ben.fisher</sys_updated_by>
-        <sys_updated_on>2026-11-24 21:26:40</sys_updated_on>
+        <sys_updated_on>2026-11-24 22:12:22</sys_updated_on>
         <template><![CDATA[<!--head>
   <script src="https://kit.fontawesome.com/b6e20c5e73.js" crossorigin="anonymous"></script>
 </head-->
@@ -489,7 +497,7 @@ try{
 <div ng-if="!c.isLoading && c.currentEncounter != ''" class="encounter-detail-container">
   <span class="encounter-header-buttons-container">
     <span class="back-button-container" ng-click="c.currentEncounter = ''"><i class="fa-duotone fa-starfighter"></i> Back</span>
-    <span class="add-adversaries-button-container" ng-click="c.viewAdversariesToAdd = true"><i class="fa-solid fa-user-bounty-hunter"></i> - Add Adversaries</span>
+    <span class="add-adversaries-button-container" ng-click="c.viewAdversariesToAdd = true; fetchAdversaries()"><i class="fa-solid fa-user-bounty-hunter"></i> - Add Adversaries</span>
   </span>
   <span class="encounter-adversaries-cards-body-container">
     <span ng-repeat="card in data.encounterAdversaries" class="encounter-adversary-card">
@@ -644,9 +652,14 @@ try{
 <!-- end encounter detail -->
 
 <!-- edit adversary flyout -->
-<div class="edit-adversary-widget-flyout-container" ng-if="c.editAdversary">
+<div class="edit-adversary-widget-flyout-container encounter-flyout-container" ng-if="c.editAdversary">
   <span class="close-button" ng-click="c.editAdversary = false"><i class="fa-solid fa-swords-laser"></i></span>
   <sp-widget widget="data.widget"/>
+</div>
+
+<!-- add adversaries flyout -->
+<div class="add-adversary-to-encounter-flyout-container encounter-flyout-container" ng-if="c.viewAdversariesToAdd">
+  <span class="close-button" ng-click="c.viewAdversariesToAdd = false"><i class="fa-solid fa-swords-laser"></i></span>
 </div>]]></template>
     </sp_widget>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
