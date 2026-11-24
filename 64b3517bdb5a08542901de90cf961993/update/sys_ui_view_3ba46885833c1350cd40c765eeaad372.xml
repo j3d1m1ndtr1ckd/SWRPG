@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_view">
+    <sys_ui_view action="INSERT_OR_UPDATE">
+        <group/>
+        <hidden>false</hidden>
+        <name>characteristics</name>
+        <roles/>
+        <sys_class_name>sys_ui_view</sys_class_name>
+        <sys_created_by>ben.fisher</sys_created_by>
+        <sys_created_on>2026-11-24 21:24:45</sys_created_on>
+        <sys_id>3ba46885833c1350cd40c765eeaad372</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>characteristics</sys_name>
+        <sys_package display_value="Star Wars RPG" source="x_176383_star_wars">64b3517bdb5a08542901de90cf961993</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Star Wars RPG">64b3517bdb5a08542901de90cf961993</sys_scope>
+        <sys_update_name>sys_ui_view_3ba46885833c1350cd40c765eeaad372</sys_update_name>
+        <sys_updated_by>ben.fisher</sys_updated_by>
+        <sys_updated_on>2026-11-24 21:24:45</sys_updated_on>
+        <title>characteristics</title>
+        <user/>
+    </sys_ui_view>
+</record_update>

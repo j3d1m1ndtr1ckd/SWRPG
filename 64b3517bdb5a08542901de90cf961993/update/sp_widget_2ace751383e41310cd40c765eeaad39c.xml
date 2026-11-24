@@ -20,10 +20,11 @@
 			});
 		}
 
-		$scope.openForm = function(adversary){
+		$scope.openForm = function(adversary, view){
 			var params = {
 				table: 'x_176383_star_wars_encounter_adversary',
-				sys_id: adversary.sys_id
+				sys_id: adversary.sys_id,
+				view: view
 			};
 			spUtil.get('widget-form', params).then(function(response){
 				$scope.data.widget = response;
@@ -362,6 +363,7 @@
           flex-direction: column;
           align-items: center;
           row-gap: 1rem;
+          width: 100%;
 
           .full-detail-section-header{
             display: flex;
@@ -383,9 +385,38 @@
               }
             }
           }
+
+          .description{
+            width: 100%;
+          }
         }
       }
     }
+  }
+}
+
+//edit adversary flyout
+.edit-adversary-widget-flyout-container{
+  position: fixed;
+  top: 10%;
+  width: 90%;
+  left: 5%;
+  max-height: 70rem;
+  background-color: #000;
+  border: .1rem solid #e21414;
+  border-radius: 2rem;
+  padding: 2rem;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  row-gap: 2rem;
+
+  .close-button{
+    text-align: right;
+    font-size: 2rem;
+    color: #e21414;
   }
 }</css>
         <data_table>sp_instance</data_table>
@@ -425,14 +456,14 @@ try{
         <sys_created_by>ben.fisher</sys_created_by>
         <sys_created_on>2026-11-19 17:29:03</sys_created_on>
         <sys_id>2ace751383e41310cd40c765eeaad39c</sys_id>
-        <sys_mod_count>111</sys_mod_count>
+        <sys_mod_count>114</sys_mod_count>
         <sys_name>Star Wars Encounter Builder</sys_name>
         <sys_package display_value="Star Wars RPG" source="x_176383_star_wars">64b3517bdb5a08542901de90cf961993</sys_package>
         <sys_policy/>
         <sys_scope display_value="Star Wars RPG">64b3517bdb5a08542901de90cf961993</sys_scope>
         <sys_update_name>sp_widget_2ace751383e41310cd40c765eeaad39c</sys_update_name>
         <sys_updated_by>ben.fisher</sys_updated_by>
-        <sys_updated_on>2026-11-24 20:17:21</sys_updated_on>
+        <sys_updated_on>2026-11-24 21:26:40</sys_updated_on>
         <template><![CDATA[<!--head>
   <script src="https://kit.fontawesome.com/b6e20c5e73.js" crossorigin="anonymous"></script>
 </head-->
@@ -467,7 +498,7 @@ try{
         <span class="star-wars-text">{{card.name}}</span>
       </span>
       <span class="encounter-adversary-detail">{{card.type.display}}</span>
-      <span class="encounter-adversary-characteristics-container">
+      <span class="encounter-adversary-characteristics-container" ng-click="openForm(card, 'characteristics')">
         <span class="encounter-adversary-detail encounter-adversary-characteristic">
           <span class="encounter-adversary-characteristic-label">Brawn</span>
           <span class="encounter-adversary-characteristic-value">{{card.characteristics.brawn}}</span>
@@ -493,7 +524,7 @@ try{
           <span class="encounter-adversary-characteristic-value">{{card.characteristics.presence}}</span>
         </span>
       </span>
-      <span class="wound-strain-defense-container">
+      <span class="wound-strain-defense-container" ng-click="openForm(card, 'damage')">
         <!-- soak -->
         <span class="combat-detail-tracker-container">
           <span class="combat-detail-tracker-label">Soak</span>
@@ -548,7 +579,7 @@ try{
       </span>
       <span class="edit-buttons-container">
         <button class="edit-adversary-button" ng-click="c.showFullAdversaryDetail = !c.showFullAdversaryDetail; c.currentAdversary = card; buildDiceRolls(card);">Toggle Full Details</button>
-        <button class="edit-adversary-button" ng-click="openForm(card)">Edit Adversary</button>
+        <button class="edit-adversary-button" ng-click="openForm(card, 'default')">Edit Adversary</button>
       </span>
       <!-- full adversary detail -->
       <span ng-if="c.showFullAdversaryDetail && c.currentAdversary.sys_id == card.sys_id" class="full-adversary-detail-container">
