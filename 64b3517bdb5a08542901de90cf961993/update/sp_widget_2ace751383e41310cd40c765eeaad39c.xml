@@ -2,36 +2,120 @@
     <sp_widget action="INSERT_OR_UPDATE">
         <category>custom</category>
         <client_script><![CDATA[api.controller=function($scope, spUtil, $rootScope) {
-  /* widget controller */
-  var c = this;
-	
-	c.currentEncounter = '';
-	c.isLoading = false;
-	c.viewAdversariesToAdd = false;
-	
-	$scope.selectEncounter = function(encounter){
-		c.currentEncounter = encounter;
-		c.server.get({action: 'fetchEncounterAdversaries', encounter: encounter}).then(function(response){
-			$scope.data = response.data;
-			c.isLoading = false;
+	/* widget controller */
+	var c = this;
+	try{
+		c.currentEncounter = '';
+		c.isLoading = false;
+		c.viewAdversariesToAdd = false;
+		c.showFullAdversaryDetail = false;
+		c.currentAdversary = '';
+		c.showAllSkills = true;
+
+		$scope.selectEncounter = function(encounter){
+			c.currentEncounter = encounter;
+			c.server.get({action: 'fetchEncounterAdversaries', encounter: encounter}).then(function(response){
+				$scope.data = response.data;
+				c.isLoading = false;
+			});
+		}
+
+		$scope.openForm = function(adversary){
+			var params = {
+				table: 'x_176383_star_wars_encounter_adversary',
+				sys_id: adversary.sys_id
+			};
+			spUtil.get('widget-form', params).then(function(response){
+				$scope.data.widget = response;
+				c.editAdversary = true;
+			});
+		}
+
+		$rootScope.$on('sp.form.submitted', function(){
+			$scope.selectEncounter(c.currentEncounter);
+			c.editAdversary = false;
+			$scope.buildDiceRolls(c.currentAdversary);
 		});
+
+		//build roll visual
+		$scope.buildDiceRolls = function(adversary){
+			if(c.showFullAdversaryDetail){
+				setTimeout(function(){
+					//build skill rolls
+					for(var i = 0; i < adversary.skills.length; i++){
+						var parentElement = document.getElementById(adversary.skills[i].sysID);
+						var childElement = document.createElement("a");
+						parentElement.appendChild(childElement);
+						var abilityDice = 0;
+						var proficiencyDice = 0;
+
+						if(adversary.skills[i].ranks != adversary.characteristics[adversary.skills[i].characteristic.toLowerCase()]){
+							if(adversary.skills[i].ranks > adversary.characteristics[adversary.skills[i].characteristic.toLowerCase()]){
+								abilityDice = adversary.skills[i].ranks - adversary.characteristics[adversary.skills[i].characteristic.toLowerCase()];
+								proficiencyDice = adversary.characteristics[adversary.skills[i].characteristic.toLowerCase()];
+							} else{
+								abilityDice = adversary.characteristics[adversary.skills[i].characteristic.toLowerCase()] - adversary.skills[i].ranks;
+								proficiencyDice = adversary.skills[i].ranks;
+							}
+
+							for(var j = 0; j < abilityDice; j++){
+								var icon = document.createElement("i");
+								icon.classList.add('fas', 'fa-dice-d8', 'ability-dice', 'dice');
+								childElement.appendChild(icon);
+							}
+						} else{
+							proficiencyDice = adversary.skills[i].ranks;
+						}
+						for(var j = 0; j < proficiencyDice; j++){
+							var icon = document.createElement("i");
+							icon.classList.add('fas', 'fa-dice-d12', 'proficiency-dice', 'dice');
+							childElement.appendChild(icon);
+						}
+					}
+
+					//build weapon rolls
+					adversary.combat.weapons.forEach(function(weapon){
+						var weaponParentElement = document.getElementById(weapon.sys_id);
+						var weaponChildElement = document.createElement("b");
+						weaponParentElement.appendChild(weaponChildElement);
+						var weaponAbilityDice = 0;
+						var weaponProficiencyDice = 0;
+
+						adversary.skills.forEach(function(skill){
+							if(skill.sysID == weapon.skill.sysID){
+								if(skill.ranks != adversary.characteristics[skill.characteristic.toLowerCase()]){
+									if(skill.ranks > adversary.characteristics[skill.characteristic.toLowerCase()]){
+										weaponAbilityDice = skill.ranks - adversary.characteristics[skill.characteristic.toLowerCase()];
+										weaponProficiencyDice = adversary.characteristics[skill.characteristic.toLowerCase()];
+									} else{
+										weaponAbilityDice = adversary.characteristics[skill.characteristic.toLowerCase()] - skill.ranks;
+										weaponProficiencyDice = skill.ranks;
+									}
+
+									for(var j = 0; j < weaponAbilityDice; j++){
+										var icon = document.createElement("i");
+										icon.classList.add('fas', 'fa-dice-d8', 'ability-dice', 'dice');
+										weaponChildElement.appendChild(icon);
+									}
+								} else{
+									weaponProficiencyDice = skill.ranks;
+								}
+								
+								for(var j = 0; j < weaponProficiencyDice; j++){
+									var icon = document.createElement("l");
+									icon.classList.add('fas', 'fa-dice-d12', 'proficiency-dice', 'dice');
+									weaponChildElement.appendChild(icon);
+								}
+							}
+						});
+					});
+				}, 500);
+			}
+		}
+
+	} catch(e){
+		alert(e.message);
 	}
-	
-	$scope.openForm = function(adversary){
-		var params = {
-			table: 'x_176383_star_wars_encounter_adversary',
-			sys_id: adversary.sys_id
-		};
-		spUtil.get('widget-form', params).then(function(response){
-			$scope.data.widget = response;
-			c.editAdversary = true;
-		});
-	}
-	
-	$rootScope.$on('sp.form.submitted', function(){
-		$scope.selectEncounter(c.currentEncounter);
-		c.editAdversary = false;
-	});
 };]]></client_script>
         <controller_as>c</controller_as>
         <css>.encounters-list-container{
@@ -115,11 +199,19 @@
     align-items: stretch;
     justify-content: space-evenly;
 
+    .ability-dice{
+      color: green;
+    }
+
+    .proficiency-dice{
+      color: yellow;
+    }
+
     .encounter-adversary-card{
       display: flex;
       flex-direction: column;
       align-items: center;
-      row-gap: .5rem;
+      row-gap: 2rem;
       background: black;
       padding: 1rem;
       border-radius: 2rem;
@@ -180,15 +272,18 @@
         justify-content: space-evenly;
         flex-direction: row;
         flex-wrap: nowrap;
+        column-gap: 1rem;
         width: 100%;
+        height: 100%;
 
         .combat-detail-tracker-container{
           display: flex;
           flex-direction: column;
           align-items: center;
           background-color: #fff;
-          justify-content: space-between;
+          justify-content: flex-start;
           border-radius: 2rem;
+          height: 100%;
 
           .combat-detail-tracker-label{
             background-color: #2f3860;
@@ -254,6 +349,42 @@
           }
         }
       }
+
+      .full-adversary-detail-container{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        row-gap: 2rem;
+
+        .full-detail-section{
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          row-gap: 1rem;
+
+          .full-detail-section-header{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            .section-header{
+              font-size: 1.8rem;
+              font-weight: bold;
+            }
+
+            .toggle-all-skills{
+              background: transparent;
+              border-radius: 2rem;
+              padding: .5rem 1rem;
+
+              &amp;:hover{
+                box-shadow: 0 0 .8rem silver;
+              }
+            }
+          }
+        }
+      }
     }
   }
 }</css>
@@ -294,14 +425,14 @@ try{
         <sys_created_by>ben.fisher</sys_created_by>
         <sys_created_on>2026-11-19 17:29:03</sys_created_on>
         <sys_id>2ace751383e41310cd40c765eeaad39c</sys_id>
-        <sys_mod_count>61</sys_mod_count>
+        <sys_mod_count>111</sys_mod_count>
         <sys_name>Star Wars Encounter Builder</sys_name>
         <sys_package display_value="Star Wars RPG" source="x_176383_star_wars">64b3517bdb5a08542901de90cf961993</sys_package>
         <sys_policy/>
         <sys_scope display_value="Star Wars RPG">64b3517bdb5a08542901de90cf961993</sys_scope>
         <sys_update_name>sp_widget_2ace751383e41310cd40c765eeaad39c</sys_update_name>
         <sys_updated_by>ben.fisher</sys_updated_by>
-        <sys_updated_on>2026-11-23 20:52:36</sys_updated_on>
+        <sys_updated_on>2026-11-24 20:17:21</sys_updated_on>
         <template><![CDATA[<!--head>
   <script src="https://kit.fontawesome.com/b6e20c5e73.js" crossorigin="anonymous"></script>
 </head-->
@@ -363,6 +494,15 @@ try{
         </span>
       </span>
       <span class="wound-strain-defense-container">
+        <!-- soak -->
+        <span class="combat-detail-tracker-container">
+          <span class="combat-detail-tracker-label">Soak</span>
+          <span class="combat-detail-tracker-values">
+            <span class="combat-detail">
+              <span class="combat-detail-value">{{card.combat.soak}}</span>
+            </span>
+          </span>
+        </span>
         <!-- wounds -->
         <span class="combat-detail-tracker-container">
           <span class="combat-detail-tracker-label">Wounds</span>
@@ -407,19 +547,70 @@ try{
         </span>
       </span>
       <span class="edit-buttons-container">
-        <button class="edit-adversary-button" ng-click="c.showFullAdversaryDetail = true; c.currentAdversary = card">View Details</button>
+        <button class="edit-adversary-button" ng-click="c.showFullAdversaryDetail = !c.showFullAdversaryDetail; c.currentAdversary = card; buildDiceRolls(card);">Toggle Full Details</button>
         <button class="edit-adversary-button" ng-click="openForm(card)">Edit Adversary</button>
       </span>
+      <!-- full adversary detail -->
+      <span ng-if="c.showFullAdversaryDetail && c.currentAdversary.sys_id == card.sys_id" class="full-adversary-detail-container">
+				<!-- skills -->
+        <span class="skills-container full-detail-section">
+          <span class="full-detail-section-header">
+            <span class="section-header">Skills</span>
+            <span class="section-subheader star-wars-text">Skills</span>
+            <button class="toggle-all-skills" ng-click="c.showAllSkills = !c.showAllSkills">Toggle All Skills</button>
+          </span>
+          <table class="skills-table">
+            <tr class="skills-table-header-row">
+              <th>Skill</th>
+              <th>Ranks</th>
+              <th>Roll</th>
+            </tr>
+            <tr class="skill-row" ng-repeat="skill in card.skills" ng-show="c.showAllSkills || skill.ranks > 0">
+              <td class="skill-table-data">{{skill.name}}</td>
+              <td class="skill-table-data">{{skill.ranks}}</td>
+              <td class="skill-table-data roll"><span class="dice-symbols" id="{{skill.sysID}}"></span></td>
+            </tr>
+          </table>
+        </span>
+        <!-- weapons -->
+        <span class="adversary-weapons-container full-detail-section">
+          <span class="full-detail-section-header">
+            <span class="section-header">Weapons</span>
+            <span class="section-subheader star-wars-text">Weapons</span>
+          </span>
+          <span class="weapons-body">
+            <table class="weapons-table">
+              <tr class="weapons-table-header-row">
+                <th>Weapon</th>
+                <th>Range</th>
+                <th>Damage</th>
+                <th>Roll</th>
+                <th>Qualities:</th>
+              </tr>
+              <tr ng-repeat="weapon in card.combat.weapons">
+                <td>{{weapon.name}}<br>{{weapon.skill.display}}</td>
+                <td>{{weapon.range}}</td>
+                <td>Base Damage: {{weapon.damage}}<br>Crit: {{weapon.crit}}</td>
+                <td><span id="{{weapon.sys_id}}"></span></td>
+                <td><span ng-repeat="quality in weapon.qualities" data-toggle="tooltip" title="{{quality.description}}">{{quality.name}} {{quality.rank}}; </span></td>
+              </tr>
+            </table>
+          </span>
+        </span>
+        <!-- description -->
+        <span class="full-detail-section">
+          <span class="full-detail-section-header">
+            <span class="section-header">Description</span>
+            <span class="section-subheader star-wars-text">Description</span>
+          </span>
+          <span class="description" ng-bind-html="card.description"></span>
+        </span>
+      </span>
+      <!-- end full adversary detail -->
     </span>
   </span>
 </div>
 <!-- end encounter detail -->
-
-<!-- full adversary detail -->
-<div class="full-adversary-detail-container">
-  
-</div>
-<!-- end full adversary detail -->
 
 <!-- edit adversary flyout -->
 <div class="edit-adversary-widget-flyout-container" ng-if="c.editAdversary">
